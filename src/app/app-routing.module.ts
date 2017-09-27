@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'a', component: AComponent },
   { path: 'b/:id', component: BComponent },
-  { path: 'home', loadChildren:'app/home/home.module#HomeModule', canActivate: [AuthGuard] }
+  { path: 'home', loadChildren:'app/home/home.module#HomeModule', canActivate: [AuthGuard] },
+  { path: '**', pathMatch: 'full', redirectTo: '/login' }
 ];
 
 @NgModule({
