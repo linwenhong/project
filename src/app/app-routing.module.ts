@@ -7,7 +7,7 @@ import { BComponent } from './b.component';
 import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/a', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'a', component: AComponent },
   { path: 'b/:id', component: BComponent },
   { path: 'home', loadChildren:'app/home/home.module#HomeModule', canActivate: [AuthGuard] }
