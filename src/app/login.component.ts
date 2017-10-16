@@ -8,6 +8,7 @@ export class LoginComponent {
   message: string;
   constructor(public authService: AuthService, public router: Router) {
     this.setMessage();
+    this.authService.isLoggedIn = false;
   }
   setMessage() {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
