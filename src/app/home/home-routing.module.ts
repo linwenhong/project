@@ -8,21 +8,23 @@ import { TableComponent } from './table/table.component';
 import { ShopComponent } from './shop/shop.component';
 import { OrderComponent } from './order/order.component';
 const routes: Routes = [{
-		path: '',
-		component: HomeComponent,
-		canActivate: [AuthGuard],
-		children: [{
-			path: 'table',
-			component: TableComponent,
-			canActivate: [AuthGuard]
-		}]
-	},
-	{
+	path: '',
+	component: HomeComponent,
+	canActivate: [AuthGuard],
+	children: [{
+		path: 'table',
+		component: TableComponent,
+		canActivate: [AuthGuard]
+	}, {
 		path: 'shop',
 		component: ShopComponent,
 		canActivate: [AuthGuard]
-	}
-]
+	}, {
+		path: 'order',
+		component: OrderComponent,
+		canActivate: [AuthGuard]
+	}]
+}]
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
