@@ -33,11 +33,16 @@
 	line-height: 55px; /*.navigation-bar-top height*/
 	float: left;
 }
+.navigation-bar-list {
+	width: 100%;
+	float: left;
+	background-color: #d9d9d9;
+}
 .navigation-bar-list li {
 	width: 14%;
 	float: left;
-	background-color: #d9d9d9;
 	border-left: 1px solid #fff;
+	cursor: pointer;
 	text-align: center;
 }
 .navigation-bar-list li:first-child {
@@ -47,10 +52,6 @@
 }
 .navigation-bar-list li:nth-child(2) {
 	border-left: none;
-}
-.navigation-bar-list li a {
-	display: block;
-	width: 100%;
 }
 .navigation-bar-list li div {
 	display: inline-flex;
