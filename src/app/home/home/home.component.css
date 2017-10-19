@@ -1,51 +1,84 @@
 .home-page {
+	position: relative;
+	width: 100%;
 	height: 100%;
+	box-sizing: border-box;
+	padding-top: 105px; /*navigation-bar height*/
+}
+.navigation-bar{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 3;
 }
 .navigation-bar-top {
-	height: 40px;
+	height: 55px;
 	background-image: url(../../../assets/img/nav.jpg);
 	background-size: 100% 100%;
 }
-.navigation-bar-list {
-	
+.user {
+	float: right;
+	margin-right: 10px;
 }
-.navigation-bar-list ul {
-	width: 100%;
-	height: 100%;
+.user-icon {
+	display: block;
+	width: 35px;
+	height: 35px;
+	margin: 10px;
+	float: left;
+	background-image: url(../../../assets/img/user.png);
+	background-size: 100%;
+}
+.user span {
+	line-height: 55px; /*.navigation-bar-top height*/
+	float: left;
 }
 .navigation-bar-list li {
 	width: 14%;
-	height: 100%;
 	float: left;
 	background-color: #d9d9d9;
+	border-left: 1px solid #fff;
+	text-align: center;
 }
 .navigation-bar-list li:first-child {
 	width: 16%;
 	background-color: #fe8b46;
+	border-left: none;
+}
+.navigation-bar-list li:nth-child(2) {
+	border-left: none;
 }
 .navigation-bar-list li a {
 	display: block;
 	width: 100%;
-	height: 100%;
+}
+.navigation-bar-list li div {
+	display: inline-flex;
 }
 .navigation-bar-list li i {
-	display: block;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
 	float: left;
-	background-size: 100%;
+	margin: 10px auto; /*(x-height)/2*/
+	background-size: 100%
 }
 .navigation-bar-list li span {
-	
+	line-height: 50px; /*x*/
+	float: left;
+	margin-left: 5px;
+	color: #fff;
 }
-.icon-1{
-	width: 22px;
-	height: 34px;
-	background-image: url(../../../assets/img/nav/0.png);
-}
-
+.icon-1 { background-image: url(../../../assets/img/nav/0.png); }
+.icon-2 { background-image: url(../../../assets/img/nav/1.png); }
+.icon-3 { background-image: url(../../../assets/img/nav/2.png); }
+.icon-4 { background-image: url(../../../assets/img/nav/3.png); }
+.icon-5 { background-image: url(../../../assets/img/nav/4.png); }
+.icon-6 { background-image: url(../../../assets/img/nav/5.png); }
+.icon-7 { background-image: url(../../../assets/img/nav/6.png); }
 
 .home-page-content {
-	box-sizing: border-box;
+	width: 100%;
 	height: 100%;
-	padding-top: 80px;
-	margin-top: -80px;
+	overflow-y: auto;
 }

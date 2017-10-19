@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule }  from './app-routing.module';
 import { LoginRoutingModule }      from './login-routing.module';
@@ -14,6 +15,7 @@ import { LoginComponent }  from './login.component';
     LoginComponent
   ],
   imports: [
+  	NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     LoginRoutingModule
