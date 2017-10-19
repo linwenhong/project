@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HttpModule } from '@angular/http';
+import { CommonModule }         from '@angular/common';
+import { FormsModule }          from '@angular/forms';
 
 import { AppRoutingModule }  from './app-routing.module';
 import { LoginRoutingModule }      from './login-routing.module';
@@ -16,7 +19,10 @@ import { LoginComponent }  from './login.component';
   ],
   imports: [
   	NgbModule.forRoot(),
+  	HttpModule,
+  	CommonModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     LoginRoutingModule
   ],

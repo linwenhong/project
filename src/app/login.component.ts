@@ -1,11 +1,16 @@
 import { Component }   from '@angular/core';
 import { Router }      from '@angular/router';
 import { AuthService } from './auth.service';
+import { FormsModule }          from '@angular/forms';
 @Component({
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  message: string;
+	message: string;
+	public username: string;
+	public password: string;
+	
   constructor(public authService: AuthService, public router: Router) {
     this.setMessage();
     this.authService.isLoggedIn = false;
@@ -13,9 +18,9 @@ export class LoginComponent {
   setMessage() {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
-  login() {
+  login(user, pwd) {
     this.message = 'Trying to log in ...';
-    this.authService.login().subscribe(() => {
+    this.authService.login(user, pwd).subscribe(() => {
       this.setMessage();
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from our auth service

@@ -1,6 +1,24 @@
-<h2>LOGIN</h2>
-<p>{{message}}</p>
-<p>
-  <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
-  <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-</p>
+<div class="login-page">
+	<div class="login_box">
+		<div class="login_content">
+			<div class="title">点餐系统</div>
+				
+			<div class="input_box">
+				<i class="username"></i>
+				<input placeholder="请输入用户名" [(ngModel)]="username" />
+			</div>
+			
+			<div class="input_box">
+				<i class="password"></i>
+				<input placeholder="请输入密码" [(ngModel)]="password" />
+			</div>
+			
+			<div class="remember">
+				<input type="checkbox" /><span>记住密码</span>
+				<span class="forget">忘记密码？</span>
+			</div>
+			
+			<span class="login" (click)="login(username, password)" *ngIf="!authService.isLoggedIn">登录</span>
+		</div>
+	</div>
+</div>
