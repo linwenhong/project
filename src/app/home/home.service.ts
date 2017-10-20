@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 import { environment } from '../../environments/environment';
 
@@ -17,9 +18,7 @@ export class HomeService {
                     .toPromise()
                     .then(
                       response => {
-                      	console.log(response.headers.get('Access-Control-Allow-Origin'));
-//                    	sessionStorage.setItem('token', )
-
+                      	sessionStorage.setItem('token', response.headers.get('Authorization'));
                         let regions = response.json();
                         return regions;
                       });
@@ -31,6 +30,7 @@ export class HomeService {
     return this.http.post(environment.api_url+url, request, {headers: header})
                     .toPromise().then(
                       response => {
+                      	sessionStorage.setItem('token', response.headers.get('Authorization'));
                         let regions = response.json();
                         return regions;
                       });

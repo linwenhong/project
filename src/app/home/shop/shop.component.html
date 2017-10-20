@@ -1,11 +1,10 @@
 <div class="shop-page">
 	<div class="nav">
 		<ul>
-			<li class="active">全部商品</li>
-			<li>套餐</li>
-			<li>菜品</li>
-			<li>饮品</li>
-		</ul>
+      <ng-container *ngFor="let x of category;let category=index">
+        <li [class.hide]="!menu[x][0]" id="category{{category}}">{{x}}</li>
+      </ng-container>
+    </ul>
 	</div>
 	<div class="content">
 		<div class="row">
