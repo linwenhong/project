@@ -3,7 +3,8 @@
 		<div class="navigation-bar-top">
 			<div class="user">
 				<i class="user-icon"></i>
-				<span>员工：admin</span>
+				<span>员工：{{username}}</span>
+				<span (click)="logout()">注销</span>
 			</div>
 		</div>
 		<div class="navigation-bar-list">

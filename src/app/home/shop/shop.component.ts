@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-shop',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: HomeService) { }
 
   ngOnInit() {
+		this.getfood();
   }
-
+	
+	private getfood(): void {
+		this.service.get('bk_getfood?shop_id=2017092200077000000045535333').then(
+			res => {
+				console.log(res);
+			}
+		);
+	}
 }
