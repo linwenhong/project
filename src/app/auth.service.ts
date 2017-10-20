@@ -33,13 +33,17 @@ export class AuthService {
 		                      	sessionStorage.setItem('isLogin', 'true');
 		                      	sessionStorage.setItem('user', JSON.stringify(regions.user));
 		                      	sessionStorage.setItem('token', regions.token);
+		                      	localStorage.setItem('username', username);
 		                      	this.isLogin = true;
+		                      }else{
+		                      	alert('用户名或密码错误!');
 		                      }
 		                  });
   	return Observable.of(true).delay(1000).do(val => this.isLoggedIn = this.isLogin);
   }
 
   logout(): void {
+  	sessionStorage.clear(); 
     this.isLoggedIn = false;
     this.router.navigate(['/login']);
   }

@@ -31,10 +31,12 @@
 	font-size: 35px;
 	text-align: center;
 }
-.input_box, .login  {
+.input_box, .login {
 	height: 50px;
 	margin-top: 25px;
 	border-radius: 15px;
+}
+.input_box {
 	background-color: #fff;
 }
 .input_box i, .input_box input {
@@ -83,11 +85,7 @@
 	cursor: pointer;
 }
 .login {
-	display: block;
 	width: 100%;
 	line-height: 50px;
-	background-color: #FE8B46;
-	cursor: pointer;
 	font-size: 25px;
-	text-align: center;
 }

@@ -14,11 +14,11 @@
 			</div>
 			
 			<div class="remember">
-				<input type="checkbox" /><span>记住密码</span>
+				<input type="checkbox" /><span>记住用户名</span>
 				<span class="forget">忘记密码？</span>
 			</div>
 			
-			<span class="login" (click)="login(username, password)" *ngIf="!authService.isLoggedIn">登录</span>
+			<span class="login m-btn" (click)="login(username, password)" *ngIf="!authService.isLoggedIn">登录</span>
 		</div>
 	</div>
 </div>

@@ -12,9 +12,14 @@ export class LoginComponent {
 	
   constructor(public authService: AuthService, public router: Router) {
     this.authService.isLoggedIn = false;
+    this.username = localStorage.getItem('username') || null;
   }
   
   login(user, pwd) {
+  	if(!user || !pwd){
+  		alert('请输入用户名和密码!');
+  		return;
+  	}
     this.authService.login(user, pwd).subscribe(() => {
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from our auth service
