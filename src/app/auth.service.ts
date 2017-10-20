@@ -29,7 +29,7 @@ export class AuthService {
 		  	}).toPromise().then(
 		                    response => {
 		                      let regions = response.json();
-		                      this.isLogin = (regions.code == '200')?true:false;
+		                      this.isLoggedIn = this.isLogin = (regions.code == '200')?true:false;
 		                  });
   	return Observable.of(true).delay(1000).do(val => this.isLoggedIn = this.isLogin);
   }
