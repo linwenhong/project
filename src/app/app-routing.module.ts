@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', loadChildren:'app/home/home.module#HomeModule' },
 //{ path: 'home', loadChildren:'app/home/home.module#HomeModule', canActivate: [AuthGuard] },
   { path: '**', pathMatch: 'full', redirectTo: '/login' }

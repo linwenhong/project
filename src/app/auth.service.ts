@@ -29,7 +29,12 @@ export class AuthService {
 		  	}).toPromise().then(
 		                    response => {
 		                      let regions = response.json();
-		                      this.isLoggedIn = this.isLogin = (regions.code == '200')?true:false;
+		                      if(regions.code == '200'){
+		                      	sessionStorage.setItem('isLogin', 'true');
+		                      	sessionStorage.setItem('user', JSON.stringify(regions.user));
+		                      	sessionStorage.setItem('token', regions.token);
+		                      	this.isLogin = true;
+		                      }
 		                  });
   	return Observable.of(true).delay(1000).do(val => this.isLoggedIn = this.isLogin);
   }
