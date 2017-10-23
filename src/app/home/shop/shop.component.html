@@ -18,12 +18,17 @@
 					</div>
 					<span class="m-btn">添加菜品</span>
 				</div>
-				<div class="row menu" *ngIf="menu">
+				<div id="sell_out" class="row menu" *ngIf="menu">
 					<ng-container *ngFor="let data of menu[select_category];let index=index">
 						<div class="col-xs-4 col-md-3 col-lg-2 shop">
-							<div class="shop_box" (click)="setShop(data, true)">
+							<div class="shop_box">
 								<div class="img">
-									<img src="{{data.food_picture}}" />
+									<img src="{{data.food_picture}}"  (click)="setShop(data, true)" />
+									<div class="zdc">
+										<i *ngIf="index==0" class="sell_out"></i>
+										<i *ngIf="index==1" class="cancel_sell_out" (click)="cancel()"></i>
+										<i *ngIf="index==2" class="confirm_sell_out" (click)="confirm()"></i>
+									</div>
 								</div>
 								<p>{{data.food_name}}</p>
 								<span>￥{{data.food_price}}/ 份</span>
@@ -53,10 +58,10 @@
 										<p *ngIf="isPack">[打包]</p>
 									</div>
 									<div class="operation">
-										<em (click)="setShop(data, false)"></em>
+										<em (click)="setShop(data, -1)"></em>
 										<span>{{data.num}}</span>
-										<em class="increase" (click)="setShop(data, true)"></em>
-										<i (click)="clear()"></i>
+										<em class="increase" (click)="setShop(data, 1)"></em>
+										<i (click)="setShop(data,0)"></i>
 									</div>
 								</div>
 							</li>
@@ -66,15 +71,15 @@
 				<div class="statistics">
 					<div class="num">
 						<span>总数：{{total}}</span>
-						<em>金额：{{total}}</em>
+						<em>金额：{{prices.toFixed(2)}}</em>
 					</div>
 					<div class="desk">
 						<span>桌/牌号：</span>
-						<span class="desk_num">{{total}}</span>
-						<em>清空菜品</em>
+						<span class="desk_num">1</span>
+						<em (click)="clear()">清空菜品</em>
 					</div>
 					<div class="settlement">
-						<span class="m-btn">结算</span>
+						<span (click)="next()" class="m-btn">结算</span>
 					</div>
 				</div>
 			</div>

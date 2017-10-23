@@ -46,6 +46,7 @@ export class ShopComponent implements OnInit {
   }
   //初始化页面数据
   private init(): void{
+  	sellout();
     this.category = [];
     for(let x in this.menu){
       this.category.push(x);
@@ -68,22 +69,28 @@ export class ShopComponent implements OnInit {
       }      
     }
   }
-  
+	//选择分类
   select(index: number, category: string): void{
   	this.select_index = index;
   	this.select_category = category;
   }
+  //是否打包
   pack(isPack: boolean): void{
   	this.isPack = isPack;
   }
-  
-  setShop(data: any, type: boolean): void{
+	//保存菜单
+  setShop(data: any, type: number): void{
   	let edit_num,num;
-  	edit_num = type?1:-1;
-  	num = data.num + edit_num;
-		this.total += edit_num;
-		this.prices += data.food_price*edit_num;
-  	
+  	edit_num = type;
+  	if(type==0){
+  		num = 0;
+  		this.total -= data.num;
+  		this.prices -= data.num*data.food_price;
+  	}else{
+  		num = data.num + edit_num;
+			this.total += edit_num;
+			this.prices += data.food_price*edit_num;
+  	}
   	for(let x in this.menu){
       for(let i in this.menu[x]){
         if(this.menu[x][i].food_number==data.food_number){
@@ -92,8 +99,32 @@ export class ShopComponent implements OnInit {
       }
     }
   }
-  clear(): void{
-  	
+  //清空
+  clear(): void{sellout();
+  	this.total = 0;
+    this.prices = 0;
+    this.number_init();
+    sessionStorage.removeItem("my_menu");
   }
-  
+  //保存已选菜品
+  next(): void {
+    this.shop_menu = [];
+    let n = 0;
+    let find: boolean = false;
+    for(let x in this.menu){
+      for(let i in this.menu[x]){
+        if(this.menu[x][i].num){
+          for(let l in this.shop_menu){
+            if(this.menu[x][i].food_number==this.shop_menu[l].food_number) find = true;
+          }
+          if(find){
+            find = false;
+            break;
+          } 
+          this.shop_menu[n++] = this.menu[x][i];
+        }
+      }
+    }
+    sessionStorage.setItem('my_menu', JSON.stringify(this.shop_menu));
+  }
 }
