@@ -16,6 +16,13 @@
 	background-image: url(../../../assets/img/nav.jpg);
 	background-size: 100% 100%;
 }
+.title {
+	float: left;
+}
+.title h3 {
+	margin: 15px 0 0 20px;
+	color: #555;
+}
 .user {
 	float: right;
 	margin-right: 10px;
@@ -68,6 +75,9 @@
 	line-height: 50px; /*x*/
 	float: left;
 	margin-left: 5px;
+	color: #555;
+}
+.navigation-bar-list li:first-child span {
 	color: #fff;
 }
 .icon-1 { background-image: url(../../../assets/img/nav/0.png); }

@@ -16,6 +16,7 @@
 }
 .nav li.active {
 	border-left: 3px solid #FE8B46;
+	background-color: #fff;
 	padding-left: 12px;
 }
 .content {
@@ -82,6 +83,7 @@
 .img img {
 	display: block;
 	width: 100%;
+	height: 110px;
 	background-size: 100%;
 }
 .shop {
@@ -94,8 +96,16 @@
 	overflow: hidden;
 }
 .shop_box p {
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1; 
 	margin: 0;
+	padding: 0 5px;
+	height: 20px;
 }
 .shop_box span {
+	margin-left: 3px;
 	color: #f5331b;
 }

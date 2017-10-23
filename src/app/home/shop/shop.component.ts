@@ -18,12 +18,15 @@ export class ShopComponent implements OnInit {
   public prices: number = 0;
   public menu_details: any;
   public select_category: string;
+  public select_index: number;
   public sr: boolean = false;
   public shop_menu: any[];
 	
   constructor(private service: HomeService) { }
 
   ngOnInit() {
+  	this.select_index = 0;
+  	this.select_category = '全部菜品';
 		this.getfood();
   }
 	//获取菜单列表
@@ -67,5 +70,11 @@ export class ShopComponent implements OnInit {
         }
       }      
     }
+  }
+  
+  select(index: number, category: string): void{
+  	this.select_index = index;
+  	this.select_category = category;
+  	console.log(this.menu[this.select_category]);
   }
 }
