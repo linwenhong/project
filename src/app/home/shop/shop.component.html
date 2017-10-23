@@ -56,12 +56,26 @@
 										<em (click)="setShop(data, false)"></em>
 										<span>{{data.num}}</span>
 										<em class="increase" (click)="setShop(data, true)"></em>
-										<i></i>
+										<i (click)="clear()"></i>
 									</div>
 								</div>
 							</li>
 						</ng-container>
 					</ul>
+				</div>
+				<div class="statistics">
+					<div class="num">
+						<span>总数：{{total}}</span>
+						<em>金额：{{total}}</em>
+					</div>
+					<div class="desk">
+						<span>桌/牌号：</span>
+						<span class="desk_num">{{total}}</span>
+						<em>清空菜品</em>
+					</div>
+					<div class="settlement">
+						<span class="m-btn">结算</span>
+					</div>
 				</div>
 			</div>
 		</div>

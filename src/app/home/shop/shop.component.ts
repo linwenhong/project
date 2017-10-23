@@ -77,15 +77,9 @@ export class ShopComponent implements OnInit {
   	this.isPack = isPack;
   }
   
-  
-  setShop(data: any, type: boolean){
-  	let edit_num;
-  	let num;
-  	if(type){
-  		edit_num = 1;
-  	}else if(data.num>0){
-  		edit_num = -1;
-  	}
+  setShop(data: any, type: boolean): void{
+  	let edit_num,num;
+  	edit_num = type?1:-1;
   	num = data.num + edit_num;
 		this.total += edit_num;
 		this.prices += data.food_price*edit_num;
@@ -97,6 +91,9 @@ export class ShopComponent implements OnInit {
         }
       }
     }
+  }
+  clear(): void{
+  	
   }
   
 }
