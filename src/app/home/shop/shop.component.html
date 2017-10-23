@@ -21,7 +21,7 @@
 				<div class="row menu" *ngIf="menu">
 					<ng-container *ngFor="let data of menu[select_category];let index=index">
 						<div class="col-xs-4 col-md-3 col-lg-2 shop">
-							<div class="shop_box">
+							<div class="shop_box" (click)="setShop(data, true)">
 								<div class="img">
 									<img src="{{data.food_picture}}" />
 								</div>
@@ -33,7 +33,36 @@
 				</div>
 			</div>
 			<div class="col-xs-4 order_list">
-			
+				<div class="top">
+					<span (click)="pack(true)" [class.active]="isPack">整单打包</span>
+					<span (click)="pack(false)" [class.active]="!isPack">堂食</span>
+				</div>
+				<div class="order_details">
+					<ul *ngIf="menu">
+						<ng-container *ngFor="let data of menu['全部菜品']">
+							<li *ngIf="data.num>0" class="row">
+								<div class="img">
+									<img src="{{data.food_picture}}"/>
+								</div>
+								<div class="details col">
+									<div class="text">
+										<span>{{data.food_name}}</span>
+										<em>￥{{data.food_price}}</em>
+									</div>
+									<div class="isPack">
+										<p *ngIf="isPack">[打包]</p>
+									</div>
+									<div class="operation">
+										<em (click)="setShop(data, false)"></em>
+										<span>{{data.num}}</span>
+										<em class="increase" (click)="setShop(data, true)"></em>
+										<i></i>
+									</div>
+								</div>
+							</li>
+						</ng-container>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

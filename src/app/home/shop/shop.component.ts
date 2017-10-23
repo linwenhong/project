@@ -8,25 +8,22 @@ import { HomeService } from '../home.service';
 })
 export class ShopComponent implements OnInit {
 	public sub: any;                           
-  public table_id: any;                //桌号
-  public desk: any;                //桌号
-  public shopping_statu: boolean = false;
-  public menu_zdc: boolean = false;
-  public menu: any;                       //菜品列表
-  public category: any;                   //菜品分类列表
-  public total: number = 0;
-  public prices: number = 0;
+  public table_id: any;               //桌号
+  public desk: any;                		//桌号
+  public isPack: boolean = false;			//是否打包
+	public menu: any;                   //菜品列表
+  public category: any;               //菜品分类列表
+  public total: number = 0;						//下单菜品总数
+  public prices: number = 0;					//下单菜品总价
   public menu_details: any;
-  public select_category: string;
-  public select_index: number;
+  public select_category: string = '全部菜品';
+  public select_index: number = 0;
   public sr: boolean = false;
   public shop_menu: any[];
 	
   constructor(private service: HomeService) { }
 
   ngOnInit() {
-  	this.select_index = 0;
-  	this.select_category = '全部菜品';
 		this.getfood();
   }
 	//获取菜单列表
@@ -75,6 +72,31 @@ export class ShopComponent implements OnInit {
   select(index: number, category: string): void{
   	this.select_index = index;
   	this.select_category = category;
-  	console.log(this.menu[this.select_category]);
   }
+  pack(isPack: boolean): void{
+  	this.isPack = isPack;
+  }
+  
+  
+  setShop(data: any, type: boolean){
+  	let edit_num;
+  	let num;
+  	if(type){
+  		edit_num = 1;
+  	}else if(data.num>0){
+  		edit_num = -1;
+  	}
+  	num = data.num + edit_num;
+		this.total += edit_num;
+		this.prices += data.food_price*edit_num;
+  	
+  	for(let x in this.menu){
+      for(let i in this.menu[x]){
+        if(this.menu[x][i].food_number==data.food_number){
+          this.menu[x][i].num = num;
+        }
+      }
+    }
+  }
+  
 }

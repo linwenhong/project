@@ -16,7 +16,7 @@ const routes: Routes = [{
 		component: TableComponent,
 		canActivate: [AuthGuard]
 	}, {
-		path: 'shop',
+		path: '',
 		component: ShopComponent,
 		canActivate: [AuthGuard]
 	}, {

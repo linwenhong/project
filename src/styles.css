@@ -29,7 +29,7 @@ html,body {
 .m-btn {
 	display: block;
 	background-color: #FE8B46;
-	color: #eee;
+	color: #eee !important;
 	cursor: pointer;
 	text-align: center;
 }
