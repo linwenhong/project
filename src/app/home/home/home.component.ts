@@ -6,6 +6,7 @@ import { AuthService } from '../../auth.service';
 })
 export class HomeComponent implements OnInit {
 	public username: any;
+	public nav_select: number = 1;
 	
   constructor(public authService: AuthService) {
 		this.username = localStorage.getItem('username');
@@ -17,5 +18,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
+	
+	select(index: number): void{
+		this.nav_select = index;
+	}
 }
