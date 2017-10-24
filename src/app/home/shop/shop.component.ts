@@ -7,15 +7,12 @@ import { HomeService } from '../home.service';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-	public sub: any;                           
   public table_id: any;               //桌号
-  public desk: any;                		//桌号
   public isPack: boolean = false;			//是否打包
 	public menu: any;                   //菜品列表
   public category: any;               //菜品分类列表
   public total: number = 0;						//下单菜品总数
   public prices: number = 0;					//下单菜品总价
-  public menu_details: any;
   public select_category: string = '全部菜品';
   public select_index: number = 0;
   public sr: boolean = false;
@@ -30,7 +27,7 @@ export class ShopComponent implements OnInit {
   }
 	//获取菜单列表
 	private getfood(): void {
-		this.service.get('bk_getfood?shop_id=2017092200077000000045535333').then(
+		this.service.get('bk_getfood?shop_id='+localStorage.getItem('shopId')).then(
 			res => {
 	      this.menu = res.food;    
 	      this.init();

@@ -34,6 +34,7 @@ export class AuthService {
 		                      	sessionStorage.setItem('user', JSON.stringify(regions.user));
 		                      	sessionStorage.setItem('token', regions.token);
 		                      	localStorage.setItem('username', username);
+		                      	localStorage.setItem('shopId', regions.shop_id);
 		                      	this.isLogin = true;
 		                      }else{
 		                      	alert('用户名或密码错误!');

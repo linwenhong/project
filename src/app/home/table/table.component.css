@@ -1,0 +1,31 @@
+.table-page {
+	height: 100%;
+}
+* {color: #555; }
+p {margin: 0;}
+.nav {
+	width: 15%;
+	height: 100%;
+	float: left;
+	background-color: #dcdcdc;
+	border-right: 1px solid #b5b5b5;
+	border-top: 1px solid #b5b5b5;
+}
+.nav li {
+	padding: 15px 0 15px 15px;
+	border-bottom: 1px solid #b5b5b5;
+	cursor: pointer;
+}
+.nav li.active {
+	border-left: 3px solid #FE8B46;
+	background-color: #fff;
+	padding-left: 12px;
+}
+.content {
+	width: 85%;
+	height: 100%;
+	float: left;
+}
+.content>.row {
+	height: 100%;
+}
