@@ -1,4 +1,4 @@
-<div class="shop-page">
+<div class="shop-page" (mouseup)="toUp()">
 	<div class="nav">
 		<ul>
       <ng-container *ngFor="let x of category;let index=index">
@@ -18,27 +18,31 @@
 					</div>
 					<span class="m-btn">添加菜品</span>
 				</div>
-				<div id="sell_out" class="row menu" *ngIf="menu">
-					<ng-container *ngFor="let data of menu[select_category];let index=index">
-						<div class="col-xs-4 col-md-3 col-lg-2 shop">
-							<div class="shop_box">
-								<div class="img">
-									<img src="{{data.food_picture}}"  (click)="setShop(data, true)" />
-									<div class="zdc zdc0" *ngIf="data.status==0">
-										<i *ngIf="data.status==0" class="confirm_sell_out"></i>
+				<div class="menu_box">
+					<div id="sell_out" class="row menu" *ngIf="menu">
+						<ng-container *ngFor="let data of menu[select_category];let index=index">
+							<div class="col-xs-4 col-md-3 col-lg-2 shop">
+								<div class="shop_box" (mousedown)="sell(data)">
+									<div class="img">
+										<img src="{{data.food_picture}}"  (click)="setShop(data, true)" />
+										<div class="zdc" *ngIf="data.status==0 && !data.isShow">
+											<i *ngIf="data.status==0" class="confirm_sell_out"></i>
+										</div>
+										<div class="zdc" *ngIf="data.isShow">
+											<i *ngIf="data.status==1" class="sell_out" (click)="edit_statu(data, 0)"></i>
+											<i *ngIf="data.status==0" class="cancel_sell_out" (click)="edit_statu(data, 1)"></i>
+										</div>
 									</div>
-									<div class="zdc zdc1">
-										<i *ngIf="data.status==1" class="sell_out" (click)="edit_statu(data, 0)"></i>
-										<i *ngIf="data.status==0" class="cancel_sell_out" (click)="edit_statu(data, 1)"></i>
-									</div>
+									<p>{{data.food_name}}</p>
+									<span>￥{{data.food_price}}/ 份</span>
 								</div>
-								<p>{{data.food_name}}</p>
-								<span>￥{{data.food_price}}/ 份</span>
 							</div>
-						</div>
-					</ng-container>
+						</ng-container>
+					</div>
 				</div>
+				<div class="remake">长按商品可售罄/取消售罄</div>
 			</div>
+			<!--menu_list end-->
 			<div class="col-xs-4 order_list">
 				<div class="top">
 					<span (click)="pack(true)" [class.active]="isPack">整单打包</span>
@@ -85,6 +89,7 @@
 					</div>
 				</div>
 			</div>
+			<!--order_list end-->
 		</div>
 	</div>
 </div>

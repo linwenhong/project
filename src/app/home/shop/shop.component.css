@@ -32,13 +32,27 @@ p {margin: 0;}
 .menu_list {
 	box-sizing: border-box;
 	height: 100%;
-	padding: 0 15px 50px;
 	background-color: #efefef;
 	border-right: 1px solid #aaa;
+}
+.menu_list .menu_box {
+	box-sizing: border-box;
+	height: 100%;
+	padding: 50px 0 40px 15px;
+}
+.menu_list .menu {
+	height: 100%;
 	overflow-y: auto;
 }
-.operation {
-	position: relative;
+.menu_list .remake {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+}
+.menu_list .operation {
+	position: absolute;
+	left: 10px;
+	top: 0;
 }
 .menu_list .operation .search_box {
 	height: 40px;
@@ -123,16 +137,13 @@ p {margin: 0;}
 	height: 100%;
 	background-color: rgba(6,6,6,.3);
 }
-.shop .zdc1 {
-	display: none;
-}
 .shop .zdc i {
 	display: block;
 	width: 80px;
 	height: 80px;
 	margin: 15px auto 0;
 	background-image: url(../../../assets/img/shop/sell_out.png);
-	background-size: 100%;
+	background-size: 100% 100%;
 }
 .shop .zdc .cancel_sell_out {
 	background-image: url(../../../assets/img/shop/cancel_sell_out.png);

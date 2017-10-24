@@ -20,6 +20,8 @@ export class ShopComponent implements OnInit {
   public select_index: number = 0;
   public sr: boolean = false;
   public shop_menu: any[];
+  public time: any;
+  public s: number;
 	
   constructor(private service: HomeService) { }
 
@@ -41,13 +43,12 @@ export class ShopComponent implements OnInit {
       for(let i in this.menu[x]){
         if(x == '套餐优惠') this.menu[x][i].isPackage = true;
         this.menu[x][i].num = 0;
-        this.menu[x][i].isYes = false;
+        this.menu[x][i].isShow = false;
       }
     }
   }
   //初始化页面数据
   private init(): void{
-  	sellout();
     this.category = [];
     for(let x in this.menu){
       this.category.push(x);
@@ -100,24 +101,42 @@ export class ShopComponent implements OnInit {
       }
     }
   }
+  //长按
+  sell(data: any): void{
+		this.s = 0;
+		this.time = setInterval(function() {
+	    if(this.s < 3){
+        this.s++;
+	    }else{
+	    	data.isShow = true;
+        clearInterval(this.time);
+	    }
+		}, 500);
+  }
+  //鼠标松开
+  toUp(data: any): void{
+  	clearInterval(this.time);
+  }
   //售罄操作
   edit_statu(data: any, statu: number): void{
+  	data.isShow = false;
   	let request = {
   		status: statu,
   		food_number: data.food_number
   	};
   	this.service.post('bk_update_food', request).then(
 			res => {
-	     	console.log(res);
+	     	if(res.status == '200'){
+	     		for(let x in this.menu){
+			      for(let i in this.menu[x]){
+			        if(this.menu[x][i].food_number==data.food_number){
+			          this.menu[x][i].status = statu;
+			        }
+			      }
+			    }
+	     	};
 	    }
 		);
-//	for(let x in this.menu){
-//    for(let i in this.menu[x]){
-//      if(this.menu[x][i].food_number==data.food_number){
-//        this.menu[x][i].status = 1;
-//      }
-//    }
-//  }
   }
   //清空
   clear(): void{
