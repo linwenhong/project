@@ -24,10 +24,12 @@
 							<div class="shop_box">
 								<div class="img">
 									<img src="{{data.food_picture}}"  (click)="setShop(data, true)" />
-									<div class="zdc">
-										<i *ngIf="index==0" class="sell_out"></i>
-										<i *ngIf="index==1" class="cancel_sell_out" (click)="cancel()"></i>
-										<i *ngIf="index==2" class="confirm_sell_out" (click)="confirm()"></i>
+									<div class="zdc zdc0" *ngIf="data.status==0">
+										<i *ngIf="data.status==0" class="confirm_sell_out"></i>
+									</div>
+									<div class="zdc zdc1">
+										<i *ngIf="data.status==1" class="sell_out" (click)="edit_statu(data, 0)"></i>
+										<i *ngIf="data.status==0" class="cancel_sell_out" (click)="edit_statu(data, 1)"></i>
 									</div>
 								</div>
 								<p>{{data.food_name}}</p>

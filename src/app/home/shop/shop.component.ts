@@ -41,6 +41,7 @@ export class ShopComponent implements OnInit {
       for(let i in this.menu[x]){
         if(x == '套餐优惠') this.menu[x][i].isPackage = true;
         this.menu[x][i].num = 0;
+        this.menu[x][i].isYes = false;
       }
     }
   }
@@ -99,8 +100,27 @@ export class ShopComponent implements OnInit {
       }
     }
   }
+  //售罄操作
+  edit_statu(data: any, statu: number): void{
+  	let request = {
+  		status: statu,
+  		food_number: data.food_number
+  	};
+  	this.service.post('bk_update_food', request).then(
+			res => {
+	     	console.log(res);
+	    }
+		);
+//	for(let x in this.menu){
+//    for(let i in this.menu[x]){
+//      if(this.menu[x][i].food_number==data.food_number){
+//        this.menu[x][i].status = 1;
+//      }
+//    }
+//  }
+  }
   //清空
-  clear(): void{sellout();
+  clear(): void{
   	this.total = 0;
     this.prices = 0;
     this.number_init();

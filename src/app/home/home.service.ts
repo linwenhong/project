@@ -24,7 +24,7 @@ export class HomeService {
                       });
   }
   
-  post(url: string, request: any[]): Promise<any> {
+  post(url: string, request: any): Promise<any> {
   	const header: Headers = new Headers();
   	header.append('Authorization', sessionStorage.getItem('token'));
     return this.http.post(environment.api_url+url, request, {headers: header})
