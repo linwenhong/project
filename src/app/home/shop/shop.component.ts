@@ -69,7 +69,7 @@ export class ShopComponent implements OnInit {
     }
   }
 	//选择分类
-  select(index: number, category: string): void{
+  select(index: any, category: string): void{
   	this.select_index = index;
   	this.select_category = category;
   }
@@ -111,7 +111,7 @@ export class ShopComponent implements OnInit {
 		}, 500);
   }
   //鼠标松开
-  toUp(data: any): void{
+  toUp(): void{
   	clearInterval(this.time);
   }
   //售罄操作
