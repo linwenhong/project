@@ -4,7 +4,7 @@
 * {color: #555; }
 p {margin: 0;}
 .nav {
-	width: 15%;
+	width: 12%;
 	height: 100%;
 	float: left;
 	background-color: #dcdcdc;
@@ -22,7 +22,7 @@ p {margin: 0;}
 	padding-left: 12px;
 }
 .content {
-	width: 85%;
+	width: 88%;
 	height: 100%;
 	float: left;
 }

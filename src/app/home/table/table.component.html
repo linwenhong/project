@@ -4,12 +4,61 @@
       <!--<ng-container *ngFor="let x of category;let index=index">
         <li (click)="select(index, x)" [class.hide]="!menu[x][0]" [class.active]="index==select_index">{{x}}</li>
       </ng-container>-->
+      <li class="active">全部餐桌</li>
     </ul>
 	</div>
 	<div class="content">
 		<div class="row">
-
-			
+			<div class="col-xs-8 menu_list">
+				<div class="operation row">
+					<div class="col-xs-4 col-md-3">
+						<div class="t">
+							<i class="t0"></i>
+							<span>空闲(111)</span>
+						</div>
+					</div>
+					<div class="col-xs-4 col-md-3">
+						<div class="t">
+							<i class="t1"></i>
+							<span>已开台(111)</span>
+						</div>
+					</div>
+					<div class="col-xs-4 col-md-3">
+						<div class="t">
+							<i class="t2"></i>
+							<span>已下单(111)</span>
+						</div>
+					</div>
+					<div class="col-xs-4 col-md-3">
+						<div class="t">
+							<i class="t3"></i>
+							<span>已结账(111)</span>
+						</div>
+					</div>
+				</div>
+				<div class="menu_box">
+					<div id="sell_out" class="row menu" *ngIf="desk">
+						<ng-container *ngFor="let data of desk;let index=index">
+							<div class="col-xs-4 col-md-3 col-lg-2 shop">
+								<div class="shop_box {{'table'+data.status}}">
+									<div class="img">
+										<i></i>
+									</div>
+									<p>{{data.table_num}}</p>
+									<p>0人/{{data.max}}人桌</p>
+									<p>123</p>
+								</div>
+							</div>
+						</ng-container>
+					</div>
+				</div>
+				<div class="remake">长按商品可售罄/取消售罄</div>
+			</div>
+			<!--menu_list end-->
+			<div class="col-xs-4 order_list">
+				
+			</div>
+			<!--order_list end-->
 		</div>
 	</div>
 </div>
