@@ -8,10 +8,15 @@ import { HomeService } from '../home.service';
 })
 export class TableComponent implements OnInit {
 	public desk: any;
+	public select_desk: any;
+	public shield: boolean = false;
+	public peoples: any = null;
   constructor(private service: HomeService) { }
 
   ngOnInit() {
-  	this.getshop();
+		this.getshop();
+  	this.select_desk = {};
+  	this.select_desk.status = -1;
   }
 	//获取桌子列表
 	private getshop(): void {
@@ -20,5 +25,23 @@ export class TableComponent implements OnInit {
 	      this.desk = res.desk;
 	    }
 		);
+	}
+	
+	select(data: any): void {
+		console.log(data);
+		this.select_desk = data;
+	}
+	//开台
+	open(): void {
+		this.shield = true;
+	}
+	//取消
+	hide(): void {
+		this.shield = false;
+	}
+	//确定开台
+	confirm(): void {
+		this.shield = false;
+		console.log(this.peoples);
 	}
 }

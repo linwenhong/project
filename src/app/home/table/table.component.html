@@ -40,25 +40,84 @@
 					<div id="sell_out" class="row menu" *ngIf="desk">
 						<ng-container *ngFor="let data of desk;let index=index">
 							<div class="col-xs-4 col-md-3 col-lg-2 shop">
-								<div class="shop_box {{'table'+data.status}}">
+								<div class="shop_box {{'table'+data.status}}" (click)="select(data)">
 									<div class="img">
 										<i></i>
 									</div>
 									<p>{{data.table_num}}</p>
 									<p>0人/{{data.max}}人桌</p>
 									<p>123</p>
+									<!--<div class="select">
+										<i></i>
+										<i class="move"></i>
+									</div>-->
 								</div>
 							</div>
 						</ng-container>
 					</div>
 				</div>
-				<div class="remake">长按商品可售罄/取消售罄</div>
 			</div>
 			<!--menu_list end-->
 			<div class="col-xs-4 order_list">
-				
+				<div>
+					<span *ngIf="select_desk.status!=2">订单详情</span>
+					<span class="isTrue" *ngIf="select_desk.status==2">订单详情</span>
+				</div>
+				<div>
+					<em *ngIf="select_desk.status<=0">移台</em>
+					<em *ngIf="select_desk.status<=0">清台</em>
+					<em class="isTrue" *ngIf="select_desk.status>0">移台</em>
+					<em class="isTrue" *ngIf="select_desk.status>0">清台</em>
+				</div>
+				<div>
+					<em *ngIf="select_desk.status<=0">修改人数</em>
+					<em *ngIf="select_desk.status!=1">点单</em>
+					<em class="isTrue" *ngIf="select_desk.status>0" (click)="open()">修改人数</em>
+					<em class="isTrue" *ngIf="select_desk.status==1">点单</em>
+				</div>
+				<div>
+					<span *ngIf="select_desk.status!=2">结账</span>
+					<span class="isTrue" *ngIf="select_desk.status==2">结账</span>
+				</div>
+				<div>
+					<span *ngIf="select_desk.status!=0">开台</span>
+					<span class="isTrue" *ngIf="select_desk.status==0" (click)="open()">开台</span>
+				</div>
 			</div>
 			<!--order_list end-->
+		</div>
+	</div>
+</div>
+
+<div class="shield-layer" *ngIf="shield">
+	<div class="box">
+		<div class="top">
+			<span>开台人数</span>
+			<i (click)="hide"></i>
+		</div>
+		<div>
+			<div class="text">
+				<span>桌台名称：</span>
+			</div>
+			<div>
+				<em>a1</em>
+			</div>
+		</div>
+		<div>
+			<div class="text">
+				<span>餐台人数：</span>
+			</div>
+			<div>
+				<input [(ngModel)]="peoples" />人
+			</div>
+		</div>
+		<div>
+			<div class="text">
+				
+			</div>
+			<div class="choose">
+				<span>取消</span><span class="confirm" (click)="confirm()">确定</span>
+			</div>
 		</div>
 	</div>
 </div>

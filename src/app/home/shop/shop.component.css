@@ -10,6 +10,7 @@ p {margin: 0;}
 	background-color: #dcdcdc;
 	border-right: 1px solid #b5b5b5;
 	border-top: 1px solid #b5b5b5;
+	overflow-y: auto;
 }
 .nav li {
 	padding: 15px 0 15px 15px;
@@ -34,6 +35,7 @@ p {margin: 0;}
 	height: 100%;
 	background-color: #efefef;
 	border-right: 1px solid #aaa;
+	overflow-y: auto;
 }
 .menu_list .menu_box {
 	box-sizing: border-box;
