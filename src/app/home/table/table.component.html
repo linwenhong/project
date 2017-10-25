@@ -45,12 +45,12 @@
 										<i></i>
 									</div>
 									<p>{{data.table_num}}</p>
-									<p>0人/{{data.max}}人桌</p>
+									<p>{{data.people || '0'}}人/{{data.max}}人桌</p>
 									<p>123</p>
-									<!--<div class="select">
-										<i></i>
-										<i class="move"></i>
-									</div>-->
+									<div class="select" *ngIf="select_desk.table_id==data.table_id">
+										<i *ngIf="!isMove"></i>
+										<i class="move" *ngIf="isMove"></i>
+									</div>
 								</div>
 							</div>
 						</ng-container>
@@ -66,13 +66,13 @@
 				<div>
 					<em *ngIf="select_desk.status<=0">移台</em>
 					<em *ngIf="select_desk.status<=0">清台</em>
-					<em class="isTrue" *ngIf="select_desk.status>0">移台</em>
-					<em class="isTrue" *ngIf="select_desk.status>0">清台</em>
+					<em class="isTrue" *ngIf="select_desk.status>0" (click)="move()">移台</em>
+					<em class="isTrue" *ngIf="select_desk.status>0" (click)="clear()">清台</em>
 				</div>
 				<div>
-					<em *ngIf="select_desk.status<=0">修改人数</em>
+					<em *ngIf="select_desk.status!=2">修改人数</em>
 					<em *ngIf="select_desk.status!=1">点单</em>
-					<em class="isTrue" *ngIf="select_desk.status>0" (click)="open()">修改人数</em>
+					<em class="isTrue" *ngIf="select_desk.status==2" (click)="open()">修改人数</em>
 					<em class="isTrue" *ngIf="select_desk.status==1">点单</em>
 				</div>
 				<div>
