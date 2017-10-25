@@ -9,6 +9,7 @@ import { HomeService } from '../home.service';
 })
 export class ShopComponent implements OnInit {
   public table_id: any;               //桌号
+  public peoples: any;								//人数
   public isPack: boolean = false;			//是否打包
 	public menu: any;                   //菜品列表
   public category: any;               //菜品分类列表
@@ -24,7 +25,11 @@ export class ShopComponent implements OnInit {
   constructor(private service: HomeService, private router: ActivatedRoute) { }
 
   ngOnInit() {
-		this.table_id = this.router.snapshot.params["id"];
+  	if(this.router.snapshot.params["id"]){
+  		this.table_id = this.router.snapshot.params["id"].split('#')[0];
+  		this.peoples = this.router.snapshot.params["id"].split('#')[1];
+  	}
+		
 		this.getfood();
   }
 	//获取菜单列表
@@ -164,5 +169,29 @@ export class ShopComponent implements OnInit {
       }
     }
     sessionStorage.setItem('my_menu', JSON.stringify(this.shop_menu));
+    
+    let dish: any = {};
+    let packages: any = {};
+    for(let x in this.shop_menu){
+      if(this.shop_menu[x].isPackage){
+        packages[this.shop_menu[x].food_number] = this.shop_menu[x].num;
+      }else{        
+        dish[this.shop_menu[x].food_number] = this.shop_menu[x].num;
+      }
+    }
+    let request = {
+    	shop_id: localStorage.getItem('shopId'),
+    	detailUrl: 'http:www.baidu.com/',
+    	tableCode: this.table_id,
+    	people: this.peoples,
+    	dish: JSON.stringify(dish),
+    	package: JSON.stringify(packages),
+    	description: '不要辣',
+    	user_id: ''
+    }
+    this.service.post('bk_orderdish', request).then(
+			res => {
+	    }
+		);
   }
 }

@@ -36,6 +36,7 @@ export class TableComponent implements OnInit {
 			this.toMove(data);
 		}else{
 			this.select_desk = data;
+			console.log(data);
 		}
 	}
 	//开台
