@@ -20,6 +20,10 @@ const routes: Routes = [{
 		component: ShopComponent,
 		canActivate: [AuthGuard]
 	}, {
+		path: 'shop/:id',
+		component: ShopComponent,
+		canActivate: [AuthGuard]
+	}, {
 		path: 'order',
 		component: OrderComponent,
 		canActivate: [AuthGuard]

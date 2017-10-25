@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router }      from '@angular/router';
 import { HomeService } from '../home.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class ShopComponent implements OnInit {
   public time: any;
   public s: number;
 	
-  constructor(private service: HomeService) { }
+  constructor(private service: HomeService, private router: Router) { }
 
   ngOnInit() {
 		this.getfood();

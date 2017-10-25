@@ -29,7 +29,7 @@ export class TableComponent implements OnInit {
 	    }
 		);
 	}
-	
+	//选中桌子
 	select(data: any): void {
 		if(this.isMove){
 			this.isMove = false;
@@ -43,7 +43,7 @@ export class TableComponent implements OnInit {
 		this.shield = true;
 		console.log(this.select_desk);
 	}
-	//取消
+	//取消开台
 	hide(): void {
 		this.shield = false;
 	}

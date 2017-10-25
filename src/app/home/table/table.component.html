@@ -73,7 +73,7 @@
 					<em *ngIf="select_desk.status!=2">修改人数</em>
 					<em *ngIf="select_desk.status!=1">点单</em>
 					<em class="isTrue" *ngIf="select_desk.status==2" (click)="open()">修改人数</em>
-					<em class="isTrue" *ngIf="select_desk.status==1">点单</em>
+					<em class="isTrue" *ngIf="select_desk.status==1" routerLink="/home/shop/{{select_desk.table_id}}">点单</em>
 				</div>
 				<div>
 					<span *ngIf="select_desk.status!=2">结账</span>
