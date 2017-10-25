@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }      from '@angular/router';
+import { ActivatedRoute, Params} from '@angular/router';
 import { HomeService } from '../home.service';
 
 @Component({
@@ -21,9 +21,10 @@ export class ShopComponent implements OnInit {
   public time: any;
   public s: number;
 	
-  constructor(private service: HomeService, private router: Router) { }
+  constructor(private service: HomeService, private router: ActivatedRoute) { }
 
   ngOnInit() {
+		this.table_id = this.router.snapshot.params["id"];
 		this.getfood();
   }
 	//获取菜单列表
