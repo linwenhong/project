@@ -43,6 +43,7 @@ export class TableComponent implements OnInit {
 	//开台
 	open(): void {
 		this.shield = true;
+		this.peoples = null;
 		console.log(this.select_desk);
 	}
 	//取消开台
@@ -51,10 +52,29 @@ export class TableComponent implements OnInit {
 		this.select_desk = {};
   	this.select_desk.status = -1;
 	}
-	//确定开台
+	//确定开台/修改人数
 	confirm(): void {
-		this.shield = false;
-		this.desk_status(1, this.peoples);
+		if(this.select_desk.status == 0){
+			this.shield = false;
+			this.desk_status(1, this.peoples);
+		}else{
+			this.service.post('bk_update_people', {
+				out_trade_no: this.select_desk.out_trade_no,
+				people: this.peoples
+			}).then(
+				res => {
+					this.shield = false;
+					this.select_desk = {};
+	     		this.select_desk.status = -1;
+	     		
+		     	if(res.status == '200'){
+		     		this.getshop();
+		     	}else{
+		     		this.router.navigate(['/login']);
+		     	};
+		    }
+			);
+		}
 	}
 	//选择移台
 	move(): void {
