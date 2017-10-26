@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
 	public shield: boolean = false;
 	public peoples: any = null;
 	private isMove: boolean = false;
-	private last_id: any;
+	private last: any;
   constructor(private service: HomeService, private router: Router) { }
 
   ngOnInit() {
@@ -37,6 +37,7 @@ export class TableComponent implements OnInit {
 			this.toMove(data);
 		}else{
 			this.select_desk = data;
+			console.log(data);
 		}
 	}
 	//开台
@@ -58,15 +59,21 @@ export class TableComponent implements OnInit {
 	//选择移台
 	move(): void {
 		this.isMove = true;
-		this.last_id = this.select_desk.table_id;
+		this.last = this.select_desk;
 	}
 	//移台
 	toMove(data: any): void {
+		console.log(2,this.last, data);
 		let request = {
 			shop_id: localStorage.getItem('shopId'),
-			tableCode: this.last_id
+			tableCode: data.table_id
 		}
-		request['newCode'] = data.table_id;
+		if(this.last.out_trade_no){
+			request['out_trade_no'] = this.last.out_trade_no;
+		}else{
+			request['oldCode'] = this.last.table_id;
+		}
+		
 		this.service.post('bk_update_order_desk', request).then(
 			res => {
 				this.select_desk = {};
