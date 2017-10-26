@@ -12,11 +12,11 @@ const routes: Routes = [{
 	component: HomeComponent,
 	canActivate: [AuthGuard],
 	children: [{
-		path: 'table',
+		path: '',
 		component: TableComponent,
 		canActivate: [AuthGuard]
 	}, {
-		path: '',
+		path: 'shop',
 		component: ShopComponent,
 		canActivate: [AuthGuard]
 	}, {

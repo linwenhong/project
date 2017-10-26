@@ -78,16 +78,16 @@
 .navigation-bar-list li.active span {
 	color: #fff;
 }
-.icon-1 { background-image: url(../../../assets/img/nav/0.png); }
-.icon-2 { background-image: url(../../../assets/img/nav/1.png); }
+.icon-1 { background-image: url(../../../assets/img/nav/1.png); }
+.icon-2 { background-image: url(../../../assets/img/nav/0.png); }
 .icon-3 { background-image: url(../../../assets/img/nav/2.png); }
 .icon-4 { background-image: url(../../../assets/img/nav/3.png); }
 .icon-5 { background-image: url(../../../assets/img/nav/4.png); }
 .icon-6 { background-image: url(../../../assets/img/nav/5.png); }
 .icon-7 { background-image: url(../../../assets/img/nav/6.png); }
 
-li.active .icon-1 { background-image: url(../../../assets/img/nav/a0.png); }
-li.active .icon-2 { background-image: url(../../../assets/img/nav/a1.png); }
+li.active .icon-1 { background-image: url(../../../assets/img/nav/a1.png); }
+li.active .icon-2 { background-image: url(../../../assets/img/nav/a0.png); }
 li.active .icon-3 { background-image: url(../../../assets/img/nav/a2.png); }
 /*li.active .icon-4 { background-image: url(../../../assets/img/nav/a3.png); }
 li.active .icon-5 { background-image: url(../../../assets/img/nav/a4.png); }

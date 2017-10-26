@@ -30,7 +30,6 @@ export class ShopComponent implements OnInit {
   		this.table_id = this.activatedRoute.snapshot.params["id"].split('#')[0];
   		this.peoples = this.activatedRoute.snapshot.params["id"].split('#')[1];
   	}
-		
 		this.getfood();
   }
 	//获取菜单列表
@@ -202,7 +201,6 @@ export class ShopComponent implements OnInit {
 			res => {
 				this.isNext = false;
   			this.remake = null;
-  			this.router.navigate(['/home/table']);
 	    }
 		);
   }
