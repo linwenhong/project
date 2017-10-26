@@ -26,6 +26,7 @@ export class ShopComponent implements OnInit {
   constructor(private service: HomeService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+  	notify('error','12','123');
   	if(this.activatedRoute.snapshot.params["id"]){
   		this.table_id = this.activatedRoute.snapshot.params["id"].split('#')[0];
   		this.peoples = this.activatedRoute.snapshot.params["id"].split('#')[1];

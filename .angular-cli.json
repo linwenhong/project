@@ -20,9 +20,14 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "libs/jquery-notifyjs/styles/metro/notify-metro.css"
       ],
-      "scripts": [],
+      "scripts": [
+  			"libs/jquery-notifyjs/notify.min.js",
+  			"libs/jquery-notifyjs/styles/metro/notify-metro.js",
+  			"libs/notifications.js"
+			],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
