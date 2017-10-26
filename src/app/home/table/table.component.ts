@@ -31,12 +31,12 @@ export class TableComponent implements OnInit {
 	}
 	//选中桌子
 	select(data: any): void {
+		console.log(data);
 		if(this.isMove){
 			this.isMove = false;
 			this.toMove(data);
 		}else{
 			this.select_desk = data;
-			console.log(data);
 		}
 	}
 	//开台
@@ -47,6 +47,8 @@ export class TableComponent implements OnInit {
 	//取消开台
 	hide(): void {
 		this.shield = false;
+		this.select_desk = {};
+  	this.select_desk.status = -1;
 	}
 	//确定开台
 	confirm(): void {

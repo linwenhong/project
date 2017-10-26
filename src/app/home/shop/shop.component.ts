@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params} from '@angular/router';
 import { HomeService } from '../home.service';
 
 @Component({
@@ -17,17 +17,18 @@ export class ShopComponent implements OnInit {
   public prices: number = 0;					//下单菜品总价
   public select_category: string = '全部菜品';
   public select_index: number = 0;
-  public sr: boolean = false;
   public shop_menu: any[];
   public time: any;
   public s: number;
+  public isNext: boolean = false;
+  public remake: string = '';
 	
-  constructor(private service: HomeService, private router: ActivatedRoute) { }
+  constructor(private service: HomeService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-  	if(this.router.snapshot.params["id"]){
-  		this.table_id = this.router.snapshot.params["id"].split('#')[0];
-  		this.peoples = this.router.snapshot.params["id"].split('#')[1];
+  	if(this.activatedRoute.snapshot.params["id"]){
+  		this.table_id = this.activatedRoute.snapshot.params["id"].split('#')[0];
+  		this.peoples = this.activatedRoute.snapshot.params["id"].split('#')[1];
   	}
 		
 		this.getfood();
@@ -149,8 +150,15 @@ export class ShopComponent implements OnInit {
     this.number_init();
     sessionStorage.removeItem("my_menu");
   }
-  //保存已选菜品
-  next(): void {
+  next(): void{
+  	this.isNext = true;
+  }
+  hide(): void{
+  	this.isNext = false;
+  	this.remake = null;
+  }
+  //下单
+  confirm(): void {
     this.shop_menu = [];
     let n = 0;
     let find: boolean = false;
@@ -179,18 +187,22 @@ export class ShopComponent implements OnInit {
         dish[this.shop_menu[x].food_number] = this.shop_menu[x].num;
       }
     }
+    let url = window.location.host;
     let request = {
     	shop_id: localStorage.getItem('shopId'),
-    	detailUrl: 'http:www.baidu.com/',
+    	detailUrl: url,
     	tableCode: this.table_id,
     	people: this.peoples,
     	dish: JSON.stringify(dish),
     	package: JSON.stringify(packages),
-    	description: '不要辣',
+    	description: this.remake,
     	user_id: ''
     }
     this.service.post('bk_orderdish', request).then(
 			res => {
+				this.isNext = false;
+  			this.remake = null;
+  			this.router.navigate(['/home/table']);
 	    }
 		);
   }

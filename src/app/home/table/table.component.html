@@ -93,14 +93,14 @@
 	<div class="box">
 		<div class="top">
 			<span>开台人数</span>
-			<i (click)="hide"></i>
+			<i (click)="hide()"></i>
 		</div>
 		<div>
 			<div class="text">
 				<span>桌台名称：</span>
 			</div>
 			<div>
-				<em>a1</em>
+				<em>{{select_desk.table_num}}</em>
 			</div>
 		</div>
 		<div>
@@ -116,7 +116,7 @@
 				
 			</div>
 			<div class="choose">
-				<span>取消</span><span class="confirm" (click)="confirm()">确定</span>
+				<span (click)="hide()">取消</span><span class="confirm" (click)="confirm()">确定</span>
 			</div>
 		</div>
 	</div>

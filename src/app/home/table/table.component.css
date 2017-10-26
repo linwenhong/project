@@ -182,30 +182,11 @@ p {margin: 0;}
 	margin-left: 10%;
 }
 
+
 .shield-layer .box {
 	width: 400px;
 	height: 200px;
 	margin: -200px 0 0 -100px;
-}
-.shield-layer .choose {
-	margin-top: 25px;
-}
-.shield-layer .choose span {
-	display: block;
-	width: 80px;
-	height: 30px;
-	line-height: 30px;
-	float: left;
-	background-color: #bfbfbf;
-	border-radius: 5px;
-	color: #555;
-	cursor: pointer;
-	text-align: center;
-}
-.shield-layer .choose .confirm {
-	margin-left: 15px;
-	background-color: #FE8B46;
-	color: #fff;
 }
 
 @media only screen and (max-width: 991px) {
