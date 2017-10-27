@@ -37,7 +37,7 @@ export class TableComponent implements OnInit {
 			if(data.status!=0){
 				this.select_desk = {};
   			this.select_desk.status = -1;
-				notify('error', '移台失败', '请选择空闲的桌子');
+				notify('error', this.last.table_num+'移台失败', '请选择空闲的桌子');
 				return;
 			}
 			this.toMove(data);
@@ -59,26 +59,31 @@ export class TableComponent implements OnInit {
 	}
 	//确定开台/修改人数
 	confirm(): void {
-		if(this.select_desk.status == 0){
-			this.shield = false;
-			this.desk_status(1, this.peoples);
+		if(this.peoples<=0 || parseInt(this.peoples)!=this.peoples){
+			notify('error', '输入错误', '请输入正整数的数字');
+			return;
 		}else{
-			this.service.post('bk_update_people', {
-				out_trade_no: this.select_desk.out_trade_no,
-				people: this.peoples
-			}).then(
-				res => {
-					this.shield = false;
-					this.select_desk = {};
-	     		this.select_desk.status = -1;
-	     		
-		     	if(res.status == '200'){
-		     		this.getshop();
-		     	}else{
-		     		this.router.navigate(['/login']);
-		     	};
-		    }
-			);
+			if(this.select_desk.status == 0){
+				this.shield = false;
+				this.desk_status(1, this.peoples);
+			}else{
+				this.service.post('bk_update_people', {
+					out_trade_no: this.select_desk.out_trade_no,
+					people: this.peoples
+				}).then(
+					res => {
+						this.shield = false;
+						this.select_desk = {};
+		     		this.select_desk.status = -1;
+		     		
+			     	if(res.status == '200'){
+			     		this.getshop();
+			     	}else{
+			     		this.router.navigate(['/login']);
+			     	};
+			    }
+				);
+			}
 		}
 	}
 	//选择移台
@@ -120,15 +125,14 @@ export class TableComponent implements OnInit {
 		}
 		this.service.post('bk_clear_desk', request).then(
 			res => {
-	     	this.select_desk = {};
-     		this.select_desk.status = -1;
-     		
 	     	if(res.status == '200'){
 	     		this.getshop();
-	     		notify('success', '清台', '清台成功!');
+	     		notify('success', '清台', this.select_desk.table_num+'清台成功!');
 	     	}else{
 	     		notify('error', '清台', res.msg);
 	     	};
+	     	this.select_desk = {};
+     		this.select_desk.status = -1;
 	    }
 		);
 	}
@@ -141,15 +145,14 @@ export class TableComponent implements OnInit {
 		if(peoples) request['people'] = peoples;
 		this.service.post('bk_update_desk', request).then(
 			res => {
-	     	this.select_desk = {};
-     		this.select_desk.status = -1;
-     		
 	     	if(res.status == '200'){
 	     		this.getshop();
-	     		notify('success', '开台', '开台成功!');
+	     		notify('success', '开台', this.select_desk.table_num+'开台成功!');
 	     	}else{
 	     		notify('error', '开台', res.msg);
 	     	};
+	     	this.select_desk = {};
+     		this.select_desk.status = -1;
 	    }
 		);
 	}
