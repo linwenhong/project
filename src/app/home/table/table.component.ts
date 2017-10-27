@@ -34,10 +34,15 @@ export class TableComponent implements OnInit {
 		console.log(data);
 		if(this.isMove){
 			this.isMove = false;
+			if(data.status!=0){
+				this.select_desk = {};
+  			this.select_desk.status = -1;
+				notify('error', '移台失败', '请选择空闲的桌子');
+				return;
+			}
 			this.toMove(data);
 		}else{
 			this.select_desk = data;
-			console.log(data);
 		}
 	}
 	//开台
@@ -83,7 +88,6 @@ export class TableComponent implements OnInit {
 	}
 	//移台
 	toMove(data: any): void {
-		console.log(2,this.last, data);
 		let request = {
 			shop_id: localStorage.getItem('shopId'),
 			tableCode: data.table_id
@@ -101,8 +105,9 @@ export class TableComponent implements OnInit {
      		
 	     	if(res.status == '200'){
 	     		this.getshop();
+	     		notify('success', '移台', this.last.table_num+'移动到'+data.table_num);
 	     	}else{
-	     		this.router.navigate(['/login']);
+	     		notify('error', '移台', res.msg);
 	     	};
 	    }
 		);
@@ -120,9 +125,10 @@ export class TableComponent implements OnInit {
      		
 	     	if(res.status == '200'){
 	     		this.getshop();
+	     		notify('success', '清台', '清台成功!');
 	     	}else{
-	     		notify('error','清台失败','请联系服务员!');
-	     	}
+	     		notify('error', '清台', res.msg);
+	     	};
 	    }
 		);
 	}
@@ -133,7 +139,6 @@ export class TableComponent implements OnInit {
   		tableCode: this.select_desk.table_id
   	};
 		if(peoples) request['people'] = peoples;
-  	console.log(request);
 		this.service.post('bk_update_desk', request).then(
 			res => {
 	     	this.select_desk = {};
@@ -141,8 +146,9 @@ export class TableComponent implements OnInit {
      		
 	     	if(res.status == '200'){
 	     		this.getshop();
+	     		notify('success', '开台', '开台成功!');
 	     	}else{
-	     		this.router.navigate(['/login']);
+	     		notify('error', '开台', res.msg);
 	     	};
 	    }
 		);

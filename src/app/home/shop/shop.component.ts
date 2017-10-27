@@ -187,6 +187,7 @@ export class ShopComponent implements OnInit {
       }
     }
     let url = window.location.host;
+    let order_type = (this.isPack)?1:0;
     let request = {
     	shop_id: localStorage.getItem('shopId'),
     	detailUrl: url,
@@ -195,7 +196,8 @@ export class ShopComponent implements OnInit {
     	dish: JSON.stringify(dish),
     	package: JSON.stringify(packages),
     	description: this.remake,
-    	user_id: ''
+    	user_id: '',
+    	order_type: order_type
     }
     this.service.post('bk_orderdish', request).then(
 			res => {
