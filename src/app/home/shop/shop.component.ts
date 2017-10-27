@@ -86,6 +86,11 @@ export class ShopComponent implements OnInit {
   }
 	//保存菜单
   setShop(data: any, type: number): void{
+  	if(!this.table_id){
+  		notify('error', '未选择桌子', '请先选择一个桌子');
+  		this.router.navigate(['/home']);
+  		return;
+  	}
   	let edit_num,num;
   	edit_num = type;
   	if(type==0){
