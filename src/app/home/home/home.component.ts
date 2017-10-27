@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 	public username: any;
-	public nav_select: number = 1;
+	public nav_select: string;
 	
   constructor() {
 		this.username = localStorage.getItem('username');
@@ -15,9 +15,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  	this.nav_select = sessionStorage.getItem('nav_select') || '1';
   }
 	
-	select(index: number): void{
+	select(index: string): void{
 		this.nav_select = index;
+		sessionStorage.setItem('nav_select', index)
 	}
 }
