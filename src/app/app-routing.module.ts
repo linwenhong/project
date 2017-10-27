@@ -1,13 +1,12 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
-import { AuthGuard } from './auth-guard.service';
+import { LoginComponent }  from './login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', loadChildren:'app/home/home.module#HomeModule' },
-//{ path: 'home', loadChildren:'app/home/home.module#HomeModule', canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
   { path: '**', pathMatch: 'full', redirectTo: '/login' }
 ];
 

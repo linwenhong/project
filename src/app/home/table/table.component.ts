@@ -120,6 +120,8 @@ export class TableComponent implements OnInit {
      		
 	     	if(res.status == '200'){
 	     		this.getshop();
+	     	}else{
+	     		notify('error','清台失败','请联系服务员!');
 	     	}
 	    }
 		);
