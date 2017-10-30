@@ -74,6 +74,7 @@ export class TableComponent implements OnInit {
 				this.desk_status(1, this.peoples);
 			}else{
 				this.service.post('bk_update_people', {
+					shop_id: localStorage.getItem('shopId'),
 					out_trade_no: this.select_desk.out_trade_no,
 					people: this.peoples
 				}).then(
@@ -169,6 +170,7 @@ export class TableComponent implements OnInit {
 	//修改桌子状态
 	desk_status(status: number, peoples: any): void {
 		let request = {
+			shop_id: localStorage.getItem('shopId'),
   		status: status,
   		tableCode: this.select_desk.table_id
   	};
