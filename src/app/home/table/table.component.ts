@@ -21,10 +21,11 @@ export class TableComponent implements OnInit {
 	public password: any = null;
 	private isMove: boolean = false;
 	private last: any;
-	dish: any;					//菜品列表
-	totalPrice: any;		//总价格
-	realPrice: any;			//实付
-	
+	order: any;					//菜品列表
+	pay_type: number = 2;
+	check_type: number = 2;
+	receivables: number = null;
+	isPayment: boolean = false;
 	
   constructor(private service: HomeService, private router: Router, private http: Http) { }
 
@@ -158,7 +159,7 @@ export class TableComponent implements OnInit {
 			this.confirm_clear();
 		}
 	}
-	//清台输密
+	//输密
 	clear_table(): void {
 		this.http.post(environment.api_url+'bk_login',{
 			username: localStorage.getItem('username'),
@@ -206,8 +207,7 @@ export class TableComponent implements OnInit {
 			res => {
 	     	if(res.status == '200'){
 	     		this.orderDetails = true;
-	     		this.dish = res.dish;
-	     		this.totalPrice = res.totalPrice;
+	     		this.order = res;
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
 	     	};
@@ -216,6 +216,7 @@ export class TableComponent implements OnInit {
 	    }
 		);
 	}
+	//结账
 	toCheckout(): void {
 		this.service.post('bk_getorders', {
 			shop_id: localStorage.getItem('shopId'),
@@ -224,12 +225,12 @@ export class TableComponent implements OnInit {
 			res => {
 	     	if(res.status == '200'){
 	     		this.checkout = true;
-	     		this.dish = res.dish;
-	     		this.totalPrice = res.totalPrice;
+	     		this.order = res;
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
 	     	};
 	    }
 		);
 	}
+	
 }

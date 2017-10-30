@@ -6,7 +6,7 @@
 	</div>
 	<div class="content">
 		<div class="row">
-			<div class="col-xs-8 menu_list">
+			<div class="col-xs-8 col-md-9 menu_list">
 				<div class="operation row">
 					<div class="col-xs-4 col-md-3">
 						<div class="t">
@@ -55,7 +55,7 @@
 				</div>
 			</div>
 			<!--menu_list end-->
-			<div class="col-xs-4 order_list">
+			<div class="col-xs-4 col-md-3 order_list">
 				<div>
 					<span *ngIf="select_desk.status!=2">订单详情</span>
 					<span class="isTrue" *ngIf="select_desk.status==2" (click)="details()">订单详情</span>
@@ -118,8 +118,8 @@
 		</div>
 	</div>
 </div>
-<!--清台密码确认-->
-<div class="shield-layer" *ngIf="toClear">
+<!--密码确认-->
+<div class="shield-layer" *ngIf="toClear" style="z-index: 100;">
 	<div class="box">
 		<div class="top">
 			<span>清台</span>
@@ -159,14 +159,14 @@
 		</div>
 		<div>
 			<div class="count">
-				<span>数量：{{dish.length}}</span>
-				<span class="c_right">金额：{{totalPrice}}</span>
+				<span>数量：{{order.dish.length}}</span>
+				<span class="c_right">金额：￥{{order.totalPrice}}</span>
 			</div>	
 		</div>
 		<div>
 			<div class="ul">
 				<ul>
-					<ng-container *ngFor="let data of dish;let index=index">
+					<ng-container *ngFor="let data of order.dish;let index=index">
 						<li>
 							<em *ngIf="index<9">0{{index + 1}}</em>
 							<em *ngIf="index>=9">{{index + 1}}</em>
@@ -195,22 +195,22 @@
 			<span>结账</span>
 			<i (click)="hide()"></i>
 		</div>
-		<div class="box_content">
-			<div class="left">
+		<div class="box_content row">
+			<div class="left col-xs-6 col-md-7">
 				<div class="title">
 					订单详情
 				</div>
 				<div class="div">
 					<div>
-						<span>订单序号：{{select_desk.out_trade_no}}</span><em>桌号：{{select_desk.table_num}}</em>
+						<span>订单序号：{{order.out_trade_no}}</span><em>桌号：{{select_desk.table_num}}</em>
 					</div>
 					<div>
-						<span>下单时间：111</span><em>人数：{{select_desk.people}}</em>
+						<span>下单时间：{{'???'}}</span><em>人数：{{select_desk.people}}</em>
 					</div>
 				</div>
 				<div class="ul">
 					<ul>
-						<ng-container *ngFor="let data of dish;let index=index">
+						<ng-container *ngFor="let data of order.dish;let index=index">
 							<li>
 								<em *ngIf="index<9">0{{index + 1}}</em>
 								<em *ngIf="index>=9">{{index + 1}}</em>
@@ -222,15 +222,67 @@
 					</ul>
 				</div>
 				<div class="count">
-					<span>数量：{{dish.length}}</span>
-					<span class="c_right">金额：{{totalPrice}}</span>
+					<span>数量：{{order.dish.length}}</span>
+					<span class="c_right">金额：￥{{order.totalPrice}}</span>
 				</div>
 			</div>
-			<div class="right">
+			<div class="right col-xs-6 col-md-5">
 				<div class="title">
 					结算
 				</div>
-			</div>	
+				<div class="r_box">
+					<div>
+						<div>消费金额：￥{{order.totalPrice}}</div>
+						<div>打折金额：￥{{'???'}}</div>
+						<div>应收金额：￥{{order.realPrice}}</div>
+					</div>
+					<div>
+						<div>收款方式：</div>
+						<div class="i1">
+							<span (click)="pay_type=0" [class.active]="pay_type==0">人工收银</span>
+						</div>
+						<div class="i1">
+							<span (click)="pay_type=1" [class.active]="pay_type==2 || pay_type==1">电子支付</span>
+						</div>
+						<div class="i1" *ngIf="pay_type==0">
+							<div class="row">
+								<div class="col-xs-6">
+									<i class="check"></i>
+									<em>现金</em>
+								</div>
+							</div>
+						</div>
+						<div class="i1" *ngIf="pay_type==1 || pay_type==2">
+							<div class="row">
+								<div class="col-xs-6">
+									<i class="unCheck" [class.check]="check_type==1" (click)="check_type=1;pay_type=2"></i>
+									<i class="wechat"></i>
+									<em>微信支付</em>
+								</div>
+								<div class="col-xs-6">
+									<i class="unCheck" [class.check]="check_type==2" (click)="check_type=2;pay_type=1"></i>
+									<i class="alipay"></i>
+									<em>支付宝支付</em>
+								</div>
+							</div>
+						</div>
+						<div class="Scan" *ngIf="pay_type==2">
+							<em>付款码：</em>
+							<input />
+							<i class="scan"></i>
+						</div>
+					</div>
+					<div class="charge">
+						<div> 实 收：<input [(ngModel)]="receivables" /></div>
+						<div *ngIf="receivables - order.realPrice<=0">找零：0</div>
+						<div *ngIf="receivables - order.realPrice>0">找零：{{receivables - order.realPrice}}</div>
+					</div>
+				</div>
+				<!--r_box end-->
+				<div class="checkout">
+					<span class="m-btn" (click)="toPayment()">结账</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
