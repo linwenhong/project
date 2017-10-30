@@ -15,10 +15,14 @@ export class TableComponent implements OnInit {
 	public select_desk: any;
 	public shield: boolean = false;
 	public toClear: boolean = false;
+	public orderDetails: boolean = false;
 	public peoples: any = null;
 	public password: any = null;
 	private isMove: boolean = false;
 	private last: any;
+	dish: any;
+	totalPrice: any;
+	
   constructor(private service: HomeService, private router: Router, private http: Http) { }
 
   ngOnInit() {
@@ -60,6 +64,7 @@ export class TableComponent implements OnInit {
 	hide(): void {
 		this.shield = false;
 		this.toClear = false;
+		this.orderDetails = false;
 		this.select_desk = {};
   	this.select_desk.status = -1;
 	}
@@ -191,12 +196,14 @@ export class TableComponent implements OnInit {
 	//订单详情
 	details(): void {
 		this.service.post('bk_getorders', {
-			shop_id: 1,
+			shop_id: localStorage.getItem('shopId'),
 			tableCode: this.select_desk.table_id
 		}).then(
 			res => {
 	     	if(res.status == '200'){
-	     		
+	     		this.orderDetails = true;
+	     		this.dish = res.dish;
+	     		this.totalPrice = res.totalPrice;
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
 	     	};

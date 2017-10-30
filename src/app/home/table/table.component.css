@@ -186,7 +186,56 @@ p {margin: 0;}
 .shield-layer .box {
 	width: 400px;
 	height: 200px;
-	margin: -200px 0 0 -100px;
+	margin: -200px 0 0 -200px;
+}
+.shield-layer .box1 {
+	width: 400px;
+	height: 360px;
+	margin: -280px 0 0 -200px;
+}
+.shield-layer .count {
+	padding: 0 15px;
+}
+.shield-layer .count .right {
+	float: right;
+}
+.shield-layer .ul {
+	box-sizing: border-box;
+	width: 100%;
+	height: 200px;
+	padding: 0 15px;
+	overflow-y: auto;
+}
+.shield-layer ul {
+	min-height: 100%;
+	margin: 0;
+	border: 1px solid #ddd;
+}
+.shield-layer li {
+	border-bottom: 1px solid #ddd;
+}
+.shield-layer li em {
+	display: block;
+	width: 40px;
+	float: left;
+	padding: 0 8px;
+	margin-right: 10px;
+	border-right: 1px solid #ddd;
+}
+.shield-layer li .name {
+	display: block;
+	width: 215px;
+	height: 30px;
+	float: left;
+	padding-right: 15px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.shield-layer li .price {
+	display: block;
+	width: 70px;
+	float: right;
 }
 
 @media only screen and (max-width: 991px) {

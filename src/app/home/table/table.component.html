@@ -150,3 +150,41 @@
 		</div>
 	</div>
 </div>
+
+<div class="shield-layer" *ngIf="orderDetails">
+	<div class="box box1">
+		<div class="top">
+			<span>订单详情</span>
+			<i (click)="hide()"></i>
+		</div>
+		<div>
+			<div class="count">
+				<span>数量：{{dish.length}}</span>
+				<span class="right">金额：{{totalPrice}}</span>
+			</div>	
+		</div>
+		<div>
+			<div class="ul">
+				<ul>
+					<ng-container *ngFor="let data of dish;let index=index">
+						<li>
+							<em *ngIf="index<9">0{{index + 1}}</em>
+							<em *ngIf="index>=9">{{index + 1}}</em>
+							<span class="name">{{data.goodsName}}</span>
+							<span class="number">{{data.num}}</span>
+							<span class="price">￥{{data.price}}</span>
+						</li>
+					</ng-container>	
+				</ul>
+			</div>
+		</div>
+		<div>
+			<div class="text">
+				
+			</div>
+			<div class="choose">
+				<span class="confirm">退菜</span><span class="confirm">退单</span>
+			</div>
+		</div>
+	</div>
+</div>
