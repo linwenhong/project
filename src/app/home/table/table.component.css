@@ -191,13 +191,19 @@ p {margin: 0;}
 .shield-layer .box1 {
 	width: 400px;
 	height: 360px;
-	margin: -280px 0 0 -200px;
+	margin: -240px 0 0 -200px;
+}
+.shield-layer .box2 {
+	width: 640px;
+	height: 480px;
+	margin: -240px 0 0 -320px;
 }
 .shield-layer .count {
 	padding: 0 15px;
 }
-.shield-layer .count .right {
+.shield-layer .count .c_right {
 	float: right;
+	color: #F5331B;
 }
 .shield-layer .ul {
 	box-sizing: border-box;
@@ -237,7 +243,35 @@ p {margin: 0;}
 	width: 70px;
 	float: right;
 }
-
+.shield-layer .box_content {
+	padding: 0 15px;
+}
+.shield-layer .box_content .left, .shield-layer .box_content .right {
+	height: 420px;
+	float: left;
+	border: 1px solid #d2d2d2;
+}
+.shield-layer .box_content .left {
+	width: 400px;
+	margin-right: 10px;
+}
+.shield-layer .box_content .title {
+	background-color: #e5e5e5;
+	border-bottom: 1px solid #d2d2d2;
+	text-align: center;
+}
+.shield-layer .box_content .left .div {
+	padding: 0 15px;
+}
+.shield-layer .box_content .left .div em {
+	float: right;
+}
+.shield-layer .box_content .ul {
+	height: 296px;
+}
+.shield-layer .box_content .right {
+	width: 200px;
+}
 @media only screen and (max-width: 991px) {
 	.menu_list .menu_box {
 		padding: 80px 0 0 15px;

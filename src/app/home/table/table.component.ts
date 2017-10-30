@@ -16,12 +16,15 @@ export class TableComponent implements OnInit {
 	public shield: boolean = false;
 	public toClear: boolean = false;
 	public orderDetails: boolean = false;
+	checkout: boolean = false;							//结账窗口
 	public peoples: any = null;
 	public password: any = null;
 	private isMove: boolean = false;
 	private last: any;
-	dish: any;
-	totalPrice: any;
+	dish: any;					//菜品列表
+	totalPrice: any;		//总价格
+	realPrice: any;			//实付
+	
 	
   constructor(private service: HomeService, private router: Router, private http: Http) { }
 
@@ -65,6 +68,7 @@ export class TableComponent implements OnInit {
 		this.shield = false;
 		this.toClear = false;
 		this.orderDetails = false;
+		this.checkout = false;
 		this.select_desk = {};
   	this.select_desk.status = -1;
 	}
@@ -209,6 +213,22 @@ export class TableComponent implements OnInit {
 	     	};
 	     	this.select_desk = {};
      		this.select_desk.status = -1;
+	    }
+		);
+	}
+	toCheckout(): void {
+		this.service.post('bk_getorders', {
+			shop_id: localStorage.getItem('shopId'),
+			tableCode: this.select_desk.table_id
+		}).then(
+			res => {
+	     	if(res.status == '200'){
+	     		this.checkout = true;
+	     		this.dish = res.dish;
+	     		this.totalPrice = res.totalPrice;
+	     	}else{
+	     		notify('error', '获取订单失败', res.msg);
+	     	};
 	    }
 		);
 	}

@@ -50,6 +50,9 @@
 	float: left;
 	border-left: 1px solid #fff;
 	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	text-align: center;
 }
 .navigation-bar-list li:first-child {

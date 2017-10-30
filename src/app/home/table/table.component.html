@@ -74,7 +74,7 @@
 				</div>
 				<div>
 					<span *ngIf="select_desk.status!=2">结账</span>
-					<span class="isTrue" *ngIf="select_desk.status==2">结账</span>
+					<span class="isTrue" *ngIf="select_desk.status==2" (click)="toCheckout()">结账</span>
 				</div>
 				<div>
 					<span *ngIf="select_desk.status!=0">开台</span>
@@ -85,7 +85,7 @@
 		</div>
 	</div>
 </div>
-
+<!--修改人数-->
 <div class="shield-layer" *ngIf="shield">
 	<div class="box">
 		<div class="top">
@@ -118,7 +118,7 @@
 		</div>
 	</div>
 </div>
-
+<!--清台密码确认-->
 <div class="shield-layer" *ngIf="toClear">
 	<div class="box">
 		<div class="top">
@@ -150,7 +150,7 @@
 		</div>
 	</div>
 </div>
-
+<!--订单详情-->
 <div class="shield-layer" *ngIf="orderDetails">
 	<div class="box box1">
 		<div class="top">
@@ -160,7 +160,7 @@
 		<div>
 			<div class="count">
 				<span>数量：{{dish.length}}</span>
-				<span class="right">金额：{{totalPrice}}</span>
+				<span class="c_right">金额：{{totalPrice}}</span>
 			</div>	
 		</div>
 		<div>
@@ -185,6 +185,52 @@
 			<div class="choose">
 				<span class="confirm">退菜</span><span class="confirm">退单</span>
 			</div>
+		</div>
+	</div>
+</div>
+<!--结账-->
+<div class="shield-layer" *ngIf="checkout">
+	<div class="box box2">
+		<div class="top">
+			<span>结账</span>
+			<i (click)="hide()"></i>
+		</div>
+		<div class="box_content">
+			<div class="left">
+				<div class="title">
+					订单详情
+				</div>
+				<div class="div">
+					<div>
+						<span>订单序号：{{select_desk.out_trade_no}}</span><em>桌号：{{select_desk.table_num}}</em>
+					</div>
+					<div>
+						<span>下单时间：111</span><em>人数：{{select_desk.people}}</em>
+					</div>
+				</div>
+				<div class="ul">
+					<ul>
+						<ng-container *ngFor="let data of dish;let index=index">
+							<li>
+								<em *ngIf="index<9">0{{index + 1}}</em>
+								<em *ngIf="index>=9">{{index + 1}}</em>
+								<span class="name">{{data.goodsName}}</span>
+								<span class="number">{{data.num}}</span>
+								<span class="price">￥{{data.price}}</span>
+							</li>
+						</ng-container>	
+					</ul>
+				</div>
+				<div class="count">
+					<span>数量：{{dish.length}}</span>
+					<span class="c_right">金额：{{totalPrice}}</span>
+				</div>
+			</div>
+			<div class="right">
+				<div class="title">
+					结算
+				</div>
+			</div>	
 		</div>
 	</div>
 </div>
