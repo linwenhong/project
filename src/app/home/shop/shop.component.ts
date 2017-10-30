@@ -8,7 +8,8 @@ import { HomeService } from '../home.service';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  public table_id: any;               //桌号
+  public table_id: any;               //桌号id
+  public table_num: any;              //桌号
   public peoples: any;								//人数
   public isPack: boolean = false;			//是否打包
 	public menu: any;                   //菜品列表
@@ -27,7 +28,7 @@ export class ShopComponent implements OnInit {
 
   ngOnInit() {
   	if(this.activatedRoute.snapshot.params["id"]){
-  		this.table_id = this.activatedRoute.snapshot.params["id"].split('#')[0];
+  		this.table_num = this.activatedRoute.snapshot.params["id"].split('#')[0];
   		this.peoples = this.activatedRoute.snapshot.params["id"].split('#')[1];
   	}
 		this.getfood();
@@ -206,8 +207,14 @@ export class ShopComponent implements OnInit {
     }
     this.service.post('bk_orderdish', request).then(
 			res => {
-				this.isNext = false;
-  			this.remake = null;
+				if(res.status==200){
+					this.isNext = false;
+	  			this.remake = null;
+	  			notify('success', '下单成功', '你已下单成功!');
+					this.router.navigate(['/home']);
+	     	}else{
+	     		notify('error', '下单成功', res.msg);
+	     	};
 	    }
 		);
   }

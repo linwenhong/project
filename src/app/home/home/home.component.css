@@ -40,6 +40,10 @@
 	line-height: 55px; /*.navigation-bar-top height*/
 	float: left;
 }
+.user .logout {
+	margin: 0 15px;
+	cursor: pointer;
+}
 .navigation-bar-list {
 	width: 100%;
 	float: left;

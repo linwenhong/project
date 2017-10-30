@@ -11,25 +11,25 @@
 					<div class="col-xs-4 col-md-3">
 						<div class="t">
 							<i class="t0"></i>
-							<span>空闲(111)</span>
+							<span>空闲</span>
 						</div>
 					</div>
 					<div class="col-xs-4 col-md-3">
 						<div class="t">
 							<i class="t1"></i>
-							<span>已开台(111)</span>
+							<span>已开台</span>
 						</div>
 					</div>
 					<div class="col-xs-4 col-md-3">
 						<div class="t">
 							<i class="t2"></i>
-							<span>已下单(111)</span>
+							<span>已下单</span>
 						</div>
 					</div>
 					<div class="col-xs-4 col-md-3">
 						<div class="t">
 							<i class="t3"></i>
-							<span>已结账(111)</span>
+							<span>已结账</span>
 						</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 									</div>
 									<p>{{data.table_num}}</p>
 									<p>{{data.people || '0'}}人/{{data.max}}人桌</p>
-									<p>123</p>
+									<p>{{'???'}}</p>
 									<div class="select" *ngIf="select_desk.table_id==data.table_id">
 										<i *ngIf="!isMove"></i>
 										<i class="move" *ngIf="isMove"></i>
@@ -70,7 +70,7 @@
 					<em *ngIf="select_desk.status!=2">修改人数</em>
 					<em *ngIf="select_desk.status!=1">点单</em>
 					<em class="isTrue" *ngIf="select_desk.status==2" (click)="open()">修改人数</em>
-					<em class="isTrue" *ngIf="select_desk.status==1" routerLink="/home/shop/{{select_desk.table_id +'#'+ select_desk.people}}">点单</em>
+					<em class="isTrue" *ngIf="select_desk.status==1" routerLink="/home/shop/{{select_desk.table_num +'#'+ select_desk.people}}">点单</em>
 				</div>
 				<div>
 					<span *ngIf="select_desk.status!=2">结账</span>
