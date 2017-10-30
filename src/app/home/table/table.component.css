@@ -328,6 +328,7 @@ p {margin: 0;}
 	background-size: 100%;
 	cursor: pointer;
 }
+.shield-layer .r_box .Scan{margin-top: 10px;}
 .shield-layer .r_box .Scan input {width: 185px;}
 .shield-layer .charge>div {
 	margin-top: 8px;
@@ -338,6 +339,7 @@ p {margin: 0;}
 }
 .checkout{
 	padding: 0 5% 0 10%;
+	margin-top: 15px;
 }
 .checkout span {
 	border-radius: 5px;

@@ -230,11 +230,11 @@
 				<div class="title">
 					结算
 				</div>
+				<form (submit)="payment()">
 				<div class="r_box">
 					<div>
 						<div>消费金额：￥{{order.totalPrice}}</div>
-						<div>打折金额：￥{{'???'}}</div>
-						<div>应收金额：￥{{order.realPrice}}</div>
+						<!--<div>应收金额：￥{{order.realPrice}}</div>-->
 					</div>
 					<div>
 						<div>收款方式：</div>
@@ -266,21 +266,23 @@
 								</div>
 							</div>
 						</div>
-						<div class="Scan" *ngIf="pay_type==2">
-							<em>付款码：</em>
-							<input />
-							<i class="scan"></i>
-						</div>
+						<div>应收金额：<input name="receivables" [(ngModel)]="receivables" /></div>
 					</div>
-					<div class="charge">
-						<div> 实 收：<input [(ngModel)]="receivables" /></div>
+					<div class="charge" *ngIf="pay_type==0">
 						<div *ngIf="receivables - order.realPrice<=0">找零：0</div>
 						<div *ngIf="receivables - order.realPrice>0">找零：{{receivables - order.realPrice}}</div>
 					</div>
+					<div class="Scan" *ngIf="pay_type!=0">
+						<em>付款码：</em>
+						<input />
+						<i class="scan"></i>
+					</div>
 				</div>
+				<input style="display: none;" type="submit" />
 				<!--r_box end-->
+				</form>
 				<div class="checkout">
-					<span class="m-btn" (click)="toPayment()">结账</span>
+					<span class="m-btn" (click)="payment()">结账</span>
 				</div>
 			</div>
 		</div>

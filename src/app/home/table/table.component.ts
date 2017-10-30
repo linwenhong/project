@@ -25,7 +25,6 @@ export class TableComponent implements OnInit {
 	pay_type: number = 2;
 	check_type: number = 2;
 	receivables: number = null;
-	isPayment: boolean = false;
 	
   constructor(private service: HomeService, private router: Router, private http: Http) { }
 
@@ -226,11 +225,32 @@ export class TableComponent implements OnInit {
 	     	if(res.status == '200'){
 	     		this.checkout = true;
 	     		this.order = res;
+	     		this.receivables = res.realPrice;
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
 	     	};
 	    }
 		);
 	}
-	
+	//确定结账
+	payment(): void {
+		let request = {};
+		request['shop_id'] = localStorage.getItem('shopId');
+		request['code'] = this.select_desk.table_id;
+		request['pay_type'] = this.pay_type;
+		request['realPrice'] = this.receivables;//默认或手输
+		request['discountPrice'] = this.order.discountPrice;
+		request['totalPrice'] = this.order.totalPrice;
+		console.log(request);
+		
+		this.service.post('bk_pay', request).then(
+			res => {
+	     	if(res.status == '200'){
+	     		notify('success', '支付成功', '订单已成功支付!');
+	     	}else{
+	     		notify('error', '支付失败', res.msg);
+	     	};
+	    }
+		);
+	}	
 }
