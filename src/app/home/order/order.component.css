@@ -54,13 +54,17 @@
 .order-content {
 	box-sizing: border-box;
 	height: 100%;
-	padding: 54px 0 50px;
+	padding: 54px 0 20px;
 }
 .order-content>.row {
 	height: 100%;
 	padding-left: 15px;
 }
-.left{
+.box {
+	height: 100%;
+	padding-right: 10px;
+}
+.box-content{
 	position: relative;
 	height: 100%;
 	border: 1px solid #B5B5B5;
@@ -113,6 +117,124 @@
 	margin: 10px 10px;
 }
 .order_list li {
+	position: relative;
 	margin-bottom: 5px;
 	background-color: #eee;
+	cursor: pointer;
+}
+.order_list .number {
+	position: absolute;
+}
+.order_list .number span {
+	display: block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px;
+	border-radius: 50%;
+	background-color: #fff;
+	text-align: center;
+}
+.order_list .details {
+	margin-left: 50px;
+}
+.order_list .details span {
+	height: 25px;
+	line-height: 25px;
+	padding: 0 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.order_list li.active {
+	background-color: #FE8B46;
+}
+.order_list li.active .number span {
+	color: #FE8B46;
+}
+.order_list li.active .details span {
+	color: #fff;
+}
+
+.order_details em {
+	display: inline-block;
+	width: 58px;
+	color: #333;
+}
+.order_details span {
+	margin-bottom: 5px;
+	color: #FE8B46;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.order_details p {
+	padding-left: 72px;
+	margin-top: -20px;
+}
+
+.order_box .title {
+	padding: 20px 20px 5px;
+}
+.order_box .title span {
+	float: right;
+}
+.order_box .ul{
+	padding: 0 20px;
+	height: 100%;
+	overflow-y: auto;
+}
+.order_box .ul ul {
+	margin: 0;
+	border: 1px solid #ddd;
+	border-bottom: none;
+}
+.order_box .ul li {
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #ddd;
+}
+.order_box .ul li em {
+	display: block;
+	width: 40px;
+	float: left;
+	padding: 0 8px;
+	margin-right: 10px;
+	border-right: 1px solid #ddd;
+}
+.order_box .ul li .name {
+	display: block;
+	width: 150px;
+	height: 30px;
+	float: left;
+	padding-right: 15px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.order_box .ul li .price {
+	display: block;
+	width: 70px;
+	float: right;
+}
+.list_box {
+	position: relative;
+	box-sizing: border-box;
+	height: 100%;
+	padding: 150px 0 45px;
+}
+.list_top {
+	position: absolute;
+	width: 100%;
+}
+.print {
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+	margin: 5px auto;
+	border-radius: 5px;
+	text-align: center;
+}
+.print.no {
+	background-color: #C2C2C2;
 }

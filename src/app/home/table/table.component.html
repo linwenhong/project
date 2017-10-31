@@ -43,7 +43,7 @@
 									</div>
 									<p>{{data.table_num}}</p>
 									<p>{{data.people || '0'}}人/{{data.max}}人桌</p>
-									<p>{{'???'}}</p>
+									<p>{{data.table_type}}</p>
 									<div class="select" *ngIf="select_desk.table_id==data.table_id">
 										<i *ngIf="!isMove"></i>
 										<i class="move" *ngIf="isMove"></i>
