@@ -54,6 +54,15 @@ export class ShopComponent implements OnInit {
   }
   //初始化页面数据
   private init(): void{
+  	this.service.get('bk_getshop?shop_id='+localStorage.getItem('shopId')).then(
+			res => {
+	      for(let x in res.desk){
+	      	if(res.desk[x].table_num==this.table_num){
+	      		this.table_id = res.desk[x].table_id;
+	      	}
+	      };
+	    }
+		);
     this.category = [];
     for(let x in this.menu){
       this.category.push(x);
