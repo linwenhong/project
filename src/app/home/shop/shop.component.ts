@@ -37,8 +37,12 @@ export class ShopComponent implements OnInit {
 	private getfood(): void {
 		this.service.get('bk_getfood?shop_id='+localStorage.getItem('shopId')).then(
 			res => {
-	      this.menu = res.food;    
-	      this.init();
+				if(res.status == '200'){
+	     		this.menu = res.food;    
+	      	this.init();  		
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
 	    }
 		);
 	}
@@ -68,22 +72,22 @@ export class ShopComponent implements OnInit {
       this.category.push(x);
     }
     this.number_init();
-    let site = JSON.parse(sessionStorage.getItem("my_menu"));
-    let br = false;
-    if(site){
-      for(let x in site){
-        br = false;
-        this.total += site[x].num;
-        this.prices += site[x].num*site[x].food_price;
-        for(let i in this.menu){
-          for(let j in this.menu[i]){
-            if(site[x].food_number==this.menu[i][j].food_number){
-              this.menu[i][j].num = site[x].num;
-            };
-          }
-        }
-      }      
-    }
+//  let site = JSON.parse(sessionStorage.getItem("my_menu"));
+//  let br = false;
+//  if(site){
+//    for(let x in site){
+//      br = false;
+//      this.total += site[x].num;
+//      this.prices += site[x].num*site[x].food_price;
+//      for(let i in this.menu){
+//        for(let j in this.menu[i]){
+//          if(site[x].food_number==this.menu[i][j].food_number){
+//            this.menu[i][j].num = site[x].num;
+//          };
+//        }
+//      }
+//    }      
+//  }
   }
 	//选择分类
   select(index: any, category: string): void{
@@ -191,7 +195,7 @@ export class ShopComponent implements OnInit {
         }
       }
     }
-    sessionStorage.setItem('my_menu', JSON.stringify(this.shop_menu));
+//  sessionStorage.setItem('my_menu', JSON.stringify(this.shop_menu));
     
     let dish: any = {};
     let packages: any = {};

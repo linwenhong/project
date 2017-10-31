@@ -10,10 +10,11 @@ export class OrderComponent implements OnInit {
 	isAutomatic: boolean = false;					//自动接单
 	isBusiness: boolean = false;					//营业状态
 	select_index: number;
-	type: number = 1;
+	type: number = 1;											//订单类型
 	select_order: any = {};
-	orders: any;
-	order: any;
+	orders: any;													//api返回的所有订单
+	order: any;														//选中订单类型订单
+	
   constructor(private service: HomeService) { }
 
   ngOnInit() {
@@ -24,17 +25,19 @@ export class OrderComponent implements OnInit {
 	     	if(res.status == '200'){
 	     		this.orders = res.orders;   		
 	     		this.order = this.orders.new_order;   		
+	     	}else{
+	     		notify('error', '错误', res.msg);
 	     	};
 	    }
 		);
   }
-	
+	//订单详情
 	select(index: number, data: any): void {
 		this.select_index = index;
 		this.select_order = data;
 		console.log(data);
 	}
-	
+	//选中订单类型
 	select_type(index: number, type: any): void {
 		this.type = index;
 		this.order = this.orders[type];
