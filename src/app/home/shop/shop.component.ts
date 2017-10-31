@@ -140,6 +140,7 @@ export class ShopComponent implements OnInit {
   edit_statu(data: any, statu: number): void{
   	data.isShow = false;
   	let request = {
+  		shop_id: localStorage.getItem('shopId'),
   		status: statu,
   		food_number: data.food_number
   	};
