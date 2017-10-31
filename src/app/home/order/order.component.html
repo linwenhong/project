@@ -1,3 +1,64 @@
-<p>
-  order works!
-</p>
+<div class="order-page">
+	
+	<div class="head">
+		<div class="call">
+			<i></i><span>呼叫服务</span><em>(2)</em>
+		</div>
+		
+		<div class="switch">
+			<div class="automatic_list">
+				<span>自动接单</span>
+				<i (click)="isAutomatic=!isAutomatic" [class.active]="isAutomatic"></i>
+			</div>
+			<div class="doBusiness">
+				<span>营业状态</span>
+				<i (click)="isBusiness=!isBusiness" [class.active]="isBusiness"></i>
+			</div>
+		</div>
+	</div>
+	
+	<div class="order-content">
+		<div class="row">
+			<div class="col-xs-6 left">
+				<div class="row type">
+					<div class="col-xs-3 active_type">
+						<div>
+							<i class="new"></i>
+							<span>新订单</span>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div>
+							<i class="todo"></i>
+							<span>进行中</span>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div>
+							<i class="todo"></i>
+							<span>退款中</span>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div>
+							<i class="todo"></i>
+							<span>已完成</span>
+						</div>
+					</div>
+				</div>
+				<div class="order_box">
+					<div class="order_list">
+						<ul>
+							<li>
+								
+							</li>
+							<li>123231</li>
+						</ul>
+					</div>	
+				</div>
+			</div>
+			<div class="col-xs-6"></div>
+		</div>
+	</div>	
+	
+</div>
