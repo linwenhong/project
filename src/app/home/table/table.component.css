@@ -326,7 +326,6 @@ p {margin: 0;}
 	margin: 3px 20px 0 0;
 	background-image: url(../../../assets/img/table/Scan.png);
 	background-size: 100%;
-	cursor: pointer;
 }
 .shield-layer .r_box .Scan{margin-top: 10px;}
 .shield-layer .r_box .Scan input {width: 185px;}
