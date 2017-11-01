@@ -101,8 +101,23 @@
 .new {
 	background-image: url(../../../assets/img/order/icon_1.png);
 }
-.todo {
+.refund {
 	background-image: url(../../../assets/img/order/icon_2.png);
+}
+.complete {
+	background-image: url(../../../assets/img/order/icon_4.png);
+}
+.active_type .new {
+	background-image: url(../../../assets/img/order/icon_r1.png);
+}
+.active_type .refund {
+	background-image: url(../../../assets/img/order/icon_r2.png);
+}
+.active_type .complete {
+	background-image: url(../../../assets/img/order/icon_r4.png);
+}
+.active_type span {
+	color: #FE8B46;
 }
 .order_box{
 	box-sizing: border-box;
