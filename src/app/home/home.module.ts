@@ -8,6 +8,7 @@ import { ShopComponent } from './shop/shop.component';
 import { OrderComponent } from './order/order.component';
 import { HomeService } from './home.service';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 		CommonModule,
 		HomeRoutingModule
 	],
-	declarations: [HomeComponent, TableComponent, ShopComponent, OrderComponent, StatisticsComponent],
+	declarations: [HomeComponent, TableComponent, ShopComponent, OrderComponent, StatisticsComponent, SettingsComponent],
 	providers: [ HomeService ]
 })
 export class HomeModule {}

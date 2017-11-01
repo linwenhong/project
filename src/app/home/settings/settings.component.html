@@ -1,0 +1,50 @@
+<div class="settings-page">
+	<div class="nav">
+		<ul>
+      <li (click)="select_nav=1" [class.active]="select_nav==1">商家配置</li>
+      <li (click)="select_nav=2" [class.active]="select_nav==2">修改密码</li>
+    </ul>
+	</div>
+	<div class="content">
+		<div class="row">
+			
+			<div class="box">
+				<div class="switch" *ngIf="select_nav==1">
+					<div class="">
+						<span>打印厨房小票</span>
+						<i (click)="isAutomatic=!isAutomatic" [class.active]="isAutomatic"></i>
+					</div>
+					<div class="">
+						<span>订单提醒语音</span>
+						<i (click)="isBusiness=!isBusiness" [class.active]="isBusiness"></i>
+					</div>
+					<div class="">
+						<span>自动接单</span>
+						<i (click)="isbusiness=!isbusiness" [class.active]="isbusiness"></i>
+					</div>
+				</div>
+				
+				<div class="form" *ngIf="select_nav==2">
+					<form (submit)="edit()">
+						<!--<div>
+							<label><em>用户名</em>：<input name="user"/></label>
+						</div>-->
+						<div>
+							<label><em>密码</em>：<input name="password1" type="password" [(ngModel)]="password1" /></label>
+						</div>
+						<div>
+							<label><em>新的密码</em>：<input name="password2" type="password" [(ngModel)]="password2" /></label>
+						</div>
+						<div>
+							<label><em>确认密码</em>：<input name="password3" type="password" [(ngModel)]="password3" /></label>
+						</div>
+						<div>
+							<button class="m-btn" type="submit">修改</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

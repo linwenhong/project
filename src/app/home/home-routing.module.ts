@@ -6,6 +6,7 @@ import { TableComponent } from './table/table.component';
 import { ShopComponent } from './shop/shop.component';
 import { OrderComponent } from './order/order.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [{
 	path: '',
@@ -25,6 +26,9 @@ const routes: Routes = [{
 	}, {
 		path: 'statistics',
 		component: StatisticsComponent
+	}, {
+		path: 'settings',
+		component: SettingsComponent
 	}]
 }]
 
