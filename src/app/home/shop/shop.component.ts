@@ -170,6 +170,10 @@ export class ShopComponent implements OnInit {
     sessionStorage.removeItem("my_menu");
   }
   next(): void{
+    if(this.total==0){
+			notify('error', '未选择菜品', '请选择菜品');
+			return;
+		}
   	this.isNext = true;
   }
   hide(): void{
