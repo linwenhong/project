@@ -20,7 +20,7 @@ export class HomeService {
                       response => {
                       	sessionStorage.setItem('token', response.headers.get('Authorization'));
                         let regions = response.json();
-                        if(regions.error == '401'){
+                        if(regions.status == '401'){
 									     		document.getElementById('toLogin').style.display = "block";
 									     	}	
                         return regions;
@@ -35,7 +35,7 @@ export class HomeService {
                       response => {
                       	sessionStorage.setItem('token', response.headers.get('Authorization'));
                         let regions = response.json();
-                        if(regions.error == '401'){
+                        if(regions.status == '401'){
 									     		document.getElementById('toLogin').style.display = "block";
 									     	}	
                         return regions;
