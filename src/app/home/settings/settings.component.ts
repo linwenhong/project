@@ -14,7 +14,9 @@ export class SettingsComponent implements OnInit {
 	password1: string;
 	password2: string;
 	password3: string;
-  constructor(private service: HomeService) { }
+  constructor(private service: HomeService) {
+  	service.nav_select = '7';
+  }
 
   ngOnInit() {
   	this.select_nav = sessionStorage.getItem('settings_select') || '1';

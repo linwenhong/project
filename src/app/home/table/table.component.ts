@@ -26,7 +26,9 @@ export class TableComponent implements OnInit {
 	check_type: number = 2;
 	receivables: number = null;
 	
-  constructor(private service: HomeService, private router: Router, private http: Http) { }
+  constructor(private service: HomeService, private router: Router, private http: Http) { 
+  	service.nav_select = '1';
+  }
 
   ngOnInit() {
 		this.getshop();

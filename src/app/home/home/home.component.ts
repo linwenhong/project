@@ -8,7 +8,6 @@ import { HomeService } from '../home.service';
 })
 export class HomeComponent implements OnInit {
 	public username: any;
-	public nav_select: string;
 	login_pwd: string;
 	
   constructor(public router: Router, private service: HomeService) {
@@ -20,14 +19,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.nav_select = sessionStorage.getItem('nav_select') || '1';
   	if(!sessionStorage.getItem('isLogin')) this.router.navigate(['/login']);
   }
-	
-	select(index: string): void {
-		this.nav_select = index;
-		sessionStorage.setItem('nav_select', index)
-	}
 	
 	getToken(): void {
 		this.service.token(localStorage.getItem('username'), this.login_pwd).then(

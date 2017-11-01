@@ -12,31 +12,31 @@
 		</div>
 		<div class="navigation-bar-list">
 			<ul>
-			  <li routerLink="" [class.active]="nav_select=='1'" (click)="select('1')">
+			  <li routerLink="" [class.active]="service.nav_select=='1'">
 		    	<div>
 		    		<i class="icon-1"></i>
 		    		<span>餐区管理</span>
 		    	</div>	
 			  </li>
-			  <li routerLink="shop" [class.active]="nav_select=='2'" (click)="select('2')">
+			  <li routerLink="shop" [class.active]="service.nav_select=='2'">
 		    	<div>
 		    		<i class="icon-2"></i>
 		    		<span>店内点单</span>
 		    	</div>	
 			  </li>
-			  <li routerLink="order" [class.active]="nav_select=='3'" (click)="select('3')">
+			  <li routerLink="order" [class.active]="service.nav_select=='3'">
 		    	<div>
 		    		<i class="icon-3"></i>
 		    		<span>在线订单</span>
 		    	</div>	
 			  </li>
-			  <li routerLink="statistics" [class.active]="nav_select=='6'" (click)="select('6')">
+			  <li routerLink="statistics" [class.active]="service.nav_select=='6'">
 		    	<div>
 		    		<i class="icon-6"></i>
 		    		<span>统计</span>
 		    	</div>	
 			  </li>
-			  <li routerLink="settings" [class.active]="nav_select=='7'" (click)="select('7')">
+			  <li routerLink="settings" [class.active]="service.nav_select=='7'">
 		    	<div>
 		    		<i class="icon-7"></i>
 		    		<span>设置</span>

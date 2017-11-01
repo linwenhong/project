@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class HomeService {
-
+	public nav_select: string = '1';
   constructor(private http: Http) { }
   
   get(url: string): Promise<any> {

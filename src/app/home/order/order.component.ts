@@ -15,7 +15,9 @@ export class OrderComponent implements OnInit {
 	orders: any;													//api返回的所有订单
 	order: any;														//选中订单类型订单
 	
-  constructor(private service: HomeService) { }
+  constructor(private service: HomeService) { 
+  	service.nav_select = '3';
+  }
 
   ngOnInit() {
   	this.service.post('bk_online_orders', {

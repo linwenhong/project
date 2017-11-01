@@ -24,7 +24,9 @@ export class ShopComponent implements OnInit {
   public isNext: boolean = false;
   public remake: string = '';
 	
-  constructor(private service: HomeService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private service: HomeService, private activatedRoute: ActivatedRoute, private router: Router) {
+  	service.nav_select = '2';
+  }
 
   ngOnInit() {
   	if(this.activatedRoute.snapshot.params["id"]){
