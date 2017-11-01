@@ -68,9 +68,9 @@
 				</div>
 				<div>
 					<em *ngIf="select_desk.status!=2">修改人数</em>
-					<em *ngIf="select_desk.status!=1">点单</em>
+					<em *ngIf="select_desk.status!=1 && select_desk.status!=2">点单</em>
 					<em class="isTrue" *ngIf="select_desk.status==2" (click)="open()">修改人数</em>
-					<em class="isTrue" *ngIf="select_desk.status==1" routerLink="/home/shop/{{select_desk.table_num +'#'+ select_desk.people}}">点单</em>
+					<em class="isTrue" *ngIf="select_desk.status==1  || select_desk.status==2" routerLink="/home/shop/{{select_desk.table_num +'#'+ select_desk.people}}">点单</em>
 				</div>
 				<div>
 					<span *ngIf="select_desk.status!=2">结账</span>

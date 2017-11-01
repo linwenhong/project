@@ -7,6 +7,7 @@ import { TableComponent } from './table/table.component';
 import { ShopComponent } from './shop/shop.component';
 import { OrderComponent } from './order/order.component';
 import { HomeService } from './home.service';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { HomeService } from './home.service';
 		CommonModule,
 		HomeRoutingModule
 	],
-	declarations: [HomeComponent, TableComponent, ShopComponent, OrderComponent],
+	declarations: [HomeComponent, TableComponent, ShopComponent, OrderComponent, StatisticsComponent],
 	providers: [ HomeService ]
 })
 export class HomeModule {}
