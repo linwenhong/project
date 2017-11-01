@@ -38,3 +38,29 @@
 		<router-outlet></router-outlet>
 	</div>
 </div>
+
+<!--密码确认-->
+<div id="toLogin" class="shield-layer" style="z-index: 200;">
+	<div class="box getToken">
+		<div class="top">
+			<span>登录验证</span>
+			<i (click)="unLogin()"></i>
+		</div>
+		<div>
+			<div class="text">
+				<span>密码：</span>
+			</div>
+			<div>
+				<input name="login_pwd" type="password" [(ngModel)]="login_pwd" />
+			</div>
+		</div>
+		<div>
+			<div class="text">
+				
+			</div>
+			<div class="choose">
+				<span class="confirm" (click)="getToken()">确定</span>
+			</div>
+		</div>
+	</div>
+</div>

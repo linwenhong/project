@@ -105,7 +105,9 @@
 				<span>餐台人数：</span>
 			</div>
 			<div>
-				<input [(ngModel)]="peoples" />人
+				<form>
+				<input type="text" name="peoples" [(ngModel)]="peoples" />人
+				</form>
 			</div>
 		</div>
 		<div>
@@ -137,7 +139,9 @@
 				<span>密码：</span>
 			</div>
 			<div>
+				<form>
 				<input type="password" [(ngModel)]="password" />
+				</form>
 			</div>
 		</div>
 		<div>

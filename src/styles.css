@@ -114,3 +114,14 @@ html,body {
 	background-color: #FE8B46;
 	color: #fff;
 }
+body {
+  position: relative;
+}
+.shield-layer .getToken {
+	width: 400px;
+	height: 150px;
+	margin: -175px 0 0 -200px;
+}
+#toLogin {
+	display: none;
+}

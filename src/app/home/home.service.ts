@@ -20,6 +20,9 @@ export class HomeService {
                       response => {
                       	sessionStorage.setItem('token', response.headers.get('Authorization'));
                         let regions = response.json();
+                        if(regions.error == '401'){
+									     		document.getElementById('toLogin').style.display = "block";
+									     	}	
                         return regions;
                       });
   }
@@ -32,6 +35,28 @@ export class HomeService {
                       response => {
                       	sessionStorage.setItem('token', response.headers.get('Authorization'));
                         let regions = response.json();
+                        if(regions.error == '401'){
+									     		document.getElementById('toLogin').style.display = "block";
+									     	}	
+                        return regions;
+                      });
+  }
+  
+  token(username: string, password: string): Promise<any> {
+    return this.http.post(environment.api_url+'bk_login', {
+											username: username,
+											password: password
+										})
+                    .toPromise().then(
+                      response => {
+                      	sessionStorage.setItem('token', response.headers.get('Authorization'));
+                        let regions = response.json();
+                        if(regions.code == '200'){
+                        	document.getElementById('toLogin').style.display = "none";
+									     		sessionStorage.setItem('token', regions.token);
+									     	}else{
+									     		notify('error', '输入错误', '请输入正确的密码!');
+									     	};
                         return regions;
                       });
   }

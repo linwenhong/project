@@ -11,7 +11,9 @@
 			<div class="col-xs-8 menu_list">
 				<div class="operation row">
 					<div class="search_box">
-						<input placeholder="请输入简称" />
+						<form>
+						<input name="search" placeholder="请输入简称" />
+						</form>
 						<i class="m-btn">
 							<em></em>
 						</i>
@@ -105,7 +107,7 @@
 				<span>备注信息：</span>
 			</div>
 			<div>
-				<input [(ngModel)]="remake" />
+				<input name="remake" [(ngModel)]="remake" />
 			</div>
 		</div>
 		<div>
