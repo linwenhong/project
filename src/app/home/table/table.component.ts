@@ -18,7 +18,7 @@ export class TableComponent implements OnInit {
 	public orderDetails: boolean = false;
 	checkout: boolean = false;							//结账窗口
 	public peoples: any = null;
-	public password: any = null;
+	public password: string = null;
 	private isMove: boolean = false;
 	private last: any;
 	order: any;					//菜品列表
@@ -160,22 +160,7 @@ export class TableComponent implements OnInit {
 	}
 	//输密
 	clear_table(): void {
-//		this.http.post(environment.api_url+'bk_login',{
-//			username: localStorage.getItem('username'),
-//			password: this.password
-//		}).toPromise().then(
-//			response => {
-//				let regions = response.json();
-//	     	if(regions.code == '200'){
-//	     		console.log(response.headers.get('Authorization'));
-//	     		sessionStorage.setItem('token', regions.token);
-//	     		this.confirm_clear();
-//	     	}else{
-//	     		notify('error', '输入错误', '请输入正确的密码!');
-//	     	};
-//	    }
-//		);
-		
+		console.log(this.password);
 		this.service.token(localStorage.getItem('username'), this.password).then(
 			res => {
 	     	if(res.code == '200'){
