@@ -22,7 +22,7 @@ export class TableComponent implements OnInit {
 	private isMove: boolean = false;
 	private last: any;
 	order: any;					//菜品列表
-	pay_type: number = 2;
+	pay_type: number = 1;
 	check_type: number = 2;
 	receivables: number = null;
 	
