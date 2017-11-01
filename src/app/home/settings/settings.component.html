@@ -1,15 +1,15 @@
 <div class="settings-page">
 	<div class="nav">
 		<ul>
-      <li (click)="select_nav=1" [class.active]="select_nav==1">商家配置</li>
-      <li (click)="select_nav=2" [class.active]="select_nav==2">修改密码</li>
+      <li (click)="select('1')" [class.active]="select_nav=='1'">商家配置</li>
+      <li (click)="select('2')" [class.active]="select_nav=='2'">修改密码</li>
     </ul>
 	</div>
 	<div class="content">
 		<div class="row">
 			
 			<div class="box">
-				<div class="switch" *ngIf="select_nav==1">
+				<div class="switch" *ngIf="select_nav=='1'">
 					<div class="">
 						<span>打印厨房小票</span>
 						<i (click)="isAutomatic=!isAutomatic" [class.active]="isAutomatic"></i>
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				
-				<div class="form" *ngIf="select_nav==2">
+				<div class="form" *ngIf="select_nav=='2'">
 					<form (submit)="edit()">
 						<!--<div>
 							<label><em>用户名</em>：<input name="user"/></label>

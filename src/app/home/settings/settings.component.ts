@@ -7,14 +7,20 @@ import { HomeService } from '../home.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-	select_nav: number = 1;
+	select_nav: string;
 	password1: string;
 	password2: string;
 	password3: string;
   constructor(private service: HomeService) { }
 
   ngOnInit() {
+  	this.select_nav = sessionStorage.getItem('settings_select') || '1';
   }
+	
+	select(index: string): void {
+		this.select_nav = index;
+		sessionStorage.setItem('settings_select', index);
+	}
 	
 	edit(): void {
 		if(!this.password1 || !this.password2 || !this.password3){
