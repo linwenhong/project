@@ -70,4 +70,19 @@ export class OrderComponent implements OnInit {
 		}
 		console.log(this.order);
 	}
+	//打印小票
+	print(): void {
+		this.service.post('bk_print_order', {
+  		shop_id: localStorage.getItem('shopId'),
+  		out_trade_no: this.select_order.out_trade_no
+  	}).then(
+			res => {
+	     	if(res.status == '200'){
+	     		print_data(res);
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
+	    }
+		);
+	}
 }

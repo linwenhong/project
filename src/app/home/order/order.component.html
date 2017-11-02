@@ -113,7 +113,8 @@
 								</ul>
 							</div>
 							<div>
-								<span class="m-btn print" [class.no]="!select_order.dish">打印</span>
+								<span class="m-btn print" *ngIf="select_order.dish" (click)="print()">打印</span>
+								<span class="m-btn print no" *ngIf="!select_order.dish">打印</span>
 							</div>
 						</div>
 					</div>

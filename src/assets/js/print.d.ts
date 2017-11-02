@@ -1,0 +1,1 @@
+declare var print_data: any;

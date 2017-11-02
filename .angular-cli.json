@@ -26,7 +26,9 @@
       "scripts": [
   			"libs/jquery-notifyjs/notify.min.js",
   			"libs/jquery-notifyjs/styles/metro/notify-metro.js",
-  			"libs/notifications.js"
+  			"libs/notifications.js",
+  			"libs/LodopFuncs3.js",
+  			"libs/print.js"
 			],
       "environmentSource": "environments/environment.ts",
       "environments": {
