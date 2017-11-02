@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Http} from '@angular/http';
 import { HomeService } from '../home.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-order',
@@ -16,24 +18,26 @@ export class OrderComponent implements OnInit {
 	order: any;														//选中订单类型订单
 	new_orders: any;											//新的订单列表
 	
-  constructor(public service: HomeService) { 
+  constructor(public service: HomeService, private http: Http) { 
   	service.nav_select = '3';
   	this.new_orders = service.new_orders;
   }
 
   ngOnInit() {
-		
-  	this.service.post('bk_online_orders', {
+		this.http.post(environment.api_url+'bk_new_orders', {
   		shop_id: localStorage.getItem('shopId')
-  	}).then(
-			res => {
-	     	if(res.status == '200'){
-	     		this.orders = res.orders;   		
-	     		this.order = this.orders.doing_order;
-	     	}else{
-	     		notify('error', '错误', res.msg);
-	     	};
-	    }
+  	}).toPromise().then(
+  		response => {
+  			let res = response.json();
+  			res => {
+		     	if(res.status == '200'){
+		     		this.orders = res.orders;   		
+		     		this.order = this.orders.doing_order;
+		     	}else{
+		     		notify('error', '错误', res.msg);
+		     	};
+		    }
+  		}
 		);
   }
   
