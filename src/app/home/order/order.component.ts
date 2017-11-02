@@ -15,7 +15,7 @@ export class OrderComponent implements OnInit {
 	orders: any;													//api返回的所有订单
 	order: any;														//选中订单类型订单
 	
-  constructor(private service: HomeService) { 
+  constructor(public service: HomeService) { 
   	service.nav_select = '3';
   }
 
@@ -41,8 +41,13 @@ export class OrderComponent implements OnInit {
 	}
 	//选中订单类型
 	select_type(index: number, type: any): void {
+		
 		this.type = index;
-		this.order = this.orders[type];
+		if(!type){
+			this.order = [];
+		}else{
+			this.order = this.orders[type];
+		}
 		console.log(this.order);
 	}
 }

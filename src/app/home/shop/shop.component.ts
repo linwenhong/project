@@ -24,7 +24,7 @@ export class ShopComponent implements OnInit {
   public isNext: boolean = false;
   public remake: string = '';
 	
-  constructor(private service: HomeService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(public service: HomeService, private activatedRoute: ActivatedRoute, private router: Router) {
   	service.nav_select = '2';
   }
 
@@ -231,9 +231,9 @@ export class ShopComponent implements OnInit {
 					this.isNext = false;
 	  			this.remake = null;
 	  			notify('success', '下单成功', '你已下单成功!');
-					this.router.navigate(['/home']);
+					this.router.navigate(['/home/order']);
 	     	}else{
-	     		notify('error', '下单成功', res.msg);
+	     		notify('error', '下单失败', res.msg);
 	     	};
 	    }
 		);

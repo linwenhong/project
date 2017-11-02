@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
 	password1: string;
 	password2: string;
 	password3: string;
-  constructor(private service: HomeService) {
+  constructor(public service: HomeService) {
   	service.nav_select = '7';
   }
 

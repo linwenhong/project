@@ -104,14 +104,20 @@
 .refund {
 	background-image: url(../../../assets/img/order/icon_2.png);
 }
+.return {
+	background-image: url(../../../assets/img/order/icon_3.png);
+}
 .complete {
 	background-image: url(../../../assets/img/order/icon_4.png);
 }
 .active_type .new {
 	background-image: url(../../../assets/img/order/icon_r1.png);
 }
-.active_type .refund {
+.active_type .todo {
 	background-image: url(../../../assets/img/order/icon_r2.png);
+}
+.active_type .refund {
+	background-image: url(../../../assets/img/order/icon_r3.png);
 }
 .active_type .complete {
 	background-image: url(../../../assets/img/order/icon_r4.png);

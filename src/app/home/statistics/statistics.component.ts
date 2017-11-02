@@ -13,7 +13,7 @@ export class StatisticsComponent implements OnInit {
 	orders: any;													//api返回的所有订单
 	order: any;														//选中订单类型订单
 	
-  constructor(private service: HomeService) {
+  constructor(public service: HomeService) {
   	service.nav_select = '6';
   }
 

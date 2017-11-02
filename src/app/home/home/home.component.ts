@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
 	public username: any;
 	login_pwd: string;
 	
-  constructor(public router: Router, private service: HomeService) {
+  constructor(public router: Router, public service: HomeService) {
 		this.username = localStorage.getItem('username');
   }
 
