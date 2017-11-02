@@ -4,6 +4,7 @@ import { FormsModule }          from '@angular/forms';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../environments/environment';
+import { HomeService } from './home/home.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ export class LoginComponent {
 	public username: string;
 	public password: string;
 	
-  constructor(public router: Router, private http: Http) {
+  constructor(public service: HomeService, public router: Router, private http: Http) {
     this.username = localStorage.getItem('username') || null;
   }
   
@@ -30,6 +31,7 @@ export class LoginComponent {
           response => {
             let regions = response.json();
             if(regions.code==200){
+            	this.service.toCheck();
             	sessionStorage.setItem('token', response.headers.get('Authorization'));
             	sessionStorage.setItem('isLogin', 'true');
             	sessionStorage.setItem('user', JSON.stringify(regions.user));

@@ -18,9 +18,11 @@ export class OrderComponent implements OnInit {
 	
   constructor(public service: HomeService) { 
   	service.nav_select = '3';
+  	this.new_orders = service.new_orders;
   }
 
   ngOnInit() {
+		
   	this.service.post('bk_online_orders', {
   		shop_id: localStorage.getItem('shopId')
   	}).then(
@@ -28,27 +30,13 @@ export class OrderComponent implements OnInit {
 	     	if(res.status == '200'){
 	     		this.orders = res.orders;   		
 	     		this.order = this.orders.doing_order;
-	     		this.checkNew();
 	     	}else{
 	     		notify('error', '错误', res.msg);
 	     	};
 	    }
 		);
   }
-  //验证是否存在新订单
-  checkNew(): void {
-  	this.service.post('bk_new_orders', {
-  		shop_id: localStorage.getItem('shopId')
-  	}).then(
-			res => {
-	     	if(res.status == '200'){
-	     		this.new_orders = res.orders.new_order;
-	     	}else{
-	     		notify('error', '错误', res.msg);
-	     	};
-	    }
-		);
-  }
+  
 	//订单详情
 	select(index: number, data: any): void {
 		this.select_index = index;
@@ -60,7 +48,7 @@ export class OrderComponent implements OnInit {
 		
 		this.type = index;
 		if(!type){
-			this.order = this.new_orders;
+			this.order = this.service.new_orders;
 		}else{
 			this.order = this.orders[type];
 		}
