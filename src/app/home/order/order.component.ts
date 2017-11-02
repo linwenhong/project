@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http} from '@angular/http';
+import { Http } from '@angular/http';
 import { HomeService } from '../home.service';
+
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -24,19 +25,30 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
+		//获取订单
+  	this.service.post('bk_online_orders', {
+  		shop_id: localStorage.getItem('shopId')
+  	}).then(
+			res => {
+	     	if(res.status == '200'){
+	     		this.orders = res.orders;   		
+	     		this.order = this.orders.doing_order;
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
+	    }
+		);
+		//获取新的订单
 		this.http.post(environment.api_url+'bk_new_orders', {
   		shop_id: localStorage.getItem('shopId')
   	}).toPromise().then(
   		response => {
   			let res = response.json();
-  			res => {
-		     	if(res.status == '200'){
-		     		this.orders = res.orders;   		
-		     		this.order = this.orders.doing_order;
-		     	}else{
-		     		notify('error', '错误', res.msg);
-		     	};
-		    }
+  			if(res.status == '200'){
+	     		this.service.new_orders = res.orders.new_order;
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
   		}
 		);
   }
