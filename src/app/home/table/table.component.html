@@ -248,7 +248,7 @@
 							<span (click)="pay_type=0" [class.active]="pay_type==0">人工收银</span>
 						</div>
 						<div class="i1">
-							<span [class.active]="pay_type==2 || pay_type==1">电子支付</span>
+							<span (click)="pay_type=1" [class.active]="pay_type==2 || pay_type==1">电子支付</span>
 						</div>
 						<div class="i1" *ngIf="pay_type==0">
 							<div class="row">

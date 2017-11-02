@@ -14,6 +14,7 @@ export class OrderComponent implements OnInit {
 	select_order: any = {};
 	orders: any;													//api返回的所有订单
 	order: any;														//选中订单类型订单
+	new_orders: any;											//新的订单列表
 	
   constructor(public service: HomeService) { 
   	service.nav_select = '3';
@@ -26,7 +27,22 @@ export class OrderComponent implements OnInit {
 			res => {
 	     	if(res.status == '200'){
 	     		this.orders = res.orders;   		
-	     		this.order = this.orders.new_order;   		
+	     		this.order = this.orders.doing_order;
+	     		this.checkNew();
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
+	    }
+		);
+  }
+  //验证是否存在新订单
+  checkNew(): void {
+  	this.service.post('bk_new_orders', {
+  		shop_id: localStorage.getItem('shopId')
+  	}).then(
+			res => {
+	     	if(res.status == '200'){
+	     		this.new_orders = res.orders.new_order;
 	     	}else{
 	     		notify('error', '错误', res.msg);
 	     	};
@@ -44,7 +60,7 @@ export class OrderComponent implements OnInit {
 		
 		this.type = index;
 		if(!type){
-			this.order = [];
+			this.order = this.new_orders;
 		}else{
 			this.order = this.orders[type];
 		}

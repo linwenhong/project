@@ -101,10 +101,10 @@
 .new {
 	background-image: url(../../../assets/img/order/icon_1.png);
 }
-.refund {
+.todo {
 	background-image: url(../../../assets/img/order/icon_2.png);
 }
-.return {
+.refund {
 	background-image: url(../../../assets/img/order/icon_3.png);
 }
 .complete {
