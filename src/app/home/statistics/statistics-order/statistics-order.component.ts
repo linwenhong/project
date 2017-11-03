@@ -13,13 +13,14 @@ export class StatisticsOrderComponent implements OnInit {
 	orders: any;
 	start_time: string;
 	end_time: string;
+	condition: number;
 	
   constructor(public service: HomeService, public statisticsService: StatisticsService) {
   	statisticsService.select_nav = 1;
   }
 
   ngOnInit() {
-  	
+  	this.search(null, null);
   }
 	
 	search(start: any, end: any): void {

@@ -1,3 +1,51 @@
-<p>
-  summary works!
-</p>
+<div class="summary-page">
+	<div class="head">
+		<div>
+			<em>快速搜索</em>
+			<span [class.active]="condition==1" (click)="search(null, 'yesterday');condition=1">昨天</span>
+			<span [class.active]="condition==2" (click)="search(null, 'this week');condition=2">本周</span>
+			<span [class.active]="condition==3" (click)="search(null, 'this month');condition=3">本月</span>
+		</div>
+	</div>
+	
+	<div class="search">
+		<input type="date" name="start_time" [(ngModel)]="start_time"/>
+		<span>到</span>
+		<input type="date" name="end_time" [(ngModel)]="end_time"/>
+		<em class="m-btn" (click)="search(start_time, end_time)">搜索</em>
+	</div>
+	
+	<div class="table_box">
+		<table class="table table-hover table-bordered text-center">
+	  	<tr>
+	  		<th class="text-center">#</th>
+	  		<th class="text-center">支付方式</th>
+	  		<th class="text-center">成交单数</th>
+	  		<th class="text-center">营业额</th>
+	  		<th class="text-center">占比</th>
+	  	</tr>
+	  	<tr class="">
+	  		<td>1</td>
+	  		<td>支付宝支付</td>
+	  		<td>50</td>
+	  		<td>￥5000.00</td>
+	  		<td>50%</td>
+	  	</tr>
+	  	<tr class="">
+	  		<td>2</td>
+	  		<td>现金支付</td>
+	  		<td>15</td>
+	  		<td>￥1500.00</td>
+	  		<td>15%</td>
+	  	</tr>
+	  	<tr class="">
+	  		<td>3</td>
+	  		<td>微信支付</td>
+	  		<td>35</td>
+	  		<td>￥3500.00</td>
+	  		<td>35%</td>
+	  	</tr>
+		</table>
+	</div>
+	
+</div>
