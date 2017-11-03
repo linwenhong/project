@@ -11,6 +11,8 @@ export class StatisticsOrderComponent implements OnInit {
 	select_order: any = {};
 	orders: any;													//api返回的所有订单
 	order: any;														//选中订单类型订单
+	start_time: string;
+	end_time: string;
 	
   constructor(public service: HomeService) { }
 

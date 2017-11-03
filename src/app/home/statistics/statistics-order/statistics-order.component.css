@@ -1,85 +1,3 @@
-.statistics-page {
-	height: 100%;
-}
-* {color: #555; }
-p {margin: 0;}
-.nav {
-	width: 12%;
-	height: 100%;
-	float: left;
-	background-color: #dcdcdc;
-	border-right: 1px solid #b5b5b5;
-	border-top: 1px solid #b5b5b5;
-	overflow-y: auto;
-}
-.nav li {
-	padding: 15px 0 15px 15px;
-	border-bottom: 1px solid #b5b5b5;
-	cursor: pointer;
-}
-.nav li.active {
-	border-left: 3px solid #FE8B46;
-	background-color: #fff;
-	padding-left: 12px;
-}
-.content {
-	width: 88%;
-	height: 100%;
-	float: left;
-}
-.content>.row {
-	height: 100%;
-}
-
-
-.head {
-	position: absolute;
-	width: 100%;
-	padding-top: 15px;
-	margin-bottom: 15px;
-}
-.call {
-	line-height: 24px;
-	float: left;
-	margin-left: 15px;
-}
-.call i {
-	display: block;
-	width: 21px;
-	height: 24px;
-	float: left;
-	background-image: url(/assets/img/order/icon0.png);
-	background-size: 100%;
-}
-.call span {
-	margin-left: 10px;
-}
-.switch {
-	line-height: 24px;
-	float: right;
-	margin-right: 15px;
-}
-.switch i {
-
-	width: 55px;
-	height: 23px;
-	float: right;
-	margin-left: 10px;
-	background-size: 100%;
-	background-image: url(/assets/img/order/off.png);
-	cursor: pointer;
-}
-.switch i.active {
-	background-image: url(/assets/img/order/on.png);
-}
-.automatic_list {
-	float: left;
-}
-.doBusiness {
-	float: left;
-	margin-left: 50px;
-}
-
 .order-content {
 	box-sizing: border-box;
 	height: 100%;
@@ -123,9 +41,19 @@ p {margin: 0;}
 	float: left;
 	background-size: 100%;
 }
+.type input {
+	width: 127px;
+}
 .type span {
 	display: inline-flex;
-	margin-left: 5px;
+}
+.type em {
+	display: inline-flex;
+	height: 30px;
+	line-height: 30px;
+	margin: -10px 0 0 10px;
+	padding: 0 5px;
+	border-radius: 5px;
 }
 .new {
 	background-image: url(/assets/img/order/icon_1.png);

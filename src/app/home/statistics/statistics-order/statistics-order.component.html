@@ -4,7 +4,10 @@
 			<div class="box-content">
 				<div class="row type">
 					<div>
-						<input type="date" />
+						<input type="date" name="start_time" [(ngModel)]="start_time"/>
+						<span>到</span>
+						<input type="date" name="end_time" [(ngModel)]="end_time"/>
+						<em class="m-btn">搜索</em>
 					</div>
 				</div>
 				<!--type end-->
