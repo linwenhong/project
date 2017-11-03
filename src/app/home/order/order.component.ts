@@ -85,4 +85,22 @@ export class OrderComponent implements OnInit {
 	    }
 		);
 	}
+	//退款
+	refund(): void {
+		this.service.post('bk_refund', {
+			shop_id: localStorage.getItem('shopId'),
+  		out_trade_no: this.select_order.out_trade_no,
+  		trade_no: this.select_order.trade_no,
+  		refund_amount: this.select_order.realPrice,
+  		refund_reason: '不想要了'
+  	}).then(
+			res => {
+	     	if(res.status == '200'){
+	     		notify('success', '退款', '订单'+this.select_order.out_trade_no+'已成功退款!');
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
+	    }
+		);
+	}
 }

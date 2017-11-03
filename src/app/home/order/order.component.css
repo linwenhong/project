@@ -98,16 +98,16 @@
 	display: inline-flex;
 	margin-left: 5px;
 }
-.new {
+.type .new {
 	background-image: url(../../../assets/img/order/icon_1.png);
 }
-.todo {
+.type .todo {
 	background-image: url(../../../assets/img/order/icon_2.png);
 }
-.refund {
+.type .refund {
 	background-image: url(../../../assets/img/order/icon_3.png);
 }
-.complete {
+.type .complete {
 	background-image: url(../../../assets/img/order/icon_4.png);
 }
 .active_type .new {
@@ -248,14 +248,20 @@
 	position: absolute;
 	width: 100%;
 }
+.print_box {
+	text-align: center;
+}
 .print {
-	width: 150px;
+	display: inline-block;
+	width: 130px;
 	height: 30px;
 	line-height: 30px;
-	margin: 5px auto;
 	border-radius: 5px;
 	text-align: center;
 }
 .print.no {
 	background-color: #C2C2C2;
+}
+.print.refund {
+	margin-left: 20px;
 }
