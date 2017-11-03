@@ -7,24 +7,23 @@
 						<input type="date" name="start_time" [(ngModel)]="start_time"/>
 						<span>到</span>
 						<input type="date" name="end_time" [(ngModel)]="end_time"/>
-						<em class="m-btn">搜索</em>
+						<em class="m-btn" (click)="search(start_time, end_time)">搜索</em>
 					</div>
 				</div>
 				<!--type end-->
 				<div class="order_box">
 					<div class="order_list">
 						<ul>
-							<ng-container *ngFor="let data of order;let index=index">
+							<ng-container *ngFor="let data of orders;let index=index">
 								<li (click)="select(index, data)" [class.active]="select_index==index">
 									<div class="number">
 										<span>{{index + 1}}</span>
 									</div>
 									<div class="details">
 										<div class="row">
-											<span class="col-xs-12 col-md-6">订单编号：{{data.out_trade_no}}</span>
-											<span class="col-xs-6">桌台号：{{data.tableCode}}</span>
-											<span class="col-xs-6">用餐人数：{{data.people}}</span>
-											<span class="col-xs-6">订单金额：{{data.totalPrice}}</span>
+											<span class="col-xs-12">创建时间：{{data.created_at}}</span>
+											<span class="col-xs-12">订单编号：{{data.trade_no}}</span>
+											<span class="col-xs-12">订单金额：{{data.total_amount}}</span>
 										</div>
 									</div>
 								</li>
@@ -44,41 +43,15 @@
 				<!--type end-->
 				<div class="order_box">
 					<div class="list_top">
-							<div class="row order_details">
-								<span class="col-xs-6"><em>订单编号</em>：{{select_order.out_trade_no}}</span>
-								<span class="col-xs-6"><em>桌台号</em>：{{select_order.tableCode}}</span>
-								<span class="col-xs-6"><em>用餐人数</em>：{{select_order.people}}</span>
-								<span class="col-xs-6"><em>下单时间</em>：{{select_order.updated_at}}</span>
-								<span class="col-xs-6"><em>订单金额</em>：{{select_order.totalPrice}}</span>
-								<span class="col-xs-6"><em>应收金额</em>：{{select_order.realPrice}}</span>
-								<span class="col-xs-12">
-									<em>备注信息</em>：
-									{{select_order.description}}
-								</span>
-							</div>
-							<div class="title">菜品详情
-								<span *ngIf="select_order.dish">数量：{{select_order.dish.length}}</span>
+							<div class="row order_details" *ngIf="select_order.id">
+								<span class="col-xs-12"><em>订单编号</em>：{{select_order.trade_no}}</span>
+								<span class="col-xs-12"><em>下单时间</em>：{{select_order.updated_at}}</span>
+								<span class="col-xs-12"><em>订单金额</em>：{{select_order.total_amount}}</span>
+								<span class="col-xs-12"><em>用户支付</em>：{{select_order.buyer_pay_amount}}</span>
+								<span class="col-xs-12"><em>实收金额</em>：{{select_order.receipt_amount}}</span>
+								<span class="col-xs-12"><em>桌台号</em>：{{select_order.table_id}}</span>
 							</div>
 						</div>
-					<div class="list_box">
-						
-						<div class="ul">
-							<ul *ngIf="select_order.dish">
-								<ng-container *ngFor="let data of select_order.dish;let index=index">
-									<li>
-										<em *ngIf="index<9">0{{index + 1}}</em>
-										<em *ngIf="index>=9">{{index + 1}}</em>
-										<span class="name">{{data.goodsName}}</span>
-										<span class="number">{{data.num}}</span>
-										<span class="price">￥{{data.price}}</span>
-									</li>
-								</ng-container>	
-							</ul>
-						</div>
-						<div>
-							<span class="m-btn print" [class.no]="!select_order.dish">打印</span>
-						</div>
-					</div>
 				</div>
 				<!--order_box end-->
 			</div>				

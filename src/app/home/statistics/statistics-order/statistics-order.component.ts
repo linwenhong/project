@@ -7,10 +7,9 @@ import { HomeService } from '../../home.service';
   styleUrls: ['./statistics-order.component.css']
 })
 export class StatisticsOrderComponent implements OnInit {
-	type: number = 1;											//订单类型
 	select_order: any = {};
-	orders: any;													//api返回的所有订单
-	order: any;														//选中订单类型订单
+	select_index: number;
+	orders: any;
 	start_time: string;
 	end_time: string;
 	
@@ -19,5 +18,24 @@ export class StatisticsOrderComponent implements OnInit {
   ngOnInit() {
   	
   }
-
+	
+	search(start: any, end: any): void {
+		//获取订单
+  	this.service.post('bk_get_report', {
+  		shop_id: localStorage.getItem('shopId')
+  	}).then(
+			res => {
+	     	if(res.status == '200'){
+	     		this.orders = res.orders;   		
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
+	    }
+		);
+	}
+	//订单详情
+	select(index: number, data: any): void {
+		this.select_order = data;
+		this.select_index = index;
+	}
 }

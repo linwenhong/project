@@ -57,7 +57,6 @@ export class OrderComponent implements OnInit {
 	select(index: number, data: any): void {
 		this.select_index = index;
 		this.select_order = data;
-		console.log(data);
 	}
 	//选中订单类型
 	select_type(index: number, type: any): void {
@@ -68,7 +67,6 @@ export class OrderComponent implements OnInit {
 		}else{
 			this.order = this.orders[type];
 		}
-		console.log(this.order);
 	}
 	//打印小票
 	print(): void {
