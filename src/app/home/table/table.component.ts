@@ -3,7 +3,6 @@ import { Router }      from '@angular/router';
 import { HomeService } from '../home.service';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-//import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-table',
@@ -25,6 +24,7 @@ export class TableComponent implements OnInit {
 	pay_type: number = 1;
 	check_type: number = 2;
 	receivables: number = null;
+	code: string = null;
 	
   constructor(public service: HomeService, private router: Router, private http: Http) { 
   	service.nav_select = '1';
@@ -231,15 +231,18 @@ export class TableComponent implements OnInit {
 	payment(): void {
 		let request = {};
 		request['shop_id'] = localStorage.getItem('shopId');
-		request['code'] = this.select_desk.table_id;
+		request['code'] = this.code;
 		request['pay_type'] = this.pay_type;
 		request['realPrice'] = this.receivables;//默认或手输
 		request['discountPrice'] = this.order.discountPrice;
 		request['totalPrice'] = this.order.totalPrice;
+		request['out_trade_no'] = this.order.out_trade_no;
 		console.log(request);
 		
 		this.service.post('bk_pay', request).then(
 			res => {
+				this.code = null;
+				this.checkout = false;
 	     	if(res.status == '200'){
 	     		notify('success', '支付成功', '订单已成功支付!');
 	     	}else{
