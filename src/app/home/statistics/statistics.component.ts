@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
+import { StatisticsService } from './statistics.service';
 
 @Component({
   selector: 'app-statistics',
@@ -7,9 +8,8 @@ import { HomeService } from '../home.service';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-	select_nav: number = 1;
 	
-  constructor(public service: HomeService) {
+  constructor(public service: HomeService, public statisticsService: StatisticsService) {
   	service.nav_select = '6';
   }
 

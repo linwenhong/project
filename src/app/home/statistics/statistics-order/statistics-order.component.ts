@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../home.service';
+import { StatisticsService } from '../statistics.service';
 
 @Component({
   selector: 'app-statistics-order',
@@ -13,16 +14,21 @@ export class StatisticsOrderComponent implements OnInit {
 	start_time: string;
 	end_time: string;
 	
-  constructor(public service: HomeService) { }
+  constructor(public service: HomeService, public statisticsService: StatisticsService) {
+  	statisticsService.select_nav = 1;
+  }
 
   ngOnInit() {
   	
   }
 	
 	search(start: any, end: any): void {
+		console.log(start, end);
 		//获取订单
   	this.service.post('bk_get_report', {
-  		shop_id: localStorage.getItem('shopId')
+  		shop_id: localStorage.getItem('shopId'),
+  		start_time: start,
+  		end_time: end
   	}).then(
 			res => {
 	     	if(res.status == '200'){

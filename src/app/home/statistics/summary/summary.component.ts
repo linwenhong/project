@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../../home.service';
+import { StatisticsService } from '../statistics.service';
 
 @Component({
   selector: 'app-summary',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: HomeService, public statisticsService: StatisticsService) {
+  	statisticsService.select_nav = 2;
+  }
 
   ngOnInit() {
   }

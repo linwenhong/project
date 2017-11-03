@@ -1,8 +1,8 @@
 <div class="statistics-page">
 	<div class="nav">
 		<ul>
-      <li routerLink="order" [class.active]="select_nav==1" (click)="select_nav=1">订单管理</li>
-      <li routerLink="summary" [class.active]="select_nav==2" (click)="select_nav=2">收银汇总</li>
+      <li routerLink="order" [class.active]="statisticsService.select_nav==1">订单管理</li>
+      <li routerLink="summary" [class.active]="statisticsService.select_nav==2">收银汇总</li>
     </ul>
 	</div>
 	<div class="content">
