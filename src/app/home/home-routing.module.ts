@@ -7,6 +7,8 @@ import { ShopComponent } from './shop/shop.component';
 import { OrderComponent } from './order/order.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { SettingsComponent } from './settings/settings.component';
+import { StatisticsOrderComponent } from './statistics/statistics-order/statistics-order.component';
+import { SummaryComponent } from './statistics/summary/summary.component';
 
 const routes: Routes = [{
 	path: '',
@@ -25,7 +27,7 @@ const routes: Routes = [{
 		component: OrderComponent
 	}, {
 		path: 'statistics',
-		component: StatisticsComponent
+		loadChildren:'app/home/statistics/statistics.module#StatisticsModule'
 	}, {
 		path: 'settings',
 		component: SettingsComponent

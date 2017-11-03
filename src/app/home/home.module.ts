@@ -7,8 +7,8 @@ import { TableComponent } from './table/table.component';
 import { ShopComponent } from './shop/shop.component';
 import { OrderComponent } from './order/order.component';
 import { HomeService } from './home.service';
-import { StatisticsComponent } from './statistics/statistics.component';
 import { SettingsComponent } from './settings/settings.component';
+
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { SettingsComponent } from './settings/settings.component';
 		CommonModule,
 		HomeRoutingModule
 	],
-	declarations: [HomeComponent, TableComponent, ShopComponent, OrderComponent, StatisticsComponent, SettingsComponent],
+	declarations: [HomeComponent, TableComponent, ShopComponent, OrderComponent, SettingsComponent],
 	providers: [ HomeService ]
 })
 export class HomeModule {}
