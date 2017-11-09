@@ -26,7 +26,7 @@
 							<div class="col-xs-4 col-md-3 col-lg-2 shop">
 								<div class="shop_box" (mousedown)="sell(data)">
 									<div class="img">
-										<img src="{{data.food_picture}}"  (click)="setShop(data, true)" />
+										<img src="{{data.food_picture || '../../../assets/img/nav.jpg'}}"  (click)="setShop(data, true)" />
 										<div class="zdc" *ngIf="data.status==0 && !data.isShow">
 											<i *ngIf="data.status==0" class="confirm_sell_out"></i>
 										</div>

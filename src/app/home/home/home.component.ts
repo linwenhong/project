@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-  	if(!sessionStorage.getItem('isLogin')) this.router.navigate(['/login']);
+//	if(!sessionStorage.getItem('isLogin')) this.router.navigate(['/login']);
+		localStorage.setItem('shopId', '2017101800077000000046039990');
   }
 	
 	getToken(): void {

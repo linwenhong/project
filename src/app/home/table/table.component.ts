@@ -212,6 +212,7 @@ export class TableComponent implements OnInit {
 	}
 	//结账
 	toCheckout(): void {
+		getFocus('#id');
 		this.service.post('bk_getorders', {
 			shop_id: localStorage.getItem('shopId'),
 			tableCode: this.select_desk.table_id

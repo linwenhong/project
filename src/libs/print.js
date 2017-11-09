@@ -90,3 +90,7 @@ function print_data(data){
 //      }
     });
 }
+
+function getFocus(select){
+	$(select).focus();
+}
