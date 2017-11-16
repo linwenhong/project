@@ -60,7 +60,7 @@
 	height: 100%;
 	padding-left: 15px;
 }
-.box {
+.order-content .box {
 	height: 100%;
 	padding-right: 10px;
 }
@@ -264,4 +264,10 @@
 }
 .print.refund {
 	margin-left: 20px;
+}
+
+.shield-layer .box {
+	width: 400px;
+	height: 200px;
+	margin: -200px 0 0 -200px;
 }

@@ -179,7 +179,9 @@
 	padding-left: 72px;
 	margin-top: -20px;
 }
-
+.order_box {
+	padding-top: 50px;
+}
 .order_box .title {
 	padding: 20px 20px 5px;
 }

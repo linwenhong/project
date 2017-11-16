@@ -162,7 +162,6 @@ export class TableComponent implements OnInit {
 	}
 	//输密
 	clear_table(): void {
-		console.log(this.password);
 		this.service.token(localStorage.getItem('username'), this.password).then(
 			res => {
 	     	if(res.code == '200'){

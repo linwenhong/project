@@ -11,13 +11,15 @@ import { environment } from '../../../environments/environment';
 })
 export class OrderComponent implements OnInit {
 	isAutomatic: boolean = true;					//自动接单
-	isBusiness: boolean = true;					//营业状态
+	isBusiness: boolean = true;						//营业状态
 	select_index: number;
 	type: number = 1;											//订单类型
 	select_order: any = {};
 	orders: any;													//api返回的所有订单
 	order: any;														//选中订单类型订单
 	new_orders: any;											//新的订单列表
+	isRefund: boolean = false;
+	password: string = null; 
 	
   constructor(public service: HomeService, private http: Http) { 
   	service.nav_select = '3';
@@ -25,7 +27,11 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-		//获取订单
+		this.getOrder();
+  }
+  
+  getOrder(): void {
+  	//获取订单
   	this.service.post('bk_online_orders', {
   		shop_id: localStorage.getItem('shopId')
   	}).then(
@@ -52,7 +58,6 @@ export class OrderComponent implements OnInit {
   		}
 		);
   }
-  
 	//订单详情
 	select(index: number, data: any): void {
 		this.select_index = index;
@@ -83,7 +88,24 @@ export class OrderComponent implements OnInit {
 	    }
 		);
 	}
-	//退款
+	hide(): void {
+		this.isRefund = false;
+	}
+	//弹出密码输入框
+	toRefund(): void {
+		this.isRefund = true;
+	}
+	//退款密码确认
+	confirm(): void {
+		this.service.token(localStorage.getItem('username'), this.password).then(
+			res => {
+	     	if(res.code == '200'){
+	     		this.refund();
+	     	}	
+	    }
+		);
+	}
+	//确定退款
 	refund(): void {
 		this.service.post('bk_refund', {
 			shop_id: localStorage.getItem('shopId'),
@@ -93,7 +115,9 @@ export class OrderComponent implements OnInit {
   		refund_reason: '不想要了'
   	}).then(
 			res => {
+				this.isRefund = false;
 	     	if(res.status == '200'){
+	     		this.getOrder();
 	     		notify('success', '退款', '订单'+this.select_order.out_trade_no+'已成功退款!');
 	     	}else{
 	     		notify('error', '错误', res.msg);

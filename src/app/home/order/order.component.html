@@ -115,7 +115,7 @@
 							<div class="print_box">
 								<span class="m-btn print" *ngIf="select_order.dish" (click)="print()">打印</span>
 								<span class="m-btn print no" *ngIf="!select_order.dish">打印</span>
-								<span class="m-btn print refund" *ngIf="select_order.dish" (click)="refund()">退款</span>
+								<span class="m-btn print refund" *ngIf="select_order.dish" (click)="toRefund()">退款</span>
 								<span class="m-btn print refund no" *ngIf="!select_order.dish">退款</span>
 							</div>
 						</div>
@@ -126,5 +126,39 @@
 			<!--box end-->
 		</div>
 	</div>	
-	
+</div>
+
+<!--密码确认-->
+<div class="shield-layer" *ngIf="isRefund" style="z-index: 100;">
+	<div class="box">
+		<div class="top">
+			<span>退款</span>
+			<i (click)="hide()"></i>
+		</div>
+		<div>
+			<div class="text">
+			</div>
+			<div>
+				<em>确定要进行退款吗?</em>
+			</div>
+		</div>
+		<div>
+			<div class="text">
+				<span>密码：</span>
+			</div>
+			<div>
+				<form>
+				<input type="password" name="password" [(ngModel)]="password" />
+				</form>
+			</div>
+		</div>
+		<div>
+			<div class="text">
+				
+			</div>
+			<div class="choose">
+				<span (click)="hide()">取消</span><span class="confirm" (click)="confirm()">确定</span>
+			</div>
+		</div>
+	</div>
 </div>
