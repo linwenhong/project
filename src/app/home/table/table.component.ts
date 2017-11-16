@@ -254,5 +254,13 @@ export class TableComponent implements OnInit {
 	     	};
 	    }
 		);
-	}	
+	}
+	payType(type: number): void {
+		this.pay_type = type;
+		if(type==0){
+			getFocus('#actual');
+		}else{
+			getFocus('#code');
+		}
+	}
 }
