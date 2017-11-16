@@ -12,7 +12,7 @@ export class SummaryComponent implements OnInit {
 	end_time: any;
 	condition: number;
 	datas: any;
-	total: number = 0;
+	total: number;
 	
   constructor(public service: HomeService, public statisticsService: StatisticsService) {
   	statisticsService.select_nav = 2;
@@ -30,9 +30,10 @@ export class SummaryComponent implements OnInit {
   	}).then(
 			res => {
 	     	if(res.status == '200'){
+	     		this.total = 0;
 	     		this.datas = res.orders;
 	     		for(let x in this.datas){
-	     			this.total += this.datas[x].num;
+	     			this.total += Number(this.datas[x].receipt_amount);
 	     		}
 	     	}else{
 	     		notify('error', '错误', res.msg);
