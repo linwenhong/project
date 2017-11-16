@@ -244,8 +244,11 @@ export class TableComponent implements OnInit {
 			res => {
 				this.code = null;
 				this.checkout = false;
+     		this.select_desk = {};
+   			this.select_desk.status = -1;
 	     	if(res.status == '200'){
 	     		notify('success', '支付成功', '订单已成功支付!');
+     			this.getshop();
 	     	}else{
 	     		notify('error', '支付失败', res.msg);
 	     	};
