@@ -212,7 +212,6 @@ export class TableComponent implements OnInit {
 	}
 	//结账
 	toCheckout(): void {
-		getFocus('#id');
 		this.service.post('bk_getorders', {
 			shop_id: localStorage.getItem('shopId'),
 			tableCode: this.select_desk.table_id
@@ -222,6 +221,7 @@ export class TableComponent implements OnInit {
 	     		this.checkout = true;
 	     		this.order = res;
 	     		this.receivables = res.realPrice;
+	     		getFocus('#code');
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
 	     	};
