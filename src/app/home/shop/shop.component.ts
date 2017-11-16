@@ -226,14 +226,28 @@ export class ShopComponent implements OnInit {
     	order_type: order_type
     }
     this.service.post('bk_orderdish', request).then(
-			res => {
-				if(res.status==200){
+			response => {
+				if(response.status==200){
 					this.isNext = false;
 	  			this.remake = null;
 	  			notify('success', '下单成功', '你已下单成功!');
-					this.router.navigate(['/home/order']);
+	  			//打印
+	  			this.service.post('bk_print_order', {
+			  		shop_id: localStorage.getItem('shopId'),
+			  		out_trade_no: response.out_trade_no
+			  	}).then(
+						res => {
+				     	if(res.status == '200'){
+				     		var isTrue = print_data(res);
+				     		console.log(isTrue);
+				     	}else{
+				     		notify('error', '错误', res.msg);
+				     	};
+							this.router.navigate(['/home/order']);
+				    }
+					);
 	     	}else{
-	     		notify('error', '下单失败', res.msg);
+	     		notify('error', '下单失败', response.msg);
 	     	};
 	    }
 		);
