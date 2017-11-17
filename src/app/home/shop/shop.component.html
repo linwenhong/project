@@ -11,9 +11,7 @@
 			<div class="col-xs-8 menu_list">
 				<div class="operation row">
 					<div class="search_box">
-						<form>
-						<input name="search" [(ngModel)]="search" placeholder="请输入简称" />
-						</form>
+							<input name="search" [(ngModel)]="search" placeholder="请输入简称" />
 						<i class="m-btn">
 							<em></em>
 						</i>
@@ -22,8 +20,8 @@
 				</div>
 				<div class="menu_box">
 					<div id="sell_out" class="row menu" *ngIf="menu">
-						<ng-container *ngFor="let data of menu[select_category];let index=index">
-							<div class="col-xs-4 col-md-3 col-lg-2 shop">
+						<ng-container *ngFor="let data of menu[select_category]">
+							<div *ngIf="data.food_name.indexOf(search)!=-1" class="col-xs-4 col-md-3 col-lg-2 shop">
 								<div class="shop_box" (mousedown)="sell(data)">
 									<div class="img">
 										<img src="{{data.food_picture || '../../../assets/img/nav.jpg'}}"  (click)="setShop(data, true)" />

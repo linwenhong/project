@@ -243,56 +243,56 @@
 					结算
 				</div>
 				<form (submit)="payment()">
-				<div class="r_box">
-					<div>
-						<div>消费金额：￥{{order.totalPrice}}</div>
-						<!--<div>应收金额：￥{{order.realPrice}}</div>-->
-					</div>
-					<div>
-						<div>收款方式：</div>
-						<div class="i1">
-							<span (click)="payType(0)" [class.active]="pay_type==0">人工收银</span>
+					<div class="r_box">
+						<div>
+							<div>消费金额：￥{{order.totalPrice}}</div>
+							<!--<div>应收金额：￥{{order.realPrice}}</div>-->
 						</div>
-						<div class="i1">
-							<span (click)="payType(1)" [class.active]="pay_type==2 || pay_type==1">电子支付</span>
-						</div>
-						<div class="i1" *ngIf="pay_type==0">
-							<div class="row">
-								<div class="col-xs-6">
-									<i class="check"></i>
-									<em>现金</em>
+						<div>
+							<div>收款方式：</div>
+							<div class="i1">
+								<span (click)="payType(0)" [class.active]="pay_type==0">人工收银</span>
+							</div>
+							<div class="i1">
+								<span (click)="payType(1)" [class.active]="pay_type==2 || pay_type==1">电子支付</span>
+							</div>
+							<div class="i1" *ngIf="pay_type==0">
+								<div class="row">
+									<div class="col-xs-6">
+										<i class="check"></i>
+										<em>现金</em>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="i1" *ngIf="pay_type==1 || pay_type==2">
-							<div class="row">
-								<div class="col-xs-6">
-									<i class="unCheck" [class.check]="check_type==1" (click)="check_type=1;payType(2)"></i>
-									<i class="wechat"></i>
-									<em>微信支付</em>
-								</div>
-								<div class="col-xs-6">
-									<i class="unCheck" [class.check]="check_type==2" (click)="check_type=2;payType(1)"></i>
-									<i class="alipay"></i>
-									<em>支付宝支付</em>
+							<div class="i1" *ngIf="pay_type==1 || pay_type==2">
+								<div class="row">
+									<div class="col-xs-6">
+										<i class="unCheck" [class.check]="check_type==1" (click)="check_type=1;payType(2)"></i>
+										<i class="wechat"></i>
+										<em>微信支付</em>
+									</div>
+									<div class="col-xs-6">
+										<i class="unCheck" [class.check]="check_type==2" (click)="check_type=2;payType(1)"></i>
+										<i class="alipay"></i>
+										<em>支付宝支付</em>
+									</div>
 								</div>
 							</div>
+							<div>应收金额：<input name="receivables" [(ngModel)]="receivables" /></div>
+							<div style="margin-top: 10px;" *ngIf="pay_type==0">实收金额：<input id="actual" name="actual" [(ngModel)]="actual" /></div>
 						</div>
-						<div>应收金额：<input name="receivables" [(ngModel)]="receivables" /></div>
-						<div style="margin-top: 10px;" *ngIf="pay_type==0">实收金额：<input id="actual" name="actual" [(ngModel)]="actual" /></div>
+						<div class="charge" *ngIf="pay_type==0">
+							<div *ngIf="actual - order.realPrice<=0 || !actual">找零：0</div>
+							<div *ngIf="actual - order.realPrice>0">找零：{{actual - order.realPrice}}</div>
+						</div>
+						<div class="Scan" *ngIf="pay_type!=0">
+							<em>付款码：</em>
+							<input id="code" name="code" [(ngModel)]="code" />
+							<i class="scan"></i>
+						</div>
 					</div>
-					<div class="charge" *ngIf="pay_type==0">
-						<div *ngIf="actual - order.realPrice<=0 || !actual">找零：0</div>
-						<div *ngIf="actual - order.realPrice>0">找零：{{actual - order.realPrice}}</div>
-					</div>
-					<div class="Scan" *ngIf="pay_type!=0">
-						<em>付款码：</em>
-						<input id="code" name="code" [(ngModel)]="code" />
-						<i class="scan"></i>
-					</div>
-				</div>
-				<input style="display: none;" type="submit" />
-				<!--r_box end-->
+					<input style="display: none;" type="submit" />
+					<!--r_box end-->
 				</form>
 				<div class="checkout">
 					<span class="m-btn" (click)="payment()">结账</span>
