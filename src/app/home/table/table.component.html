@@ -41,7 +41,7 @@
 									<div class="img">
 										<i></i>
 									</div>
-									<p>{{data.table_num}}</p>
+									<p>{{data.table_name}}</p>
 									<p>{{data.people || '0'}}人/{{data.max}}人桌</p>
 									<p>{{data.table_type}}</p>
 									<div class="select" *ngIf="select_desk.table_id==data.table_id">
@@ -70,12 +70,12 @@
 					<em *ngIf="select_desk.status!=2">修改人数</em>
 					<em *ngIf="select_desk.status!=1">点单</em>
 					<em class="isTrue" *ngIf="select_desk.status==2" (click)="open()">修改人数</em>
-					<em class="isTrue" *ngIf="select_desk.status==1" routerLink="/home/shop/{{select_desk.table_num +'#'+ select_desk.people}}">点单</em>
+					<em class="isTrue" *ngIf="select_desk.status==1" routerLink="/home/shop/{{select_desk.table_id +'#'+ select_desk.people}}">点单</em>
 				</div>
 				<div>
 					<em *ngIf="select_desk.status!=2">加菜</em>
 					<em *ngIf="select_desk.status!=2">退菜</em>
-					<em class="isTrue" *ngIf="select_desk.status==2" routerLink="/home/shop/{{select_desk.table_num +'#'+ select_desk.people}}">加菜</em>
+					<em class="isTrue" *ngIf="select_desk.status==2" routerLink="/home/shop/{{select_desk.table_id +'#'+ select_desk.people}}">加菜</em>
 					<em class="isTrue" *ngIf="select_desk.status==2">退菜</em>
 				</div>
 				<div>
@@ -105,7 +105,7 @@
 				<span>桌台名称：</span>
 			</div>
 			<div>
-				<em>{{select_desk.table_num}}</em>
+				<em>{{select_desk.table_name}}</em>
 			</div>
 		</div>
 		<div>
@@ -214,7 +214,7 @@
 				</div>
 				<div class="div">
 					<div>
-						<span>订单序号：{{order.out_trade_no}}</span><em>桌号：{{select_desk.table_num}}</em>
+						<span>订单序号：{{order.out_trade_no}}</span><em>桌号：{{select_desk.table_name}}</em>
 					</div>
 					<div>
 						<span>下单时间：{{order.created_at}}</span><em>人数：{{select_desk.people}}</em>

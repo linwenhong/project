@@ -51,7 +51,7 @@ export class TableComponent implements OnInit {
 			if(data.status!=0){
 				this.select_desk = {};
   			this.select_desk.status = -1;
-				notify('error', this.last.table_num+'移台失败', '请选择空闲的桌子');
+				notify('error', this.last.table_name+'移台失败', '请选择空闲的桌子');
 				return;
 			}
 			this.toMove(data);
@@ -93,7 +93,7 @@ export class TableComponent implements OnInit {
 						this.shield = false;
 			     	if(res.status == '200'){
 			     		this.getshop();
-			     		notify('success', '更改人数', this.select_desk.table_num+'更改人数成功!');
+			     		notify('success', '更改人数', this.select_desk.table_name+'更改人数成功!');
 			     	}else{
 			     		notify('error', '更改人数', res.msg);
 			     	};
@@ -124,7 +124,7 @@ export class TableComponent implements OnInit {
      		
 	     	if(res.status == '200'){
 	     		this.getshop();
-	     		notify('success', '移台', this.last.table_num+'移动到'+data.table_num);
+	     		notify('success', '移台', this.last.table_name+'移动到'+data.table_name);
 	     	}else{
 	     		notify('error', '移台', res.msg);
 	     	};
@@ -142,7 +142,7 @@ export class TableComponent implements OnInit {
 	     	if(res.status == '200'){
 	     		this.getshop();
 	     		this.toClear = false;
-	     		notify('success', '清台', this.select_desk.table_num+'清台成功!');
+	     		notify('success', '清台', this.select_desk.table_name+'清台成功!');
 	     	}else{
 	     		notify('error', '清台', res.msg);
 	     	};
@@ -182,7 +182,7 @@ export class TableComponent implements OnInit {
 			res => {
 	     	if(res.status == '200'){
 	     		this.getshop();
-	     		notify('success', '开台', this.select_desk.table_num+'开台成功!');
+	     		notify('success', '开台', this.select_desk.table_name+'开台成功!');
 	     	}else{
 	     		notify('error', '开台', res.msg);
 	     	};
