@@ -31,7 +31,7 @@ export class LoginComponent {
           response => {
             let regions = response.json();
             if(regions.code==200){
-            	this.service.toCheck();
+            	websocketSend(regions.shop_id);
             	sessionStorage.setItem('token', response.headers.get('Authorization'));
             	sessionStorage.setItem('isLogin', 'true');
             	sessionStorage.setItem('user', JSON.stringify(regions.user));

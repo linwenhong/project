@@ -91,8 +91,43 @@ function print_data(data){
     });
 }
 
+//dom元素获取焦点
 function getFocus(select){
 	setTimeout(function(){
 		$(select).focus()
 	}, 300);
+}
+
+//websocket监听新订单
+var isSetAudio = false;
+var wsServer = 'ws://39.108.67.89:11070';
+var websocket = new WebSocket(wsServer);
+websocket.onopen = function (evt) {
+    console.log("Connected to WebSocket server.");
+};
+
+websocket.onclose = function (evt) {
+    console.log("Disconnected");
+};
+//后台新订单提示
+websocket.onmessage = function (evt) {
+    console.log(evt.data);
+    if(!isSetAudio){
+    	isSetAudio = true;
+    	$('#warningTone').html('<audio autoplay="autoplay" src="assets/new.mp3"></audio>');
+    	setTimeout(function(){
+				isSetAudio = false;
+				$('#warningTone').html('');
+			}, 5000);
+    }
+};
+
+websocket.onerror = function (evt, e) {
+    console.log('Error occured: ' + evt.data);
+};
+
+function websocketSend(id){
+	setInterval(function () {
+      websocket.send(id+"_bank");
+  },5000);
 }

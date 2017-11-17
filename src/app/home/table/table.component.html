@@ -282,8 +282,8 @@
 							<div style="margin-top: 10px;" *ngIf="pay_type==0">实收金额：<input id="actual" name="actual" [(ngModel)]="actual" /></div>
 						</div>
 						<div class="charge" *ngIf="pay_type==0">
-							<div *ngIf="actual - order.realPrice<=0 || !actual">找零：0</div>
-							<div *ngIf="actual - order.realPrice>0">找零：{{actual - order.realPrice}}</div>
+							<div *ngIf="actual - receivables<=0 || !actual">找零：0</div>
+							<div *ngIf="actual - receivables>=0">找零：{{(actual - receivables).toFixed(2)}}</div>
 						</div>
 						<div class="Scan" *ngIf="pay_type!=0">
 							<em>付款码：</em>
