@@ -19,7 +19,8 @@ export class OrderComponent implements OnInit {
 	order: any;														//选中订单类型订单
 	new_orders: any;											//新的订单列表
 	isRefund: boolean = false;
-	password: string = null; 
+	password: string = null;
+	remake: string = null;
 	
   constructor(public service: HomeService, private http: Http) { 
   	service.nav_select = '3';
@@ -93,6 +94,7 @@ export class OrderComponent implements OnInit {
 	}
 	//弹出密码输入框
 	toRefund(): void {
+		this.remake = null;
 		this.isRefund = true;
 	}
 	//退款密码确认
@@ -112,7 +114,7 @@ export class OrderComponent implements OnInit {
   		out_trade_no: this.select_order.out_trade_no,
   		trade_no: this.select_order.trade_no,
   		refund_amount: this.select_order.realPrice,
-  		refund_reason: '不想要了'
+  		refund_reason: this.remake
   	}).then(
 			res => {
 				this.isRefund = false;

@@ -23,6 +23,7 @@ export class ShopComponent implements OnInit {
   public s: number;
   public isNext: boolean = false;
   public remake: string = '';
+  public search: string = '';
 	
   constructor(public service: HomeService, private activatedRoute: ActivatedRoute, private router: Router) {
   	service.nav_select = '2';
