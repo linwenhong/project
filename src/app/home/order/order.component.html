@@ -113,8 +113,8 @@
 								</ul>
 							</div>
 							<div class="print_box">
-								<span class="m-btn print" *ngIf="select_order.dish" (click)="print()">打印</span>
-								<span class="m-btn print no" *ngIf="!select_order.dish">打印</span>
+								<span class="m-btn print" *ngIf="select_order.dish && type!=2" (click)="print()">打印</span>
+								<span class="m-btn print no" *ngIf="!select_order.dish && type!=2">打印</span>
 								<span class="m-btn print refund" *ngIf="select_order.dish && type!=1 && type!=2" (click)="toRefund()">退款</span>
 								<span class="m-btn print refund no" *ngIf="!select_order.dish && type!=1 && type!=2">退款</span>
 							</div>
