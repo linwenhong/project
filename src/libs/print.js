@@ -22,7 +22,9 @@ function print_data(data){
         food_price = foodobj[i].price;
         num = foodobj[i].num;
         body ='<tr><td class="first" style="font-size:12px;text-align: center;">'+food_name+'</td> <td style="font-size:12px;text-align: center;">'+food_price+'</td> <td style="font-size:12px;text-align: center;">'+num+'</td>';
-        monney = monney+food_price*num;
+        monney = Number(monney)+Number(food_price)*Number(num);
+        console.log(monney);
+        monney = Number(monney).toFixed(2);
         footer = '</tr></table><span>备注：<span style="font-size:12px;">'+description+'</span></span><br/><span>总价：'+monney+'</span><br/><span style="font-size:12px;">谢谢惠顾,欢迎下次光临！</span>';
         var printobj = foodobj[i].skuId;
         console.log(printobj);

@@ -25,6 +25,8 @@ export class TableComponent implements OnInit {
 	check_type: number = 2;
 	receivables: number = null;
 	code: string = null;
+	lis: any;
+	clear_title: string;
 	
   constructor(public service: HomeService, private router: Router, private http: Http) { 
   	service.nav_select = '1';
@@ -142,9 +144,10 @@ export class TableComponent implements OnInit {
 	     	if(res.status == '200'){
 	     		this.getshop();
 	     		this.toClear = false;
-	     		notify('success', '清台', this.select_desk.table_name+'清台成功!');
+	     		this.orderDetails = false;
+	     		notify('success', this.clear_title, this.select_desk.table_name+this.clear_title+'成功!');
 	     	}else{
-	     		notify('error', '清台', res.msg);
+	     		notify('error', this.clear_title, res.msg);
 	     	};
 	     	this.select_desk = {};
      		this.select_desk.status = -1;
@@ -152,10 +155,12 @@ export class TableComponent implements OnInit {
 		);
 	}
 	//清台
-	clear(): void {
+	clear(title: string): void {
+		this.clear_title = title;
 		//已下单或结账
 		if(this.select_desk.status>=2){
 			this.toClear = true;
+			this.password = '';
 		}else{
 			this.confirm_clear();
 		}
@@ -201,11 +206,13 @@ export class TableComponent implements OnInit {
 	     	if(res.status == '200'){
 	     		this.orderDetails = true;
 	     		this.order = res;
+	     		this.lis = [];
+	     		for(let x in this.order.dish){
+						this.lis[x] = false;
+					}
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
 	     	};
-	     	this.select_desk = {};
-     		this.select_desk.status = -1;
 	    }
 		);
 	}
@@ -238,7 +245,6 @@ export class TableComponent implements OnInit {
 		request['discountPrice'] = this.order.discountPrice;
 		request['totalPrice'] = this.order.totalPrice;
 		request['out_trade_no'] = this.order.out_trade_no;
-		console.log(request);
 		
 		this.service.post('bk_pay', request).then(
 			res => {
@@ -255,6 +261,7 @@ export class TableComponent implements OnInit {
 	    }
 		);
 	}
+	//支付类型
 	payType(type: number): void {
 		this.pay_type = type;
 		if(type==0){
@@ -262,5 +269,63 @@ export class TableComponent implements OnInit {
 		}else{
 			getFocus('#code');
 		}
+	}
+	//选择退菜项
+	selectedItem(index: any): void {
+		this.lis[index] = !this.lis[index];
+	}
+	//退菜
+	retreatFood(): void {
+		let isNew = false;
+		let n = 0;
+		let dish: any = {};
+		for(let x in this.lis){
+			if(!this.lis[x]){
+				if(!dish[this.order.dish[x].goodsId]){
+					dish[this.order.dish[x].goodsId] = this.order.dish[x].num;
+				}else{
+					dish[this.order.dish[x].goodsId] += this.order.dish[x].num;
+				}
+			}else{
+				n++;
+				isNew = true;
+			}
+		}
+		
+		if(!isNew){
+			notify('error', '操作错误', '请选择退菜菜品!');
+			return;
+		}
+		
+		if(this.order.dish.length==n){
+			this.clear('退菜');
+		}
+		
+		let url = window.location.host;
+		let packages: any = {};
+		let request = {
+    	shop_id: localStorage.getItem('shopId'),
+    	detailUrl: url,
+    	tableCode: this.select_desk.table_id,
+    	people: this.select_desk.people,
+    	dish: JSON.stringify(dish),
+    	package: JSON.stringify(packages),
+    	description: this.order.description,
+    	user_id: '',
+    	order_type: this.order.order_type,
+    	out_trade_no: this.order.out_trade_no
+    }
+    this.service.post('bk_orderdish', request).then(
+			response => {
+				if(response.status==200){
+					this.orderDetails = false;
+					this.select_desk = {};
+			  	this.select_desk.status = -1;
+	  			notify('success', '退菜成功', '你已退菜成功!');
+	     	}else{
+	     		notify('error', '退菜失败', response.msg);
+	     	};
+	    }
+		);
 	}
 }

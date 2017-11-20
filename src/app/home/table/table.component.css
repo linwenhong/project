@@ -215,6 +215,9 @@ p {margin: 0;}
 .shield-layer li {
 	border-bottom: 1px solid #ddd;
 }
+.shield-layer li.active {
+	background-color: #fff;
+}
 .shield-layer li em {
 	display: block;
 	width: 40px;

@@ -64,7 +64,7 @@
 					<em *ngIf="select_desk.status<=0">移台</em>
 					<em *ngIf="select_desk.status<=0">清台</em>
 					<em class="isTrue" *ngIf="select_desk.status>0" (click)="move()">移台</em>
-					<em class="isTrue" *ngIf="select_desk.status>0" (click)="clear()">清台</em>
+					<em class="isTrue" *ngIf="select_desk.status>0" (click)="clear('清台')">清台</em>
 				</div>
 				<div>
 					<em *ngIf="select_desk.status!=2">修改人数</em>
@@ -132,14 +132,14 @@
 <div class="shield-layer" *ngIf="toClear" style="z-index: 100;">
 	<div class="box">
 		<div class="top">
-			<span>清台</span>
+			<span>{{clear_title}}</span>
 			<i (click)="hide()"></i>
 		</div>
 		<div>
 			<div class="text">
 			</div>
 			<div>
-				<em>确定要清台吗?</em>
+				<em>确定要{{clear_title}}吗?</em>
 			</div>
 		</div>
 		<div>
@@ -179,7 +179,7 @@
 			<div class="ul">
 				<ul>
 					<ng-container *ngFor="let data of order.dish;let index=index">
-						<li>
+						<li [class.active]="lis[index]" (click)="selectedItem(index)">
 							<em *ngIf="index<9">0{{index + 1}}</em>
 							<em *ngIf="index>=9">{{index + 1}}</em>
 							<span class="name">{{data.goodsName}}</span>
@@ -195,7 +195,7 @@
 				
 			</div>
 			<div class="choose">
-				<span class="confirm">退菜</span><span class="confirm">退单</span>
+				<span class="confirm" (click)="retreatFood()">退菜</span><span class="confirm" (click)="clear('退单')">退单</span>
 			</div>
 		</div>
 	</div>
