@@ -130,6 +130,7 @@ export class ShopComponent implements OnInit {
   }
   //长按
   sell(data: any): void{
+  	clearInterval(this.time);
 		this.s = 0;
 		this.time = setInterval(function() {
 	    if(this.s < 3){
