@@ -63,7 +63,10 @@
 				<span>密码：</span>
 			</div>
 			<div>
-				<input name="login_pwd" type="password" [(ngModel)]="login_pwd" />
+				<form (submit)="getToken()">
+					<input class="login_pwd" name="login_pwd" type="password" [(ngModel)]="login_pwd" />
+					<input class="submit" type="submit" />
+				</form>
 			</div>
 		</div>
 		<div>

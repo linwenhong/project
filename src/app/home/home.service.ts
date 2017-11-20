@@ -65,6 +65,7 @@ export class HomeService {
                         let regions = response.json();
                         if(regions.status == '401'){
 									     		document.getElementById('toLogin').style.display = "block";
+									     		getFocus('.login_pwd');
 									     	}	
                         return regions;
                       });
@@ -80,6 +81,7 @@ export class HomeService {
                         let regions = response.json();
                         if(regions.status == '401'){
 									     		document.getElementById('toLogin').style.display = "block";
+									     		getFocus('.login_pwd');
 									     	}	
                         return regions;
                       });
@@ -98,6 +100,7 @@ export class HomeService {
                         	document.getElementById('toLogin').style.display = "none";
 									     		sessionStorage.setItem('token', regions.token);
 									     	}else{
+									     		getFocus('.login_pwd');
 									     		notify('error', '输入错误', '请输入正确的密码!');
 									     	};
                         return regions;

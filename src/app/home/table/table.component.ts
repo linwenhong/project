@@ -65,7 +65,7 @@ export class TableComponent implements OnInit {
 	open(): void {
 		this.shield = true;
 		this.peoples = null;
-		console.log(this.select_desk);
+		getFocus('.peoples');
 	}
 	//取消开台
 	hide(): void {
@@ -156,6 +156,7 @@ export class TableComponent implements OnInit {
 	}
 	//清台
 	clear(title: string): void {
+		getFocus('.password');
 		this.clear_title = title;
 		//已下单或结账
 		if(this.select_desk.status>=2){

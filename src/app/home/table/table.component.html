@@ -113,8 +113,9 @@
 				<span>餐台人数：</span>
 			</div>
 			<div>
-				<form>
-				<input maxlength="2" type="text" name="peoples" [(ngModel)]="peoples" />人
+				<form (submit)="confirm()">
+					<input class="peoples" maxlength="2" type="text" name="peoples" [(ngModel)]="peoples" />人
+					<input class="submit" type="submit" />
 				</form>
 			</div>
 		</div>
@@ -147,8 +148,9 @@
 				<span>密码：</span>
 			</div>
 			<div>
-				<form>
-				<input type="password" name="password" [(ngModel)]="password" />
+				<form (submit)="clear_table()">
+					<input class="password" type="password" name="password" [(ngModel)]="password" />
+					<input class="submit" type="submit" />
 				</form>
 			</div>
 		</div>
