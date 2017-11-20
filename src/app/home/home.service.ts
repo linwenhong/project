@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Router }      from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -13,7 +14,7 @@ export class HomeService {
 	check: any;
 	new_orders: any;
 	
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
   
   toCheck(): void {
   	//计时器

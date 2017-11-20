@@ -179,6 +179,7 @@ export class ShopComponent implements OnInit {
 			return;
 		}
   	this.isNext = true;
+  	getFocus('.form_remake');
   }
   hide(): void{
   	this.isNext = false;
@@ -233,6 +234,7 @@ export class ShopComponent implements OnInit {
 					this.isNext = false;
 	  			this.remake = null;
 	  			notify('success', '下单成功', '你已下单成功!');
+	  			
 	  			//打印
 	  			this.service.post('bk_print_order', {
 			  		shop_id: localStorage.getItem('shopId'),

@@ -97,6 +97,7 @@ export class OrderComponent implements OnInit {
 	toRefund(): void {
 		this.remake = null;
 		this.isRefund = true;
+		getFocus('.refund_remake');
 	}
 	//退款密码确认
 	confirm(): void {
