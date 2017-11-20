@@ -76,7 +76,7 @@
 					<em *ngIf="select_desk.status!=2">加菜</em>
 					<em *ngIf="select_desk.status!=2">退菜</em>
 					<em class="isTrue" *ngIf="select_desk.status==2" routerLink="/home/shop/{{select_desk.table_id +'#'+ select_desk.people}}">加菜</em>
-					<em class="isTrue" *ngIf="select_desk.status==2">退菜</em>
+					<em class="isTrue" *ngIf="select_desk.status==2" (click)="details()">退菜</em>
 				</div>
 				<div>
 					<span *ngIf="select_desk.status!=2">结账</span>
