@@ -3,11 +3,11 @@ import { HomeService } from '../../home.service';
 import { StatisticsService } from '../statistics.service';
 
 @Component({
-  selector: 'app-summary',
-  templateUrl: './summary.component.html',
-  styleUrls: ['../statistics.component.css', './summary.component.css']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['../statistics.component.css', './category.component.css']
 })
-export class SummaryComponent implements OnInit {
+export class CategoryComponent implements OnInit {
 	start_time: any;
 	end_time: any;
 	condition: number;
@@ -15,15 +15,15 @@ export class SummaryComponent implements OnInit {
 	total: number;
 	
   constructor(public service: HomeService, public statisticsService: StatisticsService) {
-  	statisticsService.select_nav = 2;
+  	statisticsService.select_nav = 4;
   }
 
   ngOnInit() {
   	this.search(null, null);
   }
-  
+	
 	search(start: any, end: any): void {
-		this.service.post('bk_get_totalreport', {
+		this.service.post('bk_category_report', {
   		shop_id: localStorage.getItem('shopId'),
   		start_time: start,
   		end_time: end
@@ -33,7 +33,7 @@ export class SummaryComponent implements OnInit {
 	     		this.total = 0;
 	     		this.datas = res.orders;
 	     		for(let x in this.datas){
-	     			this.total += Number(this.datas[x].receipt_amount);
+	     			this.total += Number(this.datas[x].total);
 	     		}
 	     	}else{
 	     		notify('error', '错误', res.msg);
@@ -41,4 +41,5 @@ export class SummaryComponent implements OnInit {
 	    }
 		);
 	}
+	
 }

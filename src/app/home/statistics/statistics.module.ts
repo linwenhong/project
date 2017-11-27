@@ -6,6 +6,8 @@ import { StatisticsRoutingModule } from "./statistics-routing.module";
 import { StatisticsComponent } from './statistics.component';
 import { StatisticsOrderComponent } from './statistics-order/statistics-order.component';
 import { SummaryComponent } from './summary/summary.component';
+import { SingleDishComponent } from './single-dish/single-dish.component';
+import { CategoryComponent } from './category/category.component';
 
 import { StatisticsService } from './statistics.service';
 
@@ -15,7 +17,7 @@ import { StatisticsService } from './statistics.service';
     FormsModule,
     StatisticsRoutingModule
   ],
-  declarations: [StatisticsComponent, StatisticsOrderComponent, SummaryComponent],
+  declarations: [StatisticsComponent, StatisticsOrderComponent, SummaryComponent, SingleDishComponent, CategoryComponent],
   providers: [ StatisticsService ]
 })
 export class StatisticsModule { }

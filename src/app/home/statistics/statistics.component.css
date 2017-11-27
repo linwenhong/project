@@ -22,3 +22,61 @@ p {margin: 0;}
 	background-color: #fff;
 	padding-left: 12px;
 }
+
+.table-page {
+	height: 100%;
+	overflow-y: auto;
+}
+
+.head {
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+}
+.head em {
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.head span {
+	display: block;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  margin-top: 10px;
+  margin-left: 15px;
+  background-color: #c2c2c2;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.head span.active {
+	background-color: #FE8B46;
+}
+
+.search {
+	margin-top: 20px;
+	text-align: center;
+}
+.search input {
+	margin: 0 15px;
+}
+.search span {
+	display: inline-flex;
+}
+.search em {
+	display: inline-flex;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 30px;
+	margin-top: 5px;
+	border-radius: 5px;
+}
+
+.table_box{
+	padding: 20px;
+}

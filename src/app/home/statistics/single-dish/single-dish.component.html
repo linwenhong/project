@@ -19,24 +19,22 @@
 		<table class="table table-hover table-bordered text-center">
 	  	<tr>
 	  		<th class="text-center">#</th>
-	  		<th class="text-center">支付方式</th>
+	  		<th class="text-center">菜品名称</th>
 	  		<th class="text-center">成交单数</th>
-	  		<th class="text-center">营业额</th>
+	  		<th class="text-center">成交金额</th>
 	  		<th class="text-center">占比</th>
 	  	</tr>
 	  	<ng-container *ngFor="let data of datas;let index=index">
 		  	<tr class="">
 		  		<td>{{index + 1}}</td>
-		  		<td *ngIf="index==0">现金支付</td>
-		  		<td *ngIf="index==1">支付宝支付</td>
-		  		<td *ngIf="index==2">微信支付</td>
+		  		<td>{{data.food_name}}</td>
 		  		<td>{{data.num}}</td>
-		  		<td>￥{{data.receipt_amount || 0}}</td>
-		  		<td *ngIf="total==0">100%</td>
-		  		<td *ngIf="total!=0">{{(data.receipt_amount/total*100).toFixed(2)}}%</td>
+		  		<td *ngIf="data.total!=0">￥{{data.total}}</td>
+		  		<td *ngIf="data.total==0">暂无</td>
+		  		<td *ngIf="total==0">暂无</td>
+		  		<td *ngIf="total!=0">{{(data.total/total*100).toFixed(3)}}%</td>
 		  	</tr>
 			</ng-container>
 		</table>
 	</div>
-	
 </div>
