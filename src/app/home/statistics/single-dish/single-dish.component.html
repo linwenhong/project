@@ -16,7 +16,7 @@
 	</div>
 	
 	<div class="table_box">
-		<table class="table table-hover table-bordered text-center">
+		<table class="table table-bordered text-center">
 	  	<tr>
 	  		<th class="text-center">#</th>
 	  		<th class="text-center">菜品名称</th>
@@ -29,7 +29,7 @@
 		  		<td>{{index + 1}}</td>
 		  		<td>{{data.food_name}}</td>
 		  		<td>{{data.num}}</td>
-		  		<td *ngIf="data.total!=0">￥{{data.total}}</td>
+		  		<td class="price" *ngIf="data.total!=0">￥{{data.total}}</td>
 		  		<td *ngIf="data.total==0">暂无</td>
 		  		<td *ngIf="total==0">暂无</td>
 		  		<td *ngIf="total!=0">{{(data.total/total*100).toFixed(3)}}%</td>

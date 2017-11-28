@@ -77,6 +77,12 @@ p {margin: 0;}
 	border-radius: 5px;
 }
 
-.table_box{
+.table_box {
 	padding: 20px;
+}
+.table_box tr:nth-child(odd) {
+	background-color: rgb(245,245,245);
+}
+.table_box tr .price {
+	color: #FE8B46;
 }

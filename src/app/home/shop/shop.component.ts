@@ -55,7 +55,7 @@ export class ShopComponent implements OnInit {
 	private number_init(): void {
 		for(let x in this.menu) {
 			for(let i in this.menu[x]) {
-				if(x == '套餐优惠') this.menu[x][i].isPackage = true;
+				if(x == '套餐') this.menu[x][i].isPackage = true;
 				this.menu[x][i].num = 0;
 				this.menu[x][i].isShow = false;
 			}

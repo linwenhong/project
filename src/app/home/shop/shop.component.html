@@ -74,6 +74,28 @@
 								</div>
 							</li>
 						</ng-container>
+						<ng-container *ngFor="let data of menu['套餐']">
+							<li *ngIf="data.num>0" class="row">
+								<div class="img">
+									<img src="{{data.food_picture}}"/>
+								</div>
+								<div class="details col">
+									<div class="text">
+										<span>{{data.food_name}}</span>
+										<em>￥{{data.food_price}}</em>
+									</div>
+									<div class="isPack">
+										<p *ngIf="isPack">[打包]</p>
+									</div>
+									<div class="operation">
+										<em (click)="setShop(data, -1)"></em>
+										<span>{{data.num}}</span>
+										<em class="increase" (click)="setShop(data, 1)"></em>
+										<i (click)="setShop(data,0)"></i>
+									</div>
+								</div>
+							</li>
+						</ng-container>
 					</ul>
 				</div>
 				<div class="statistics">
