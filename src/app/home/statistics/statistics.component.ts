@@ -13,6 +13,8 @@ export class StatisticsComponent implements OnInit {
   	service.nav_select = '6';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  	setScroll();
+  }
 
 }

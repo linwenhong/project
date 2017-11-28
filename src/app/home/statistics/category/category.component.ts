@@ -35,6 +35,7 @@ export class CategoryComponent implements OnInit {
 	     		for(let x in this.datas){
 	     			this.total += Number(this.datas[x].total);
 	     		}
+	     		setScroll();
 	     	}else{
 	     		notify('error', '错误', res.msg);
 	     	};

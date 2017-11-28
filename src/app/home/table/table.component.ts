@@ -42,6 +42,7 @@ export class TableComponent implements OnInit {
 		this.service.get('bk_getshop?shop_id='+localStorage.getItem('shopId')).then(
 			res => {
 	      this.desk = res.desk;
+	      setScroll();
 	    }
 		);
 	}

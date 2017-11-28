@@ -40,6 +40,7 @@ export class OrderComponent implements OnInit {
 	     	if(res.status == '200'){
 	     		this.orders = res.orders;   		
 	     		this.order = this.orders.doing_order;
+	     		setScroll();
 	     	}else{
 	     		notify('error', '错误', res.msg);
 	     	};

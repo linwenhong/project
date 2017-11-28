@@ -33,7 +33,8 @@ export class StatisticsOrderComponent implements OnInit {
   	}).then(
 			res => {
 	     	if(res.status == '200'){
-	     		this.orders = res.orders;   		
+	     		this.orders = res.orders;   	
+	     		setScroll();
 	     	}else{
 	     		notify('error', '错误', res.msg);
 	     	};

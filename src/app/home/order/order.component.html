@@ -50,7 +50,7 @@
 					<!--type end-->
 					<div class="order_box">
 						<div class="order_list">
-							<ul>
+							<ul class="slimscroll">
 								<ng-container *ngFor="let data of order;let index=index">
 									<li (click)="select(index, data)" [class.active]="select_index==index">
 										<div class="number">

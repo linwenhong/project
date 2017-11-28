@@ -1,6 +1,6 @@
 <div class="shop-page" (mouseup)="toUp()">
 	<div class="nav">
-		<ul>
+		<ul class="slimscroll">
       <ng-container *ngFor="let x of category;let index=index">
         <li (click)="select(index, x)" [class.hide]="!menu[x][0]" [class.active]="index==select_index">{{x}}</li>
       </ng-container>
@@ -21,7 +21,7 @@
 					<span class="m-btn">添加菜品</span>
 				</div>
 				<div class="menu_box">
-					<div id="sell_out" class="row menu" *ngIf="menu">
+					<div id="sell_out" class="row menu slimscroll" *ngIf="menu">
 						<ng-container *ngFor="let data of menu[select_category]">
 							<div *ngIf="data.food_name.indexOf(search)!=-1" class="col-xs-4 col-md-3 col-lg-2 shop">
 								<div class="shop_box" (mousedown)="sell(data)">
@@ -50,7 +50,7 @@
 					<span (click)="pack(true)" [class.active]="isPack">整单打包</span>
 					<span (click)="pack(false)" [class.active]="!isPack">堂食</span>
 				</div>
-				<div class="order_details">
+				<div class="order_details slimscroll">
 					<ul *ngIf="menu">
 						<ng-container *ngFor="let data of menu['全部菜品']">
 							<li *ngIf="data.num>0" class="row">

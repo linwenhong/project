@@ -35,6 +35,7 @@ export class SummaryComponent implements OnInit {
 	     		for(let x in this.datas){
 	     			this.total += Number(this.datas[x].receipt_amount);
 	     		}
+	     		setScroll();
 	     	}else{
 	     		notify('error', '错误', res.msg);
 	     	};

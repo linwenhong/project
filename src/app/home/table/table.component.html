@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				<div class="menu_box">
-					<div id="sell_out" class="row menu" *ngIf="desk">
+					<div id="sell_out" class="row menu slimscroll" *ngIf="desk">
 						<ng-container *ngFor="let data of desk;let index=index">
 							<div class="col-xs-4 col-md-3 col-lg-2 shop">
 								<div class="shop_box {{'table'+data.status}}" (click)="select(data)">
