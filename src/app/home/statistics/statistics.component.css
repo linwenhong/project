@@ -83,6 +83,6 @@ p {margin: 0;}
 .table_box tr:nth-child(odd) {
 	background-color: rgb(245,245,245);
 }
-.table_box tr .price {
+.table_box tr .color {
 	color: #FE8B46;
 }

@@ -28,8 +28,9 @@
 		  	<tr class="">
 		  		<td>{{index + 1}}</td>
 		  		<td>{{data.category_name}}</td>
-		  		<td>{{data.num}}</td>
-		  		<td class="price" *ngIf="data.total!=0">￥{{data.total}}</td>
+		  		<td *ngIf="data.num==0">0</td>
+		  		<td class="color" *ngIf="data.num!=0">{{data.num}}</td>
+		  		<td class="color" *ngIf="data.total!=0">￥{{data.total}}</td>
 		  		<td *ngIf="data.total==0">暂无</td>
 		  		<td *ngIf="total==0">暂无</td>
 		  		<td *ngIf="total!=0">{{(data.total/total*100).toFixed(2)}}%</td>
