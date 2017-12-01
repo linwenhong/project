@@ -229,7 +229,7 @@ export class TableComponent implements OnInit {
 	     		this.checkout = true;
 	     		this.order = res;
 	     		this.receivables = res.realPrice;
-	     		this.pay_type = 2;
+	     		this.pay_type = 1;
 	     		getFocus('#code');
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
