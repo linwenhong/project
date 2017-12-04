@@ -27,6 +27,7 @@ export class TableComponent implements OnInit {
 	code: string = null;
 	lis: any;
 	clear_title: string;
+	phone: number;
 	
   constructor(public service: HomeService, private router: Router, private http: Http) { 
   	service.nav_select = '1';
@@ -236,6 +237,7 @@ export class TableComponent implements OnInit {
 	     		this.order = res;
 	     		this.receivables = res.realPrice;
 	     		this.pay_type = 1;
+	     		this.phone = null;
 	     		getFocus('#code');
 	     	}else{
 	     		notify('error', '获取订单失败', res.msg);
@@ -253,6 +255,7 @@ export class TableComponent implements OnInit {
 		request['discountPrice'] = this.order.discountPrice;
 		request['totalPrice'] = this.order.totalPrice;
 		request['out_trade_no'] = this.order.out_trade_no;
+		request['user_id'] = this.phone;
 		
 		this.service.post('bk_pay', request).then(
 			res => {

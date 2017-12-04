@@ -244,14 +244,14 @@ p {margin: 0;}
 
 .shield-layer .box2 {
 	width: 640px;
-	height: 480px;
+	height: 520px;
 	margin: -240px 0 0 -350px;
 }
 .shield-layer .box_content {
 	padding: 15px 15px 0;
 }
 .shield-layer .box_content .left, .shield-layer .box_content .right {
-	height: 420px;
+	height: 460px;
 	float: left;
 	background-color: #fff;
 	border: 1px solid #d2d2d2;
@@ -272,7 +272,7 @@ p {margin: 0;}
 	float: right;
 }
 .shield-layer .box_content .ul {
-	height: 296px;
+	height: 336px;
 }
 .shield-layer .box_content .right {
 	box-sizing: border-box;
@@ -358,7 +358,7 @@ p {margin: 0;}
 	.shield-layer .box2 li .name {width: 200px;}
 	.shield-layer .box2 {
 		width: 800px;
-		height: 480px;
+		height: 520px;
 		margin: -240px 0 0 -400px;
 	}
 }
