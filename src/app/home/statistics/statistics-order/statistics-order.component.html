@@ -33,7 +33,9 @@
 											<div class="row">
 												<span class="col-xs-12">创建时间：{{data.created_at}}</span>
 												<span class="col-xs-12">订单编号：{{data.trade_no}}</span>
-												<span class="col-xs-12">订单金额：{{data.total_amount}}</span>
+												<span class="col-xs-6">订单金额：{{data.total_amount}}</span>
+												<span *ngIf="data.refund==0" class="col-xs-6 success">交易成功</span>
+												<span *ngIf="data.refund!=0"class="col-xs-6 fail">已退款</span>
 											</div>
 										</div>
 									</li>

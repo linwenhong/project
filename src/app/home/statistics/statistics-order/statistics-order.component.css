@@ -248,6 +248,13 @@
 	background-color: #C2C2C2;
 }
 
+.details span.success{
+	color: green;
+}
+.details span.fail{
+	color: #fe8b46;
+}
+
 @media only screen and (max-width: 766px) {
 	.order_box{padding-top: 75px;}
 }

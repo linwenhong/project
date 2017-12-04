@@ -57,8 +57,8 @@
 			<!--menu_list end-->
 			<div class="col-xs-4 col-md-3 order_list">
 				<div>
-					<span *ngIf="select_desk.status<=1">订单详情</span>
-					<span class="isTrue" *ngIf="select_desk.status>1" (click)="details()">订单详情</span>
+					<span *ngIf="select_desk.status<=1 || select_desk.status==3">订单详情</span>
+					<span class="isTrue" *ngIf="select_desk.status>1 && select_desk.status!=3" (click)="details()">订单详情</span>
 				</div>
 				<div>
 					<em *ngIf="select_desk.status<=0">移台</em>
@@ -73,9 +73,9 @@
 					<em class="isTrue" *ngIf="select_desk.status==1" routerLink="/home/shop/{{select_desk.table_id +'#'+ select_desk.people}}">点单</em>
 				</div>
 				<div>
-					<em *ngIf="select_desk.status!=2">加菜</em>
+					<em *ngIf="select_desk.status!=2 && select_desk.status!=3">加菜</em>
 					<em *ngIf="select_desk.status!=2">退菜</em>
-					<em class="isTrue" *ngIf="select_desk.status==2" routerLink="/home/shop/{{select_desk.table_id +'#'+ select_desk.people}}">加菜</em>
+					<em class="isTrue" *ngIf="select_desk.status==2 || select_desk.status==3" routerLink="/home/shop/{{select_desk.table_id +'#'+ select_desk.people}}">加菜</em>
 					<em class="isTrue" *ngIf="select_desk.status==2" (click)="details()">退菜</em>
 				</div>
 				<div>

@@ -68,7 +68,7 @@ export class TableComponent implements OnInit {
 		this.peoples = null;
 		getFocus('.peoples');
 	}
-	//取消开台
+	//取消
 	hide(): void {
 		this.shield = false;
 		this.toClear = false;
@@ -76,6 +76,7 @@ export class TableComponent implements OnInit {
 		this.checkout = false;
 		this.select_desk = {};
   	this.select_desk.status = -1;
+  	this.getshop();
 	}
 	//确定开台/修改人数
 	confirm(): void {
@@ -87,23 +88,28 @@ export class TableComponent implements OnInit {
 				this.shield = false;
 				this.desk_status(1, this.peoples);
 			}else{
-				this.service.post('bk_update_people', {
-					shop_id: localStorage.getItem('shopId'),
-					out_trade_no: this.select_desk.out_trade_no,
-					people: this.peoples
-				}).then(
-					res => {
-						this.shield = false;
-			     	if(res.status == '200'){
-			     		this.getshop();
-			     		notify('success', '更改人数', this.select_desk.table_name+'更改人数成功!');
-			     	}else{
-			     		notify('error', '更改人数', res.msg);
-			     	};
-						this.select_desk = {};
-		     		this.select_desk.status = -1;
-			    }
-				);
+				if(this.select_desk.people == this.peoples){
+					notify('error', '输入错误', '输入人数与原本人数一致');
+					return;
+				}else{
+					this.service.post('bk_update_people', {
+						shop_id: localStorage.getItem('shopId'),
+						out_trade_no: this.select_desk.out_trade_no,
+						people: this.peoples
+					}).then(
+						res => {
+							this.shield = false;
+				     	if(res.status == '200'){
+				     		this.getshop();
+				     		notify('success', '更改人数', this.select_desk.table_name+'更改人数成功!');
+				     	}else{
+				     		notify('error', '更改人数', res.msg);
+				     	};
+							this.select_desk = {};
+			     		this.select_desk.status = -1;
+				    }
+					);
+				}
 			}
 		}
 	}
@@ -323,6 +329,7 @@ export class TableComponent implements OnInit {
 					this.orderDetails = false;
 					this.select_desk = {};
 			  	this.select_desk.status = -1;
+			  	this.getshop();
 	  			notify('success', '退菜成功', '你已退菜成功!');
 	     	}else{
 	     		notify('error', '退菜失败', response.msg);

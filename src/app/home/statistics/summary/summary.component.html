@@ -22,6 +22,7 @@
 	  		<th class="text-center">支付方式</th>
 	  		<th class="text-center">成交单数</th>
 	  		<th class="text-center">营业额</th>
+	  		<th class="text-center">退款金额</th>
 	  		<th class="text-center">占比</th>
 	  	</tr>
 	  	<ng-container *ngFor="let data of datas;let index=index">
@@ -34,6 +35,7 @@
 		  		<td class="color" *ngIf="data.num!=0">{{data.num}}</td>
 		  		<td *ngIf="data.receipt_amount==0">￥0</td>
 		  		<td *ngIf="data.receipt_amount!=0" class="color">￥{{data.receipt_amount}}</td>
+		  		<td>￥{{data.refund_sum}}</td>
 		  		<td *ngIf="total==0">100%</td>
 		  		<td *ngIf="total!=0">{{(data.receipt_amount/total*100).toFixed(2)}}%</td>
 		  	</tr>

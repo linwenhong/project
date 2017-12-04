@@ -123,6 +123,7 @@ export class OrderComponent implements OnInit {
 				this.isRefund = false;
 	     	if(res.status == '200'){
 	     		this.getOrder();
+	     		this.order = this.service.new_orders;
 	     		notify('success', '退款', '订单'+this.select_order.out_trade_no+'已成功退款!');
 	     	}else{
 	     		notify('error', '错误', res.msg);
