@@ -13,19 +13,19 @@
 					<div class="text-center">
 						<div>
 							<span>打印厨房小票</span>
-							<i (click)="ticket=!ticket" [class.active]="ticket"></i>
+							<i (click)="editConfig('print_setting')" [class.active]="settings['print_setting']"></i>
 						</div>
 					</div>
 					<div class="text-center">
 						<div>
 							<span>订单提醒语音</span>
-							<i (click)="voice=!voice" [class.active]="voice"></i>
+							<i (click)="editConfig('sound_setting')" [class.active]="settings['sound_setting']"></i>
 						</div>	
 					</div>
 					<div class="text-center">
 						<div class="">
 							<span>自动接单</span>
-							<i (click)="order=!order" [class.active]="order"></i>
+							<i (click)="editConfig('auto_get_order')" [class.active]="settings['auto_get_order']"></i>
 						</div>	
 					</div>
 					<div class="text-center">

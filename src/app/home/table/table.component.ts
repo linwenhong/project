@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router }      from '@angular/router';
 import { HomeService } from '../home.service';
 import { Http } from '@angular/http';
+import { Title } from '@angular/platform-browser';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -29,7 +30,7 @@ export class TableComponent implements OnInit {
 	clear_title: string;
 	phone: number;
 	
-  constructor(public service: HomeService, private router: Router, private http: Http) { 
+  constructor(public titleService: Title, public service: HomeService, private router: Router, private http: Http) { 
   	service.nav_select = '1';
   }
 
@@ -42,6 +43,7 @@ export class TableComponent implements OnInit {
 	private getshop(): void {
 		this.service.get('bk_getshop?shop_id='+localStorage.getItem('shopId')).then(
 			res => {
+				this.titleService.setTitle(res.shop[0].main_shop_name)
 	      this.desk = res.desk;
 	      setScroll();
 	    }

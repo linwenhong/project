@@ -15,6 +15,10 @@ export class StatisticsOrderComponent implements OnInit {
 	end_time: string;
 	condition: number;
 	
+	remake: string;
+	isRefund: boolean;
+	password: string;
+	
   constructor(public service: HomeService, public statisticsService: StatisticsService) {
   	statisticsService.select_nav = 1;
   }
@@ -24,7 +28,6 @@ export class StatisticsOrderComponent implements OnInit {
   }
 	
 	search(start: any, end: any): void {
-		console.log(start, end);
 		//获取订单
   	this.service.post('bk_get_report', {
   		shop_id: localStorage.getItem('shopId'),
@@ -45,5 +48,46 @@ export class StatisticsOrderComponent implements OnInit {
 	select(index: number, data: any): void {
 		this.select_order = data;
 		this.select_index = index;
+	}
+	
+	hide(): void {
+		this.remake = null;
+		this.isRefund = false;
+	}
+	//弹出密码输入框
+	toRefund(): void {
+		this.remake = null;
+		this.isRefund = true;
+		getFocus('.refund_remake');
+	}
+	//退款密码确认
+	confirm(): void {
+		this.service.token(localStorage.getItem('username'), this.password).then(
+			res => {
+	     	if(res.code == '200'){
+	     		this.refund();
+	     	}	
+	    }
+		);
+	}
+	//确定退款
+	refund(): void {
+		this.service.post('bk_refund', {
+			shop_id: localStorage.getItem('shopId'),
+  		out_trade_no: this.select_order.trade_no,
+  		trade_no: 0,
+  		refund_amount: this.select_order.total_amount,
+  		refund_reason: this.remake
+  	}).then(
+			res => {
+				this.isRefund = false;
+	     	if(res.status == '200'){
+	     		this.search(null, null);
+	     		notify('success', '退款', '订单'+this.select_order.trade_no+'已成功退款!');
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
+	    }
+		).catch( err => notify('error', '错误', '退款失败'));
 	}
 }

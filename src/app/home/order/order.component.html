@@ -81,25 +81,25 @@
 					<!--type end-->
 					<div class="order_box">
 						<div class="list_top">
-								<div class="row order_details">
-									<span class="col-xs-6"><em>订单编号</em>：{{select_order.out_trade_no}}</span>
-									<span class="col-xs-6"><em>桌&nbsp;台</em>：&nbsp;{{select_order.table_name}}</span>
-									<span class="col-xs-6"><em>用餐人数</em>：{{select_order.people}}</span>
-									<span class="col-xs-6"><em>下单时间</em>：{{select_order.updated_at}}</span>
-									<span class="col-xs-6"><em>订单金额</em>：{{select_order.totalPrice}}</span>
-									<span class="col-xs-6"><em>实收金额</em>：{{select_order.realPrice}}</span>
-									<span class="col-xs-12">
-										<em>备注信息</em>：
-										{{select_order.description}}
-									</span>
-								</div>
-								<div class="title">菜品详情
-									<span *ngIf="select_order.dish">数量：{{select_order.dish.length}}</span>
-								</div>
+							<div class="row order_details">
+								<span class="col-xs-6"><em>订单编号</em>：{{select_order.out_trade_no}}</span>
+								<span class="col-xs-6"><em>桌&nbsp;台</em>：&nbsp;{{select_order.table_name}}</span>
+								<span class="col-xs-6"><em>用餐人数</em>：{{select_order.people}}</span>
+								<span class="col-xs-6"><em>下单时间</em>：{{select_order.updated_at}}</span>
+								<span class="col-xs-6"><em>订单金额</em>：{{select_order.totalPrice}}</span>
+								<span class="col-xs-6"><em>实收金额</em>：{{select_order.realPrice}}</span>
+								<span class="col-xs-12">
+									<em>备注信息</em>：
+									{{select_order.description}}
+								</span>
 							</div>
+							<div class="title">菜品详情
+								<span *ngIf="select_order.dish">数量：{{select_order.dish.length}}</span>
+							</div>
+						</div>
+						
 						<div class="list_box">
-							
-							<div class="ul">
+							<div class="ul slimscroll">
 								<ul *ngIf="select_order.dish">
 									<ng-container *ngFor="let data of select_order.dish;let index=index">
 										<li>

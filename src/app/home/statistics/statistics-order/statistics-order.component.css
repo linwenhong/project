@@ -163,6 +163,9 @@
 	color: #fff;
 }
 
+.order_details {
+	padding-bottom: 50px;
+}
 .order_details em {
 	display: inline-block;
 	width: 58px;
@@ -181,6 +184,7 @@
 }
 .order_box {
 	padding-top: 50px;
+	padding-bottom: 50px;
 }
 .order_box .title {
 	padding: 20px 20px 5px;
@@ -233,7 +237,6 @@
 	padding: 150px 0 45px;
 }
 .list_top {
-	position: absolute;
 	width: 100%;
 }
 .print {
@@ -257,4 +260,31 @@
 
 @media only screen and (max-width: 766px) {
 	.order_box{padding-top: 75px;}
+}
+
+.print_box {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+.print {
+	display: inline-block;
+	width: 130px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 5px;
+	text-align: center;
+}
+.print.no {
+	background-color: #C2C2C2;
+}
+.print.refunds {
+	margin-left: 20px;
+}
+.shield-layer .box {
+	width: 400px;
+	height: 250px;
+	margin: -200px 0 0 -200px;
 }

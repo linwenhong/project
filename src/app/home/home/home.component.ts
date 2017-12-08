@@ -15,12 +15,13 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
-  	this.service.unCheck();
+  	clearSend();
   	sessionStorage.clear();
   	this.router.navigate(['/login']);
   }
 
   ngOnInit() {
+  	websocketSend(localStorage.getItem('shopId'));
 		if(!sessionStorage.getItem('isLogin')) this.router.navigate(['/login']);
   }
 	

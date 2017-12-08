@@ -11,6 +11,7 @@ export class SettingsComponent implements OnInit {
 	ticket: boolean = false;
 	voice: boolean = false;
 	order: boolean = false;
+	settings: any  = {};
 	password1: string;
 	password2: string;
 	password3: string;
@@ -20,6 +21,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
   	this.select_nav = sessionStorage.getItem('settings_select') || '1';
+  	this.getSetting();
   }
 	
 	select(index: string): void {
@@ -27,13 +29,26 @@ export class SettingsComponent implements OnInit {
 		sessionStorage.setItem('settings_select', index);
 	}
 	
+	getSetting(): void {
+		this.service.get('bk_get_setting?shop_id=' + localStorage.getItem('shopId')).then(
+			res => {
+	     	if(res.status == '200'){
+	     		this.settings = res.data;
+	     	}else{
+	     		notify('error', '错误', res.msg);
+	     	};
+	    }
+		);
+	}
+	
+	editConfig(key: string): void {
+		this.settings[key] = !this.settings[key];
+	}
+	
 	set(): void {
-		console.log(1);
 		let request = {};
+		request = this.settings;
 		request['shop_id'] = localStorage.getItem('shopId');
-		request['print_setting'] = this.ticket?1:0;
-		request['sound_setting'] = this.voice?1:0;
-		request['auto_get_order'] = this.order?1:0;
 		this.service.post('bk_update_setting', request).then(
 			res => {
 	     	if(res.status == '200'){

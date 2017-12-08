@@ -101,8 +101,9 @@ function getFocus(select) {
 }
 
 //websocket监听新订单
+var websocketInterval;
 var isSetAudio = false;
-var wsServer = 'ws://39.108.67.89:11070';
+var wsServer = 'ws://39.108.67.89:11060';
 var websocket = new WebSocket(wsServer);
 websocket.onopen = function(evt) {
 	console.log("Connected to WebSocket server.");
@@ -114,6 +115,10 @@ websocket.onclose = function(evt) {
 //后台新订单提示
 websocket.onmessage = function(evt) {
 	console.log(evt.data);
+	if(evt.data.js_datas){
+		print_data(evt.data);
+	}
+	
 	if(!isSetAudio) {
 		isSetAudio = true;
 		$('#warningTone').html('<audio autoplay="autoplay" src="assets/new.mp3"></audio>');
@@ -129,9 +134,14 @@ websocket.onerror = function(evt, e) {
 };
 
 function websocketSend(id) {
-	setInterval(function() {
+	websocketInterval = setInterval(function() {
 		websocket.send(id + "_bank");
+		console.log(id+'websocketSend');
 	}, 5000);
+}
+
+function clearSend() {
+	clearInterval(websocketInterval);
 }
 
 function setScroll() {

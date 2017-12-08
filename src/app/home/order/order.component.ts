@@ -59,6 +59,7 @@ export class OrderComponent implements OnInit {
 	     	};
   		}
 		);
+		setScroll();
   }
 	//订单详情
 	select(index: number, data: any): void {

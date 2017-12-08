@@ -16,48 +16,9 @@ export class HomeService {
 	
   constructor(private http: Http, private router: Router) { }
   
-  toCheck(): void {
-  	//计时器
-		let that = this;
-		this.check = setInterval(function() {
-			if(!sessionStorage.getItem('isLogin')){
-	   		that.unCheck();
-	   		return;
-			}
-			//设定检查时间间隔(秒)
-	    if(that.time < 30){
-	      that.time++;
-	    }else if(that.time){
-	    	that.time = 1;
-	   		that.checkNew();
-	    }
-		}, 1000);
-  }
-  unCheck(): void {
-  	clearInterval(this.check);
-  }
-  //验证是否存在新订单
-  checkNew(): void {
-  	this.http.post(environment.api_url+'bk_new_orders', {
-  		shop_id: localStorage.getItem('shopId')
-  	}).toPromise().then(
-  		response => {
-  			let res = response.json();
-  			if(res.status == '200'){
-	     		this.new_orders = res.orders.new_order;
-	     		if(this.new_orders.length>0){
-	     			notify('success', '订单检查', '您有新的订单!');
-	     		}
-	     	}else{
-	     		notify('error', '错误', res.msg);
-	     	};
-  		}
-		);
-  }
- 
   get(url: string): Promise<any> {
   	const header: Headers = new Headers();
-  	header.append('Authorization', sessionStorage.getItem('token'));
+  	header.append('Authorization', 'Bearer '+sessionStorage.getItem('token'));
     return this.http.get(environment.api_url+url, {headers: header})
                     .toPromise()
                     .then(
