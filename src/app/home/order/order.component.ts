@@ -31,15 +31,19 @@ export class OrderComponent implements OnInit {
 		this.getOrder();
   }
   
-  getOrder(): void {
+  getOrder(isAgain: boolean = false): void {
   	//获取订单
   	this.service.post('bk_online_orders', {
   		shop_id: localStorage.getItem('shopId')
   	}).then(
 			res => {
 	     	if(res.status == '200'){
-	     		this.orders = res.orders;   		
-	     		this.order = this.orders.doing_order;
+	     		this.orders = res.orders;
+	     		if(isAgain){
+	     			this.order = this.orders.finish_order;
+	     		}else{
+	     			this.order = this.orders.doing_order;
+	     		}
 	     		setScroll();
 	     	}else{
 	     		notify('error', '错误', res.msg);
@@ -123,8 +127,7 @@ export class OrderComponent implements OnInit {
 			res => {
 				this.isRefund = false;
 	     	if(res.status == '200'){
-	     		this.getOrder();
-	     		this.order = this.service.new_orders;
+	     		this.getOrder(true);
 	     		notify('success', '退款', '订单'+this.select_order.out_trade_no+'已成功退款!');
 	     	}else{
 	     		notify('error', '错误', res.msg);

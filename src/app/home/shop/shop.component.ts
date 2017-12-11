@@ -245,7 +245,6 @@ export class ShopComponent implements OnInit {
 						res => {
 							if(res.status == '200') {
 								var isTrue = print_data(res);
-								console.log(isTrue);
 							} else {
 								notify('error', '错误', res.msg);
 							};

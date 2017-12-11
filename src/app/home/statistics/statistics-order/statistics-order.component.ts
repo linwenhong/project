@@ -72,13 +72,18 @@ export class StatisticsOrderComponent implements OnInit {
 	}
 	//确定退款
 	refund(): void {
-		this.service.post('bk_refund', {
-			shop_id: localStorage.getItem('shopId'),
-  		out_trade_no: this.select_order.trade_no,
-  		trade_no: 0,
-  		refund_amount: this.select_order.total_amount,
-  		refund_reason: this.remake
-  	}).then(
+		var request = {};
+		request['refund_amount'] = this.select_order.total_amount;
+		request['refund_reason ']= this.remake;
+		request['shop_id'] = localStorage.getItem('shopId');
+		if (this.select_order.type == 1){
+			request['out_trade_no'] = 0;
+  		request['trade_no'] = this.select_order.trade_no;
+		}else {
+			request['out_trade_no'] = this.select_order.trade_no;
+  		request['trade_no'] = 0;
+		}
+		this.service.post('bk_refund', request).then(
 			res => {
 				this.isRefund = false;
 	     	if(res.status == '200'){

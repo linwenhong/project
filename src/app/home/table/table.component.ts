@@ -51,7 +51,6 @@ export class TableComponent implements OnInit {
 	}
 	//选中桌子
 	select(data: any): void {
-		console.log(data);
 		if(this.isMove){
 			this.isMove = false;
 			if(data.status!=0){

@@ -99,9 +99,4 @@ $(function(){
 	  //hide notification
 	  $(this).trigger('notify-hide');
 	});
-})
-
-function print_data(){
-		console.log('print_data');
-
-}
+});
