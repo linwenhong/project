@@ -184,6 +184,8 @@
 }
 .order_box {
 	padding-top: 50px;
+}
+.order_box.right {
 	padding-bottom: 50px;
 }
 .order_box .title {
