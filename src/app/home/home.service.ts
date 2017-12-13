@@ -61,7 +61,6 @@ export class HomeService {
                         if(regions.code == '200'){
                         	document.getElementById('toLogin').style.display = "none";
 									     		sessionStorage.setItem('token', regions.token);
-									     		this.router.navigate(['/home']);
 									     	}else{
 									     		getFocus('.login_pwd');
 									     		notify('error', '输入错误', '请输入正确的密码!');

@@ -22,8 +22,9 @@
 	  		<th class="text-center">支付方式</th>
 	  		<th class="text-center">交易单数</th>
 	  		<th class="text-center">营业额</th>
-	  		<th class="text-center">实收金额</th>
+	  		<th class="text-center">商家优惠</th>
 	  		<th class="text-center">退款金额</th>
+	  		<th class="text-center">实收金额</th>
 	  		<th class="text-center">实收金额占比</th>
 	  	</tr>
 	  	<ng-container *ngFor="let data of datas;let index=index">
@@ -33,12 +34,15 @@
 		  		<td *ngIf="index==1">支付宝支付</td>
 		  		<td *ngIf="index==2">微信支付</td>
 		  		<td *ngIf="data.num==0">0</td>
-		  		<td class="color" *ngIf="data.num!=0">{{data.num}}</td>
+		  		<td class="color" *ngIf="data.num!=0">{{data.num}}</td>		  				  		
 		  		<td *ngIf="data.total_amount==0">￥0</td>
 		  		<td *ngIf="data.total_amount!=0" class="color">￥{{data.total_amount}}</td>
+		  		
+		  		<td>￥{{data.discountPrice}}</td>
+		  		
+		  		<td>￥{{data.refund_sum}}</td>		  		
 		  		<td *ngIf="data.receipt_amount==0">￥0</td>
-		  		<td *ngIf="data.receipt_amount!=0" class="color">￥{{data.receipt_amount}}</td>
-		  		<td>￥{{data.refund_sum}}</td>
+		  		<td *ngIf="data.receipt_amount!=0" class="color">￥{{data.receipt_amount}}</td>	  		
 		  		<td *ngIf="total==0">100%</td>
 		  		<td *ngIf="total!=0">{{(data.receipt_amount/total*100).toFixed(2)}}%</td>
 		  	</tr>
