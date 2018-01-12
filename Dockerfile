@@ -1,4 +1,4 @@
-# changqi/web:test
+# shengxiang/web:test
 FROM suancloud/nginx4angular
 LABEL maintainer="chad@suancloud.cn"
 
