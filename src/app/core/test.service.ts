@@ -10,7 +10,7 @@ export class TestService extends ServiceBaseService<any> {
     return 'contracts';
   }
 
-  get(): Promise<any>  {
-    return super.getAll();
+  post(request: object): Promise<any>  {
+    return super.post(request);
   }
 }

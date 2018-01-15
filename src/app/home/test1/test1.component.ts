@@ -10,13 +10,9 @@ import { Project } from "../../common/project";
   styleUrls: ['./test1.component.css']
 })
 export class Test1Component implements OnInit {
-  projectForm: Project = {
-    name: '测试',
-    number: 2018011216060001,
-    director: '测试组001'
-  };
   heroForm: FormGroup;
   isSubmit: boolean = false;
+  request: Project;
 
   constructor(
     private testSerivce: TestService,
@@ -26,7 +22,7 @@ export class Test1Component implements OnInit {
   }
 
   ngOnInit() {
-    // this.testSerivce.get();
+
   }
 
   createForm(): void {
@@ -47,10 +43,23 @@ export class Test1Component implements OnInit {
 
   submit(form: FormGroup): void {
     this.isSubmit = true;
+    if (form.status === 'INVALID') {
+      alert('请完善信息!');
+      return;
+    }
     this.setPatchValue(form);
+
+    this.request = {
+      name: form.get('name').value,
+      number: form.get('number').value,
+      director: form.get('director').value
+    };
+    console.log(this.request);
+    this.testSerivce.post(this.request);
   }
 
   revert() {
+    this.isSubmit = false;
     this.heroForm.reset();
   }
 }

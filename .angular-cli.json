@@ -24,11 +24,14 @@
         "libs/jquery-notifyjs/styles/metro/notify-metro.css"
       ],
       "scripts": [
+        "libs/jquery-3.1.0.min.js",
+        "libs/jSignature/flashcanvas.js",
+        "libs/jSignature/jSignature.min.js",
   			"libs/jquery-notifyjs/notify.min.js",
   			"libs/jquery-notifyjs/styles/metro/notify-metro.js",
   			"libs/notifications.js",
   			"libs/LodopFuncs3.js",
-  			"libs/print.js"
+  			"assets/js/sign.js"
 			],
       "environmentSource": "environments/environment.ts",
       "environments": {

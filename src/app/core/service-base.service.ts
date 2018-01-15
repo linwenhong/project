@@ -19,8 +19,16 @@ export abstract class ServiceBaseService<T> {
   protected abstract getApiUrl(): string;
 
   getAll(): Promise<any> {
-
     return this.http.get(this.api_url)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch( () => alert(1));
+  }
+
+  post(request: object): Promise<any> {
+    return this.http.post(this.api_url, request)
       .toPromise()
       .then(response => {
         return response.json();
