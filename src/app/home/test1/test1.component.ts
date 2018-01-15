@@ -44,7 +44,7 @@ export class Test1Component implements OnInit {
   submit(form: FormGroup): void {
     this.isSubmit = true;
     if (form.status === 'INVALID') {
-      alert('请完善信息!');
+      notify('info', '必要信息缺少', '请完善信息!');
       return;
     }
     this.setPatchValue(form);

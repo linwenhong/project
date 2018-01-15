@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Test2Component implements OnInit {
   image_src: string;
+  remake: string;
+  isSign: boolean = false;
 
   constructor(
   ) { }
@@ -17,11 +19,27 @@ export class Test2Component implements OnInit {
 
   jSignature(): void {
     this.image_src = jSignature();
-    console.log(this.image_src);
+    if (this.image_src) {
+      this.isSign = true;
+    }
   }
 
   jSignatureReset(): void {
     this.image_src = '';
+    this.isSign = false;
     jSignatureReset();
+  }
+  // approve
+  submit(): void {
+    if (!this.isSign) {
+      notify('info', '签名未确认', '请进行签名确认!');
+      return;
+    }
+    const request = {
+      'approve': '同意',
+      'remake': this.remake,
+      'sign': this.image_src
+    };
+    console.log(request);
   }
 }
