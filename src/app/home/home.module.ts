@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { HomeRoutingModule } from "./home-routing.module";
+import { HomeRoutingModule } from './home-routing.module';
 import { Test1Component } from './test1/test1.component';
 import { Test2Component } from './test2/test2.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     Test1Component,

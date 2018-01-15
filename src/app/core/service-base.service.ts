@@ -7,20 +7,20 @@ import { Http } from '@angular/http';
 export abstract class ServiceBaseService<T> {
 
   API_URL: string = environment.api_url;
+  api_url: string;
 
   constructor(
     private http: Http
-  ) { }
+  ) {
+    this.api_url = this.API_URL + this.getApiUrl();
+    console.log(this.api_url);
+  }
 
   protected abstract getApiUrl(): string;
 
   getAll(): Promise<any> {
-    const test = {
-      api_url: this.API_URL,
-      path: this.getApiUrl()
-    };
-    console.log(test);
-    return this.http.get('123')
+
+    return this.http.get(this.api_url)
       .toPromise()
       .then(response => {
         return response.json();

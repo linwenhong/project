@@ -12,7 +12,7 @@ import { TestService } from "./test.service";
   ],
   declarations: [],
   providers: [
-    TestService
+    TestService,
   ]
 })
 export class CoreModule {
