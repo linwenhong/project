@@ -24,6 +24,7 @@
         "libs/jquery-notifyjs/styles/metro/notify-metro.css"
       ],
       "scripts": [
+        "assets/js/main.js",
         "libs/jquery-3.1.0.min.js",
         "libs/jSignature/flashcanvas.js",
         "libs/jSignature/jSignature.min.js",
