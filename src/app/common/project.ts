@@ -13,4 +13,7 @@ export class Project {
   checker: number;
   examine: number;
   leader: number;
+
+  id: number;
+  create_time: string;
 }
