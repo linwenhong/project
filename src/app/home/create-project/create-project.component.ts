@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 
-import { TestService } from '../../core/test.service';
 import { Project } from '../../common/project';
 import { User } from '../../common/user';
 
@@ -33,12 +32,11 @@ export class CreateProjectComponent implements OnInit {
   users: User[];
 
   constructor(
-    private testSerivce: TestService,
     private http: Http,
     private  fb: FormBuilder
   ) {
     this.http.get('assets/json/users.json').toPromise().then(response => {
-      this.users = response.json().userList;
+      this.users = response.json();
       this.createForm();
     });
   }
@@ -84,6 +82,9 @@ export class CreateProjectComponent implements OnInit {
     const request = this.getFormValue(form);
     this.setPatchValue(form, request);
     console.log(request);
+    /**
+     TODO:提交项目申请表数据 => 跳转页面
+    **/
   }
 
   revert() {
