@@ -1,5 +1,7 @@
 <div class="page">
   <h4 class="text-center">创建工程</h4>
+  <a routerLink="sign">sign</a>
+  <a routerLink="projects">projects</a>
 
   <div class="project" *ngIf="projectForm">
     <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">
@@ -98,5 +100,4 @@
 
     </form>
   </div>
-  <a routerLink="sign">sign</a>
 </div>

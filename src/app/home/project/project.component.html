@@ -1,0 +1,75 @@
+<div class="page">
+  <h4 class="text-center">工程详情</h4>
+
+  <div *ngIf="project" class="project">
+    <div class="form-group">
+      <label>工程名称：</label>
+      <input disabled [value]="project.name" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>工程地点：</label>
+      <input disabled [value]="project.place" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>联系人：</label>
+      <input disabled [value]="project.contacts" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>电话：</label>
+      <input disabled [value]="project.telephone" type="number" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>合同编号：</label>
+      <input disabled [value]="project.contract_number" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>委托单位：</label>
+      <input disabled [value]="project.entrustment_unit" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>委托编号：</label>
+      <input disabled [value]="project.entrustment_number" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>委托项目：</label>
+      <input disabled [value]="project.entrustment_project" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>检测要求和依据：</label>
+      <input disabled [value]="project.testing_requirements" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>委托方提供的资料：</label>
+      <input disabled [value]="project.information_of_the_client" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>编制人：</label>
+      <input disabled [value]="getUserName(project.author)" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>校核人：</label>
+      <input disabled [value]="getUserName(project.checker)" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>审核人：</label>
+      <input disabled [value]="getUserName(project.examine)" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>批准人：</label>
+      <input disabled [value]="getUserName(project.leader)" type="text" class="form-control" />
+    </div>
+  </div>
+</div>

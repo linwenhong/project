@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home-routing.module';
 import { Test2Component } from './test2/test2.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { CreateProjectComponent } from './create-project/create-project.componen
   declarations: [
     Test2Component,
     CreateProjectComponent,
+    ProjectsComponent,
+    ProjectComponent,
   ]
 })
 export class HomeModule { }
