@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { Test1Component } from './test1/test1.component';
 import { Test2Component } from './test2/test2.component';
+import { CreateProjectComponent } from './create-project/create-project.component';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { Test2Component } from './test2/test2.component';
     ReactiveFormsModule
   ],
   declarations: [
-    Test1Component,
     Test2Component,
+    CreateProjectComponent,
   ]
 })
 export class HomeModule { }

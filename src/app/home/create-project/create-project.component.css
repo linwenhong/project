@@ -1,0 +1,6 @@
+.project form input.invalid {
+  border: 1px solid #ec7373;
+}
+.project form input.ng-valid {
+  border: 1px solid #549c3a;
+}
