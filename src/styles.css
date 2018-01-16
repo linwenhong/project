@@ -20,17 +20,6 @@ input[type="reset"] {
   cursor: pointer;
 }
 
-html,body {
-	min-height: 100%;
-}
-
-
-
-
-
-.page {
-  padding: 0 20px;
-}
 #signature canvas {
   border: 1px solid #999 !important;
 }

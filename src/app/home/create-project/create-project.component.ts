@@ -12,8 +12,18 @@ import { Project } from '../../common/project';
 export class CreateProjectComponent implements OnInit {
   projectForm: FormGroup;
   isSubmit: boolean = false;
-  request: Project;
-  test: any = {};
+  projectFormKeys: string[] = [
+    'name',
+    'place',
+    'contacts',
+    'telephone',
+    'contract_number',
+    'entrustment_unit',
+    'entrustment_number',
+    'entrustment_project',
+    'testing_requirements',
+    'information_of_the_client'
+  ];
 
   constructor(
     private testSerivce: TestService,
@@ -40,19 +50,14 @@ export class CreateProjectComponent implements OnInit {
     });
   }
 
-  setPatchValue(form: FormGroup): void {
-    form.patchValue({
-      name: form.get('name').value,
-      place: form.get('place').value,
-      contacts: form.get('contacts').value,
-      telephone: form.get('telephone').value,
-      contract_number: form.get('contract_number').value,
-      entrustment_unit: form.get('entrustment_unit').value,
-      entrustment_number: form.get('entrustment_number').value,
-      entrustment_project: form.get('entrustment_project').value,
-      testing_requirements: form.get('testing_requirements').value,
-      information_of_the_client: form.get('information_of_the_client').value
-    });
+  getFormValue(form: FormGroup): Project {
+    const formValue = new Project();
+    this.projectFormKeys.forEach(key => formValue[key] = form.get(key).value);
+    return formValue;
+  }
+
+  setPatchValue(form: FormGroup, patchValue: Project): void {
+    form.patchValue(patchValue);
   }
 
   submit(form: FormGroup): void {
@@ -61,21 +66,9 @@ export class CreateProjectComponent implements OnInit {
       notify('info', '必要信息缺少', '请完善信息!');
       return;
     }
-    this.setPatchValue(form);
-
-    this.request = {
-      name: form.get('name').value,
-      place: form.get('place').value,
-      contacts: form.get('contacts').value,
-      telephone: form.get('telephone').value,
-      contract_number: form.get('contract_number').value,
-      entrustment_unit: form.get('entrustment_unit').value,
-      entrustment_number: form.get('entrustment_number').value,
-      entrustment_project: form.get('entrustment_project').value,
-      testing_requirements: form.get('testing_requirements').value,
-      information_of_the_client: form.get('information_of_the_client').value
-    };
-    console.log(this.request);
+    const request = this.getFormValue(form);
+    this.setPatchValue(form, request);
+    console.log(request);
   }
 
   revert() {
