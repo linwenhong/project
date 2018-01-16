@@ -23,3 +23,7 @@ input[type="reset"] {
 #signature canvas {
   border: 1px solid #999 !important;
 }
+
+.page {
+  padding: 0 0.5rem;
+}

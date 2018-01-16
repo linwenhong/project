@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Http } from '@angular/http';
 
 import { TestService } from '../../core/test.service';
 import { Project } from '../../common/project';
+import { User } from '../../common/user';
 
 @Component({
   selector: 'app-create-project',
@@ -22,14 +24,23 @@ export class CreateProjectComponent implements OnInit {
     'entrustment_number',
     'entrustment_project',
     'testing_requirements',
-    'information_of_the_client'
+    'information_of_the_client',
+    'author',
+    'checker',
+    'examine',
+    'leader'
   ];
+  users: User[];
 
   constructor(
     private testSerivce: TestService,
+    private http: Http,
     private  fb: FormBuilder
   ) {
-    this.createForm();
+    this.http.get('assets/json/users.json').toPromise().then(response => {
+      this.users = response.json().userList;
+      this.createForm();
+    });
   }
 
   ngOnInit() {
@@ -46,7 +57,11 @@ export class CreateProjectComponent implements OnInit {
       entrustment_number: ['', Validators.required],
       entrustment_project: ['', Validators.required],
       testing_requirements: ['', Validators.required],
-      information_of_the_client: ['', Validators.required]
+      information_of_the_client: ['', Validators.required],
+      author: this.users[0].id,
+      checker: this.users[0].id,
+      examine: this.users[0].id,
+      leader: this.users[0].id
     });
   }
 
@@ -73,6 +88,11 @@ export class CreateProjectComponent implements OnInit {
 
   revert() {
     this.isSubmit = false;
-    this.projectForm.reset();
+    this.projectForm.reset({
+      author: this.projectForm.get('author').value,
+      checker: this.projectForm.get('checker').value,
+      examine: this.projectForm.get('examine').value,
+      leader: this.projectForm.get('leader').value
+    });
   }
 }

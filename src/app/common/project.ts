@@ -9,4 +9,8 @@ export class Project {
   entrustment_project: string;
   testing_requirements: string;
   information_of_the_client: string;
+  author: number;
+  checker: number;
+  examine: number;
+  leader: number;
 }

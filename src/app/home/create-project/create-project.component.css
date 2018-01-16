@@ -4,3 +4,14 @@
 .project form input.ng-valid {
   border: 1px solid #549c3a;
 }
+.project .form-group {
+  float: right;
+}
+.project .form-group label {
+  margin-top: 0.35rem;
+  padding-right: 0.3rem;
+}
+.project .form-control {
+  width: 17rem;
+  float: right;
+}

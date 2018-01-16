@@ -1,7 +1,7 @@
-<div>
-  <p>项目申请</p>
+<div class="page">
+  <h4 class="text-center">创建工程</h4>
 
-  <div class="project">
+  <div class="project" *ngIf="projectForm">
     <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">
       <div class="form-group">
         <label>工程名称：</label>
@@ -63,8 +63,39 @@
                formControlName="information_of_the_client" type="text" class="form-control" placeholder="请输入委托方提供资料" />
       </div>
 
-      <input type="submit">
-      <input type="button" value="清空" (click)="revert()" />
+      <div class="form-group">
+        <label>编制人:</label>
+        <select class="form-control" formControlName="author">
+          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>校核人:</label>
+        <select class="form-control" formControlName="checker">
+          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>审核人:</label>
+        <select class="form-control" formControlName="examine">
+          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>批准人:</label>
+        <select class="form-control" formControlName="leader">
+          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+        </select>
+      </div>
+
+      <div class="text-center">
+        <input type="submit" class="btn btn-success">
+        <input type="button" value="清空" class="btn btn-danger" (click)="revert()" />
+      </div>
+
     </form>
   </div>
   <a routerLink="sign">sign</a>
