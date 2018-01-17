@@ -94,21 +94,14 @@
         </select>
       </div>
 
-      <!--<div class="form-group">-->
-        <!--<label>编制人:</label>-->
-        <!--<div class="user">-->
-          <!--<p>(点击按钮选择)</p>-->
-          <!--<img class="user_picture" src="{{ getUserPicture(projectForm.get('author').value) || '/assets/images/16176_100.gif' }}">-->
-          <!--<i class="select" (click)="toSelectUser()"></i>-->
-        <!--</div>-->
-      <!--</div>-->
-
       <shengxiang-user-select
+        [projectForm]="getFormValue(projectForm)"
         [text]="'编制人'"
         [userId]="projectForm.get('author').value"
         ></shengxiang-user-select>
 
       <shengxiang-user-select
+        [projectForm]="getFormValue(projectForm)"
         [text]="'校核人'"
         [userId]="projectForm.get('checker').value"
       ></shengxiang-user-select>

@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { User } from '../../common/user';
+import { Project } from '../../common/project';
 
 @Component({
   selector: 'app-user-list',
@@ -12,6 +13,8 @@ import { User } from '../../common/user';
 export class UserListComponent implements OnInit {
   users: User[];
   selectedUser: User;
+  projectForm: Project;
+  editUserKey: string;
 
   constructor(
     private http: Http,
@@ -19,6 +22,8 @@ export class UserListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.editUserKey = 'author';
+    this.projectForm = JSON.parse(sessionStorage.getItem('projectForm'));
     this.http.get('assets/json/users.json').toPromise().then(response => {
       this.users = response.json();
     });
@@ -30,9 +35,13 @@ export class UserListComponent implements OnInit {
 
   options(option: boolean): void {
     if (option) {
-      console.log(this.selectedUser);
-    } else {
-      this.router.navigate(['/home']);
+      if (!this.selectedUser) {
+        notify('error', '未选择用户', '请先选择用户');
+        return;
+      }
+      this.projectForm[this.editUserKey] = this.selectedUser.id;
+      sessionStorage.setItem('projectForm', JSON.stringify(this.projectForm));
     }
+    this.router.navigate(['/home']);
   }
 }

@@ -40,23 +40,16 @@ export class CreateProjectComponent implements OnInit {
     this.http.get('assets/json/users.json').toPromise().then(response => {
       this.users = response.json();
       this.createForm();
+
+      const projectFormCache = JSON.parse(sessionStorage.getItem('projectForm'));
+      if (projectFormCache) {
+        this.setPatchValue(this.projectForm, projectFormCache);
+      }
     });
   }
 
   ngOnInit() {
-  }
 
-  toSelectUser(): void {
-    console.log(this.getFormValue(this.projectForm));
-    this.router.navigate(['//home/user-list']);
-  }
-
-  getUserPicture(id: number): string {
-    for (const user of this.users) {
-      if (user.id == id) {
-        return user['picture'];
-      }
-    }
   }
 
   createForm(): void {
