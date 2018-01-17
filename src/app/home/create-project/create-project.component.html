@@ -66,34 +66,6 @@
                formControlName="information_of_the_client" type="text" class="form-control" placeholder="请输入委托方提供资料" />
       </div>
 
-      <div class="form-group">
-        <label>编制人:</label>
-        <select class="form-control" formControlName="author">
-          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>校核人:</label>
-        <select class="form-control" formControlName="checker">
-          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>审核人:</label>
-        <select class="form-control" formControlName="examine">
-          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>批准人:</label>
-        <select class="form-control" formControlName="leader">
-          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
-        </select>
-      </div>
-
       <shengxiang-user-select
         [projectForm]="getFormValue(projectForm)"
         [text]="'编制人'"

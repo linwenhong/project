@@ -52,24 +52,36 @@
       <input disabled [value]="project.information_of_the_client" type="text" class="form-control" />
     </div>
 
-    <div class="form-group">
-      <label>编制人：</label>
-      <input disabled [value]="getUserName(project.author)" type="text" class="form-control" />
-    </div>
+    <shengxiang-user-select
+      [projectForm]="project"
+      [text]="'编制人'"
+      [userId]="project.author"
+      [key]="'author'"
+      [canEditUser]="false"
+    ></shengxiang-user-select>
 
-    <div class="form-group">
-      <label>校核人：</label>
-      <input disabled [value]="getUserName(project.checker)" type="text" class="form-control" />
-    </div>
+    <shengxiang-user-select
+      [projectForm]="project"
+      [text]="'校核人'"
+      [userId]="project.checker"
+      [key]="'checker'"
+      [canEditUser]="false"
+    ></shengxiang-user-select>
 
-    <div class="form-group">
-      <label>审核人：</label>
-      <input disabled [value]="getUserName(project.examine)" type="text" class="form-control" />
-    </div>
+    <shengxiang-user-select
+      [projectForm]="project"
+      [text]="'审核人'"
+      [userId]="project.examine"
+      [key]="'examine'"
+      [canEditUser]="false"
+    ></shengxiang-user-select>
 
-    <div class="form-group">
-      <label>批准人：</label>
-      <input disabled [value]="getUserName(project.leader)" type="text" class="form-control" />
-    </div>
+    <shengxiang-user-select
+      [projectForm]="project"
+      [text]="'批准人'"
+      [userId]="project.leader"
+      [key]="'leader'"
+      [canEditUser]="false"
+    ></shengxiang-user-select>
   </div>
 </div>
