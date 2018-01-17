@@ -1,3 +1,19 @@
 <h4 class="text-center">请选择用户</h4>
 <div>
+  <div class="user_list">
+    <ul>
+      <ng-container *ngFor="let user of users">
+        <li (click)="selected(user)" [class.active]="selectedUser && selectedUser.id == user.id">
+          <img src="{{user.picture}}">
+          <span>{{ user.name }}</span>
+          <span class="remake">小白</span>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>
+
+<div class="options">
+  <div class="confirm" (click)="options(true)">确定</div>
+  <div class="cancel"  (click)="options(false)">取消</div>
 </div>

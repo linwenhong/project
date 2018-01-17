@@ -1,0 +1,26 @@
+.form-group {
+  float: right;
+}
+
+.user {
+  width: 17rem;
+  float: right;
+}
+.user .img {
+  display: inline-block;
+  float: left;
+}
+.user i, .user img {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  float: left;
+  margin: 0 0.5rem 0.2rem;
+  background-size: 100%;
+}
+.user i.select {
+  background-image: url(../../../assets/images/add_icon.png);
+}
+.user img.user_picture {
+  border-radius: 100%;
+}

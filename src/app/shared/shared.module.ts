@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { UserSelectComponent } from './user-select/user-select';
 
 @NgModule({
   imports: [
@@ -9,7 +10,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [],
-  exports: []
+  declarations: [
+    UserSelectComponent,
+  ],
+  exports: [
+    UserSelectComponent,
+  ]
 })
 export class SharedModule { }

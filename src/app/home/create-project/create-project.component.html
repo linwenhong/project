@@ -94,18 +94,29 @@
         </select>
       </div>
 
+      <!--<div class="form-group">-->
+        <!--<label>编制人:</label>-->
+        <!--<div class="user">-->
+          <!--<p>(点击按钮选择)</p>-->
+          <!--<img class="user_picture" src="{{ getUserPicture(projectForm.get('author').value) || '/assets/images/16176_100.gif' }}">-->
+          <!--<i class="select" (click)="toSelectUser()"></i>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <shengxiang-user-select
+        [text]="'编制人'"
+        [userId]="projectForm.get('author').value"
+        ></shengxiang-user-select>
+
+      <shengxiang-user-select
+        [text]="'校核人'"
+        [userId]="projectForm.get('checker').value"
+      ></shengxiang-user-select>
+
+
       <div class="text-center">
         <input type="submit" class="btn btn-success">
         <input type="button" value="清空" class="btn btn-danger" (click)="revert()" />
-      </div>
-
-      <div class="form-group">
-        <label>编制人:</label>
-        <div class="user">
-          <p>(点击按钮选择)</p>
-          <img class="user_picture" src="/assets/images/14940_100.png" />
-          <i class="select"></i>
-        </div>
       </div>
     </form>
   </div>

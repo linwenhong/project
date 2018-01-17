@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { Project } from '../../common/project';
 import { User } from '../../common/user';
@@ -32,6 +33,7 @@ export class CreateProjectComponent implements OnInit {
   users: User[];
 
   constructor(
+    private router: Router,
     private http: Http,
     private  fb: FormBuilder
   ) {
@@ -42,6 +44,19 @@ export class CreateProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  toSelectUser(): void {
+    console.log(this.getFormValue(this.projectForm));
+    this.router.navigate(['//home/user-list']);
+  }
+
+  getUserPicture(id: number): string {
+    for (const user of this.users) {
+      if (user.id == id) {
+        return user['picture'];
+      }
+    }
   }
 
   createForm(): void {

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { Router } from '@angular/router';
+
+import { User } from '../../common/user';
 
 @Component({
   selector: 'app-user-list',
@@ -6,10 +10,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+  users: User[];
+  selectedUser: User;
 
-  constructor() { }
+  constructor(
+    private http: Http,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.http.get('assets/json/users.json').toPromise().then(response => {
+      this.users = response.json();
+    });
   }
 
+  selected(user: User): void {
+    this.selectedUser = user;
+  }
+
+  options(option: boolean): void {
+    if (option) {
+      console.log(this.selectedUser);
+    } else {
+      this.router.navigate(['/home']);
+    }
+  }
 }

@@ -16,22 +16,22 @@
   float: right;
 }
 
-.user {
-  width: 17rem;
-  float: right;
-  margin-top: 0.35rem;
-}
-.user i, .user img {
-  display: block;
-  width: 2.5rem;
-  height: 2.5rem;
-  float: left;
-  margin-right: 1rem;
-  background-size: 100%;
-}
-.user i.select {
- background-image: url(../../../assets/images/add_icon.png);
-}
-.user img.user_picture {
-  border-radius: 2.5rem;
-}
+/*.user {*/
+  /*width: 17rem;*/
+  /*float: right;*/
+  /*margin-top: 0.35rem;*/
+/*}*/
+/*.user i, .user img {*/
+  /*display: block;*/
+  /*width: 2.5rem;*/
+  /*height: 2.5rem;*/
+  /*float: left;*/
+  /*margin-right: 1rem;*/
+  /*background-size: 100%;*/
+/*}*/
+/*.user i.select {*/
+ /*background-image: url(../../../assets/images/add_icon.png);*/
+/*}*/
+/*.user img.user_picture {*/
+  /*border-radius: 100%;*/
+/*}*/
