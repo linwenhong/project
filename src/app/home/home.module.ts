@@ -8,6 +8,7 @@ import { Test2Component } from './test2/test2.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './project/project.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { ProjectComponent } from './project/project.component';
     CreateProjectComponent,
     ProjectsComponent,
     ProjectComponent,
+    UserListComponent,
   ]
 })
 export class HomeModule { }

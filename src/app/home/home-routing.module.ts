@@ -4,13 +4,15 @@ import { Test2Component } from './test2/test2.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './project/project.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
   { path: '', component: CreateProjectComponent },
   { path: 'sign', component: Test2Component },
   { path: 'create-project', component: CreateProjectComponent },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'project/:id', component: ProjectComponent }
+  { path: 'project/:id', component: ProjectComponent },
+  { path: 'user-list', component: UserListComponent },
 ];
 
 @NgModule({

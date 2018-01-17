@@ -1,6 +1,6 @@
 [
-  { "id": 101, "name": "小白" },
-  { "id": 102, "name": "小蓝" },
-  { "id": 103, "name": "小红" },
-  { "id": 104, "name": "小黄" }
+  { "id": 101, "name": "小白", "picture": "/assets/images/14940_100.png" },
+  { "id": 102, "name": "小蓝", "picture": "/assets/images/15029_100.png" },
+  { "id": 103, "name": "小红", "picture": "/assets/images/16176_100.gif" },
+  { "id": 104, "name": "小黄", "picture": "/assets/images/16253_100.png" }
 ]
