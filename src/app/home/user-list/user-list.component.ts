@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { User } from '../../common/user';
 import { Project } from '../../common/project';
@@ -19,10 +19,14 @@ export class UserListComponent implements OnInit {
   constructor(
     private http: Http,
     private router: Router,
-  ) { }
+    private activatedRoute: ActivatedRoute
+  ) {
+    activatedRoute.queryParams.subscribe(queryParams => {
+      this.editUserKey = queryParams.editUserKey;
+    });
+  }
 
   ngOnInit() {
-    this.editUserKey = 'author';
     this.projectForm = JSON.parse(sessionStorage.getItem('projectForm'));
     this.http.get('assets/json/users.json').toPromise().then(response => {
       this.users = response.json();

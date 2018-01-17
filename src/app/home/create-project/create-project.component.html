@@ -98,12 +98,28 @@
         [projectForm]="getFormValue(projectForm)"
         [text]="'编制人'"
         [userId]="projectForm.get('author').value"
+        [key]="'author'"
         ></shengxiang-user-select>
 
       <shengxiang-user-select
         [projectForm]="getFormValue(projectForm)"
         [text]="'校核人'"
         [userId]="projectForm.get('checker').value"
+        [key]="'checker'"
+      ></shengxiang-user-select>
+
+      <shengxiang-user-select
+        [projectForm]="getFormValue(projectForm)"
+        [text]="'审核人'"
+        [userId]="projectForm.get('examine').value"
+        [key]="'examine'"
+      ></shengxiang-user-select>
+
+      <shengxiang-user-select
+        [projectForm]="getFormValue(projectForm)"
+        [text]="'批准人'"
+        [userId]="projectForm.get('leader').value"
+        [key]="'leader'"
       ></shengxiang-user-select>
 
 

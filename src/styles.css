@@ -28,6 +28,9 @@ input[type="reset"] {
   padding: 0 0.5rem;
 }
 
+.options_top_null {
+  height: 3rem;
+}
 .options {
   position: fixed;
   left: 0;

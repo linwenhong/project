@@ -1,8 +1,15 @@
+.user_list ul {
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
 .user_list li {
   display: inline-block;
   width: 100%;
   padding: 0.5rem 0;
   border-bottom: 1px solid #eee;
+}
+.user_list li:last-child {
+  border-bottom: none;
 }
 .user_list li img {
   display: block;

@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-
 import { User } from '../../common/user';
 import { Project } from '../../common/project';
 
@@ -14,6 +13,7 @@ export class UserSelectComponent implements OnInit {
   @Input() text: string;
   @Input() userId: number;
   @Input() projectForm: Project;
+  @Input() key: string;
   // @Output() manualFiltered: EventEmitter<any> = new EventEmitter();
 
   users: User[];
@@ -30,7 +30,11 @@ export class UserSelectComponent implements OnInit {
 
   toSelectUser(): void {
     sessionStorage.setItem('projectForm', JSON.stringify(this.projectForm));
-    this.router.navigate(['/home/user-list']);
+    this.router.navigate(['/home/user-list'], {
+      queryParams: {
+        editUserKey: this.key
+      }
+    });
   }
 
   getUser(id: number): User {
