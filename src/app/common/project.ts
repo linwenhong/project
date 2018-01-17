@@ -16,4 +16,5 @@ export class Project {
 
   id: number;
   create_time: string;
+  progress_index: number;
 }

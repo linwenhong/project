@@ -15,7 +15,8 @@
     "checker": "102",
     "examine": "103",
     "leader": "104",
-    "create_time": "2018-01-16"
+    "create_time": "2018-01-16",
+    "progress_index": 2
   },
   {
     "id": 2018011511257896,
@@ -33,7 +34,8 @@
     "checker": "102",
     "examine": "103",
     "leader": "104",
-    "create_time": "2018-01-16"
+    "create_time": "2018-01-16",
+    "progress_index": 3
   },
   {
     "id": 2018011511406587,
@@ -51,6 +53,7 @@
     "checker": "102",
     "examine": "103",
     "leader": "104",
-    "create_time": "2018-01-16"
+    "create_time": "2018-01-16",
+    "progress_index": 4
   }
 ]
