@@ -3,9 +3,9 @@
   <div class="user">
     <p *ngIf="canEditUser">(点击按钮选择)</p>
     <p *ngIf="!canEditUser">(待审核)</p>
-    <div class="img">
-      <img class="user_picture" src="{{ getUser(userId).picture || '/assets/images/16176_100.gif' }}">
-      <div class="text-center">{{ getUser(userId).name }}</div>
+    <div class="img" *ngIf="userId">
+      <img class="user_picture" src="{{ getUser(userId, 'picture') || '/assets/images/16176_100.gif' }}">
+      <div class="text-center">{{ getUser(userId, 'name') }}</div>
     </div>
     <i *ngIf="canEditUser" class="select" (click)="toSelectUser()"></i>
   </div>

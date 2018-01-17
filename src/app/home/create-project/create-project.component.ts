@@ -64,10 +64,10 @@ export class CreateProjectComponent implements OnInit {
       entrustment_project: ['', Validators.required],
       testing_requirements: ['', Validators.required],
       information_of_the_client: ['', Validators.required],
-      author: this.users[0].id,
-      checker: this.users[0].id,
-      examine: this.users[0].id,
-      leader: this.users[0].id
+      author: [null, Validators.required],
+      checker: [null, Validators.required],
+      examine: [null, Validators.required],
+      leader: [null, Validators.required],
     });
   }
 

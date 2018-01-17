@@ -38,12 +38,13 @@ export class UserSelectComponent implements OnInit {
     });
   }
 
-  getUser(id: number): User {
+  getUser(id: number, key: string): User {
     for (const user of this.users) {
       if (user.id == id) {
-        return user;
+        return user[key];
       }
     }
+    return null;
   }
 }
 
