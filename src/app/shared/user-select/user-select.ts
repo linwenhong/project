@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { User } from '../../common/user';
+import { Project } from '../../common/project';
 
 @Component({
   selector: 'shengxiang-user-select',
@@ -12,6 +13,7 @@ import { User } from '../../common/user';
 export class UserSelectComponent implements OnInit {
   @Input() text: string;
   @Input() userId: number;
+  @Input() projectForm: Project;
   // @Output() manualFiltered: EventEmitter<any> = new EventEmitter();
 
   users: User[];
@@ -27,7 +29,8 @@ export class UserSelectComponent implements OnInit {
   }
 
   toSelectUser(): void {
-    this.router.navigate(['//home/user-list']);
+    sessionStorage.setItem('projectForm', JSON.stringify(this.projectForm));
+    this.router.navigate(['/home/user-list']);
   }
 
   getUser(id: number): User {
