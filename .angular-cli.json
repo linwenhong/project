@@ -21,7 +21,8 @@
       "styles": [
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "libs/jquery-notifyjs/styles/metro/notify-metro.css"
+        "libs/jquery-notifyjs/styles/metro/notify-metro.css",
+        "libs/mui/css/mui.picker.min.css"
       ],
       "scripts": [
         "assets/js/main.js",
@@ -32,7 +33,10 @@
   			"libs/jquery-notifyjs/styles/metro/notify-metro.js",
   			"libs/notifications.js",
   			"libs/LodopFuncs3.js",
-  			"assets/js/sign.js"
+  			"libs/mui/js/mui.min.js",
+  			"libs/mui/js/mui.picker.min.js",
+  			"assets/js/sign.js",
+  			"assets/js/date-time.js"
 			],
       "environmentSource": "environments/environment.ts",
       "environments": {

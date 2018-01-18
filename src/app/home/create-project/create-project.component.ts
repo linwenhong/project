@@ -25,6 +25,13 @@ export class CreateProjectComponent implements OnInit {
     'entrustment_project',
     'testing_requirements',
     'information_of_the_client',
+
+    'department',
+    'approach',
+    'complete',
+    'person_in_charge',
+    'manager',
+
     'author',
     'checker',
     'examine',
@@ -50,6 +57,8 @@ export class CreateProjectComponent implements OnInit {
 
   ngOnInit() {
 
+
+    setDateTimeGroup('.dataTime');
   }
 
   createForm(): void {
@@ -64,6 +73,13 @@ export class CreateProjectComponent implements OnInit {
       entrustment_project: ['', Validators.required],
       testing_requirements: ['', Validators.required],
       information_of_the_client: ['', Validators.required],
+
+      department: ['', Validators.required],
+      approach: ['', Validators.required],
+      complete: ['', Validators.required],
+      person_in_charge: [null, Validators.required],
+      manager: [null, Validators.required],
+
       author: [null, Validators.required],
       checker: [null, Validators.required],
       examine: [null, Validators.required],
@@ -98,6 +114,8 @@ export class CreateProjectComponent implements OnInit {
   revert() {
     this.isSubmit = false;
     this.projectForm.reset({
+      person_in_charge: this.projectForm.get('person_in_charge').value,
+      manager: this.projectForm.get('manager').value,
       author: this.projectForm.get('author').value,
       checker: this.projectForm.get('checker').value,
       examine: this.projectForm.get('examine').value,

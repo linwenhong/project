@@ -1,5 +1,5 @@
 body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
-body{font:18px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;}
+body{font:1rem"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;}
 a{color:#2d374b;text-decoration:none}
 a:hover,a:focus{text-decoration:none}
 em{font-style:normal}
@@ -51,4 +51,23 @@ input[type="reset"] {
 }
 .options .cancel {
   background-color: #d9534f;
+}
+
+.mui-dtpicker-header .mui-btn {
+  border: none;
+  border-radius: 0.3rem;
+}
+.mui-dtpicker-header .mui-btn.mui-btn-blue {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+#shelteringLayer {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
 }
