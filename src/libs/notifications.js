@@ -99,4 +99,4 @@ $(function(){
 	  //hide notification
 	  $(this).trigger('notify-hide');
 	});
-})
+});

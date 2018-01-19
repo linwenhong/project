@@ -1,0 +1,136 @@
+<h4 class="text-center">创建工程</h4>
+<div class="page">
+
+  <a routerLink="sign">sign</a>
+  <a routerLink="projects">projects</a>
+
+  <div class="project" *ngIf="projectForm">
+    <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">
+      <div class="form-group">
+        <label>工程名称：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('name').invalid"
+               formControlName="name" type="text" class="form-control input" placeholder="请输入工程名称" />
+      </div>
+
+      <div class="form-group">
+        <label>工程地点：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('place').invalid"
+               formControlName="place" type="text" class="form-control input" placeholder="请输入工程地点" />
+      </div>
+
+      <div class="form-group">
+        <label>联系人：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('contacts').invalid"
+               formControlName="contacts" type="text" class="form-control input" placeholder="请输入联系人名称" />
+      </div>
+
+      <div class="form-group">
+        <label>电话：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('telephone').invalid"
+               formControlName="telephone" name="telephone" type="number" class="form-control input" placeholder="请输入联系电话" />
+      </div>
+
+      <div class="form-group">
+        <label>合同编号：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('contract_number').invalid"
+               formControlName="contract_number" type="text" class="form-control input" placeholder="请输入项目编号" />
+      </div>
+
+      <div class="form-group">
+        <label>委托单位：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('entrustment_unit').invalid"
+               formControlName="entrustment_unit" type="text" class="form-control input" placeholder="请输入委托单位名称" />
+      </div>
+
+      <div class="form-group">
+        <label>委托编号：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('entrustment_number').invalid"
+               formControlName="entrustment_number" type="text" class="form-control input" placeholder="请输入委托编号" />
+      </div>
+
+      <div class="form-group">
+      <label>委托项目：</label>
+      <input [class.invalid]="isSubmit && projectForm.get('entrustment_project').invalid"
+             formControlName="entrustment_project" type="text" class="form-control input" placeholder="请输入委托项目名称" />
+    </div>
+
+      <div class="form-group">
+        <label>检测要求和依据：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('testing_requirements').invalid"
+               formControlName="testing_requirements" type="text" class="form-control input" placeholder="请输入检测要求和依据" />
+      </div>
+
+      <div class="form-group">
+        <label>委托方提供的资料：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('information_of_the_client').invalid"
+               formControlName="information_of_the_client" type="text" class="form-control input" placeholder="请输入委托方提供资料" />
+      </div>
+
+      <div class="form-group">
+        <label>任务完成部门：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('department').invalid"
+               formControlName="department" type="text" class="form-control input" placeholder="请输入委托项目名称" />
+      </div>
+
+      <div class="form-group">
+        <label>要求进场时间：</label>
+        <input id='approach' data-options='{}' placeholder="请选择时间" readonly
+               formControlName="approach" type="text" class="form-control dateTime" />
+      </div>
+
+      <div class="form-group">
+        <label>预计完成时间：</label>
+        <input id='complete' data-options='{}' placeholder="请选择时间" readonly
+               formControlName="complete" type="text" class="form-control dateTime" />
+      </div>
+
+      <shengxiang-user-select
+        [projectForm]="getFormValue(projectForm)"
+        [text]="'部门负责人'"
+        [userId]="projectForm.get('person_in_charge').value"
+        [key]="'person_in_charge'"
+      ></shengxiang-user-select>
+
+      <shengxiang-user-select
+        [projectForm]="getFormValue(projectForm)"
+        [text]="'经理'"
+        [userId]="projectForm.get('manager').value"
+        [key]="'manager'"
+      ></shengxiang-user-select>
+
+      <!--<shengxiang-user-select-->
+        <!--[projectForm]="getFormValue(projectForm)"-->
+        <!--[text]="'编制人'"-->
+        <!--[userId]="projectForm.get('author').value"-->
+        <!--[key]="'author'"-->
+        <!--&gt;</shengxiang-user-select>-->
+
+      <!--<shengxiang-user-select-->
+        <!--[projectForm]="getFormValue(projectForm)"-->
+        <!--[text]="'校核人'"-->
+        <!--[userId]="projectForm.get('checker').value"-->
+        <!--[key]="'checker'"-->
+      <!--&gt;</shengxiang-user-select>-->
+
+      <!--<shengxiang-user-select-->
+        <!--[projectForm]="getFormValue(projectForm)"-->
+        <!--[text]="'审核人'"-->
+        <!--[userId]="projectForm.get('examine').value"-->
+        <!--[key]="'examine'"-->
+      <!--&gt;</shengxiang-user-select>-->
+
+      <!--<shengxiang-user-select-->
+        <!--[projectForm]="getFormValue(projectForm)"-->
+        <!--[text]="'批准人'"-->
+        <!--[userId]="projectForm.get('leader').value"-->
+        <!--[key]="'leader'"-->
+      <!--&gt;</shengxiang-user-select>-->
+
+
+      <div class="text-center btns">
+        <input type="submit" class="btn btn-success">
+        <input type="button" value="清空" class="btn btn-danger" (click)="revert()" />
+      </div>
+    </form>
+  </div>
+</div>

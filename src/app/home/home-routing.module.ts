@@ -1,32 +1,23 @@
-import { Routes, RouterModule } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { Test2Component } from './test2/test2.component';
+import { CreateProjectComponent } from './create-project/create-project.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectComponent } from './project/project.component';
+import { UserListComponent } from './user-list/user-list.component';
 
-import { HomeComponent } from "./home/home.component";
-import { TableComponent } from './table/table.component';
-import { ShopComponent } from './shop/shop.component';
-import { OrderComponent } from './order/order.component';
-const routes: Routes = [{
-	path: '',
-	component: HomeComponent,
-	children: [{
-		path: '',
-		component: TableComponent
-	}, {
-		path: 'shop',
-		component: ShopComponent
-	}, {
-		path: 'shop/:id',
-		component: ShopComponent
-	}, {
-		path: 'order',
-		component: OrderComponent
-	}]
-}]
+const routes: Routes = [
+  { path: '', component: CreateProjectComponent },
+  { path: 'sign', component: Test2Component },
+  { path: 'create-project', component: CreateProjectComponent },
+  { path: 'projects', component: ProjectsComponent },
+  { path: 'project/:id', component: ProjectComponent },
+  { path: 'user-list', component: UserListComponent },
+];
 
 @NgModule({
-	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule],
-	providers: []
-
+  imports: [ RouterModule.forChild(routes) ],
+  exports: [ RouterModule ],
+  providers: []
 })
 export class HomeRoutingModule {}

@@ -1,0 +1,38 @@
+.user_list ul {
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+.user_list li {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+.user_list li:last-child {
+  border-bottom: none;
+}
+.user_list li img {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  float: left;
+  margin: 0 1rem;
+  background-size: 100%;
+  border-radius: 100%;
+}
+.user_list li span {
+  line-height: 2.5rem;
+  font-size: 1rem;
+}
+.user_list li span.remake {
+  float: right;
+  margin-right: 1rem;
+}
+
+
+.user_list li.active {
+  background-color: #5cb85c;
+}
+.user_list li.active span {
+  color: #fff;
+}

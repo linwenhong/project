@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { HttpModule } from '@angular/http';
-import { CommonModule }         from '@angular/common';
-import { FormsModule }          from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule }  from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent }  from './login.component';
+import { LoginComponent } from './login.component';
+
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,18 +16,17 @@ import { LoginComponent }  from './login.component';
     LoginComponent
   ],
   imports: [
-  	NgbModule.forRoot(),
-  	HttpModule,
-  	CommonModule,
-    BrowserModule,
     FormsModule,
-    AppRoutingModule
+    BrowserModule,
+    AppRoutingModule,
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-	 constructor(router: Router) {
-    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+  constructor(router: Router) {
+    // console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   }
 }

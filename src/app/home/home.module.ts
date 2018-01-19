@@ -1,21 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }          from '@angular/forms';
-import { HomeComponent } from './home/home.component';
-import { HomeRoutingModule } from "./home-routing.module";
-import { TableComponent } from './table/table.component';
-import { ShopComponent } from './shop/shop.component';
-import { OrderComponent } from './order/order.component';
-import { HomeService } from './home.service';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { SharedModule } from '../shared/shared.module';
+import { HomeRoutingModule } from './home-routing.module';
+import { Test2Component } from './test2/test2.component';
+import { CreateProjectComponent } from './create-project/create-project.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectComponent } from './project/project.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
-	imports: [
-		FormsModule,
-		CommonModule,
-		HomeRoutingModule
-	],
-	declarations: [HomeComponent, TableComponent, ShopComponent, OrderComponent],
-	providers: [ HomeService ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
+  ],
+  declarations: [
+    Test2Component,
+    CreateProjectComponent,
+    ProjectsComponent,
+    ProjectComponent,
+    UserListComponent,
+  ]
 })
-export class HomeModule {}
+export class HomeModule { }
