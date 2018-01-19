@@ -5,7 +5,7 @@ function setDateTimeGroup(select) {
 
     items.each( function (i, value) {
       value.addEventListener('tap', function() {
-        // document.getElementById('shelteringLayer').style.display = 'block';
+        document.getElementById('shelteringLayer').style.display = 'block';
         var optionsJson = this.getAttribute('data-options') || '{}';
         var options = JSON.parse(optionsJson);
         var id = this.getAttribute('id');
@@ -15,6 +15,15 @@ function setDateTimeGroup(select) {
          * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
          */
         var picker = new $.DtPicker(options);
+
+        /*
+         * (新增)日期组件取消按钮监听
+         */
+        $('.mui-btn')[0].addEventListener('tap', function () {
+          picker.dispose();
+          document.getElementById('shelteringLayer').style.display = 'none';
+        });
+
         picker.show(function(rs) {
           /*
            * rs.value 拼合后的 value
@@ -37,13 +46,17 @@ function setDateTimeGroup(select) {
            * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
            */
           picker.dispose();
-          document.getElementById('shelteringLayer').style.display = 'none';
 
           if (rs.text) {
-            $('.'+id)[0].value = rs.text;
+            $('#'+id)[0].value = rs.text;
+            document.getElementById('shelteringLayer').style.display = 'none';
           }
         });
       }, false)
     });
   })(mui);
+}
+
+function getDateTime(select) {
+  return $(select).val();
 }

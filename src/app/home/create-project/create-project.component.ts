@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { User } from '../../common/user';
   templateUrl: './create-project.component.html',
   styleUrls: ['./create-project.component.css']
 })
-export class CreateProjectComponent implements OnInit {
+export class CreateProjectComponent implements OnInit, AfterViewChecked {
   projectForm: FormGroup;
   isSubmit: boolean = false;
   projectFormKeys: string[] = [
@@ -32,12 +32,14 @@ export class CreateProjectComponent implements OnInit {
     'person_in_charge',
     'manager',
 
-    'author',
-    'checker',
-    'examine',
-    'leader'
+    // 'author',
+    // 'checker',
+    // 'examine',
+    // 'leader'
   ];
   users: User[];
+
+  canSetDateTimeGroup: boolean = true;
 
   constructor(
     private router: Router,
@@ -56,9 +58,13 @@ export class CreateProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
 
-
-    setDateTimeGroup('.dataTime');
+  ngAfterViewChecked() {
+    if (this.canSetDateTimeGroup && this.projectForm) {
+      this.canSetDateTimeGroup = false;
+      setDateTimeGroup('.dateTime');
+    }
   }
 
   createForm(): void {
@@ -75,21 +81,27 @@ export class CreateProjectComponent implements OnInit {
       information_of_the_client: ['', Validators.required],
 
       department: ['', Validators.required],
-      approach: ['', Validators.required],
-      complete: ['', Validators.required],
+      approach: '',
+      complete: '',
       person_in_charge: [null, Validators.required],
       manager: [null, Validators.required],
-
-      author: [null, Validators.required],
-      checker: [null, Validators.required],
-      examine: [null, Validators.required],
-      leader: [null, Validators.required],
+      //
+      // author: [null, Validators.required],
+      // checker: [null, Validators.required],
+      // examine: [null, Validators.required],
+      // leader: [null, Validators.required],
     });
   }
 
   getFormValue(form: FormGroup): Project {
     const formValue = new Project();
-    this.projectFormKeys.forEach(key => formValue[key] = form.get(key).value);
+    this.projectFormKeys.forEach(key => {
+      if (key !== 'approach' && key !== 'complete') {
+        formValue[key] = form.get(key).value;
+      } else {
+        formValue[key] = getDateTime('#' + key);
+      }
+    });
     return formValue;
   }
 
@@ -101,6 +113,10 @@ export class CreateProjectComponent implements OnInit {
     this.isSubmit = true;
     if (form.status === 'INVALID') {
       notify('info', '必要信息缺少', '请完善信息!');
+      return;
+    }
+    if (!getDateTime('#approach') || !getDateTime('#complete')) {
+      notify('info', '缺少时间', '请选择相关时间!');
       return;
     }
     const request = this.getFormValue(form);
@@ -116,10 +132,10 @@ export class CreateProjectComponent implements OnInit {
     this.projectForm.reset({
       person_in_charge: this.projectForm.get('person_in_charge').value,
       manager: this.projectForm.get('manager').value,
-      author: this.projectForm.get('author').value,
-      checker: this.projectForm.get('checker').value,
-      examine: this.projectForm.get('examine').value,
-      leader: this.projectForm.get('leader').value
+      // author: this.projectForm.get('author').value,
+      // checker: this.projectForm.get('checker').value,
+      // examine: this.projectForm.get('examine').value,
+      // leader: this.projectForm.get('leader').value
     });
   }
 }
