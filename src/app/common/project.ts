@@ -17,7 +17,7 @@ export class Project {
   manager: number;
 
   id: number;
-  create_time: string;
+  create_time: number;
   progress_index: number;
 
   author: number;
