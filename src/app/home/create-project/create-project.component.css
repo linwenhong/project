@@ -24,3 +24,32 @@
 input.form-control {
   margin-bottom: 0;
 }
+
+.approval_user {
+  display: inline-block;
+  padding-top: 0.5rem;
+  border-top: 1px solid #ccc;
+}
+.approval_user form-group {
+  width: 100%;
+}
+.approval_user .approval {
+  width: 100%;
+  float: right;
+}
+.approval_user .approval_option {
+  text-align: right;
+}
+.approval_user .approval_option .option {
+  width: 14.5rem;
+  padding-left: 0.5rem;
+  float: right;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+.approval_user .approval_option .option span {
+  color: red;
+}
+.approval_user .approval_option .option span.agree {
+  color: green;
+}
