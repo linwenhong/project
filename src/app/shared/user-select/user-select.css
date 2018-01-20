@@ -3,7 +3,7 @@
 }
 
 .user {
-  width: 17rem;
+  width: 15rem;
   float: right;
 }
 .user .img {
@@ -23,4 +23,7 @@
 }
 .user img.user_picture {
   border-radius: 100%;
+}
+.user p {
+  margin-bottom: 0.5rem;
 }

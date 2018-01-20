@@ -38,9 +38,9 @@
     </div>
 
     <div class="form-group">
-      <label>委托项目：</label>
-      <input disabled [value]="project.entrustment_project" type="text" class="form-control" />
-    </div>
+    <label>委托项目：</label>
+    <input disabled [value]="project.entrustment_project" type="text" class="form-control" />
+  </div>
 
     <div class="form-group">
       <label>检测要求和依据：</label>
@@ -48,40 +48,72 @@
     </div>
 
     <div class="form-group">
-      <label>委托方提供的资料：</label>
+      <label>委托方提供资料：</label>
       <input disabled [value]="project.information_of_the_client" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>任务完成部门：</label>
+      <input disabled [value]="project.department" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>要求进场时间：</label>
+      <input disabled [value]="project.approach" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>预计完成时间：</label>
+      <input disabled [value]="project.complete" type="text" class="form-control" />
     </div>
 
     <shengxiang-user-select
       [projectForm]="project"
-      [text]="'编制人'"
-      [userId]="project.author"
-      [key]="'author'"
+      [text]="'部门负责人'"
+      [userId]="project.person_in_charge"
+      [key]="'person_in_charge'"
       [canEditUser]="false"
     ></shengxiang-user-select>
 
     <shengxiang-user-select
       [projectForm]="project"
-      [text]="'校核人'"
-      [userId]="project.checker"
-      [key]="'checker'"
+      [text]="'总(副总)经理'"
+      [userId]="project.manager"
+      [key]="'manager'"
       [canEditUser]="false"
     ></shengxiang-user-select>
 
-    <shengxiang-user-select
-      [projectForm]="project"
-      [text]="'审核人'"
-      [userId]="project.examine"
-      [key]="'examine'"
-      [canEditUser]="false"
-    ></shengxiang-user-select>
+    <!--<shengxiang-user-select-->
+      <!--[projectForm]="project"-->
+      <!--[text]="'编制人'"-->
+      <!--[userId]="project.author"-->
+      <!--[key]="'author'"-->
+      <!--[canEditUser]="false"-->
+    <!--&gt;</shengxiang-user-select>-->
 
-    <shengxiang-user-select
-      [projectForm]="project"
-      [text]="'批准人'"
-      [userId]="project.leader"
-      [key]="'leader'"
-      [canEditUser]="false"
-    ></shengxiang-user-select>
+    <!--<shengxiang-user-select-->
+      <!--[projectForm]="project"-->
+      <!--[text]="'校核人'"-->
+      <!--[userId]="project.checker"-->
+      <!--[key]="'checker'"-->
+      <!--[canEditUser]="false"-->
+    <!--&gt;</shengxiang-user-select>-->
+
+    <!--<shengxiang-user-select-->
+      <!--[projectForm]="project"-->
+      <!--[text]="'审核人'"-->
+      <!--[userId]="project.examine"-->
+      <!--[key]="'examine'"-->
+      <!--[canEditUser]="false"-->
+    <!--&gt;</shengxiang-user-select>-->
+
+    <!--<shengxiang-user-select-->
+      <!--[projectForm]="project"-->
+      <!--[text]="'批准人'"-->
+      <!--[userId]="project.leader"-->
+      <!--[key]="'leader'"-->
+      <!--[canEditUser]="false"-->
+    <!--&gt;</shengxiang-user-select>-->
+
   </div>
 </div>

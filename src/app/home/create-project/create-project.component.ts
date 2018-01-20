@@ -112,11 +112,11 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
   submit(form: FormGroup): void {
     this.isSubmit = true;
     if (form.status === 'INVALID') {
-      notify('info', '必要信息缺少', '请完善信息!');
+      muiToast('请完善提交信息');
       return;
     }
     if (!getDateTime('#approach') || !getDateTime('#complete')) {
-      notify('info', '缺少时间', '请选择相关时间!');
+      muiToast('请选择相关时间');
       return;
     }
     const request = this.getFormValue(form);

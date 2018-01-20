@@ -61,7 +61,7 @@
       </div>
 
       <div class="form-group">
-        <label>委托方提供的资料：</label>
+        <label>委托方提供资料：</label>
         <input [class.invalid]="isSubmit && projectForm.get('information_of_the_client').invalid"
                formControlName="information_of_the_client" type="text" class="form-control input" placeholder="请输入委托方提供资料" />
       </div>
@@ -93,7 +93,7 @@
 
       <shengxiang-user-select
         [projectForm]="getFormValue(projectForm)"
-        [text]="'经理'"
+        [text]="'总(副总)经理'"
         [userId]="projectForm.get('manager').value"
         [key]="'manager'"
       ></shengxiang-user-select>
@@ -128,8 +128,8 @@
 
 
       <div class="text-center btns">
-        <input type="submit" class="btn btn-success">
-        <input type="button" value="清空" class="btn btn-danger" (click)="revert()" />
+        <input type="submit">
+        <input type="button" value="清空" (click)="revert()" />
       </div>
     </form>
   </div>

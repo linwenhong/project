@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit {
   options(option: boolean): void {
     if (option) {
       if (!this.selectedUser) {
-        notify('error', '未选择用户', '请先选择用户');
+        muiToast('请先选择用户');
         return;
       }
       this.projectForm[this.editUserKey] = this.selectedUser.id;

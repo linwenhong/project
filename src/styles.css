@@ -1,5 +1,5 @@
 body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
-body{font:1rem"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;}
+body{font-size:0.8rem;background:#fff;-webkit-text-size-adjust:100%;}
 a{color:#2d374b;text-decoration:none}
 a:hover,a:focus{text-decoration:none}
 em{font-style:normal}
@@ -10,7 +10,10 @@ p{word-wrap:break-word}
 
 * {
 	/*outline: none;*/
+  padding: 0;
+  margin: 0;
 }
+h1,h2,h3,h4,h5,h6{padding: 0.8rem}
 
 /*去除ios默认样式*/
 input[type="button"],

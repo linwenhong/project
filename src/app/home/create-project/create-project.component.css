@@ -1,3 +1,6 @@
+.project form {
+  display: inline-block;
+}
 .project form input.invalid {
   border: 1px solid #ec7373;
 }
@@ -7,15 +10,17 @@
 .project .form-group {
   float: right;
 }
-.project .form-group label {
-  margin-top: 0.35rem;
-  padding-right: 0.3rem;
+.form-group label {
+  margin-top: 0.5rem;
 }
 .project .form-control {
-  width: 16rem;
+  width: 15rem;
   float: right;
 }
 .btns {
   width: 100%;
   float: left;
+}
+input.form-control {
+  margin-bottom: 0;
 }
