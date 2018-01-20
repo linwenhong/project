@@ -16,12 +16,12 @@ export class Project {
   person_in_charge: number;
   manager: number;
 
+  id: number;
+  create_time: number;
+  progress_index: number;
+
   author: number;
   checker: number;
   examine: number;
   leader: number;
-
-  id: number;
-  create_time: string;
-  progress_index: number;
 }
