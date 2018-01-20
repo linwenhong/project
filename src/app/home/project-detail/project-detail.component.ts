@@ -29,7 +29,7 @@ export class ProjectDetailComponent implements OnInit {
       this.http.get('assets/json/projects.json').toPromise().then(projects => {
         // for (const project of projects.json()) {
         for (const project of JSON.parse(localStorage.getItem('projects'))) {
-          if (project.id == this.projectId) {
+          if (project.id === Number(this.projectId)) {
             this.project = project;
             console.log(this.project);
             return;
@@ -41,7 +41,7 @@ export class ProjectDetailComponent implements OnInit {
 
   getUserName(id: number): string {
     for (const user of this.userList) {
-      if (user.id == id) {
+      if (user.id === Number(id)) {
         return user.name;
       }
     }
