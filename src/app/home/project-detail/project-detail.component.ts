@@ -6,11 +6,11 @@ import { Project } from '../../common/project';
 import { User } from '../../common/user';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css', '../create-project/create-project.component.css']
+  selector: 'app-project-detail',
+  templateUrl: './project-detail.component.html',
+  styleUrls: ['./project-detail.component.css', '../create-project/create-project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit {
   project: Project;
   userList: User[];
   projectId: number;
@@ -47,13 +47,4 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  options(option: boolean): void {
-    console.log(option);
-    this.router.navigate(['/home/approval'], {
-      queryParams: {
-        id: this.projectId,
-        option: option
-      }
-    });
-  }
 }

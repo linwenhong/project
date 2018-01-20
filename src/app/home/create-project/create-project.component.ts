@@ -123,8 +123,28 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     this.setPatchValue(form, request);
     console.log(request);
     /**
-     TODO:提交项目申请表数据 => 跳转页面
+     *TODO:提交项目申请表数据 => 跳转页面
+     *simulation：模拟方法
     **/
+    this.simulation(request);
+  }
+
+  simulation(project: Project): void {
+    const time = new Date().getTime();
+    project.id = time;
+    project.create_time = time;
+    project.progress_index = 1;
+    sessionStorage.removeItem('projectForm');
+    const projectsJson = localStorage.getItem('projects');
+    let projects: Project[];
+    if (!projectsJson) {
+      projects = [project];
+    } else {
+      projects = JSON.parse(projectsJson);
+      projects.push(project);
+    }
+    localStorage.setItem('projects', JSON.stringify(projects));
+    console.log(projects);
   }
 
   revert() {
