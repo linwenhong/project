@@ -16,7 +16,8 @@ export class ProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get('assets/json/projects.json').toPromise().then(projects => this.projects = projects.json());
+    // this.http.get('assets/json/projects.json').toPromise().then(projects => this.projects = projects.json());
+    this.projects = JSON.parse(localStorage.getItem('projects'));
   }
 
 }

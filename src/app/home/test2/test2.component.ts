@@ -32,7 +32,7 @@ export class Test2Component implements OnInit {
   // approve
   submit(): void {
     if (!this.isSign) {
-      notify('info', '签名未确认', '请进行签名确认!');
+      muiToast('请进行签名确认!');
       return;
     }
     const request = {

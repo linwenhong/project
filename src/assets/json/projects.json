@@ -1,6 +1,5 @@
 [
   {
-    "id": 2018011614021265,
     "name": "项目001",
     "place": "XX",
     "contacts": "XX",
@@ -11,49 +10,74 @@
     "entrustment_project": "XX",
     "testing_requirements": "XX",
     "information_of_the_client": "XX",
-    "author": "101",
-    "checker": "102",
-    "examine": "103",
-    "leader": "104",
-    "create_time": "2018-01-16",
-    "progress_index": 2
+    "department": "XX",
+    "approach": "2018-01-16 10:08",
+    "complete": "2018-01-16 10:08",
+    "person_in_charge": 101,
+    "manager": 102,
+
+
+    "id": 2018011614021265,
+    "create_time": "2018-01-16 10:08",
+    "progress_index": 2,
+
+    "author": 101,
+    "checker": 102,
+    "examine": 103,
+    "leader": 104
   },
   {
-    "id": 2018011511257896,
     "name": "项目002",
     "place": "XX",
     "contacts": "XX",
     "telephone": 18315446325,
-    "contract_number": "201801169845",
+    "contract_number": "201801163120",
     "entrustment_unit": "XX",
     "entrustment_number": "18315446325XXX",
     "entrustment_project": "XX",
     "testing_requirements": "XX",
     "information_of_the_client": "XX",
-    "author": "101",
-    "checker": "102",
-    "examine": "103",
-    "leader": "104",
-    "create_time": "2018-01-16",
-    "progress_index": 3
+    "department": "XX",
+    "approach": "2018-01-16 10:08",
+    "complete": "2018-01-16 10:08",
+    "person_in_charge": 101,
+    "manager": 102,
+
+
+    "id": 2018011614421265,
+    "create_time": "2018-01-16 10:08",
+    "progress_index": 2,
+
+    "author": 101,
+    "checker": 102,
+    "examine": 103,
+    "leader": 104
   },
   {
-    "id": 2018011511406587,
     "name": "项目003",
     "place": "XX",
     "contacts": "XX",
     "telephone": 18315446325,
-    "contract_number": "201801166541",
+    "contract_number": "201801163120",
     "entrustment_unit": "XX",
     "entrustment_number": "18315446325XXX",
     "entrustment_project": "XX",
     "testing_requirements": "XX",
     "information_of_the_client": "XX",
-    "author": "101",
-    "checker": "102",
-    "examine": "103",
-    "leader": "104",
-    "create_time": "2018-01-16",
-    "progress_index": 4
+    "department": "XX",
+    "approach": "2018-01-16 10:08",
+    "complete": "2018-01-16 10:08",
+    "person_in_charge": 101,
+    "manager": 102,
+
+
+    "id": 2018011614021365,
+    "create_time": "2018-01-16 10:08",
+    "progress_index": 2,
+
+    "author": 101,
+    "checker": 102,
+    "examine": 103,
+    "leader": 104
   }
 ]
