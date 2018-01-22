@@ -12,6 +12,7 @@ import { ProjectComponent } from './project/project.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { CreateReportComponent } from './create-report/create-report.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     UserListComponent,
     ApprovalComponent,
     ProjectDetailComponent,
+    CreateReportComponent,
   ]
 })
 export class HomeModule { }

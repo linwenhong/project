@@ -7,6 +7,7 @@ import { ProjectComponent } from './project/project.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { CreateReportComponent } from './create-report/create-report.component';
 
 const routes: Routes = [
   { path: '', component: CreateProjectComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'user-list', component: UserListComponent },
   { path: 'approval', component: ApprovalComponent },
   { path: 'project-detail/:id', component: ProjectDetailComponent },
+  { path: 'create-report', component: CreateReportComponent },
 ];
 
 @NgModule({

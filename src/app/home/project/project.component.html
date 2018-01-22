@@ -74,7 +74,7 @@
 
     <div class="approval_user" *ngIf="project.progress_index > 1">
       <shengxiang-user-select
-        [projectForm]="project"
+        [editForm]="project"
         [text]="'部门负责人'"
         [userId]="project.person_in_charge"
         [key]="'person_in_charge'"
@@ -98,7 +98,7 @@
 
     <div class="approval_user" *ngIf="project.progress_index > 2">
       <shengxiang-user-select
-        [projectForm]="project"
+        [editForm]="project"
         [text]="'总(副总)经理'"
         [userId]="project.manager"
         [key]="'manager'"
@@ -119,40 +119,6 @@
         </div>
       </div>
     </div>
-
-
-
-    <!--<shengxiang-user-select-->
-      <!--[projectForm]="project"-->
-      <!--[text]="'编制人'"-->
-      <!--[userId]="project.author"-->
-      <!--[key]="'author'"-->
-      <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
-
-    <!--<shengxiang-user-select-->
-      <!--[projectForm]="project"-->
-      <!--[text]="'校核人'"-->
-      <!--[userId]="project.checker"-->
-      <!--[key]="'checker'"-->
-      <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
-
-    <!--<shengxiang-user-select-->
-      <!--[projectForm]="project"-->
-      <!--[text]="'审核人'"-->
-      <!--[userId]="project.examine"-->
-      <!--[key]="'examine'"-->
-      <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
-
-    <!--<shengxiang-user-select-->
-      <!--[projectForm]="project"-->
-      <!--[text]="'批准人'"-->
-      <!--[userId]="project.leader"-->
-      <!--[key]="'leader'"-->
-      <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
 
   </div>
 </div>
