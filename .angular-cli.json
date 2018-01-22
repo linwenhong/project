@@ -19,7 +19,6 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "libs/mui/css/mui.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "libs/jquery-notifyjs/styles/metro/notify-metro.css",
         "libs/mui/css/mui.picker.min.css",

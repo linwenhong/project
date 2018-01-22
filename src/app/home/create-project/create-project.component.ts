@@ -85,11 +85,6 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
       complete: '',
       person_in_charge: [null, Validators.required],
       manager: [null, Validators.required],
-      //
-      // author: [null, Validators.required],
-      // checker: [null, Validators.required],
-      // examine: [null, Validators.required],
-      // leader: [null, Validators.required],
     });
   }
 
@@ -124,7 +119,7 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     console.log(request);
     /**
      *TODO:提交项目申请表数据 => 跳转页面
-     *simulation：模拟方法
+     *simulation：模拟方法(保存提交数据)
     **/
     this.simulation(request);
   }
@@ -152,10 +147,6 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     this.projectForm.reset({
       person_in_charge: this.projectForm.get('person_in_charge').value,
       manager: this.projectForm.get('manager').value,
-      // author: this.projectForm.get('author').value,
-      // checker: this.projectForm.get('checker').value,
-      // examine: this.projectForm.get('examine').value,
-      // leader: this.projectForm.get('leader').value
     });
   }
 }

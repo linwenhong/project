@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { User } from '../../common/user';
 import { Project } from '../../common/project';
+import { Report } from '../../common/report';
 
 @Component({
   selector: 'app-user-list',
@@ -13,8 +14,10 @@ import { Project } from '../../common/project';
 export class UserListComponent implements OnInit {
   users: User[];
   selectedUser: User;
-  projectForm: Project;
+  editForm: Project | Report;
+  editFormName: string;
   editUserKey: string;
+  url: string;
 
   constructor(
     private http: Http,
@@ -22,12 +25,14 @@ export class UserListComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
+      this.editFormName = queryParams.editFormName;
       this.editUserKey = queryParams.editUserKey;
+      this.url = queryParams.url;
     });
   }
 
   ngOnInit() {
-    this.projectForm = JSON.parse(sessionStorage.getItem('projectForm'));
+    this.editForm = JSON.parse(sessionStorage.getItem(this.editFormName));
     this.http.get('assets/json/users.json').toPromise().then(response => {
       this.users = response.json();
     });
@@ -43,9 +48,9 @@ export class UserListComponent implements OnInit {
         muiToast('请先选择用户');
         return;
       }
-      this.projectForm[this.editUserKey] = this.selectedUser.id;
-      sessionStorage.setItem('projectForm', JSON.stringify(this.projectForm));
+      this.editForm[this.editUserKey] = this.selectedUser.id;
+      sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     }
-    this.router.navigate(['/home']);
+    this.router.navigate([this.url]);
   }
 }
