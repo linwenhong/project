@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { User } from '../../common/user';
 import { Project } from '../../common/project';
+import { Report } from '../../common/report';
 
 @Component({
   selector: 'shengxiang-user-select',
@@ -12,9 +13,11 @@ import { Project } from '../../common/project';
 export class UserSelectComponent implements OnInit {
   @Input() text: string;
   @Input() userId: number;
-  @Input() projectForm: Project;
+  @Input() editForm: Project | Report;
+  @Input() editFormName: string = 'projectForm';
   @Input() key: string;
   @Input() canEditUser: boolean = true;
+  @Input() url: string;
   // @Output() manualFiltered: EventEmitter<any> = new EventEmitter();
 
   users: User[];
@@ -30,17 +33,19 @@ export class UserSelectComponent implements OnInit {
   }
 
   toSelectUser(): void {
-    sessionStorage.setItem('projectForm', JSON.stringify(this.projectForm));
+    sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     this.router.navigate(['/home/user-list'], {
       queryParams: {
-        editUserKey: this.key
+        editFormName: this.editFormName,
+        editUserKey: this.key,
+        url: this.url
       }
     });
   }
 
   getUser(id: number, key: string): User {
     for (const user of this.users) {
-      if (user.id == id) {
+      if (user.id === Number(id)) {
         return user[key];
       }
     }

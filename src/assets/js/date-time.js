@@ -5,7 +5,6 @@ function setDateTimeGroup(select) {
 
     items.each( function (i, value) {
       value.addEventListener('tap', function() {
-        // document.getElementById('shelteringLayer').style.display = 'block';
         var optionsJson = this.getAttribute('data-options') || '{}';
         var options = JSON.parse(optionsJson);
         var id = this.getAttribute('id');
@@ -15,14 +14,6 @@ function setDateTimeGroup(select) {
          * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
          */
         var picker = new $.DtPicker(options);
-
-        /*
-         * (新增)日期组件取消按钮监听
-         */
-        // $('.mui-btn')[0].addEventListener('tap', function () {
-        //   picker.dispose();
-        //   document.getElementById('shelteringLayer').style.display = 'none';
-        // });
 
         picker.show(function(rs) {
           /*
@@ -49,7 +40,6 @@ function setDateTimeGroup(select) {
 
           if (rs.text) {
             $('#'+id)[0].value = rs.text;
-            // document.getElementById('shelteringLayer').style.display = 'none';
           }
         });
       }, false)
@@ -61,5 +51,9 @@ function getDateTime(select) {
   return $(select).val();
 }
 function muiToast(string) {
-  mui.toast(string);
+  $('#warning .text').text(string);
+  $('#warning .text').show();
+  setTimeout(function () {
+    $('#warning .text').hide();
+  }, 1500);
 }

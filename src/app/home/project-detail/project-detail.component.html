@@ -67,53 +67,58 @@
       <input disabled [value]="project.complete" type="text" class="form-control" />
     </div>
 
-    <shengxiang-user-select
-      [projectForm]="project"
-      [text]="'部门负责人'"
-      [userId]="project.person_in_charge"
-      [key]="'person_in_charge'"
-      [canEditUser]="false"
-    ></shengxiang-user-select>
+    <div class="form-group">
 
-    <shengxiang-user-select
-      [projectForm]="project"
-      [text]="'总(副总)经理'"
-      [userId]="project.manager"
-      [key]="'manager'"
-      [canEditUser]="false"
-    ></shengxiang-user-select>
+    </div>
 
-    <!--<shengxiang-user-select-->
-    <!--[projectForm]="project"-->
-    <!--[text]="'编制人'"-->
-    <!--[userId]="project.author"-->
-    <!--[key]="'author'"-->
-    <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
 
-    <!--<shengxiang-user-select-->
-    <!--[projectForm]="project"-->
-    <!--[text]="'校核人'"-->
-    <!--[userId]="project.checker"-->
-    <!--[key]="'checker'"-->
-    <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
+    <div class="approval_user">
+      <shengxiang-user-select
+        [editForm]="project"
+        [text]="'部门负责人'"
+        [userId]="project.person_in_charge"
+        [key]="'person_in_charge'"
+        [canEditUser]="false"
+      ></shengxiang-user-select>
 
-    <!--<shengxiang-user-select-->
-    <!--[projectForm]="project"-->
-    <!--[text]="'审核人'"-->
-    <!--[userId]="project.examine"-->
-    <!--[key]="'examine'"-->
-    <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
+      <div class="approval">
+        <div class="approval_option">
+          审批意见:
+          <div class="option">
+            <span class="agree" *ngIf="project.is_person_in_charge_pass">同意</span>
+            <span *ngIf="!project.is_person_in_charge_pass">待审批</span>
 
-    <!--<shengxiang-user-select-->
-    <!--[projectForm]="project"-->
-    <!--[text]="'批准人'"-->
-    <!--[userId]="project.leader"-->
-    <!--[key]="'leader'"-->
-    <!--[canEditUser]="false"-->
-    <!--&gt;</shengxiang-user-select>-->
+            <p class="remake">
+              {{ project.person_in_charge_pass_remake }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="approval_user">
+      <shengxiang-user-select
+        [editForm]="project"
+        [text]="'总(副总)经理'"
+        [userId]="project.manager"
+        [key]="'manager'"
+        [canEditUser]="false"
+      ></shengxiang-user-select>
+
+      <div class="approval">
+        <div class="approval_option">
+          审批意见:
+          <div class="option">
+            <span class="agree" *ngIf="project.is_manager_pass">同意</span>
+            <span *ngIf="!project.is_manager_pass">待审批</span>
+
+            <p class="remake">
+              {{ project.manager_pass_remake }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
