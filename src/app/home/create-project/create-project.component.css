@@ -53,3 +53,9 @@ input.form-control {
 .approval_user .approval_option .option span.agree {
   color: green;
 }
+
+
+.form-group select {
+  height: 2.2rem;
+  line-height: 1.2rem;
+}

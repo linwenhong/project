@@ -8,12 +8,11 @@
       <div class="form-group">
         <label>报告名称：</label>
         <input [class.invalid]="isSubmit && reportForm.get('name').invalid"
-               formControlName="name" type="text" class="form-control input" placeholder="请输入工程名称" />
+               formControlName="name" type="text" class="form-control input" placeholder="请输入报告名称" />
       </div>
 
       <div class="form-group">
         <label>项目名称：</label>
-
         <select class="form-control" formControlName="project">
           <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
         </select>
@@ -21,7 +20,6 @@
 
       <div class="form-group">
         <label>报告类型：</label>
-
         <select class="form-control" formControlName="type">
           <option *ngFor="let type of types" [value]="type.id">{{ type.text }}</option>
         </select>
@@ -29,7 +27,6 @@
 
       <div class="form-group">
         <label>报告格式：</label>
-
         <select class="form-control" formControlName="format">
           <option *ngFor="let format of formats" [value]="format.id">{{ format.text }}</option>
         </select>
@@ -38,21 +35,20 @@
       <div class="form-group">
         <label>样品/记录编号：</label>
         <input [class.invalid]="isSubmit && reportForm.get('record_number').invalid"
-               formControlName="record_number" type="text" class="form-control input" placeholder="请输入委托编号" />
+               formControlName="record_number" type="text" class="form-control input" placeholder="请输入样品/记录编号" />
       </div>
 
       <div class="form-group">
         <label>盲样编号：</label>
         <input [class.invalid]="isSubmit && reportForm.get('blind_sample_number').invalid"
-               formControlName="blind_sample_number" type="text" class="form-control input" placeholder="请输入委托项目名称" />
+               formControlName="blind_sample_number" type="text" class="form-control input" placeholder="请输入盲样编号" />
       </div>
 
       <div class="form-group">
         <label>要素：</label>
         <input [class.invalid]="isSubmit && reportForm.get('element').invalid"
-               formControlName="element" type="text" class="form-control input" placeholder="请输入检测要求和依据" />
+               formControlName="element" type="text" class="form-control input" placeholder="请输入要素" />
       </div>
-
 
 
       <shengxiang-user-select

@@ -54,11 +54,11 @@ export class CreateReportComponent implements OnInit, AfterViewChecked {
   ) {
     this.http.get('assets/json/users.json').toPromise().then(response => {
       this.users = response.json();
-      this.createForm();
-
       this.projects = JSON.parse(localStorage.getItem('projects'));
       this.types = types;
       this.formats = formats;
+
+      this.createForm();
 
       const reportFormCache = JSON.parse(sessionStorage.getItem('reportForm'));
       if (reportFormCache) {
@@ -81,9 +81,9 @@ export class CreateReportComponent implements OnInit, AfterViewChecked {
   createForm(): void {
     this.reportForm = this.fb.group({
       name: ['', Validators.required],
-      project: ['', Validators.required],
-      type: ['', Validators.required],
-      format: ['', Validators.required],
+      project: [this.projects[0].id, Validators.required],
+      type: [this.types[0].id, Validators.required],
+      format: [this.formats[0].id, Validators.required],
       record_number: ['', Validators.required],
       blind_sample_number: ['', Validators.required],
       element: ['', Validators.required],
@@ -114,8 +114,8 @@ export class CreateReportComponent implements OnInit, AfterViewChecked {
     this.setPatchValue(form, request);
     console.log(request);
     /**
-     *TODO:提交项目申请表数据 => 跳转页面
-     *simulation：模拟方法
+     *TODO:提交报告数据 => 跳转页面
+     *simulation：模拟方法(保存提交数据)
      **/
     this.simulation(request);
   }
@@ -140,6 +140,9 @@ export class CreateReportComponent implements OnInit, AfterViewChecked {
   revert() {
     this.isSubmit = false;
     this.reportForm.reset({
+      project: this.projects[0].id,
+      type: this.types[0].id,
+      format: this.formats[0].id,
       person_in_charge: this.reportForm.get('person_in_charge').value,
     });
   }
