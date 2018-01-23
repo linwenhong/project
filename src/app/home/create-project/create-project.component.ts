@@ -9,7 +9,7 @@ import { User } from '../../common/user';
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.css']
+  styleUrls: ['../../../assets/form.css']
 })
 export class CreateProjectComponent implements OnInit, AfterViewChecked {
   projectForm: FormGroup;

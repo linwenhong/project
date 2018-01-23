@@ -8,7 +8,7 @@ import { User } from '../../common/user';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css', '../create-project/create-project.component.css']
+  styleUrls: ['../../../assets/form.css']
 })
 export class ProjectComponent implements OnInit {
   project: Project;

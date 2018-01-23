@@ -22,7 +22,7 @@ const formats = [
 @Component({
   selector: 'app-create-report',
   templateUrl: './create-report.component.html',
-  styleUrls: ['./create-report.component.css', '../create-project/create-project.component.css']
+  styleUrls: ['../../../assets/form.css']
 })
 
 export class CreateReportComponent implements OnInit, AfterViewChecked {

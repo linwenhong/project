@@ -15,7 +15,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { CreateReportComponent } from './create-report/create-report.component';
-import { CreateWrokflowComponent } from './create-wrokflow/create-wrokflow.component';
+import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { MyComponent } from './my/my.component';
     ApprovalComponent,
     ProjectDetailComponent,
     CreateReportComponent,
-    CreateWrokflowComponent,
+    CreateWorkflowComponent,
     MyComponent,
   ]
 })
