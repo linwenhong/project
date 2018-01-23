@@ -1,4 +1,4 @@
-export class Report {
+export class Contract {
   name: string;
   project: number;              /*项目id*/
   type: number;                 /*报告类型id*/

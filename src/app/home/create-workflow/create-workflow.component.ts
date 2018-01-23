@@ -153,6 +153,7 @@ export class CreateWorkflowComponent implements OnInit {
     }
     localStorage.setItem('workflows', JSON.stringify(workflows));
     console.log(workflows);
+    this.router.navigate(['/home']);
   }
 
   revert() {
