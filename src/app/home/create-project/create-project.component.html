@@ -1,8 +1,7 @@
 <h4 class="text-center">创建工程</h4>
 <div class="page">
 
-  <a routerLink="/home/create-report">create-report</a>
-  <a routerLink="/home/projects">projects</a>
+  <a routerLink="/home">home</a>
 
   <div class="project" *ngIf="projectForm">
     <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">
@@ -83,22 +82,6 @@
         <input id='complete' data-options='{}' placeholder="请选择时间" readonly
                formControlName="complete" type="text" class="form-control dateTime" />
       </div>
-
-      <shengxiang-user-select
-        [editForm]="getFormValue(projectForm)"
-        [text]="'部门负责人'"
-        [userId]="projectForm.get('person_in_charge').value"
-        [key]="'person_in_charge'"
-        [url]="'/home/create-project'"
-      ></shengxiang-user-select>
-
-      <shengxiang-user-select
-        [editForm]="getFormValue(projectForm)"
-        [text]="'总(副总)经理'"
-        [userId]="projectForm.get('manager').value"
-        [key]="'manager'"
-        [url]="'/home/create-project'"
-      ></shengxiang-user-select>
 
       <div class="text-center btns">
         <input class="btn btn-primary" type="submit">

@@ -13,22 +13,23 @@
 
       <div class="form-group">
         <label>项目名称：</label>
-        <select class="form-control" formControlName="project">
+        <select *ngIf="projects" class="form-control" formControlName="project">
           <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
         </select>
+        <input *ngIf="!projects" disabled [value]="'暂无可选项目'" type="text" class="form-control" />
       </div>
 
       <div class="form-group">
         <label>报告类型：</label>
         <select class="form-control" formControlName="type">
-          <option *ngFor="let type of types" [value]="type.id">{{ type.text }}</option>
+          <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
         </select>
       </div>
 
       <div class="form-group">
         <label>报告格式：</label>
         <select class="form-control" formControlName="format">
-          <option *ngFor="let format of formats" [value]="format.id">{{ format.text }}</option>
+          <option *ngFor="let format of formats" [value]="format.id">{{ format.name }}</option>
         </select>
       </div>
 

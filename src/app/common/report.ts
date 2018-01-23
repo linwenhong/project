@@ -1,6 +1,6 @@
 export class Report {
   name: string;
-  project: string;
+  project: number;
   type: number;
   format: number;
   record_number: string;

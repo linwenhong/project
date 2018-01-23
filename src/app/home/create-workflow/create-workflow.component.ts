@@ -37,14 +37,16 @@ export class CreateWorkflowComponent implements OnInit {
     private router: Router,
     private http: Http,
     private  fb: FormBuilder
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.projects = JSON.parse(localStorage.getItem('projects'));
     this.reports = JSON.parse(localStorage.getItem('reports'));
     this.types = types;
     this.files = this.projects;
+    
     this.createForm();
+  }
+
+  ngOnInit() {
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
       this.setPatchValue(this.Form, FormCache);

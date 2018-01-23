@@ -29,13 +29,6 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     'department',
     'approach',
     'complete',
-    'person_in_charge',
-    'manager',
-
-    // 'author',
-    // 'checker',
-    // 'examine',
-    // 'leader'
   ];
   users: User[];
 
@@ -46,18 +39,14 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     private http: Http,
     private  fb: FormBuilder
   ) {
-    this.http.get('assets/json/users.json').toPromise().then(response => {
-      this.users = response.json();
-      this.createForm();
-
-      const projectFormCache = JSON.parse(sessionStorage.getItem('projectForm'));
-      if (projectFormCache) {
-        this.setPatchValue(this.projectForm, projectFormCache);
-      }
-    });
+    this.createForm();
   }
 
   ngOnInit() {
+    const projectFormCache = JSON.parse(sessionStorage.getItem('projectForm'));
+    if (projectFormCache) {
+      this.setPatchValue(this.projectForm, projectFormCache);
+    }
   }
 
   ngAfterViewChecked() {
@@ -83,8 +72,6 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
       department: ['', Validators.required],
       approach: '',
       complete: '',
-      person_in_charge: [null, Validators.required],
-      manager: [null, Validators.required],
     });
   }
 
@@ -140,13 +127,11 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     }
     localStorage.setItem('projects', JSON.stringify(projects));
     console.log(projects);
+    this.router.navigate(['/home']);
   }
 
   revert() {
     this.isSubmit = false;
-    this.projectForm.reset({
-      person_in_charge: this.projectForm.get('person_in_charge').value,
-      manager: this.projectForm.get('manager').value,
-    });
+    this.projectForm.reset();
   }
 }
