@@ -24,9 +24,4 @@ export class Project {
   is_manager_pass: boolean;
   person_in_charge_pass_remake: string;
   manager_pass_remake: string;
-
-  author: number;
-  checker: number;
-  examine: number;
-  leader: number;
 }
