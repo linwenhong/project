@@ -128,7 +128,7 @@ export class CreateReportComponent implements OnInit {
     }
     localStorage.setItem('reports', JSON.stringify(reports));
     console.log(reports);
-    this.router
+    this.router.navigate(['/home']);
   }
 
   revert() {
