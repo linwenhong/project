@@ -19,6 +19,7 @@
         </select>
       </div>
 
+    <div *ngIf="getTypeName(Form.get('type').value) == '项目'">
       <shengxiang-user-select
         [editForm]="getFormValue(Form)"
         [editFormName]="'workflowForm'"
@@ -36,6 +37,30 @@
         [key]="'manager'"
         [url]="'/home/create-workflow'"
       ></shengxiang-user-select>
+    </div>
+
+    <div *ngIf="getTypeName(Form.get('type').value) != '项目'">
+      <shengxiang-user-select
+        [editForm]="getFormValue(Form)"
+        [editFormName]="'workflowForm'"
+        [text]="'检测人员'"
+        [userId]="Form.get('testing_person').value"
+        [key]="'testing_person'"
+        [url]="'/home/create-workflow'"
+      ></shengxiang-user-select>
+
+      <shengxiang-user-select
+        [editForm]="getFormValue(Form)"
+        [editFormName]="'workflowForm'"
+        [text]="'校核人员'"
+        [userId]="Form.get('verifying_person').value"
+        [key]="'verifying_person'"
+        [url]="'/home/create-workflow'"
+      ></shengxiang-user-select>
+    </div>
+
+
+
 
       <div class="text-center btns">
         <input class="btn btn-primary" type="submit">

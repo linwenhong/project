@@ -1,11 +1,11 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { Project } from '../../common/project';
 import { Report } from '../../common/report';
-import { User } from '../../common/user';
+import { Workflow } from '../../common/workflow';
 
 const types = [
   { id: 0, name: '项目', key: 'projects' },
@@ -20,14 +20,15 @@ const types = [
 })
 export class CreateWorkflowComponent implements OnInit {
   Form: FormGroup;
-  isSubmit: boolean = false;
+  isSubmit: boolean;
   FormKeys: string[] = [
     'type',
     'fileId',
+    'testing_person',
+    'verifying_person',
     'person_in_charge',
     'manager',
   ];
-  users: User[];
   projects: Project[];
   reports: Report[];
   types: any[];
@@ -42,13 +43,16 @@ export class CreateWorkflowComponent implements OnInit {
     this.reports = JSON.parse(localStorage.getItem('reports'));
     this.types = types;
     this.files = this.projects;
-    
     this.createForm();
   }
 
   ngOnInit() {
+    this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
+      if (this.getTypeName(FormCache.type) === '报告') {
+        this.files = this.reports;
+      }
       this.setPatchValue(this.Form, FormCache);
     }
   }
@@ -57,6 +61,9 @@ export class CreateWorkflowComponent implements OnInit {
     for (const type of types) {
       if (type.id === Number(id)) {
         this.files = this[type.key];
+        this.Form.patchValue({
+          fileId: null
+        });
       }
     }
   }
@@ -71,32 +78,54 @@ export class CreateWorkflowComponent implements OnInit {
 
   createForm(): void {
     this.Form = this.fb.group({
-      type: [this.types[0].id, Validators.required],
+      type: [this.types ? this.types[0].id : null, Validators.required],
       fileId: [null, Validators.required],
-      person_in_charge: [null, Validators.required],
-      manager: [null, Validators.required],
+      // 报告/合同
+      testing_person: null,
+      verifying_person: null,
+      // 项目
+      person_in_charge: null,
+      manager: null,
     });
   }
 
-  getFormValue(form: FormGroup): Project {
-    const formValue = new Project();
+  getFormValue(form: FormGroup): Workflow {
+    const formValue = new Workflow();
     this.FormKeys.forEach(key => {
+      if (this.getTypeName(form.get('type').value) === '项目' &&
+        (key === 'testing_person' || key === 'verifying_person')) {
+        return;
+      }
+      if (this.getTypeName(form.get('type').value) !== '项目' &&
+        (key === 'person_in_charge' || key === 'manager')) {
+        return;
+      }
       formValue[key] = form.get(key).value;
-      if (key === 'fileId') {
+      if (key === 'fileId' || key === 'type') {
         formValue[key] = Number(formValue[key]);
       }
     });
     return formValue;
   }
 
-  setPatchValue(form: FormGroup, patchValue: Project): void {
+  setPatchValue(form: FormGroup, patchValue: Workflow): void {
     form.patchValue(patchValue);
   }
 
   submit(form: FormGroup): void {
     this.isSubmit = true;
-    if (form.status === 'INVALID') {
-      muiToast('请完善提交信息');
+    if (!form.get('fileId').value) {
+      muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
+      return;
+    }
+    if (this.getTypeName(form.get('type').value) !== '项目' &&
+      (!form.get('testing_person').value || !form.get('verifying_person').value)) {
+      muiToast('请选择相关人员');
+      return;
+    }
+    if (this.getTypeName(form.get('type').value) === '项目' &&
+      (!form.get('person_in_charge').value || !form.get('manager').value)) {
+      muiToast('请选择相关人员');
       return;
     }
     const request = this.getFormValue(form);
@@ -109,29 +138,27 @@ export class CreateWorkflowComponent implements OnInit {
     this.simulation(request);
   }
 
-  simulation(project: Project): void {
+  simulation(workflow: Workflow): void {
     const time = new Date().getTime();
-    project.id = time;
-    project.create_time = time;
-    project.progress_index = 1;
-    sessionStorage.removeItem('projectForm');
-    const projectsJson = localStorage.getItem('projects');
-    let projects: Project[];
-    if (!projectsJson) {
-      projects = [project];
+    workflow.id = time;
+    workflow.create_time = time;
+    sessionStorage.removeItem('workflowForm');
+    const workflowJson = localStorage.getItem('workflows');
+    let workflows: Workflow[];
+    if (!workflowJson) {
+      workflows = [workflow];
     } else {
-      projects = JSON.parse(projectsJson);
-      projects.push(project);
+      workflows = JSON.parse(workflowJson);
+      workflows.push(workflow);
     }
-    localStorage.setItem('projects', JSON.stringify(projects));
-    console.log(projects);
+    localStorage.setItem('workflows', JSON.stringify(workflows));
+    console.log(workflows);
   }
 
   revert() {
     this.isSubmit = false;
     this.Form.reset({
-      person_in_charge: this.Form.get('person_in_charge').value,
-      manager: this.Form.get('manager').value,
+      type: this.Form.get('type').value
     });
   }
 }
