@@ -1,6 +1,34 @@
 [
-  { "id": 101, "name": "小白", "picture": "/assets/images/14940_100.png" },
-  { "id": 102, "name": "小蓝", "picture": "/assets/images/15029_100.png" },
-  { "id": 103, "name": "小红", "picture": "/assets/images/16176_100.gif" },
-  { "id": 104, "name": "小黄", "picture": "/assets/images/16253_100.png" }
+  {
+    "id": 101,
+    "username": "bai",
+    "name": "小白",
+    "dp_id": 4421,
+    "avatar": "/assets/images/14940_100.png",
+    "sign_img": "/assets/images/sign_test.png"
+  },
+  {
+    "id": 102,
+    "username": "lan",
+    "name": "小蓝",
+    "dp_id": 4421,
+    "avatar": "/assets/images/15029_100.png",
+    "sign_img": "/assets/images/sign_test.png"
+  },
+  {
+    "id": 103,
+    "username": "hong",
+    "name": "小红",
+    "dp_id": 4421,
+    "avatar": "/assets/images/16176_100.png",
+    "sign_img": "/assets/images/sign_test.png"
+  },
+  {
+    "id": 104,
+    "username": "huang",
+    "name": "小黄",
+    "dp_id": 4421,
+    "avatar": "/assets/images/16253_100.png",
+    "sign_img": "/assets/images/sign_test.png"
+  }
 ]
