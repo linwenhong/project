@@ -1,8 +1,33 @@
-.avatar {
+.top {
+  width: 100%;
+  height: 10.476rem;
+  background-size: 100%;
+  background-image: url("../../../assets/images/user/user_bg.jpg");
+}
+.top .avatar {
+  padding-top: 2rem;
+}
+.top .avatar img {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto;
+  background-size: 100%;
+  border-radius: 50%;
+}
+.top p {
+  margin-top: 0.5rem;
+  color: #eee;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+
+.page .avatar {
   width: 15rem;
   float: right;
 }
-.avatar img {
+.page .avatar img {
   width: 5rem;
   margin-left: 1.5rem;
   background-size: 100%;

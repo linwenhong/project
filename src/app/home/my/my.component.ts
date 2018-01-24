@@ -20,6 +20,7 @@ export class MyComponent implements OnInit {
     'avatar',
     'sign_img',
   ];
+  user: User;
 
   constructor(
     private router: Router,
@@ -34,6 +35,7 @@ export class MyComponent implements OnInit {
     const FormCache = JSON.parse(localStorage.getItem('my'));
     if (FormCache) {
       this.setPatchValue(this.Form, FormCache);
+      this.user = FormCache;
     }
   }
 
