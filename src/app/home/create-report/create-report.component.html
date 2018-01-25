@@ -52,14 +52,14 @@
       </div>
 
 
-      <shengxiang-user-select
+      <app-user-select
         [editForm]="getFormValue(reportForm)"
         [editFormName]="'reportForm'"
         [text]="'负责人'"
         [userId]="reportForm.get('person_in_charge').value"
         [key]="'person_in_charge'"
         [url]="'/home/create-report'"
-      ></shengxiang-user-select>
+      ></app-user-select>
 
       <div class="text-center btns">
         <input class="btn btn-primary" type="submit">

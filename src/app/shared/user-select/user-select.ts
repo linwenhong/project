@@ -6,7 +6,7 @@ import { Project } from '../../common/project';
 import { Report } from '../../common/report';
 
 @Component({
-  selector: 'shengxiang-user-select',
+  selector: 'app-user-select',
   templateUrl: './user-select.html',
   styleUrls: ['./user-select.css']
 })
