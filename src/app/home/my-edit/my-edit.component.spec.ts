@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateWrokflowComponent } from './create-wrokflow.component';
+import { MyEditComponent } from './my-edit.component';
 
-describe('CreateWrokflowComponent', () => {
-  let component: CreateWrokflowComponent;
-  let fixture: ComponentFixture<CreateWrokflowComponent>;
+describe('MyEditComponent', () => {
+  let component: MyEditComponent;
+  let fixture: ComponentFixture<MyEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateWrokflowComponent ]
+      declarations: [ MyEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateWrokflowComponent);
+    fixture = TestBed.createComponent(MyEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

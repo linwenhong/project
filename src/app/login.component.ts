@@ -19,7 +19,7 @@ export class LoginComponent {
 
   login(user, pwd) {
     if (!user || !pwd) {
-      notify('error', '用户名和密码不能为空', '请输入正确的用户名和密码!');
+      muiToast('用户名和密码不能为空');
       return;
     }
     this.http.post(environment.api_url + 'bk_login', {
@@ -32,7 +32,7 @@ export class LoginComponent {
         if (regions.code === '200') {
           this.router.navigate(['/home']);
         } else {
-          notify('error', '登录失败', '请输入正确的用户名和密码!');
+          muiToast('用户名或密码错误');
         }
       });
   }

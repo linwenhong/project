@@ -1,0 +1,117 @@
+
+
+.header {
+  height: 2.5rem;
+  border-bottom: 1px solid #eee;
+}
+.header span {
+  width: 50%;
+  line-height: 2.5rem;
+  float: left;
+  color: #666;
+  font-size: 0.95rem;
+  text-align: center;
+}
+.header span.active {
+  border-bottom: 1px solid #298eff;
+  color: #298eff;
+}
+
+.search {
+  display: inline-block;
+  width: 100%;
+  margin: 1rem 0;
+}
+.type_list {
+  position: relative;
+  width: 6rem;
+  height: 2rem;
+  float: left;
+  margin: 0 2rem 0 1rem;
+  border: 1px solid #ddd;
+}
+.type_list select {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6rem;
+  height: 100%;
+  padding: 0 2rem 0 0.5rem;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  outline: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.type_list .i {
+  width: 1.5rem;
+  height: 100%;
+  float: right;
+  background-color: #ebf4ff;
+  border-left: 1px solid #ddd;
+}
+.type_list .i i {
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0.6rem auto 0;
+  background-size: 100%;
+  background-image: url("../../../assets/images/down.png");
+}
+
+.text_search {
+  width: 12rem;
+  height: 2rem;
+  float: left;
+  border: 1px solid #ddd;
+}
+.text_search input {
+  width: 9rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  margin: 0.3rem 0 0 0.5rem;
+}
+.text_search .i {
+  width: 2rem;
+  height: 100%;
+  float: right;
+}
+.text_search .i i {
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0.4rem auto 0;
+  background-size: 100%;
+  background-image: url("../../../assets/images/search.png");
+}
+
+.content li {
+  width: 100%;
+  height: 3rem;
+  border-bottom: 1px solid #ddd;
+}
+.content li div.name{
+  width: 15rem;
+  height: 3rem;
+  float: left;
+}
+.content li .number{
+  margin-top: 0.3rem;
+  color: #999;
+  font-size: 0.5rem;
+}
+.content li .text{
+  line-height: 1.5rem;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.content li div.time{
+  width: 5rem;
+  float: right;
+  margin-top: 0.3rem;
+  color: #999;
+  font-size: 0.5rem;
+}

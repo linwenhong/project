@@ -1,0 +1,64 @@
+<app-page-header
+  [title]="'工程列表'"
+  ></app-page-header>
+
+<div class="header">
+  <span [class.active]="listType == 1" (click)="selectListType(1)">待我审批</span>
+  <span [class.active]="listType == 2" (click)="selectListType(2)">我发起的</span>
+</div>
+
+<div class="search">
+  <div class="type_list">
+    <select>
+      <option>合同</option>
+      <option>报告</option>
+      <option>项目</option>
+    </select>
+    <div class="i">
+      <i></i>
+    </div>
+  </div>
+
+  <div class="text_search">
+    <input type="text" placeholder="请输入搜索文件名" />
+    <div class="i">
+      <i></i>
+    </div>
+  </div>
+</div>
+
+<div class="content page">
+  <ul>
+    <li>
+      <div class="name">
+        <p class="number"><small>NO.WE5ASD245</small></p>
+        <p class="text">测试报告</p>
+      </div>
+      <div class="time">2014-09-05</div>
+    </li>
+
+    <li>
+      <div class="name">
+        <p class="number"><small>NO.WE5ASD245</small></p>
+        <p class="text">测试报告</p>
+      </div>
+      <div class="time">2014-09-05</div>
+    </li>
+
+    <li>
+      <div class="name">
+        <p class="number"><small>NO.WE5ASD245</small></p>
+        <p class="text">测试报告</p>
+      </div>
+      <div class="time">2014-09-05</div>
+    </li>
+
+    <li>
+      <div class="name">
+        <div class="number"><small>NO.WE5ASD245</small></div>
+        <p class="text">测试报告</p>
+      </div>
+      <div class="time">2014-09-05</div>
+    </li>
+  </ul>
+</div>

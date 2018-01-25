@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
@@ -8,24 +8,24 @@ import { User } from '../../common/user';
 import { Report } from '../../common/report';
 
 const types = [
-  { id: 2548, text: '问题' },
-  { id: 5426, text: '功能' },
-  { id: 9856, text: '需求' }
+  { id: 2548, name: '问题' },
+  { id: 5426, name: '功能' },
+  { id: 9856, name: '需求' }
 ];
 
 const formats = [
-  { id: 'A2548', text: 'word文档' },
-  { id: 'A5426', text: 'excel表格' },
-  { id: 'A9856', text: '图片' }
+  { id: 'A2548', name: 'word文档' },
+  { id: 'A5426', name: 'excel表格' },
+  { id: 'A9856', name: '图片' }
 ];
 
 @Component({
   selector: 'app-create-report',
   templateUrl: './create-report.component.html',
-  styleUrls: ['./create-report.component.css', '../create-project/create-project.component.css']
+  styleUrls: ['../../../assets/form.css']
 })
 
-export class CreateReportComponent implements OnInit, AfterViewChecked {
+export class CreateReportComponent implements OnInit {
   reportForm: FormGroup;
   isSubmit: boolean = false;
   reportFormKeys: string[] = [
@@ -52,38 +52,27 @@ export class CreateReportComponent implements OnInit, AfterViewChecked {
     private http: Http,
     private  fb: FormBuilder
   ) {
-    this.http.get('assets/json/users.json').toPromise().then(response => {
-      this.users = response.json();
-      this.projects = JSON.parse(localStorage.getItem('projects'));
-      this.types = types;
-      this.formats = formats;
+    this.projects = JSON.parse(localStorage.getItem('projects'));
+    this.types = types;
+    this.formats = formats;
 
-      this.createForm();
-
-      const reportFormCache = JSON.parse(sessionStorage.getItem('reportForm'));
-      if (reportFormCache) {
-        console.log(reportFormCache);
-        this.setPatchValue(this.reportForm, reportFormCache);
-      }
-    });
+    this.createForm();
   }
 
   ngOnInit() {
-  }
-
-  ngAfterViewChecked() {
-    if (this.canSetDateTimeGroup && this.reportForm) {
-      this.canSetDateTimeGroup = false;
-      setDateTimeGroup('.dateTime');
+    const reportFormCache = JSON.parse(sessionStorage.getItem('reportForm'));
+    if (reportFormCache) {
+      console.log(reportFormCache);
+      this.setPatchValue(this.reportForm, reportFormCache);
     }
   }
 
   createForm(): void {
     this.reportForm = this.fb.group({
       name: ['', Validators.required],
-      project: [this.projects[0].id, Validators.required],
-      type: [this.types[0].id, Validators.required],
-      format: [this.formats[0].id, Validators.required],
+      project: [this.projects ? this.projects[0].id : null, Validators.required],
+      type: [this.types ? this.types[0].id : null, Validators.required],
+      format: [this.formats ? this.formats[0].id : null, Validators.required],
       record_number: ['', Validators.required],
       blind_sample_number: ['', Validators.required],
       element: ['', Validators.required],
@@ -105,6 +94,10 @@ export class CreateReportComponent implements OnInit, AfterViewChecked {
   }
 
   submit(form: FormGroup): void {
+    if (!this.reportForm.get('project').value) {
+      muiToast('请先添加项目');
+      return;
+    }
     this.isSubmit = true;
     if (form.status === 'INVALID') {
       muiToast('请完善提交信息');
@@ -135,14 +128,15 @@ export class CreateReportComponent implements OnInit, AfterViewChecked {
     }
     localStorage.setItem('reports', JSON.stringify(reports));
     console.log(reports);
+    this.router.navigate(['/home']);
   }
 
   revert() {
     this.isSubmit = false;
     this.reportForm.reset({
-      project: this.projects[0].id,
-      type: this.types[0].id,
-      format: this.formats[0].id,
+      project: this.projects ? this.projects[0].id : null,
+      type: this.types ? this.types[0].id : null,
+      format: this.formats ? this.formats[0].id : null,
       person_in_charge: this.reportForm.get('person_in_charge').value,
     });
   }

@@ -4,7 +4,7 @@
     <ul>
       <ng-container *ngFor="let user of users">
         <li (click)="selected(user)" [class.active]="selectedUser && selectedUser.id == user.id">
-          <img src="{{user.picture}}">
+          <img src="{{user.avatar}}">
           <span>{{ user.name }}</span>
           <span class="remake">小白</span>
         </li>

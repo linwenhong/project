@@ -1,0 +1,55 @@
+.login-page {
+  background-size: 100%;
+  background-image: url("../assets/images/login_bg.jpg");
+}
+.content {
+  margin-top: 8rem;
+}
+.title {
+  color: #ddd;
+  text-align: center;
+}
+.input_box {
+  width: 19rem;
+  height: 2.5rem;
+  margin: 1rem auto;
+  background-color: #fff;
+  border-radius: 0.3rem;
+}
+.input_box input {
+  width: 17rem;
+  height: 2.5rem;
+  line-height: 1.3rem;
+  float: left;
+  padding: 0.6rem 1rem;
+  border-radius: 0.3rem;
+}
+.input_box i {
+  display: block;
+  height: 1.35rem;
+  float: left;
+  margin-top: 0.5rem;
+  background-size: 100%;
+}
+.input_box i.username {
+  width: 1.25rem;
+  background-image: url("../assets/images/username.png");
+}
+.input_box i.password {
+  width: 1.1rem;
+  background-image: url("../assets/images/password.png");
+}
+.submit {
+  display: none;
+}
+
+.login_btn {
+  width: 19rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin: 0 auto;
+  background-color: #298eff;
+  border-radius: 0.3rem;
+  color: #fff;
+  text-align: center;
+}

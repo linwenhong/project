@@ -1,8 +1,8 @@
-<h4 class="text-center">创建工程</h4>
-<div class="page">
+<app-page-header
+  [title]="'创建工程'"
+  ></app-page-header>
 
-  <a routerLink="/home/create-report">create-report</a>
-  <a routerLink="/home/projects">projects</a>
+<div class="page">
 
   <div class="project" *ngIf="projectForm">
     <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">
@@ -33,7 +33,7 @@
       <div class="form-group">
         <label>合同编号：</label>
         <input [class.invalid]="isSubmit && projectForm.get('contract_number').invalid"
-               formControlName="contract_number" type="text" class="form-control input" placeholder="请输入项目编号" />
+               formControlName="contract_number" type="text" class="form-control input" placeholder="请输入合同编号" />
       </div>
 
       <div class="form-group">
@@ -43,16 +43,34 @@
       </div>
 
       <div class="form-group">
-        <label>委托编号：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('entrustment_number').invalid"
-               formControlName="entrustment_number" type="text" class="form-control input" placeholder="请输入委托编号" />
+        <label>建设单位：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('build_unit').invalid"
+               formControlName="build_unit" type="text" class="form-control input" placeholder="请输入建设单位名称" />
       </div>
 
       <div class="form-group">
-      <label>委托项目：</label>
-      <input [class.invalid]="isSubmit && projectForm.get('entrustment_project').invalid"
-             formControlName="entrustment_project" type="text" class="form-control input" placeholder="请输入委托项目名称" />
-    </div>
+        <label>设计单位：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('design_unit').invalid"
+               formControlName="design_unit" type="text" class="form-control input" placeholder="请输入设计单位名称" />
+      </div>
+
+      <div class="form-group">
+        <label>施工单位：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('doing_unit').invalid"
+               formControlName="doing_unit" type="text" class="form-control input" placeholder="请输入施工单位名称" />
+      </div>
+
+      <div class="form-group">
+        <label>监理单位：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('check_unit').invalid"
+               formControlName="check_unit" type="text" class="form-control input" placeholder="请输入监理单位名称" />
+      </div>
+
+      <div class="form-group">
+        <label>工程概况：</label>
+        <input [class.invalid]="isSubmit && projectForm.get('project_detail').invalid"
+               formControlName="project_detail" type="text" class="form-control input" placeholder="请输入工程概况" />
+      </div>
 
       <div class="form-group">
         <label>检测要求和依据：</label>
@@ -84,25 +102,9 @@
                formControlName="complete" type="text" class="form-control dateTime" />
       </div>
 
-      <shengxiang-user-select
-        [editForm]="getFormValue(projectForm)"
-        [text]="'部门负责人'"
-        [userId]="projectForm.get('person_in_charge').value"
-        [key]="'person_in_charge'"
-        [url]="'/home/create-project'"
-      ></shengxiang-user-select>
-
-      <shengxiang-user-select
-        [editForm]="getFormValue(projectForm)"
-        [text]="'总(副总)经理'"
-        [userId]="projectForm.get('manager').value"
-        [key]="'manager'"
-        [url]="'/home/create-project'"
-      ></shengxiang-user-select>
-
       <div class="text-center btns">
-        <input type="submit">
-        <input type="button" value="清空" (click)="revert()" />
+        <input class="btn btn-primary" type="submit">
+        <input class="btn btn-default" type="button" value="清空" (click)="revert()" />
       </div>
     </form>
   </div>

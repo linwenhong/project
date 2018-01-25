@@ -1,5 +1,7 @@
 .project form {
   display: inline-block;
+  width: 100%;
+  margin-top: 1rem;
 }
 .project form input.invalid {
   border: 1px solid #ec7373;

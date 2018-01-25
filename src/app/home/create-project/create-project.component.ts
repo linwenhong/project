@@ -9,7 +9,7 @@ import { User } from '../../common/user';
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.css']
+  styleUrls: ['../../../assets/form.css']
 })
 export class CreateProjectComponent implements OnInit, AfterViewChecked {
   projectForm: FormGroup;
@@ -21,21 +21,17 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     'telephone',
     'contract_number',
     'entrustment_unit',
-    'entrustment_number',
-    'entrustment_project',
+    'build_unit',
+    'design_unit',
+    'doing_unit',
+    'check_unit',
+    'project_detail',
     'testing_requirements',
     'information_of_the_client',
 
     'department',
     'approach',
     'complete',
-    'person_in_charge',
-    'manager',
-
-    // 'author',
-    // 'checker',
-    // 'examine',
-    // 'leader'
   ];
   users: User[];
 
@@ -46,18 +42,14 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     private http: Http,
     private  fb: FormBuilder
   ) {
-    this.http.get('assets/json/users.json').toPromise().then(response => {
-      this.users = response.json();
-      this.createForm();
-
-      const projectFormCache = JSON.parse(sessionStorage.getItem('projectForm'));
-      if (projectFormCache) {
-        this.setPatchValue(this.projectForm, projectFormCache);
-      }
-    });
+    this.createForm();
   }
 
   ngOnInit() {
+    const projectFormCache = JSON.parse(sessionStorage.getItem('projectForm'));
+    if (projectFormCache) {
+      this.setPatchValue(this.projectForm, projectFormCache);
+    }
   }
 
   ngAfterViewChecked() {
@@ -75,16 +67,17 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
       telephone: ['', Validators.required],
       contract_number: ['', Validators.required],
       entrustment_unit: ['', Validators.required],
-      entrustment_number: ['', Validators.required],
-      entrustment_project: ['', Validators.required],
+      build_unit: ['', Validators.required],
+      design_unit: ['', Validators.required],
+      doing_unit: ['', Validators.required],
+      check_unit: ['', Validators.required],
+      project_detail: ['', Validators.required],
       testing_requirements: ['', Validators.required],
       information_of_the_client: ['', Validators.required],
 
       department: ['', Validators.required],
       approach: '',
       complete: '',
-      person_in_charge: [null, Validators.required],
-      manager: [null, Validators.required],
     });
   }
 
@@ -140,13 +133,11 @@ export class CreateProjectComponent implements OnInit, AfterViewChecked {
     }
     localStorage.setItem('projects', JSON.stringify(projects));
     console.log(projects);
+    this.router.navigate(['/home']);
   }
 
   revert() {
     this.isSubmit = false;
-    this.projectForm.reset({
-      person_in_charge: this.projectForm.get('person_in_charge').value,
-      manager: this.projectForm.get('manager').value,
-    });
+    this.projectForm.reset();
   }
 }
