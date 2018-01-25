@@ -123,15 +123,3 @@
   font-size: 1rem;
   text-align: center;
 }
-
-
-.page .avatar {
-  width: 15rem;
-  float: right;
-}
-.page .avatar img {
-  width: 5rem;
-  margin-left: 1.5rem;
-  background-size: 100%;
-  border-radius: 100%;
-}
