@@ -22,6 +22,108 @@
   text-align: center;
 }
 
+.fixed-page {
+  background-color: #f0f0f0;
+}
+.content li {
+  height: 2.5rem;
+  margin-bottom: 0.8rem;
+  background-color: #fff;
+}
+.content li .icon {
+  width: 2.5rem;
+  height: 100%;
+  float: left;
+  padding-top: 0.6rem;
+}
+.content li .icon i {
+  display: block;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin: 0 auto;
+  background-size: 100%;
+}
+.content li i.name {
+  background-image: url("../../../assets/images/user/name.png");
+}
+.content li i.password {
+  background-image: url("../../../assets/images/user/password.png");
+}
+.content li i.department {
+  background-image: url("../../../assets/images/user/department.png");
+}
+.content li i.signature {
+  background-image: url("../../../assets/images/user/signature.png");
+}
+
+.content li span {
+  line-height: 2.5rem;
+  font-size: 0.95rem;
+}
+.content li .text {
+  line-height: 2.5rem;
+  float: right;
+  padding-right: 0.5rem;
+}
+.content li .text i {
+  display: block;
+  width: 0.68rem;
+  height: 1.3rem;
+  float: right;
+  margin: 0.6rem 0 0 0.5rem;
+  background-size: 100%;
+  background-image: url("../../../assets/images/user/right.png");
+}
+.content li .text span {
+  color: #999999;
+}
+.content li .signature_img {
+  float: right;
+}
+.content li .signature_img img {
+  display: block;
+  width: 6rem;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+  background-size: 100%;
+}
+
+.signature-box {
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+.signature-box .img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 9rem;
+  margin-top: -7.5rem;
+  padding-top: 2rem;
+  background-color: #eee;
+}
+.signature-box .img img {
+  display: block;
+  width: 20rem;
+  height: 5rem;
+  margin: 0 auto;
+  background-size: 100%;
+}
+
+.logout {
+  width: 20rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin: 3rem auto 0;
+  background-color: #fd2f2f;
+  color: #eeeeee;
+  font-size: 1rem;
+  text-align: center;
+}
+
 
 .page .avatar {
   width: 15rem;

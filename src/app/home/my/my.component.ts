@@ -21,6 +21,7 @@ export class MyComponent implements OnInit {
     'sign_img',
   ];
   user: User;
+  isShowSignature: boolean;
 
   constructor(
     private router: Router,
@@ -32,6 +33,7 @@ export class MyComponent implements OnInit {
 
   ngOnInit() {
     this.isSubmit = false;
+    this.isShowSignature = false;
     const FormCache = JSON.parse(localStorage.getItem('my'));
     if (FormCache) {
       this.setPatchValue(this.Form, FormCache);
@@ -47,6 +49,10 @@ export class MyComponent implements OnInit {
       avatar: [''],
       sign_img: [''],
     });
+  }
+
+  showSignature(): void {
+    this.isShowSignature = !this.isShowSignature;
   }
 
   getFormValue(form: FormGroup): User {
@@ -86,4 +92,7 @@ export class MyComponent implements OnInit {
     this.isSubmit = false;
   }
 
+  logout(): void {
+    this.router.navigate(['/login']);
+  }
 }
