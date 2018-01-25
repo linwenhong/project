@@ -1,5 +1,8 @@
 <div class="fixed-page">
-  <h4 class="text-center">个人信息</h4>
+  <app-page-header
+    [title]="'个人信息'"
+    ></app-page-header>
+
   <div class="top">
     <div class="avatar">
       <img src="{{ user.avatar }}">
@@ -9,7 +12,7 @@
 
   <div class="content">
     <ul>
-      <li>
+      <li routerLink="/home/my-edit">
         <div class="icon">
           <i class="name"></i>
         </div>
@@ -20,7 +23,7 @@
         </div>
       </li>
 
-      <li routerLink="/my-ed">
+      <li routerLink="/home/my-edit">
         <div class="icon">
           <i class="password"></i>
         </div>

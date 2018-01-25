@@ -1,7 +1,6 @@
-<h4 class="page-title">
-  工程列表
-  <i routerLink="/home"></i>
-</h4>
+<app-page-header
+  [title]="'工程列表'"
+  ></app-page-header>
 
 <div class="header">
   <span [class.active]="listType == 1" (click)="selectListType(1)">待我审批</span>

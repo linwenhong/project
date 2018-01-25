@@ -1,7 +1,8 @@
-<h4 class="text-center">创建工程</h4>
-<div class="page">
+<app-page-header
+  [title]="'创建工程'"
+  ></app-page-header>
 
-  <a routerLink="/home">home</a>
+<div class="page">
 
   <div class="project" *ngIf="projectForm">
     <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">

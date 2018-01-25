@@ -1,5 +1,8 @@
 <div class="fixed-page">
-  <h4 class="text-center">修改密码</h4>
+  <app-page-header
+    [title]="'修改密码'"
+    [url]="'/home/my'"
+    ></app-page-header>
 
   <div class="content" *ngIf="Form">
     <form [formGroup]="Form" novalidate (ngSubmit)="submit(Form)">
