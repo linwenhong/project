@@ -17,6 +17,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { CreateReportComponent } from './create-report/create-report.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
+import { MyEditComponent } from './my-edit/my-edit.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { MyComponent } from './my/my.component';
     CreateReportComponent,
     CreateWorkflowComponent,
     MyComponent,
+    MyEditComponent,
   ]
 })
 export class HomeModule { }

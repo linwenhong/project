@@ -103,7 +103,7 @@
   height: 9rem;
   margin-top: -7.5rem;
   padding-top: 2rem;
-  background-color: #eee;
+  background-color: #fff;
 }
 .signature-box .img img {
   display: block;
@@ -119,7 +119,7 @@
   line-height: 2.5rem;
   margin: 3rem auto 0;
   background-color: #fd2f2f;
-  color: #eeeeee;
+  color: #eee;
   font-size: 1rem;
   text-align: center;
 }
