@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserSelectComponent } from './user-select/user-select';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 @NgModule({
   imports: [
@@ -12,9 +13,11 @@ import { UserSelectComponent } from './user-select/user-select';
   ],
   declarations: [
     UserSelectComponent,
+    PageHeaderComponent,
   ],
   exports: [
     UserSelectComponent,
+    PageHeaderComponent
   ]
 })
 export class SharedModule { }
