@@ -13,6 +13,7 @@ import { CreateReportComponent } from './create-report/create-report.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
 import { MyEditComponent } from './my-edit/my-edit.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'create-workflow', component: CreateWorkflowComponent },
   { path: 'my', component: MyComponent },
   { path: 'my-edit', component: MyEditComponent },
+  { path: 'project-list', component: ProjectListComponent },
 ];
 
 @NgModule({
