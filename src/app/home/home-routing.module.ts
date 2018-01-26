@@ -14,6 +14,7 @@ import { CreateWorkflowComponent } from './create-workflow/create-workflow.compo
 import { MyComponent } from './my/my.component';
 import { MyEditComponent } from './my-edit/my-edit.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { SelectWorkflowTypeComponent } from './select-workflow-type/select-workflow-type.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'my', component: MyComponent },
   { path: 'my-edit', component: MyEditComponent },
   { path: 'project-list', component: ProjectListComponent },
+  { path: 'select-workflow-type', component: SelectWorkflowTypeComponent },
 ];
 
 @NgModule({
