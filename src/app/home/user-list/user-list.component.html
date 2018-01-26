@@ -1,9 +1,14 @@
-<h4 class="text-center">请选择用户</h4>
+<div class="fixed-page">
+  <app-page-header
+    [title]="'选择用户'"
+    [url]="url"
+  ></app-page-header>
 <div>
   <div class="user_list">
     <ul>
       <ng-container *ngFor="let user of users;let index = index;">
         <li (click)="selected(index)" [class.active]="indexs[index]">
+          <i></i>
           <img src="{{ user.avatar }}">
           <span>{{ user.name }}</span>
           <span class="remake">小白</span>
