@@ -11,6 +11,7 @@ import { Report } from '../../common/report';
   styleUrls: ['./user-select.css']
 })
 export class UserSelectComponent implements OnInit {
+  @Input() canMultiselect: boolean;
   @Input() text: string;
   @Input() userId: number;
   @Input() editForm: Project | Report;
@@ -36,6 +37,7 @@ export class UserSelectComponent implements OnInit {
     sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     this.router.navigate(['/home/user-list'], {
       queryParams: {
+        canMultiselect: this.canMultiselect,
         editFormName: this.editFormName,
         editUserKey: this.key,
         url: this.url
@@ -50,6 +52,10 @@ export class UserSelectComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  removeUser(index: number): void {
+    this.editForm[this.key].splice(index, 1);
   }
 }
 

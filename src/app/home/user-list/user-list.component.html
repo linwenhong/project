@@ -2,9 +2,9 @@
 <div>
   <div class="user_list">
     <ul>
-      <ng-container *ngFor="let user of users">
-        <li (click)="selected(user)" [class.active]="selectedUser && selectedUser.id == user.id">
-          <img src="{{user.avatar}}">
+      <ng-container *ngFor="let user of users;let index = index;">
+        <li (click)="selected(index)" [class.active]="indexs[index]">
+          <img src="{{ user.avatar }}">
           <span>{{ user.name }}</span>
           <span class="remake">小白</span>
         </li>

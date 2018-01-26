@@ -8,6 +8,6 @@ export class Workflow {
   verifying_person: number;   /*校核人*/
   initiator: number;          /*发起人*/
 
-  person_in_charge: number;   /*部门负责人*/
-  manager: number;            /*总(副总)经理*/
+  person_in_charge: number[];   /*部门负责人*/
+  manager: number[];            /*总(副总)经理*/
 }

@@ -50,6 +50,7 @@ export class CreateWorkflowComponent implements OnInit {
     this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
+      console.log(FormCache);
       if (this.getTypeName(FormCache.type) === '报告') {
         this.files = this.reports;
       }

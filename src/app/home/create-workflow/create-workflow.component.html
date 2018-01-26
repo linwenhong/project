@@ -22,19 +22,19 @@
 
     <div *ngIf="getTypeName(Form.get('type').value) == '项目'">
       <app-user-select
+        [canMultiselect]="true"
         [editForm]="getFormValue(Form)"
         [editFormName]="'workflowForm'"
         [text]="'部门负责人'"
-        [userId]="Form.get('person_in_charge').value"
         [key]="'person_in_charge'"
         [url]="'/home/create-workflow'"
       ></app-user-select>
 
       <app-user-select
+        [canMultiselect]="false"
         [editForm]="getFormValue(Form)"
         [editFormName]="'workflowForm'"
         [text]="'总(副总)经理'"
-        [userId]="Form.get('manager').value"
         [key]="'manager'"
         [url]="'/home/create-workflow'"
       ></app-user-select>
