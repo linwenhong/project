@@ -10,19 +10,19 @@
         <div class="item">
           <span>原密码：</span>
           <input [class.invalid]="isSubmit && Form.get('original').invalid"
-                 formControlName="original" type="text" placeholder="请输入样品/记录编号" />
+                 formControlName="original" type="password" placeholder="请输入原密码" />
         </div>
 
         <div class="item">
           <span>新密码：</span>
           <input [class.invalid]="isSubmit && Form.get('new').invalid"
-                 formControlName="new" type="text" placeholder="请输入样品/记录编号" />
+                 formControlName="new" type="password" placeholder="请输入新密码" />
         </div>
 
         <div class="item">
           <span>确认密码：</span>
           <input [class.invalid]="isSubmit && Form.get('confirm').invalid"
-                 formControlName="confirm" type="text" placeholder="请输入样品/记录编号" />
+                 formControlName="confirm" type="password" placeholder="请输入确认密码" />
         </div>
       </div>
 

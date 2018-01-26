@@ -130,6 +130,16 @@ export class CreateWorkflowComponent implements OnInit {
       return;
     }
     const request = this.getFormValue(form);
+    if (this.getTypeName(request.type) !== '项目' &&
+      (request.testing_person.length === 0 || request.verifying_person.length === 0)) {
+      muiToast('请选择相关人员');
+      return;
+    }
+    if (this.getTypeName(request.type) === '项目' &&
+      (request.person_in_charge.length === 0 || request.manager.length === 0)) {
+      muiToast('请选择相关人员');
+      return;
+    }
     this.setPatchValue(form, request);
     console.log(request);
     /**
