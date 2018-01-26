@@ -19,7 +19,6 @@ export class UserSelectComponent implements OnInit {
   @Input() key: string;
   @Input() canEditUser: boolean = true;
   @Input() url: string;
-  // @Output() manualFiltered: EventEmitter<any> = new EventEmitter();
 
   users: User[];
   constructor(

@@ -1,7 +1,7 @@
 <div class="form-group" *ngIf="users">
-  <label>{{ text }}:</label>
+  <label>{{ text }}:&nbsp;</label>
   <div class="user">
-    <p *ngIf="canEditUser">(点击头像删除)</p>
+    <p *ngIf="canEditUser">&nbsp;&nbsp;(点击头像删除)</p>
     <!--<p *ngIf="!canEditUser">(待审核)</p>-->
     <div class="img" *ngFor="let id of editForm[key];let index = index">
       <img class="user_picture" src="{{ getUser(id, 'avatar') }}" (click)="removeUser(index)">
