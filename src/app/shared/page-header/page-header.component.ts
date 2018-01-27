@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class PageHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() url: string;
+  @Input() queryParams: any;
 
   constructor(
     private router: Router
@@ -19,6 +20,8 @@ export class PageHeaderComponent implements OnInit {
   }
 
   goHref(url: string): void {
-    this.router.navigate([url]);
+    this.router.navigate([url], {
+      queryParams: this.queryParams
+    });
   }
 }

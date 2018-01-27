@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
   editFormName: string;
   editUserKey: string;
   url: string;
-  queryParams: object;
+  queryParams: any;
   indexs: boolean[] = [];
 
   constructor(
@@ -27,13 +27,11 @@ export class UserListComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
+      this.queryParams = queryParams;
       this.canMultiselect = queryParams.canMultiselect === 'false' ? false : true;
       this.editFormName = queryParams.editFormName;
       this.editUserKey = queryParams.editUserKey;
       this.url = queryParams.url;
-      if (queryParams.queryParams) {
-        this.queryParams = JSON.parse(queryParams.queryParams);
-      }
     });
   }
 
