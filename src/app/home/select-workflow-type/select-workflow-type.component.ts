@@ -13,6 +13,7 @@ export class SelectWorkflowTypeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    sessionStorage.removeItem('workflowForm');
   }
 
   select(type: number): void {

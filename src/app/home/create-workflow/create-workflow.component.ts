@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Project } from '../../common/project';
 import { Report } from '../../common/report';
@@ -33,28 +33,47 @@ export class CreateWorkflowComponent implements OnInit {
   reports: Report[];
   types: any[];
   files: Project[] | Report[];
+  type: number;
+  condition: string;
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private http: Http,
     private  fb: FormBuilder
   ) {
-    this.projects = JSON.parse(localStorage.getItem('projects'));
-    this.reports = JSON.parse(localStorage.getItem('reports'));
+    activatedRoute.queryParams.subscribe(queryParams => {
+      if (queryParams.type) {
+        this.type = queryParams.type;
+        this.getFiles(this.type);
+      }
+    });
     this.types = types;
-    this.files = this.projects;
     this.createForm();
   }
 
   ngOnInit() {
+    this.condition = '项目';
     this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
-      console.log(FormCache);
-      if (this.getTypeName(FormCache.type) === '报告') {
-        this.files = this.reports;
-      }
+      this.type = FormCache.type;
+      this.getFiles(this.type);
       this.setPatchValue(this.Form, FormCache);
+    }
+  }
+
+  getFiles(type: number): void {
+    switch (Number(type)) {
+      case 0:
+        this.files = JSON.parse(localStorage.getItem('projects'));
+        break;
+      case 1:
+        this.files = JSON.parse(localStorage.getItem('contracts'));
+        break;
+      case 2:
+        this.files = JSON.parse(localStorage.getItem('reports'));
+        break;
     }
   }
 
@@ -79,7 +98,7 @@ export class CreateWorkflowComponent implements OnInit {
 
   createForm(): void {
     this.Form = this.fb.group({
-      type: [this.types ? this.types[0].id : null, Validators.required],
+      type: this.type,
       fileId: [null, Validators.required],
       // 报告/合同
       testing_person: null,
@@ -93,11 +112,11 @@ export class CreateWorkflowComponent implements OnInit {
   getFormValue(form: FormGroup): Workflow {
     const formValue = new Workflow();
     this.FormKeys.forEach(key => {
-      if (this.getTypeName(form.get('type').value) === '项目' &&
+      if (this.getTypeName(form.get('type').value) === this.condition &&
         (key === 'testing_person' || key === 'verifying_person')) {
         return;
       }
-      if (this.getTypeName(form.get('type').value) !== '项目' &&
+      if (this.getTypeName(form.get('type').value) !== this.condition &&
         (key === 'person_in_charge' || key === 'manager')) {
         return;
       }
@@ -119,23 +138,23 @@ export class CreateWorkflowComponent implements OnInit {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
       return;
     }
-    if (this.getTypeName(form.get('type').value) !== '项目' &&
+    if (this.getTypeName(form.get('type').value) !== this.condition &&
       (!form.get('testing_person').value || !form.get('verifying_person').value)) {
       muiToast('请选择相关人员');
       return;
     }
-    if (this.getTypeName(form.get('type').value) === '项目' &&
+    if (this.getTypeName(form.get('type').value) === this.condition &&
       (!form.get('person_in_charge').value || !form.get('manager').value)) {
       muiToast('请选择相关人员');
       return;
     }
     const request = this.getFormValue(form);
-    if (this.getTypeName(request.type) !== '项目' &&
+    if (this.getTypeName(request.type) !== this.condition &&
       (request.testing_person.length === 0 || request.verifying_person.length === 0)) {
       muiToast('请选择相关人员');
       return;
     }
-    if (this.getTypeName(request.type) === '项目' &&
+    if (this.getTypeName(request.type) === this.condition &&
       (request.person_in_charge.length === 0 || request.manager.length === 0)) {
       muiToast('请选择相关人员');
       return;
