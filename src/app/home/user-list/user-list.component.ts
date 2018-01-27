@@ -18,6 +18,7 @@ export class UserListComponent implements OnInit {
   editFormName: string;
   editUserKey: string;
   url: string;
+  queryParams: object;
   indexs: boolean[] = [];
 
   constructor(
@@ -30,6 +31,7 @@ export class UserListComponent implements OnInit {
       this.editFormName = queryParams.editFormName;
       this.editUserKey = queryParams.editUserKey;
       this.url = queryParams.url;
+      this.queryParams = JSON.parse(queryParams.queryParams);
     });
   }
 
@@ -79,6 +81,8 @@ export class UserListComponent implements OnInit {
       // });
       sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     }
-    this.router.navigate([this.url]);
+    this.router.navigate([this.url], {
+      queryParams: this.queryParams
+    });
   }
 }

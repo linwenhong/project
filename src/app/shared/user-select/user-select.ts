@@ -13,12 +13,12 @@ import { Report } from '../../common/report';
 export class UserSelectComponent implements OnInit {
   @Input() canMultiselect: boolean;
   @Input() text: string;
-  @Input() userId: number;
   @Input() editForm: Project | Report;
   @Input() editFormName: string = 'projectForm';
   @Input() key: string;
   @Input() canEditUser: boolean = true;
   @Input() url: string;
+  @Input() queryParams: object = {};
 
   users: User[];
   constructor(
@@ -39,7 +39,8 @@ export class UserSelectComponent implements OnInit {
         canMultiselect: this.canMultiselect,
         editFormName: this.editFormName,
         editUserKey: this.key,
-        url: this.url
+        url: this.url,
+        queryParams: JSON.stringify(this.queryParams)
       }
     });
   }

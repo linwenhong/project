@@ -35,6 +35,7 @@ export class CreateWorkflowComponent implements OnInit {
   files: Project[] | Report[];
   type: number;
   condition: string;
+  queryParams: object;
 
   constructor(
     private router: Router,
@@ -43,10 +44,9 @@ export class CreateWorkflowComponent implements OnInit {
     private  fb: FormBuilder
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
-      if (queryParams.type) {
-        this.type = queryParams.type;
-        this.getFiles(this.type);
-      }
+      this.queryParams = queryParams;
+      this.type = queryParams.type;
+      this.getFiles(this.type);
     });
     this.types = types;
     this.createForm();
@@ -57,7 +57,6 @@ export class CreateWorkflowComponent implements OnInit {
     this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
-      this.type = FormCache.type;
       this.getFiles(this.type);
       this.setPatchValue(this.Form, FormCache);
     }

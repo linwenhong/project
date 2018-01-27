@@ -22,6 +22,7 @@
           [text]="'部门负责人'"
           [key]="'person_in_charge'"
           [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
         ></app-user-select>
 
         <app-user-select
@@ -31,6 +32,7 @@
           [text]="'总(副总)经理'"
           [key]="'manager'"
           [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
         ></app-user-select>
       </div>
 
@@ -40,9 +42,9 @@
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'检测人员'"
-          [userId]="Form.get('testing_person').value"
           [key]="'testing_person'"
           [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
         ></app-user-select>
 
         <app-user-select
@@ -50,9 +52,9 @@
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'校核人员'"
-          [userId]="Form.get('verifying_person').value"
           [key]="'verifying_person'"
           [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
         ></app-user-select>
       </div>
 
