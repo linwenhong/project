@@ -35,10 +35,13 @@ export class DepartmentComponent implements OnInit {
   }
 
   selected(id: any): void {
-    console.log(id);
-    console.log(this.queryParams);
+    const params = {};
+    for (const key in this.queryParams) {
+      params[key] = this.queryParams[key];
+    }
+    params['department_id'] = id;
     this.router.navigate(['/home/user-list'], {
-      queryParams: this.queryParams
+      queryParams: params
     });
   }
 }

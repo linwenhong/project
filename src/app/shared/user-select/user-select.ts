@@ -34,7 +34,7 @@ export class UserSelectComponent implements OnInit {
 
   toSelectUser(): void {
     sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
-    this.router.navigate(['/home/user-list'], {
+    this.router.navigate(['/home/department'], {
       queryParams: {
         canMultiselect: this.canMultiselect,
         editFormName: this.editFormName,
