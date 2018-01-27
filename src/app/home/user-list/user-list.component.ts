@@ -31,7 +31,9 @@ export class UserListComponent implements OnInit {
       this.editFormName = queryParams.editFormName;
       this.editUserKey = queryParams.editUserKey;
       this.url = queryParams.url;
-      this.queryParams = JSON.parse(queryParams.queryParams);
+      if (queryParams.queryParams) {
+        this.queryParams = JSON.parse(queryParams.queryParams);
+      }
     });
   }
 
