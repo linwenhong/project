@@ -20,6 +20,7 @@ import { MyComponent } from './my/my.component';
 import { MyEditComponent } from './my-edit/my-edit.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { SelectWorkflowTypeComponent } from './select-workflow-type/select-workflow-type.component';
+import { DepartmentComponent } from './department/department.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { SelectWorkflowTypeComponent } from './select-workflow-type/select-workf
     MyEditComponent,
     ProjectListComponent,
     SelectWorkflowTypeComponent,
+    DepartmentComponent,
   ]
 })
 export class HomeModule { }
