@@ -46,6 +46,9 @@ export class CreateWorkflowComponent implements OnInit {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
       this.type = queryParams.type;
+      if (!this.type) {
+        this.router.navigate(['/home']);
+      }
       this.getFiles(this.type);
     });
     this.types = types;
@@ -57,6 +60,7 @@ export class CreateWorkflowComponent implements OnInit {
     this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
+      console.log(FormCache);
       this.getFiles(this.type);
       this.setPatchValue(this.Form, FormCache);
     }

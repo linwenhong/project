@@ -82,7 +82,9 @@ export class UserListComponent implements OnInit {
       sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     }
     this.router.navigate([this.url], {
-      queryParams: this.queryParams
+      queryParams: {
+        type: this.queryParams.type
+      }
     });
   }
 }

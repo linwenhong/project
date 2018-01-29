@@ -27,6 +27,7 @@ export class DepartmentComponent implements OnInit {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
       this.url = queryParams.url;
+      console.log(queryParams);
     });
   }
 

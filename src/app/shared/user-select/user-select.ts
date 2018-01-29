@@ -18,7 +18,7 @@ export class UserSelectComponent implements OnInit {
   @Input() key: string;
   @Input() canEditUser: boolean = true;
   @Input() url: string;
-  @Input() queryParams: object = {};
+  @Input() queryParams: any;
 
   users: User[];
   constructor(
@@ -34,14 +34,19 @@ export class UserSelectComponent implements OnInit {
 
   toSelectUser(): void {
     sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
+    const params = {
+      canMultiselect: this.canMultiselect,
+      editFormName: this.editFormName,
+      editUserKey: this.key,
+      url: this.url
+    };
+
+    for (const key in this.queryParams) {
+      params[key] = this.queryParams[key];
+    }
+
     this.router.navigate(['/home/department'], {
-      queryParams: {
-        canMultiselect: this.canMultiselect,
-        editFormName: this.editFormName,
-        editUserKey: this.key,
-        url: this.url,
-        queryParams: JSON.stringify(this.queryParams)
-      }
+      queryParams: params
     });
   }
 
