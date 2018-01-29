@@ -1,111 +1,116 @@
-<app-page-header
-  [title]="'创建工程'"
-  ></app-page-header>
+<div class="form-page">
+  <app-page-header
+    [title]="'创建工程'"
+    ></app-page-header>
 
-<div class="page">
+  <div class="page">
 
-  <div class="project" *ngIf="projectForm">
-    <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">
-      <div class="form-group">
-        <label>工程名称：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('name').invalid"
-               formControlName="name" type="text" class="form-control input" placeholder="请输入工程名称" />
-      </div>
+    <div class="project" *ngIf="projectForm">
+      <form [formGroup]="projectForm" novalidate (ngSubmit)="submit(projectForm)">
+        <div class="form-group">
+          <label>工程名称：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('name').invalid"
+                 formControlName="name" type="text" class="form-control input" placeholder="请输入工程名称" />
+        </div>
 
-      <div class="form-group">
-        <label>工程地点：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('place').invalid"
-               formControlName="place" type="text" class="form-control input" placeholder="请输入工程地点" />
-      </div>
+        <div class="form-group">
+          <label>工程地点：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('place').invalid"
+                 formControlName="place" type="text" class="form-control input" placeholder="请输入工程地点" />
+        </div>
 
-      <div class="form-group">
-        <label>联系人：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('contacts').invalid"
-               formControlName="contacts" type="text" class="form-control input" placeholder="请输入联系人名称" />
-      </div>
+        <div class="form-group">
+          <label>联系人：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('contacts').invalid"
+                 formControlName="contacts" type="text" class="form-control input" placeholder="请输入联系人名称" />
+        </div>
 
-      <div class="form-group">
-        <label>电话：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('telephone').invalid"
-               formControlName="telephone" name="telephone" type="number" class="form-control input" placeholder="请输入联系电话" />
-      </div>
+        <div class="form-group">
+          <label>电话：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('telephone').invalid"
+                 formControlName="telephone" name="telephone" type="number" class="form-control input" placeholder="请输入联系电话" />
+        </div>
 
-      <div class="form-group">
-        <label>合同编号：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('contract_number').invalid"
-               formControlName="contract_number" type="text" class="form-control input" placeholder="请输入合同编号" />
-      </div>
+        <div class="form-group">
+          <label>合同编号：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('contract_number').invalid"
+                 formControlName="contract_number" type="text" class="form-control input" placeholder="请输入合同编号" />
+        </div>
 
-      <div class="form-group">
-        <label>委托单位：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('entrustment_unit').invalid"
-               formControlName="entrustment_unit" type="text" class="form-control input" placeholder="请输入委托单位名称" />
-      </div>
+        <div class="form-group">
+          <label>委托单位：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('entrustment_unit').invalid"
+                 formControlName="entrustment_unit" type="text" class="form-control input" placeholder="请输入委托单位名称" />
+        </div>
 
-      <div class="form-group">
-        <label>建设单位：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('build_unit').invalid"
-               formControlName="build_unit" type="text" class="form-control input" placeholder="请输入建设单位名称" />
-      </div>
+        <div class="form-group">
+          <label>建设单位：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('build_unit').invalid"
+                 formControlName="build_unit" type="text" class="form-control input" placeholder="请输入建设单位名称" />
+        </div>
 
-      <div class="form-group">
-        <label>设计单位：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('design_unit').invalid"
-               formControlName="design_unit" type="text" class="form-control input" placeholder="请输入设计单位名称" />
-      </div>
+        <div class="form-group">
+          <label>设计单位：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('design_unit').invalid"
+                 formControlName="design_unit" type="text" class="form-control input" placeholder="请输入设计单位名称" />
+        </div>
 
-      <div class="form-group">
-        <label>施工单位：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('doing_unit').invalid"
-               formControlName="doing_unit" type="text" class="form-control input" placeholder="请输入施工单位名称" />
-      </div>
+        <div class="form-group">
+          <label>施工单位：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('doing_unit').invalid"
+                 formControlName="doing_unit" type="text" class="form-control input" placeholder="请输入施工单位名称" />
+        </div>
 
-      <div class="form-group">
-        <label>监理单位：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('check_unit').invalid"
-               formControlName="check_unit" type="text" class="form-control input" placeholder="请输入监理单位名称" />
-      </div>
+        <div class="form-group">
+          <label>监理单位：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('check_unit').invalid"
+                 formControlName="check_unit" type="text" class="form-control input" placeholder="请输入监理单位名称" />
+        </div>
 
-      <div class="form-group">
-        <label>工程概况：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('project_detail').invalid"
-               formControlName="project_detail" type="text" class="form-control input" placeholder="请输入工程概况" />
-      </div>
+        <div class="form-group">
+          <label>工程概况：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('project_detail').invalid"
+                 formControlName="project_detail" type="text" class="form-control input" placeholder="请输入工程概况" />
+        </div>
 
-      <div class="form-group">
-        <label>检测要求和依据：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('testing_requirements').invalid"
-               formControlName="testing_requirements" type="text" class="form-control input" placeholder="请输入检测要求和依据" />
-      </div>
+        <div class="form-group">
+          <label>检测要求和依据：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('testing_requirements').invalid"
+                 formControlName="testing_requirements" type="text" class="form-control input" placeholder="请输入检测要求和依据" />
+        </div>
 
-      <div class="form-group">
-        <label>委托方提供资料：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('information_of_the_client').invalid"
-               formControlName="information_of_the_client" type="text" class="form-control input" placeholder="请输入委托方提供资料" />
-      </div>
+        <div class="form-group">
+          <label>委托方提供资料：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('information_of_the_client').invalid"
+                 formControlName="information_of_the_client" type="text" class="form-control input" placeholder="请输入委托方提供资料" />
+        </div>
 
-      <div class="form-group">
-        <label>任务完成部门：</label>
-        <input [class.invalid]="isSubmit && projectForm.get('department').invalid"
-               formControlName="department" type="text" class="form-control input" placeholder="请输入委托项目名称" />
-      </div>
+        <div class="form-group">
+          <label>任务完成部门：</label>
+          <input [class.invalid]="isSubmit && projectForm.get('department').invalid"
+                 formControlName="department" type="text" class="form-control input" placeholder="请输入委托项目名称" />
+        </div>
 
-      <div class="form-group">
-        <label>要求进场时间：</label>
-        <input id='approach' data-options='{}' placeholder="请选择时间" readonly
-               formControlName="approach" type="text" class="form-control dateTime" />
-      </div>
+        <div class="form-group">
+          <label>要求进场时间：</label>
+          <input id='approach' data-options='{}' placeholder="请选择时间" readonly
+                 formControlName="approach" type="text" class="form-control dateTime" />
+        </div>
 
-      <div class="form-group">
-        <label>预计完成时间：</label>
-        <input id='complete' data-options='{}' placeholder="请选择时间" readonly
-               formControlName="complete" type="text" class="form-control dateTime" />
-      </div>
+        <div class="form-group">
+          <label>预计完成时间：</label>
+          <input id='complete' data-options='{}' placeholder="请选择时间" readonly
+                 formControlName="complete" type="text" class="form-control dateTime" />
+        </div>
 
-      <div class="text-center btns">
-        <input class="btn btn-primary" type="submit">
-        <input class="btn btn-default" type="button" value="清空" (click)="revert()" />
-      </div>
-    </form>
+
+        <div class="options">
+          <input class="confirm" type="submit" />
+          <div class="cancel"  (click)="revert()">重置表单</div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
+
+<div class="options_top_null"></div>

@@ -1,23 +1,39 @@
+.form-page {
+  background-color: #f0f0f0;
+}
+
 .project form {
   display: inline-block;
   width: 100%;
   margin-top: 1rem;
 }
 .project form input.invalid {
-  border: 1px solid #ec7373;
-}
-.project form .input.ng-valid {
-  border: 1px solid #549c3a;
-}
+   border: 1px solid #ec7373;
+ }
+/*.project form .input.ng-valid {*/
+  /*border: 1px solid #549c3a;*/
+/*}*/
 .project .form-group {
   float: right;
 }
 .form-group label {
   margin-top: 0.5rem;
+  font-weight: normal;
+}
+.form-group select {
+  height: 2.2rem;
+  line-height: 1.2rem;
 }
 .project .form-control {
   width: 15rem;
   float: right;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+  outline: none;
+}
+.project .form-control:focus {
+  box-shadow: none;
 }
 .btns {
   width: 100%;
@@ -30,7 +46,7 @@ input.form-control {
 .approval_user {
   display: inline-block;
   padding-top: 0.5rem;
-  border-top: 1px solid #ccc;
+  border-top: 1px dashed #ccc;
 }
 .approval_user form-group {
   width: 100%;
@@ -40,6 +56,7 @@ input.form-control {
   float: right;
 }
 .approval_user .approval_option {
+  font-weight: bold;
   text-align: right;
 }
 .approval_user .approval_option .option {
@@ -53,11 +70,9 @@ input.form-control {
   color: red;
 }
 .approval_user .approval_option .option span.agree {
-  color: green;
+  color: #58c821;
+}
+.approval_user .approval_option .option .remake {
+  font-weight: normal;
 }
 
-
-.form-group select {
-  height: 2.2rem;
-  line-height: 1.2rem;
-}
