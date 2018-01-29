@@ -16,6 +16,8 @@ import { MyEditComponent } from './my-edit/my-edit.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { SelectWorkflowTypeComponent } from './select-workflow-type/select-workflow-type.component';
 import { DepartmentComponent } from './department/department.component';
+import { EditNameComponent } from './edit-name/edit-name.component';
+import { EditPasswrodComponent } from './edit-passwrod/edit-passwrod.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: 'project-list', component: ProjectListComponent },
   { path: 'select-workflow-type', component: SelectWorkflowTypeComponent },
   { path: 'department', component: DepartmentComponent },
+  { path: 'edit-name', component: EditNameComponent },
+  { path: 'edit-password', component: EditPasswrodComponent },
 ];
 
 @NgModule({

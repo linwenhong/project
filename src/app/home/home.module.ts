@@ -21,6 +21,8 @@ import { MyEditComponent } from './my-edit/my-edit.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { SelectWorkflowTypeComponent } from './select-workflow-type/select-workflow-type.component';
 import { DepartmentComponent } from './department/department.component';
+import { EditNameComponent } from './edit-name/edit-name.component';
+import { EditPasswrodComponent } from './edit-passwrod/edit-passwrod.component';
 
 @NgModule({
   imports: [
@@ -46,6 +48,8 @@ import { DepartmentComponent } from './department/department.component';
     ProjectListComponent,
     SelectWorkflowTypeComponent,
     DepartmentComponent,
+    EditNameComponent,
+    EditPasswrodComponent,
   ]
 })
 export class HomeModule { }
