@@ -15,6 +15,7 @@ export class ApprovalComponent implements OnInit {
   remake: string;
   project: Project;
   projects: Project[];
+  url: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,6 +23,7 @@ export class ApprovalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.url = '/home';
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.id = queryParams.id;
       this.option = queryParams.option === 'true' ? true : false;

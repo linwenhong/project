@@ -57,9 +57,12 @@ input {
   text-align: center;
 }
 .options .confirm {
-  background-color: #5cb85c;
+  background-color: #58c821;
 }
 .options .cancel {
+  background-color: #999;
+}
+.options .refuse {
   background-color: #d9534f;
 }
 
