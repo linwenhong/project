@@ -30,9 +30,22 @@
 }
 
 
-.user_list li.active {
-  background-color: #5cb85c;
+/*.user_list li.active {*/
+  /*background-color: #5cb85c;*/
+/*}*/
+/*.user_list li.active span {*/
+  /*color: #fff;*/
+/*}*/
+
+.user_list li i {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  float: left;
+  margin: 0.5rem 0 0 0.5rem;
+  background-size: 100%;
+  background-image: url("../../../assets/images/noselect.png");
 }
-.user_list li.active span {
-  color: #fff;
+.user_list li.active i {
+  background-image: url("../../../assets/images/select.png");
 }

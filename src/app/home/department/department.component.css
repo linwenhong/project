@@ -1,0 +1,20 @@
+.fixed-page {
+  background-color: #f0f0f0;
+  overflow-y: auto;
+}
+.content {
+  margin: 1rem 0;
+  background-color: #fff;
+}
+.content ul {
+  border-top: 1px solid #ccc;
+}
+.content li {
+  width: 100%;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  padding-left: 3rem;
+  border-bottom: 1px solid #ccc;
+  color: #666;
+  font-size: 0.95rem;
+}

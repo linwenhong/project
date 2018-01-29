@@ -1,6 +1,9 @@
 .form-group {
   float: right;
 }
+.form-group label {
+  font-weight: normal;
+}
 
 .user {
   width: 15rem;
@@ -26,4 +29,5 @@
 }
 .user p {
   margin-bottom: 0.5rem;
+  color: #aaa;
 }

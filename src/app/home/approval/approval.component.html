@@ -1,14 +1,22 @@
-<h4 class="text-center">审批意见</h4>
-<div class="page">
-  <h4>{{ '意见:' + optionTest }}</h4>
-  <div class="form-group">
+<div class="fixed-page">
+  <app-page-header
+    [title]="'审批意见'"
+    [url]="url"
+  ></app-page-header>
+
+
+  <div class="page">
+    <div class="option">{{ '意见:' + optionTest }}</div>
+    <div class="form-group">
     <textarea class="textarea" [(ngModel)]="remake">
 
     </textarea>
+    </div>
+  </div>
+  <div class="options_top_null"></div>
+  <div class="options">
+    <div class="confirm" (click)="options(true)">确定</div>
+    <div class="cancel"  (click)="options(false)">取消</div>
   </div>
 </div>
-<div class="options_top_null"></div>
-<div class="options">
-  <div class="confirm" (click)="options(true)">确定</div>
-  <div class="cancel"  (click)="options(false)">取消</div>
-</div>
+

@@ -1,5 +1,6 @@
 <app-page-header
   [title]="'发起任务'"
+  [url]="'/home/select-workflow-type'"
   ></app-page-header>
 
 <div class="page">
@@ -7,66 +8,60 @@
   <div class="project" *ngIf="Form">
     <form [formGroup]="Form" novalidate (ngSubmit)="submit(Form)">
       <div class="form-group">
-        <label>报告类型：</label>
-        <select class="form-control" formControlName="type" (change)="filesChange(Form.get('type').value)">
-          <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>选择{{ getTypeName(Form.get('type').value) }}：</label>
+        <label>选择{{ getTypeName(type) }}：</label>
         <select class="form-control" formControlName="fileId">
           <option *ngFor="let file of files" [value]="file.id">{{ file.name }}</option>
         </select>
       </div>
 
-    <div *ngIf="getTypeName(Form.get('type').value) == '项目'">
-      <shengxiang-user-select
-        [editForm]="getFormValue(Form)"
-        [editFormName]="'workflowForm'"
-        [text]="'部门负责人'"
-        [userId]="Form.get('person_in_charge').value"
-        [key]="'person_in_charge'"
-        [url]="'/home/create-workflow'"
-      ></shengxiang-user-select>
+      <div *ngIf="getTypeName(type) == '项目'">
+        <app-user-select
+          [canMultiselect]="true"
+          [editForm]="getFormValue(Form)"
+          [editFormName]="'workflowForm'"
+          [text]="'部门负责人'"
+          [key]="'person_in_charge'"
+          [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
+        ></app-user-select>
 
-      <shengxiang-user-select
-        [editForm]="getFormValue(Form)"
-        [editFormName]="'workflowForm'"
-        [text]="'总(副总)经理'"
-        [userId]="Form.get('manager').value"
-        [key]="'manager'"
-        [url]="'/home/create-workflow'"
-      ></shengxiang-user-select>
-    </div>
-
-    <div *ngIf="getTypeName(Form.get('type').value) != '项目'">
-      <shengxiang-user-select
-        [editForm]="getFormValue(Form)"
-        [editFormName]="'workflowForm'"
-        [text]="'检测人员'"
-        [userId]="Form.get('testing_person').value"
-        [key]="'testing_person'"
-        [url]="'/home/create-workflow'"
-      ></shengxiang-user-select>
-
-      <shengxiang-user-select
-        [editForm]="getFormValue(Form)"
-        [editFormName]="'workflowForm'"
-        [text]="'校核人员'"
-        [userId]="Form.get('verifying_person').value"
-        [key]="'verifying_person'"
-        [url]="'/home/create-workflow'"
-      ></shengxiang-user-select>
-    </div>
-
-
-
-
-      <div class="text-center btns">
-        <input class="btn btn-primary" type="submit">
-        <input class="btn btn-default" type="button" value="清空" (click)="revert()" />
+        <app-user-select
+          [canMultiselect]="true"
+          [editForm]="getFormValue(Form)"
+          [editFormName]="'workflowForm'"
+          [text]="'总(副总)经理'"
+          [key]="'manager'"
+          [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
+        ></app-user-select>
       </div>
+
+      <div *ngIf="getTypeName(type) != '项目'">
+        <app-user-select
+          [canMultiselect]="true"
+          [editForm]="getFormValue(Form)"
+          [editFormName]="'workflowForm'"
+          [text]="'检测人员'"
+          [key]="'testing_person'"
+          [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
+        ></app-user-select>
+
+        <app-user-select
+          [canMultiselect]="true"
+          [editForm]="getFormValue(Form)"
+          [editFormName]="'workflowForm'"
+          [text]="'校核人员'"
+          [key]="'verifying_person'"
+          [url]="'/home/create-workflow'"
+          [queryParams]="queryParams"
+        ></app-user-select>
+      </div>
+
+      <div class="text-center">
+        <input class="confirm-btn" type="submit">
+      </div>
+
     </form>
   </div>
 </div>

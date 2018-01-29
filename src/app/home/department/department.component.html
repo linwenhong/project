@@ -1,0 +1,15 @@
+<div class="fixed-page" *ngIf="departments">
+  <app-page-header
+    [title]="'选择部门'"
+    [url]="url"
+    [queryParams]="{ type :queryParams.type }"
+    ></app-page-header>
+
+  <div class="content">
+    <ul>
+      <li *ngFor="let department of departments" (click)="selected(department.id)">{{ department.name }}</li>
+    </ul>
+
+  </div>
+</div>
+

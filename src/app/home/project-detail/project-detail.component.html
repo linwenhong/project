@@ -84,13 +84,12 @@
 
     <div *ngIf="project.progress_index > 1">
       <div class="approval_user">
-        <shengxiang-user-select
+        <app-user-select
           [editForm]="project"
           [text]="'部门负责人'"
-          [userId]="project.person_in_charge"
           [key]="'person_in_charge'"
           [canEditUser]="false"
-        ></shengxiang-user-select>
+        ></app-user-select>
 
         <div class="approval">
           <div class="approval_option">
@@ -108,13 +107,12 @@
       </div>
 
       <div class="approval_user">
-        <shengxiang-user-select
+        <app-user-select
           [editForm]="project"
           [text]="'总(副总)经理'"
-          [userId]="project.manager"
           [key]="'manager'"
           [canEditUser]="false"
-        ></shengxiang-user-select>
+        ></app-user-select>
 
         <div class="approval">
           <div class="approval_option">

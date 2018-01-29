@@ -6,19 +6,19 @@ import { Project } from '../../common/project';
 import { Report } from '../../common/report';
 
 @Component({
-  selector: 'shengxiang-user-select',
+  selector: 'app-user-select',
   templateUrl: './user-select.html',
   styleUrls: ['./user-select.css']
 })
 export class UserSelectComponent implements OnInit {
+  @Input() canMultiselect: boolean;
   @Input() text: string;
-  @Input() userId: number;
   @Input() editForm: Project | Report;
   @Input() editFormName: string = 'projectForm';
   @Input() key: string;
   @Input() canEditUser: boolean = true;
   @Input() url: string;
-  // @Output() manualFiltered: EventEmitter<any> = new EventEmitter();
+  @Input() queryParams: any;
 
   users: User[];
   constructor(
@@ -34,12 +34,19 @@ export class UserSelectComponent implements OnInit {
 
   toSelectUser(): void {
     sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
-    this.router.navigate(['/home/user-list'], {
-      queryParams: {
-        editFormName: this.editFormName,
-        editUserKey: this.key,
-        url: this.url
-      }
+    const params = {
+      canMultiselect: this.canMultiselect,
+      editFormName: this.editFormName,
+      editUserKey: this.key,
+      url: this.url
+    };
+
+    for (const key in this.queryParams) {
+      params[key] = this.queryParams[key];
+    }
+
+    this.router.navigate(['/home/department'], {
+      queryParams: params
     });
   }
 
@@ -50,6 +57,10 @@ export class UserSelectComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  removeUser(index: number): void {
+    this.editForm[this.key].splice(index, 1);
   }
 }
 
