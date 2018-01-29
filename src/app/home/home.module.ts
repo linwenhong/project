@@ -17,7 +17,6 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { CreateReportComponent } from './create-report/create-report.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
-import { MyEditComponent } from './my-edit/my-edit.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { SelectWorkflowTypeComponent } from './select-workflow-type/select-workflow-type.component';
 import { DepartmentComponent } from './department/department.component';
@@ -44,7 +43,6 @@ import { EditPasswrodComponent } from './edit-passwrod/edit-passwrod.component';
     CreateReportComponent,
     CreateWorkflowComponent,
     MyComponent,
-    MyEditComponent,
     ProjectListComponent,
     SelectWorkflowTypeComponent,
     DepartmentComponent,

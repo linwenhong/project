@@ -1,3 +1,23 @@
-<p>
-  edit-name works!
-</p>
+<div class="fixed-page">
+  <app-page-header
+    [title]="'修改昵称'"
+    [url]="'/home/my'"
+  ></app-page-header>
+
+  <div class="content" *ngIf="Form">
+    <form [formGroup]="Form" novalidate (ngSubmit)="submit(Form)">
+      <div class="form_content">
+        <div class="item">
+          <span>昵称：</span>
+          <input [class.invalid]="isSubmit && Form.get('name').invalid"
+                 formControlName="name" type="text" placeholder="请输入昵称" />
+        </div>
+      </div>
+
+      <div class="text-center">
+        <input class="confirm-btn" type="submit">
+      </div>
+
+    </form>
+  </div>
+</div>
