@@ -8,9 +8,9 @@ import { Report } from '../../common/report';
 import { Workflow } from '../../common/workflow';
 
 const types = [
-  { id: 0, name: '项目', key: 'projects' },
+  { id: 0, name: '报告', key: 'reports' },
   { id: 1, name: '合同', key: 'projects' },
-  { id: 2, name: '报告', key: 'reports' }
+  { id: 2, name: '项目', key: 'projects' }
 ];
 
 @Component({

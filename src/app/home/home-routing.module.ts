@@ -12,10 +12,11 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { CreateReportComponent } from './create-report/create-report.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
-import { MyEditComponent } from './my-edit/my-edit.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { SelectWorkflowTypeComponent } from './select-workflow-type/select-workflow-type.component';
 import { DepartmentComponent } from './department/department.component';
+import { EditNameComponent } from './edit-name/edit-name.component';
+import { EditPasswrodComponent } from './edit-passwrod/edit-passwrod.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,10 +30,11 @@ const routes: Routes = [
   { path: 'create-report', component: CreateReportComponent },
   { path: 'create-workflow', component: CreateWorkflowComponent },
   { path: 'my', component: MyComponent },
-  { path: 'my-edit', component: MyEditComponent },
   { path: 'project-list', component: ProjectListComponent },
   { path: 'select-workflow-type', component: SelectWorkflowTypeComponent },
   { path: 'department', component: DepartmentComponent },
+  { path: 'edit-name', component: EditNameComponent },
+  { path: 'edit-password', component: EditPasswrodComponent },
 ];
 
 @NgModule({

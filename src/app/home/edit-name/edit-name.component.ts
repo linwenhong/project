@@ -2,21 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { UserService } from '../../core/user.service';
+
 @Component({
-  selector: 'app-my-edit',
-  templateUrl: './my-edit.component.html',
-  styleUrls: ['./my-edit.component.css']
+  selector: 'app-edit-name',
+  templateUrl: './edit-name.component.html',
+  styleUrls: ['./edit-name.component.css']
 })
-export class MyEditComponent implements OnInit {
+export class EditNameComponent implements OnInit {
   Form: FormGroup;
   isSubmit: boolean;
   FormKeys: string[] = [
-    'original',
-    'new',
-    'confirm',
+    'name',
   ];
 
   constructor(
+    private userService: UserService,
     private router: Router,
     private  fb: FormBuilder
   ) {
@@ -29,9 +30,7 @@ export class MyEditComponent implements OnInit {
 
   createForm(): void {
     this.Form = this.fb.group({
-      original: ['', Validators.required],
-      new: ['', Validators.required],
-      confirm: ['', Validators.required],
+      name: ['', Validators.required],
     });
   }
 
@@ -50,20 +49,16 @@ export class MyEditComponent implements OnInit {
   submit(form: FormGroup): void {
     this.isSubmit = true;
     if (form.status === 'INVALID') {
-      muiToast('请填写密码');
+      muiToast('请填写昵称');
       return;
     }
     const request = this.getFormValue(form);
     this.setPatchValue(form, request);
-    console.log(request);
-    /**
-     *TODO:提交 => 跳转页面
-     *simulation：模拟方法(保存提交数据)
-     **/
-    this.simulation();
-  }
+    this.userService.editName(request).then( user => {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/home/my']);
+    });
 
-  simulation(): void {
-    this.router.navigate(['/home/my']);
   }
 }
+

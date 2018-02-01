@@ -76,3 +76,6 @@ input.form-control {
   font-weight: normal;
 }
 
+select.fileId {
+  border: 1px solid #ccc !important;
+}

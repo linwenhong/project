@@ -38,11 +38,6 @@
   height: 100%;
   padding: 0 2rem 0 0.5rem;
   background-color: rgba(0,0,0,0);
-  border: none;
-  outline: none;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
 }
 .type_list .i {
   width: 1.5rem;

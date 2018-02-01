@@ -25,7 +25,6 @@
         "styles.css"
       ],
       "scripts": [
-        "libs/polyfill.min.js",
         "assets/js/main.js",
         "libs/jquery-3.1.0.min.js",
         "libs/jSignature/flashcanvas.js",

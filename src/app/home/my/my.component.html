@@ -12,18 +12,18 @@
 
   <div class="content">
     <ul>
-      <li routerLink="/home/my-edit">
+      <li routerLink="/home/edit-name">
         <div class="icon">
           <i class="name"></i>
         </div>
         <span>昵称</span>
         <div class="text">
-          <span>昵称</span>
+          <span>{{ user.name }}</span>
           <i></i>
         </div>
       </li>
 
-      <li routerLink="/home/my-edit">
+      <li routerLink="/home/edit-password">
         <div class="icon">
           <i class="password"></i>
         </div>
@@ -49,7 +49,7 @@
         </div>
         <span>签名</span>
         <div class="signature_img" (click)="showSignature()">
-          <img src="{{ user.sign_img || '/assets/images/user/sign_test.png' }}">
+          <img src="{{ user.sign_img }}">
         </div>
       </li>
     </ul>
@@ -58,6 +58,6 @@
 </div>
 <div class="signature-box" *ngIf="isShowSignature" (click)="showSignature()">
   <div class="img">
-    <img src="{{ user.sign_img || '/assets/images/user/sign_test.png' }}">
+    <img src="{{ user.sign_img }}">
   </div>
 </div>

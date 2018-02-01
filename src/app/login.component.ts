@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../environments/environment';
-import { TestService } from './core/test.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -13,7 +12,7 @@ export class LoginComponent {
   public username: string;
   public password: string;
 
-  constructor(public router: Router, private http: Http, private testService: TestService) {
+  constructor(public router: Router, private http: Http) {
     this.username = localStorage.getItem('username') || null;
   }
 
@@ -22,7 +21,7 @@ export class LoginComponent {
       muiToast('用户名和密码不能为空');
       return;
     }
-    this.http.post(environment.api_url + 'bk_login', {
+    this.http.post(environment.api_url + 'get_user_info', {
         username: user,
         password: pwd
       })
@@ -30,10 +29,13 @@ export class LoginComponent {
       response => {
         const regions = response.json();
         if (regions.code === '200') {
+          localStorage.setItem('token', regions.token);
+          localStorage.setItem('user', JSON.stringify(regions.user));
           this.router.navigate(['/home']);
         } else {
           muiToast('用户名或密码错误');
         }
-      });
+      })
+      .catch(() => muiToast('error'));
   }
 }
