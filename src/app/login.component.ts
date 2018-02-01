@@ -22,7 +22,7 @@ export class LoginComponent {
       muiToast('用户名和密码不能为空');
       return;
     }
-    this.http.post(environment.api_url + 'bk_login', {
+    this.http.post(environment.api_url + 'get_user_info', {
         username: user,
         password: pwd
       })
@@ -34,6 +34,7 @@ export class LoginComponent {
         } else {
           muiToast('用户名或密码错误');
         }
-      });
+      })
+      .catch(() => muiToast('error'));
   }
 }

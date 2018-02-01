@@ -18,13 +18,13 @@ export abstract class ServiceBaseService<T> {
 
   protected abstract getApiUrl(): string;
 
-  getAll(): Promise<any> {
+  get(): Promise<any> {
     return this.http.get(this.api_url)
       .toPromise()
       .then(response => {
         return response.json();
       })
-      .catch( () => alert(1));
+      .catch( () => muiToast('responseError'));
   }
 
   post(request: object): Promise<any> {
@@ -33,6 +33,6 @@ export abstract class ServiceBaseService<T> {
       .then(response => {
         return response.json();
       })
-      .catch( () => alert(1));
+      .catch( () => muiToast('responseError'));
   }
 }

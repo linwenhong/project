@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://api.baixingrong.test.ywqian.com/api/'
+  api_url: 'http://192.168.99.100:11050/api/'
 };
