@@ -44,4 +44,8 @@ export abstract class ServiceBaseService<T> {
       })
       .catch( () => muiToast('responseError'));
   }
+
+  getCodeUserId(): number {
+    return JSON.parse(localStorage.getItem('user')).id;
+  }
 }
