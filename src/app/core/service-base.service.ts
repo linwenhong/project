@@ -12,14 +12,23 @@ export abstract class ServiceBaseService<T> {
   constructor(
     private http: Http
   ) {
-    this.api_url = this.API_URL + this.getApiUrl();
+    this.api_url = this.API_URL;
     console.log(this.api_url);
   }
 
-  protected abstract getApiUrl(): string;
+  // protected abstract getApiUrl(): string;
 
-  get(): Promise<any> {
-    return this.http.get(this.api_url)
+  get(url: string): Promise<any> {
+    return this.http.get(this.api_url + url)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch( () => muiToast('responseError'));
+  }
+
+  put(url: string): Promise<any> {
+    return this.http.get(this.api_url + url)
       .toPromise()
       .then(response => {
         return response.json();

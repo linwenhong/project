@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { UserService } from '../../core/user.service';
+
 @Component({
   selector: 'app-edit-name',
   templateUrl: './edit-name.component.html',
@@ -15,6 +17,7 @@ export class EditNameComponent implements OnInit {
   ];
 
   constructor(
+    private userService: UserService,
     private router: Router,
     private  fb: FormBuilder
   ) {

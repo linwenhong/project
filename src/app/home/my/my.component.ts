@@ -20,7 +20,8 @@ export class MyComponent implements OnInit {
 
   ngOnInit() {
     this.isShowSignature = false;
-    this.user = JSON.parse(localStorage.getItem('my'));
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user);
   }
 
   showSignature(): void {

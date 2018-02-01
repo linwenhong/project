@@ -30,6 +30,8 @@ export class LoginComponent {
       response => {
         const regions = response.json();
         if (regions.code === '200') {
+          localStorage.setItem('token', regions.token);
+          localStorage.setItem('user', JSON.stringify(regions.user));
           this.router.navigate(['/home']);
         } else {
           muiToast('用户名或密码错误');
