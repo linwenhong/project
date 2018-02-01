@@ -54,15 +54,7 @@ export class EditNameComponent implements OnInit {
     }
     const request = this.getFormValue(form);
     this.setPatchValue(form, request);
-    console.log(request);
-    /**
-     *TODO:提交 => 跳转页面
-     *simulation：模拟方法(保存提交数据)
-     **/
-    this.simulation();
-  }
-
-  simulation(): void {
+    this.userService.editName(request);
     this.router.navigate(['/home/my']);
   }
 }
