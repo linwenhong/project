@@ -25,6 +25,7 @@
 }
 .content .form_content .item input {
   width: 15.5rem;
+  height: 100%;
   float: left;
   margin-left: 0.5rem;
   color: #999;

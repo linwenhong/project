@@ -28,6 +28,15 @@ input {
   border: none;
 }
 
+select::-ms-expand { display: none; }
+select {
+  border: none;
+  outline: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 #signature canvas {
   border: 1px solid #999 !important;
 }
