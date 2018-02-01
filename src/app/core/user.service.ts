@@ -12,10 +12,10 @@ export class UserService extends ServiceBaseService<User>  {
     super.get('123');
   }
 
-  editName(user: any): void {
+  editName(user: any): any {
     const url = 'update_user_info?user_id=' + super.getCodeUserId() + '&name=' + user.name;
-    super.put(url, {}).then(res => {
-      localStorage.setItem('user', JSON.stringify(res.user));
+    return super.put(url, {}).then(response => {
+      return response.user;
     });
   }
 

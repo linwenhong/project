@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../environments/environment';
-import { TestService } from './core/test.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -13,7 +12,7 @@ export class LoginComponent {
   public username: string;
   public password: string;
 
-  constructor(public router: Router, private http: Http, private testService: TestService) {
+  constructor(public router: Router, private http: Http) {
     this.username = localStorage.getItem('username') || null;
   }
 

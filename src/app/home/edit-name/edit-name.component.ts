@@ -54,8 +54,11 @@ export class EditNameComponent implements OnInit {
     }
     const request = this.getFormValue(form);
     this.setPatchValue(form, request);
-    this.userService.editName(request);
-    this.router.navigate(['/home/my']);
+    this.userService.editName(request).then( user => {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/home/my']);
+    });
+
   }
 }
 

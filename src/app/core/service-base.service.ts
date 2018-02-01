@@ -8,15 +8,18 @@ export abstract class ServiceBaseService<T> {
 
   API_URL: string = environment.api_url;
   api_url: string;
-  header: Headers;
 
   constructor(
     private http: Http
   ) {
     this.api_url = this.API_URL;
+
+  }
+
+  private getHeader(): Headers {
     const header: Headers = new Headers();
     header.append('Authorization', localStorage.getItem('token'));
-    this.header = header;
+    return header;
   }
 
   // protected abstract getApiUrl(): string;
@@ -27,28 +30,32 @@ export abstract class ServiceBaseService<T> {
       .then(response => {
         return response.json();
       })
-      .catch( () => muiToast('responseError'));
+      .catch(error => this.responseError(error.json()));
   }
 
-  put(url: string, data: any): Promise<any> {
-    return this.http.put(this.api_url + url, data, { headers: this.header })
+  put(url: string, request: any): Promise<any> {
+    return this.http.put(this.api_url + url, request, { headers: this.getHeader() })
       .toPromise()
       .then(response => {
         return response.json();
       })
-      .catch( () => muiToast('responseError'));
+      .catch(error => this.responseError(error.json()));
   }
 
-  post(request: object): Promise<any> {
-    return this.http.post(this.api_url, request)
+  post(url: string, request: any): Promise<any> {
+    return this.http.post(this.api_url + url, request, { headers: this.getHeader() })
       .toPromise()
       .then(response => {
         return response.json();
       })
-      .catch( () => muiToast('responseError'));
+      .catch(error => this.responseError(error.json()));
   }
 
   getCodeUserId(): number {
     return JSON.parse(localStorage.getItem('user')).id;
+  }
+
+  responseError(error): void {
+    muiToast(error.error);
   }
 }

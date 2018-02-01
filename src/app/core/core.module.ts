@@ -2,7 +2,6 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf  } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
-import { TestService } from './test.service';
 import { UserService } from './user.service';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { UserService } from './user.service';
   ],
   declarations: [],
   providers: [
-    TestService,
     UserService,
   ]
 })
