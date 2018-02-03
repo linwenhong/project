@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../core/user.service';
+import { User } from '../../common/user';
 
 @Component({
   selector: 'app-edit-name',
@@ -34,8 +35,8 @@ export class EditNameComponent implements OnInit {
     });
   }
 
-  getFormValue(form: FormGroup): object {
-    const formValue = {};
+  getFormValue(form: FormGroup): User {
+    const formValue = new User();
     this.FormKeys.forEach(key => {
       formValue[key] = form.get(key).value;
     });

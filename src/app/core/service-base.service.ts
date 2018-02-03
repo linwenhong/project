@@ -33,7 +33,7 @@ export abstract class ServiceBaseService<T> {
       .catch(error => this.responseError(error.json()));
   }
 
-  put(url: string, request: any): Promise<any> {
+  put(url: string, request: any): Promise<T> {
     return this.http.put(this.api_url + url, request, { headers: this.getHeader() })
       .toPromise()
       .then(response => {
