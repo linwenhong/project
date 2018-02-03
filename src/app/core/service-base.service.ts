@@ -33,7 +33,7 @@ export abstract class ServiceBaseService<T> {
       .catch(error => this.responseError(error.json()));
   }
 
-  put(url: string, request: any): Promise<T> {
+  put(url: string, request: object = {}): Promise<T> {
     return this.http.put(this.api_url + url, request, { headers: this.getHeader() })
       .toPromise()
       .then(response => {
@@ -42,7 +42,7 @@ export abstract class ServiceBaseService<T> {
       .catch(error => this.responseError(error.json()));
   }
 
-  post(url: string, request: any): Promise<any> {
+  post(url: string, request: object = {}): Promise<T> {
     return this.http.post(this.api_url + url, request, { headers: this.getHeader() })
       .toPromise()
       .then(response => {

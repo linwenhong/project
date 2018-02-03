@@ -43,7 +43,7 @@ export class EditNameComponent implements OnInit {
     return formValue;
   }
 
-  setPatchValue(form: FormGroup, patchValue: object): void {
+  setPatchValue(form: FormGroup, patchValue: User): void {
     form.patchValue(patchValue);
   }
 
@@ -59,7 +59,6 @@ export class EditNameComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['/home/my']);
     });
-
   }
 }
 

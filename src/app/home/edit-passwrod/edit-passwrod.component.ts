@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { UserService } from '../../core/user.service';
+import { User } from '../../common/user';
+
 @Component({
   selector: 'app-edit-passwrod',
   templateUrl: './edit-passwrod.component.html',
@@ -11,12 +14,13 @@ export class EditPasswrodComponent implements OnInit {
   Form: FormGroup;
   isSubmit: boolean;
   FormKeys: string[] = [
-    'original',
-    'new',
+    'old_password',
+    'password',
     'confirm',
   ];
 
   constructor(
+    private userService: UserService,
     private router: Router,
     private  fb: FormBuilder
   ) {
@@ -29,21 +33,24 @@ export class EditPasswrodComponent implements OnInit {
 
   createForm(): void {
     this.Form = this.fb.group({
-      original: ['', Validators.required],
-      new: ['', Validators.required],
+      old_password: ['', Validators.required],
+      password: ['', Validators.required],
       confirm: ['', Validators.required],
     });
   }
 
-  getFormValue(form: FormGroup): object {
-    const formValue = {};
+  getFormValue(form: FormGroup): User {
+    const formValue = new User();
     this.FormKeys.forEach(key => {
+      if (key === 'confirm') {
+        return;
+      }
       formValue[key] = form.get(key).value;
     });
     return formValue;
   }
 
-  setPatchValue(form: FormGroup, patchValue: object): void {
+  setPatchValue(form: FormGroup, patchValue: User): void {
     form.patchValue(patchValue);
   }
 
@@ -53,21 +60,15 @@ export class EditPasswrodComponent implements OnInit {
       muiToast('请填写密码');
       return;
     }
-    if (form.get('new').value !== form.get('confirm').value) {
+    if (form.get('password').value !== form.get('confirm').value) {
       muiToast('两次输入的密码不同');
       return;
     }
     const request = this.getFormValue(form);
     this.setPatchValue(form, request);
-    console.log(request);
-    /**
-     *TODO:提交 => 跳转页面
-     *simulation：模拟方法(保存提交数据)
-     **/
-    this.simulation();
-  }
-
-  simulation(): void {
-    this.router.navigate(['/home/my']);
+    this.userService.editPassword(request).then( user => {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/home/my']);
+    });
   }
 }

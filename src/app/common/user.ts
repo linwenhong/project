@@ -7,4 +7,6 @@ export class User {
   avatar: string;     /*头像url*/
   sign_img: string;   /*签名url*/
   wf_usr_id: string;  /*workflow id*/
+
+  old_password: string;
 }

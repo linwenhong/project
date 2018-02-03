@@ -12,8 +12,17 @@ export class UserService extends ServiceBaseService<User>  {
   }
 
   editName(user: User): Promise<User> {
-    const url = 'update_user_info?user_id=' + super.getCodeUserId() + '&name=' + user.name;
-    return super.put(url, {}).then(response => {
+    const url = 'update_user_info';
+    user['user_id'] = super.getCodeUserId();
+    return super.post(url, user).then(response => {
+      return response ? response : JSON.parse(localStorage.getItem('user'));
+    });
+  }
+
+  editPassword(user: User): Promise<User> {
+    const url = 'update_user_info';
+    user['user_id'] = super.getCodeUserId();
+    return super.post(url, user).then(response => {
       return response ? response : JSON.parse(localStorage.getItem('user'));
     });
   }
