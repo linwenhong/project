@@ -61,4 +61,3 @@ export class EditNameComponent implements OnInit {
     });
   }
 }
-
