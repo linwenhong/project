@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { FileService } from '../../core/file.service';
+import { File } from '../../common/file';
 import { Project } from '../../common/project';
 import { Report } from '../../common/report';
 import { Workflow } from '../../common/workflow';
@@ -32,7 +34,7 @@ export class CreateWorkflowComponent implements OnInit {
   projects: Project[];
   reports: Report[];
   types: any[];
-  files: Project[] | Report[];
+  files: File[];
   type: number;
   condition: string;
   queryParams: object;
@@ -41,7 +43,8 @@ export class CreateWorkflowComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private http: Http,
-    private  fb: FormBuilder
+    private  fb: FormBuilder,
+    private  fileService: FileService,
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
@@ -69,13 +72,13 @@ export class CreateWorkflowComponent implements OnInit {
   getFiles(type: number): void {
     switch (Number(type)) {
       case 0:
-        this.files = JSON.parse(localStorage.getItem('projects'));
+        this.fileService.getReports().then(reports => this.files = reports );
         break;
       case 1:
-        this.files = JSON.parse(localStorage.getItem('contracts'));
+        this.fileService.getContracts().then(contracts => this.files = contracts );
         break;
       case 2:
-        this.files = JSON.parse(localStorage.getItem('reports'));
+        this.fileService.getProjects().then(projects => this.files = projects );
         break;
     }
   }

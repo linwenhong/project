@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { UserService } from './user.service';
 import { DepartmentService } from './department.service';
+import { FileService } from './file.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { DepartmentService } from './department.service';
   providers: [
     UserService,
     DepartmentService,
+    FileService,
   ]
 })
 export class CoreModule {

@@ -10,7 +10,7 @@
       <div class="form-group">
         <label>选择{{ getTypeName(type) }}：</label>
         <select class="fileId form-control" formControlName="fileId">
-          <option *ngFor="let file of files" [value]="file.id">{{ file.name }}</option>
+          <option *ngFor="let file of files" [value]="file.id">{{ file.project_name }}</option>
         </select>
       </div>
 
