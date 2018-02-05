@@ -7,8 +7,10 @@ import { User } from '../common/user';
 @Injectable()
 export class UserService extends ServiceBaseService<User>  {
 
-  getUser(): void {
-    super.get('123');
+  getUsers(department_id: string): Promise<User[]> {
+    return super.getAll('get_user_list', { dp_id: department_id }).then(users => {
+      return users;
+    });
   }
 
   editName(user: User): Promise<User> {

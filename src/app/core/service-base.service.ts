@@ -26,8 +26,8 @@ export abstract class ServiceBaseService<T> {
 
   // protected abstract getApiUrl(): string;
 
-  get(url: string): Promise<T> {
-    return this.http.get(this.api_url + url, { headers: this.getHeader() })
+  get(url: string, request: object = {}): Promise<T> {
+    return this.http.get(this.api_url + url, { headers: this.getHeader(), params: request })
       .toPromise()
       .then(response => {
         return response.json();
@@ -35,8 +35,8 @@ export abstract class ServiceBaseService<T> {
       .catch(error => this.responseError(error.json()));
   }
 
-  getAll(url: string): Promise<T[]> {
-    return this.http.get(this.api_url + url, { headers: this.getHeader() })
+  getAll(url: string, request: object = {}): Promise<T[]> {
+    return this.http.get(this.api_url + url, { headers: this.getHeader(), params: request })
       .toPromise()
       .then(response => {
         return response.json();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { UserService } from '../../core/user.service';
 import { User } from '../../common/user';
 import { Project } from '../../common/project';
 import { Report } from '../../common/report';
@@ -24,31 +25,32 @@ export class UserListComponent implements OnInit {
   constructor(
     private http: Http,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    activatedRoute.queryParams.subscribe(queryParams => {
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+  ) { }
+
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
       this.canMultiselect = queryParams.canMultiselect === 'false' ? false : true;
       this.editFormName = queryParams.editFormName;
       this.editUserKey = queryParams.editUserKey;
       this.url = queryParams.url;
-    });
-  }
 
-  ngOnInit() {
-    this.editForm = JSON.parse(sessionStorage.getItem(this.editFormName));
-    this.http.get('assets/json/users.json').toPromise().then(response => {
-      this.users = response.json();
-      if (this.canMultiselect && this.editForm[this.editUserKey]) {
-        for (const id of this.editForm[this.editUserKey]) {
-          for (const index in this.users) {
-            if (this.users[index].id === id) {
-              this.indexs[index] = true;
-              break;
+      this.editForm = JSON.parse(sessionStorage.getItem(this.editFormName));
+      this.userService.getUsers(queryParams.department_id).then(users => {
+        this.users = users;
+        if (this.canMultiselect && this.editForm[this.editUserKey]) {
+          for (const id of this.editForm[this.editUserKey]) {
+            for (const index in this.users) {
+              if (this.users[index].id === id) {
+                this.indexs[index] = true;
+                break;
+              }
             }
           }
         }
-      }
+      });
     });
   }
 
