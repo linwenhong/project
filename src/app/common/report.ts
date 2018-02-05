@@ -1,4 +1,5 @@
 export class Report {
+  id: number;
   name: string;
   project: number;              /*项目id*/
   type: number;                 /*报告类型id*/
@@ -9,6 +10,5 @@ export class Report {
 
   person_in_charge: number;     /*负责人*/
 
-  id: number;
   create_time: number;
 }

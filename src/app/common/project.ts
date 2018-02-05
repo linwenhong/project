@@ -1,4 +1,5 @@
 export class Project {
+  id: number;
   name: string;
   place: string;    /*工程地点*/
   contacts: string;     /*联系人*/
@@ -19,7 +20,6 @@ export class Project {
   person_in_charge: number;
   manager: number;
 
-  id: number;
   create_time: number;
   progress_index: number;
 
