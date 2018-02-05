@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-const departments = [
-  { id: 654, name: '董事会' },
-  { id: 894, name: '检验部' },
-  { id: 876, name: '人事部' },
-  { id: 879, name: '工程部' },
-  { id: 865, name: '财务部' },
-  { id: 648, name: '技术部' }
-];
+import { DepartmentService } from '../../core/department.service';
+import { Department } from '../../common/department';
 
 @Component({
   selector: 'app-department',
@@ -17,12 +11,13 @@ const departments = [
 })
 export class DepartmentComponent implements OnInit {
   url: string;
-  departments: any[];
+  departments: Department[];
   queryParams: any = {};
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private departmentService: DepartmentService,
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
@@ -32,7 +27,9 @@ export class DepartmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.departments = departments;
+    this.departmentService.getDepartments().then(departments => {
+      this.departments = departments;
+    });
   }
 
   selected(id: any): void {
