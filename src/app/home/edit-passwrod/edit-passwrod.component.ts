@@ -66,6 +66,10 @@ export class EditPasswrodComponent implements OnInit {
     }
     const request = this.getFormValue(form);
     this.setPatchValue(form, request);
-    this.userService.editPassword(request).then( () => this.router.navigate(['/home/my']) );
+    this.userService.editPassword(request).then( user => {
+      if (user) {
+        this.router.navigate(['/home/my']);
+      }
+    });
   }
 }

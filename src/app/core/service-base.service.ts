@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
-import { Http, Headers} from '@angular/http';
+import { Http, Headers } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export abstract class ServiceBaseService<T> {
@@ -10,7 +11,8 @@ export abstract class ServiceBaseService<T> {
   api_url: string;
 
   constructor(
-    private http: Http
+    private http: Http,
+    private router: Router,
   ) {
     this.api_url = this.API_URL;
 
@@ -57,5 +59,9 @@ export abstract class ServiceBaseService<T> {
 
   responseError(error): void {
     muiToast(error.error);
+    if (error.status === 401) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    }
   }
 }

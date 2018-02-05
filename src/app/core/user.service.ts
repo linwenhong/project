@@ -15,7 +15,7 @@ export class UserService extends ServiceBaseService<User>  {
     const url = 'update_user_info';
     user['user_id'] = super.getCodeUserId();
     return super.post(url, user).then(response => {
-      return response ? response : JSON.parse(localStorage.getItem('user'));
+      return response ? response : null;
     });
   }
 
