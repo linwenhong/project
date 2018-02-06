@@ -1,0 +1,13 @@
+import { Injectable } from '@angular/core';
+
+import 'rxjs/add/operator/toPromise';
+import { ServiceBaseService } from './service-base.service';
+
+@Injectable()
+export class WorkflowService extends ServiceBaseService<any> {
+
+  getWorkflows(listType: number, type: number): Promise<any[]> {
+    return this.getAll('cases', { type: listType, a: type });
+  }
+
+}

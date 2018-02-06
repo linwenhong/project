@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { UserService } from './user.service';
 import { DepartmentService } from './department.service';
 import { FileService } from './file.service';
+import { WorkflowService } from './workflow.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { FileService } from './file.service';
     UserService,
     DepartmentService,
     FileService,
+    WorkflowService,
   ]
 })
 export class CoreModule {

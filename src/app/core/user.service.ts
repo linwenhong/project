@@ -5,7 +5,7 @@ import { ServiceBaseService } from './service-base.service';
 import { User } from '../common/user';
 
 @Injectable()
-export class UserService extends ServiceBaseService<User>  {
+export class UserService extends ServiceBaseService<User> {
 
   getUsers(department_id: string): Promise<User[]> {
     return super.getAll('get_user_list', { dp_id: department_id }).then(users => {
