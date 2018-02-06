@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { ArrayUtil } from '../../core/util/array.util';
 import { FileService } from '../../core/file.service';
 import { File } from '../../common/file';
 import { Project } from '../../common/project';
@@ -166,6 +167,13 @@ export class CreateWorkflowComponent implements OnInit {
       return;
     }
     this.setPatchValue(form, request);
+    console.log(request);
+    for (const key in request) {
+      const isUsers = ArrayUtil.keyInDatas(key, ['testing_person', 'verifying_person', 'person_in_charge', 'manager']);
+      if (isUsers) {
+        request[key] = ArrayUtil.getKeys(request[key]);
+      }
+    }
     console.log(request);
     /**
      *TODO:提交项目申请表数据 => 跳转页面

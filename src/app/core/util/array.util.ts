@@ -6,4 +6,13 @@ export class ArrayUtil {
     return keys;
   }
 
+  static keyInDatas(key: string, datas: string[]): boolean {
+    for (const data of datas) {
+      if (data === key) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
