@@ -26,7 +26,7 @@ export class CreateWorkflowComponent implements OnInit {
   isSubmit: boolean;
   FormKeys: string[] = [
     'type',
-    'fileId',
+    'case_id',
     'testing_person',
     'verifying_person',
     'person_in_charge',
@@ -89,7 +89,7 @@ export class CreateWorkflowComponent implements OnInit {
       if (type.id === Number(id)) {
         this.files = this[type.key];
         this.Form.patchValue({
-          fileId: null
+          case_id: null
         });
       }
     }
@@ -106,7 +106,7 @@ export class CreateWorkflowComponent implements OnInit {
   createForm(): void {
     this.Form = this.fb.group({
       type: this.type,
-      fileId: [null, Validators.required],
+      case_id: [null, Validators.required],
       // 报告/合同
       testing_person: null,
       verifying_person: null,
@@ -128,7 +128,7 @@ export class CreateWorkflowComponent implements OnInit {
         return;
       }
       formValue[key] = form.get(key).value;
-      if (key === 'fileId' || key === 'type') {
+      if (key === 'case_id' || key === 'type') {
         formValue[key] = Number(formValue[key]);
       }
     });
@@ -141,7 +141,7 @@ export class CreateWorkflowComponent implements OnInit {
 
   submit(form: FormGroup): void {
     this.isSubmit = true;
-    if (!form.get('fileId').value) {
+    if (!form.get('case_id').value) {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
       return;
     }
@@ -167,13 +167,13 @@ export class CreateWorkflowComponent implements OnInit {
       return;
     }
     this.setPatchValue(form, request);
-    console.log(request);
     for (const key in request) {
-      const isUsers = ArrayUtil.keyInDatas(key, ['testing_person', 'verifying_person', 'person_in_charge', 'manager']);
+      const isUsers = ArrayUtil.keyInArray(key, ['testing_person', 'verifying_person', 'person_in_charge', 'manager']);
       if (isUsers) {
-        request[key] = ArrayUtil.getKeys(request[key]);
+        request[key] = ArrayUtil.getWfId(request[key]);
       }
     }
+    request['author'] = JSON.parse(localStorage.getItem('user')).wf_usr_id;   // 发起人
     console.log(request);
     /**
      *TODO:提交项目申请表数据 => 跳转页面
@@ -183,9 +183,6 @@ export class CreateWorkflowComponent implements OnInit {
   }
 
   simulation(workflow: Workflow): void {
-    const time = new Date().getTime();
-    workflow.id = time;
-    workflow.create_time = time;
     sessionStorage.removeItem('workflowForm');
     const workflowJson = localStorage.getItem('workflows');
     let workflows: Workflow[];

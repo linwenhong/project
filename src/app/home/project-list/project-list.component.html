@@ -4,15 +4,17 @@
 
 <div class="header">
   <span [class.active]="listType == 1" (click)="selectListType(1)">待我审批</span>
-  <span [class.active]="listType == 2" (click)="selectListType(2)">我发起的</span>
+  <span [class.active]="listType == 3" (click)="selectListType(3)">我参与的</span>
+  <span [class.active]="listType == 2" (click)="selectListType(2)">草稿</span>
 </div>
 
 <div class="search">
   <div class="type_list">
-    <select>
-      <option>合同</option>
-      <option>报告</option>
-      <option>项目</option>
+    <select [(ngModel)]="type">
+      <option value="null">全部</option>
+      <option value="0">报告</option>
+      <option value="1">合同</option>
+      <option value="2">项目</option>
     </select>
     <div class="i">
       <i></i>

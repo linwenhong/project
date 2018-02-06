@@ -4,8 +4,8 @@ export class Workflow {
   id: number;
   create_time: number;
   type: number;
-  fileId: number;             /*合同/报告/项目 id*/
-
+  case_id: number;             /*合同/报告/项目 id*/
+  author: number;             /*发起人*/
   testing_person: User[];     /*检测人*/
   verifying_person: User[];   /*校核人*/
   initiator: number;          /*发起人*/

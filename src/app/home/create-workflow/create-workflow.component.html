@@ -9,7 +9,7 @@
     <form [formGroup]="Form" novalidate (ngSubmit)="submit(Form)">
       <div class="form-group">
         <label>选择{{ getTypeName(type) }}：</label>
-        <select class="fileId form-control" formControlName="fileId">
+        <select class="fileId form-control" formControlName="case_id">
           <option *ngFor="let file of files" [value]="file.id">{{ file.project_name }}</option>
         </select>
       </div>
@@ -38,7 +38,7 @@
 
       <div *ngIf="getTypeName(type) != '项目'">
         <app-user-select
-          [canMultiselect]="false"
+          [canMultiselect]="true"
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'检测人员'"
