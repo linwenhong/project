@@ -3,9 +3,9 @@
   <div class="user">
     <p *ngIf="canEditUser">&nbsp;&nbsp;(点击头像删除)</p>
     <!--<p *ngIf="!canEditUser">(待审核)</p>-->
-    <div class="img" *ngFor="let id of editForm[key];let index = index">
-      <img class="user_picture" src="{{ getUser(id, 'avatar') }}" (click)="removeUser(index)">
-      <div class="text-center">{{ getUser(id, 'name') }}</div>
+    <div class="img" *ngFor="let user of editForm[key];let index = index">
+      <img class="user_picture" src="{{ user.avatar }}" (click)="removeUser(index)">
+      <div class="text-center">{{ user.name }}</div>
     </div>
     <i *ngIf="canEditUser" class="select" (click)="toSelectUser()"></i>
   </div>

@@ -38,12 +38,13 @@ export class UserListComponent implements OnInit {
       this.url = queryParams.url;
 
       this.editForm = JSON.parse(sessionStorage.getItem(this.editFormName));
+      console.log(this.editForm[this.editUserKey]);
       this.userService.getUsers(queryParams.department_id).then(users => {
         this.users = users;
         if (this.canMultiselect && this.editForm[this.editUserKey]) {
-          for (const id of this.editForm[this.editUserKey]) {
+          for (const user of this.editForm[this.editUserKey]) {
             for (const index in this.users) {
-              if (this.users[index].id === id) {
+              if (this.users[index].id === user.id) {
                 this.indexs[index] = true;
                 break;
               }
@@ -65,19 +66,29 @@ export class UserListComponent implements OnInit {
 
   options(option: boolean): void {
     if (option) {
-      const ids = [];
+      let users;
+      if (this.canMultiselect) {
+        users = this.editForm[this.editUserKey] ? this.editForm[this.editUserKey] : [];
+      } else {
+        users = [];
+      }
+
       let isSelected = false;
       for (const i in this.indexs) {
         if (this.indexs[i]) {
           isSelected = true;
-          ids.push(this.users[i].id);
+          users.push({
+            id: this.users[i].id,
+            name: this.users[i].name,
+            avatar: this.users[i].avatar
+          });
         }
       }
       if (!isSelected) {
         muiToast('请先选择用户');
         return;
       }
-      this.editForm[this.editUserKey] = ids;
+      this.editForm[this.editUserKey] = users;
       // ids.sort(function(a, b){
       //   return a > b ? 1 : -1;
       // });

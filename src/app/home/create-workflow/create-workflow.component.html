@@ -38,7 +38,7 @@
 
       <div *ngIf="getTypeName(type) != '项目'">
         <app-user-select
-          [canMultiselect]="true"
+          [canMultiselect]="false"
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'检测人员'"
