@@ -75,6 +75,14 @@ export class UserListComponent implements OnInit {
 
       let isSelected = false;
       for (const i in this.indexs) {
+        if (this.editForm[this.editUserKey]) {
+          for (const key in this.editForm[this.editUserKey]) {
+            if (this.editForm[this.editUserKey][key].id === this.users[i].id) {
+              this.editForm[this.editUserKey].splice(key, 1);
+              break;
+            }
+          }
+        }
         if (this.indexs[i]) {
           isSelected = true;
           users.push({
@@ -89,9 +97,6 @@ export class UserListComponent implements OnInit {
         return;
       }
       this.editForm[this.editUserKey] = users;
-      // ids.sort(function(a, b){
-      //   return a > b ? 1 : -1;
-      // });
       sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     }
     this.router.navigate([this.url], {
