@@ -10,4 +10,7 @@ export class WorkflowService extends ServiceBaseService<any> {
     return this.getAll('cases', { type: listType, a: type });
   }
 
+  createWorkflow(Workflow: Object = {}): void {
+    super.post('case', Workflow);
+  }
 }

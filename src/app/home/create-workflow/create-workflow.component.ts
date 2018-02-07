@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ArrayUtil } from '../../core/util/array.util';
 import { FileService } from '../../core/file.service';
+import { WorkflowService } from '../../core/workflow.service';
 import { File } from '../../common/file';
 import { Project } from '../../common/project';
 import { Report } from '../../common/report';
@@ -12,7 +13,7 @@ import { Workflow } from '../../common/workflow';
 
 const types = [
   { id: 1, name: '报告', key: 'reports' },
-  { id: 2, name: '合同', key: 'projects' },
+  { id: 2, name: '合同', key: 'contracts' },
   { id: 3, name: '项目', key: 'projects' }
 ];
 
@@ -26,11 +27,9 @@ export class CreateWorkflowComponent implements OnInit {
   isSubmit: boolean;
   FormKeys: string[] = [
     'type',
-    'case_id',
-    'testing_person',
-    'verifying_person',
-    'person_in_charge',
-    'manager',
+    'file_id',
+    'makers',
+    'leader'
   ];
   projects: Project[];
   reports: Report[];
@@ -46,10 +45,11 @@ export class CreateWorkflowComponent implements OnInit {
     private http: Http,
     private  fb: FormBuilder,
     private  fileService: FileService,
+    private  workflowService: WorkflowService,
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
-      this.type = queryParams.type;
+      this.type = Number(queryParams.type);
       if (!this.type) {
         this.router.navigate(['/home']);
       }
@@ -60,7 +60,6 @@ export class CreateWorkflowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.condition = '项目';
     this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
@@ -72,13 +71,13 @@ export class CreateWorkflowComponent implements OnInit {
 
   getFiles(type: number): void {
     switch (Number(type)) {
-      case 0:
+      case 1:
         this.fileService.getReports().then(reports => this.files = reports );
         break;
-      case 1:
+      case 2:
         this.fileService.getContracts().then(contracts => this.files = contracts );
         break;
-      case 2:
+      case 3:
         this.fileService.getProjects().then(projects => this.files = projects );
         break;
     }
@@ -89,7 +88,7 @@ export class CreateWorkflowComponent implements OnInit {
       if (type.id === Number(id)) {
         this.files = this[type.key];
         this.Form.patchValue({
-          case_id: null
+          file_id: null
         });
       }
     }
@@ -106,31 +105,16 @@ export class CreateWorkflowComponent implements OnInit {
   createForm(): void {
     this.Form = this.fb.group({
       type: this.type,
-      case_id: [null, Validators.required],
-      // 报告/合同
-      testing_person: null,
-      verifying_person: null,
-      // 项目
-      person_in_charge: null,
-      manager: null,
+      file_id: [null, Validators.required],
+      makers: null,
+      leader: null
     });
   }
 
   getFormValue(form: FormGroup): Workflow {
     const formValue = new Workflow();
     this.FormKeys.forEach(key => {
-      if (this.getTypeName(form.get('type').value) === this.condition &&
-        (key === 'testing_person' || key === 'verifying_person')) {
-        return;
-      }
-      if (this.getTypeName(form.get('type').value) !== this.condition &&
-        (key === 'person_in_charge' || key === 'manager')) {
-        return;
-      }
       formValue[key] = form.get(key).value;
-      if (key === 'case_id' || key === 'type') {
-        formValue[key] = Number(formValue[key]);
-      }
     });
     return formValue;
   }
@@ -141,40 +125,28 @@ export class CreateWorkflowComponent implements OnInit {
 
   submit(form: FormGroup): void {
     this.isSubmit = true;
-    if (!form.get('case_id').value) {
+    if (!form.get('file_id').value) {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
-      return;
-    }
-    if (this.getTypeName(form.get('type').value) !== this.condition &&
-      (!form.get('testing_person').value || !form.get('verifying_person').value)) {
-      muiToast('请选择相关人员');
-      return;
-    }
-    if (this.getTypeName(form.get('type').value) === this.condition &&
-      (!form.get('person_in_charge').value || !form.get('manager').value)) {
-      muiToast('请选择相关人员');
       return;
     }
     const request = this.getFormValue(form);
     if (this.getTypeName(request.type) !== this.condition &&
-      (request.testing_person.length === 0 || request.verifying_person.length === 0)) {
-      muiToast('请选择相关人员');
-      return;
-    }
-    if (this.getTypeName(request.type) === this.condition &&
-      (request.person_in_charge.length === 0 || request.manager.length === 0)) {
+      (request.makers.length === 0 || request.leader.length === 0)) {
       muiToast('请选择相关人员');
       return;
     }
     this.setPatchValue(form, request);
     for (const key in request) {
-      const isUsers = ArrayUtil.keyInArray(key, ['testing_person', 'verifying_person', 'person_in_charge', 'manager']);
+      const isUsers = ArrayUtil.keyInArray(key, ['makers', 'leader']);
       if (isUsers) {
         request[key] = ArrayUtil.getWfId(request[key]);
+        //request[key] = ArrayUtil.getWfId(request[key], key == 'makers' ? true : false);
       }
     }
     request['author'] = JSON.parse(localStorage.getItem('user')).wf_usr_id;   // 发起人
-    console.log(request);
+    if (this.type === 1) {
+      request['pj_id'] = 1; //TODO
+    }
     /**
      *TODO:提交项目申请表数据 => 跳转页面
      *simulation：模拟方法(保存提交数据)
@@ -184,16 +156,7 @@ export class CreateWorkflowComponent implements OnInit {
 
   simulation(workflow: Workflow): void {
     sessionStorage.removeItem('workflowForm');
-    const workflowJson = localStorage.getItem('workflows');
-    let workflows: Workflow[];
-    if (!workflowJson) {
-      workflows = [workflow];
-    } else {
-      workflows = JSON.parse(workflowJson);
-      workflows.push(workflow);
-    }
-    localStorage.setItem('workflows', JSON.stringify(workflows));
-    console.log(workflows);
+    this.workflowService.createWorkflow(workflow);
     this.router.navigate(['/home']);
   }
 

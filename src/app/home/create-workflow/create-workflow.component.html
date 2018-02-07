@@ -9,50 +9,28 @@
     <form [formGroup]="Form" novalidate (ngSubmit)="submit(Form)">
       <div class="form-group">
         <label>选择{{ getTypeName(type) }}：</label>
-        <select class="fileId form-control" formControlName="case_id">
+        <select class="fileId form-control" formControlName="file_id">
           <option *ngFor="let file of files" [value]="file.id">{{ file.project_name }}</option>
         </select>
       </div>
 
-      <div *ngIf="getTypeName(type) == '项目'">
-        <app-user-select
-          [canMultiselect]="true"
-          [editForm]="getFormValue(Form)"
-          [editFormName]="'workflowForm'"
-          [text]="'部门负责人'"
-          [key]="'person_in_charge'"
-          [url]="'/home/create-workflow'"
-          [queryParams]="queryParams"
-        ></app-user-select>
-
-        <app-user-select
-          [canMultiselect]="true"
-          [editForm]="getFormValue(Form)"
-          [editFormName]="'workflowForm'"
-          [text]="'总(副总)经理'"
-          [key]="'manager'"
-          [url]="'/home/create-workflow'"
-          [queryParams]="queryParams"
-        ></app-user-select>
-      </div>
-
-      <div *ngIf="getTypeName(type) != '项目'">
+      <div>
         <app-user-select
           [canMultiselect]="true"
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'检测人员'"
-          [key]="'testing_person'"
+          [key]="'makers'"
           [url]="'/home/create-workflow'"
           [queryParams]="queryParams"
         ></app-user-select>
 
         <app-user-select
-          [canMultiselect]="true"
+          [canMultiselect]="false"
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'校核人员'"
-          [key]="'verifying_person'"
+          [key]="'leader'"
           [url]="'/home/create-workflow'"
           [queryParams]="queryParams"
         ></app-user-select>
