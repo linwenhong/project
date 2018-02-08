@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'user-list', component: UserListComponent },
   { path: 'approval', component: ApprovalComponent },
   { path: 'project-detail/:id', component: ProjectDetailComponent },
-  { path: 'create-report', component: CreateReportComponent },
+  { path: 'create-report/:id', component: CreateReportComponent },
   { path: 'create-workflow', component: CreateWorkflowComponent },
   { path: 'my', component: MyComponent },
   { path: 'project-list', component: ProjectListComponent },

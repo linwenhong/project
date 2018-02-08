@@ -1,69 +1,52 @@
-<h4 class="text-center">创建报告</h4>
-<div class="page">
+<app-page-header
+  [title]="'报告详情'"
+  ></app-page-header>
 
-  <a routerLink="/home">home</a>
+<div class="form-page fixed">
+  <div class="page">
+    <div *ngIf="project" class="project">
 
-  <div class="project" *ngIf="reportForm">
-    <form [formGroup]="reportForm" novalidate (ngSubmit)="submit(reportForm)">
       <div class="form-group">
         <label>报告名称：</label>
-        <input [class.invalid]="isSubmit && reportForm.get('name').invalid"
-               formControlName="name" type="text" class="form-control input" placeholder="请输入报告名称" />
+        <input disabled class="form-control" [value]="project.name" type="text" />
       </div>
 
       <div class="form-group">
-        <label>项目名称：</label>
-        <select *ngIf="projects" class="form-control" formControlName="project">
-          <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
-        </select>
-        <input *ngIf="!projects" disabled [value]="'暂无可选项目'" type="text" class="form-control" />
+        <label>项目名：</label>
+        <input disabled class="form-control" [value]="project.project_name" type="text" />
       </div>
 
       <div class="form-group">
         <label>报告类型：</label>
-        <select class="form-control" formControlName="type">
-          <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
-        </select>
+        <input disabled class="form-control" [value]="project.rp_type" type="text" />
       </div>
 
       <div class="form-group">
         <label>报告格式：</label>
-        <select class="form-control" formControlName="format">
-          <option *ngFor="let format of formats" [value]="format.id">{{ format.name }}</option>
-        </select>
+        <input disabled class="form-control" [value]="project.rp_format" type="text" />
       </div>
 
       <div class="form-group">
         <label>样品/记录编号：</label>
-        <input [class.invalid]="isSubmit && reportForm.get('record_number').invalid"
-               formControlName="record_number" type="text" class="form-control input" placeholder="请输入样品/记录编号" />
+        <input disabled class="form-control" [value]="project.sample" type="text" />
       </div>
 
       <div class="form-group">
         <label>盲样编号：</label>
-        <input [class.invalid]="isSubmit && reportForm.get('blind_sample_number').invalid"
-               formControlName="blind_sample_number" type="text" class="form-control input" placeholder="请输入盲样编号" />
+        <input disabled class="form-control" [value]="project.blind_sample" type="text" />
       </div>
 
       <div class="form-group">
-        <label>要素：</label>
-        <input [class.invalid]="isSubmit && reportForm.get('element').invalid"
-               formControlName="element" type="text" class="form-control input" placeholder="请输入要素" />
+        <label>负责人：</label>
+        <input disabled class="form-control" [value]="project.maker" type="text" />
       </div>
 
-
-      <app-user-select
-        [editForm]="getFormValue(reportForm)"
-        [editFormName]="'reportForm'"
-        [text]="'负责人'"
-        [key]="'person_in_charge'"
-        [url]="'/home/create-report'"
-      ></app-user-select>
-
-      <div class="text-center btns">
-        <input class="btn btn-primary" type="submit">
-        <input class="btn btn-default" type="button" value="清空" (click)="revert()" />
-      </div>
-    </form>
+    </div>
   </div>
+</div>
+
+<div class="options_top_null"></div>
+<div class="options">
+  <div class="confirm" (click)="options(true)">同意</div>
+  <div class="refuse"  (click)="options(false)">拒绝</div>
 </div>

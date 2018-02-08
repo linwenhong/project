@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { WorkflowService } from '../../core/workflow.service';
 
@@ -13,7 +14,8 @@ export class ProjectListComponent implements OnInit {
   workflows: any[];
 
   constructor(
-    private workflowService: WorkflowService
+    private workflowService: WorkflowService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,6 @@ export class ProjectListComponent implements OnInit {
   }
 
   detail(app_uid: string): void {
-    console.log(app_uid);
+    this.router.navigate(['/home/create-report/' + app_uid]);
   }
 }
