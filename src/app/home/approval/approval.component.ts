@@ -30,30 +30,21 @@ export class ApprovalComponent implements OnInit {
     const workflow = JSON.parse(sessionStorage.getItem('Form'));
     console.log(workflow);
     this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.request = {
-        type: queryParams['type'],
-        index: queryParams['index'],
-        caseId: queryParams['id']
-      };
       this.id = queryParams['id'];
       this.url = queryParams['url'];
       this.option = queryParams['option'] === 'true' ? true : false;
-      console.log(this.id, this.option);
       this.optionTest = this.option ? '同意' : '拒绝';
-
-      this.projects = JSON.parse(localStorage.getItem('projects'));
-      for (const project of this.projects) {
-        if (project.id === Number(this.id)) {
-          this.project = project;
-          break;
-        }
-      }
+      this.request = {
+        type: queryParams['type'],
+        index: queryParams['index'],
+        caseId: queryParams['id'],
+        agree: this.option
+      };
     });
   }
 
   options(option: boolean): void {
     if (option) {
-      this.request['agree'] = true;
       this.request['leader'] = ArrayUtil.getWfId(JSON.parse(sessionStorage.getItem('Form')).leader);
       this.workflowService.examine(this.request);
       this.router.navigate(['/home/project-list']);
