@@ -31,36 +31,14 @@
 
 <div class="content page">
   <ul>
-    <li>
-      <div class="name">
-        <p class="number"><small>NO.WE5ASD245</small></p>
-        <p class="text">测试报告</p>
-      </div>
-      <div class="time">2014-09-05</div>
-    </li>
-
-    <li>
-      <div class="name">
-        <p class="number"><small>NO.WE5ASD245</small></p>
-        <p class="text">测试报告</p>
-      </div>
-      <div class="time">2014-09-05</div>
-    </li>
-
-    <li>
-      <div class="name">
-        <p class="number"><small>NO.WE5ASD245</small></p>
-        <p class="text">测试报告</p>
-      </div>
-      <div class="time">2014-09-05</div>
-    </li>
-
-    <li>
-      <div class="name">
-        <div class="number"><small>NO.WE5ASD245</small></div>
-        <p class="text">测试报告</p>
-      </div>
-      <div class="time">2014-09-05</div>
-    </li>
+    <ng-container *ngFor="let workflow of workflows;let index = index;">
+      <li>
+        <div class="name">
+          <p class="number"><small>{{ workflow.app_uid }}</small></p>
+          <p class="text">{{ workflow.app_pro_title }}</p>
+        </div>
+        <div class="time">{{ workflow.app_create_date }}</div>
+      </li>
+    </ng-container>
   </ul>
 </div>

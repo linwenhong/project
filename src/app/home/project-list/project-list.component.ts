@@ -10,9 +10,10 @@ import { WorkflowService } from '../../core/workflow.service';
 export class ProjectListComponent implements OnInit {
   listType: number;
   type: number = null;
+  workflows: any[];
 
   constructor(
-    private workflowService: WorkflowService,
+    private workflowService: WorkflowService
   ) { }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class ProjectListComponent implements OnInit {
 
   getWorkflows(listType: number, type: number): void {
     this.workflowService.getWorkflows(listType, type).then( workflows => {
-        console.log(workflows);
+        this.workflows = workflows;
       }
     );
   }
