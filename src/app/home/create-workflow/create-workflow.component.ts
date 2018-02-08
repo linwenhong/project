@@ -139,8 +139,7 @@ export class CreateWorkflowComponent implements OnInit {
     for (const key in request) {
       const isUsers = ArrayUtil.keyInArray(key, ['makers', 'leader']);
       if (isUsers) {
-        request[key] = ArrayUtil.getWfId(request[key]);
-        //request[key] = ArrayUtil.getWfId(request[key], key == 'makers' ? true : false);
+        request[key] = ArrayUtil.getWfId(request[key], key == 'makers' ? true : false);
       }
     }
     request['author'] = JSON.parse(localStorage.getItem('user')).wf_usr_id;   // 发起人
