@@ -10,7 +10,7 @@
 
 <div class="search">
   <div class="type_list">
-    <select [(ngModel)]="type">
+    <select [(ngModel)]="type" (change)="select_type(type)">
       <option value="null">全部</option>
       <option value="1">报告</option>
       <option value="2">合同</option>
@@ -32,7 +32,7 @@
 <div class="content page">
   <ul>
     <ng-container *ngFor="let workflow of workflows;let index = index;">
-      <li>
+      <li (click)="detail(workflow.app_uid)">
         <div class="name">
           <p class="number"><small>{{ workflow.app_uid }}</small></p>
           <p class="text">{{ workflow.app_pro_title }}</p>

@@ -25,8 +25,13 @@ export class ProjectListComponent implements OnInit {
     if (type === this.listType) {
       return;
     }
+    this.type = null;
     this.listType = type;
     this.getWorkflows(this.listType, this.type);
+  }
+
+  select_type(type: number): void {
+    this.getWorkflows(this.listType, type);
   }
 
   getWorkflows(listType: number, type: number): void {
@@ -34,5 +39,9 @@ export class ProjectListComponent implements OnInit {
         this.workflows = workflows;
       }
     );
+  }
+
+  detail(app_uid: string): void {
+    console.log(app_uid);
   }
 }
