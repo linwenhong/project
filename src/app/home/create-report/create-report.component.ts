@@ -13,8 +13,9 @@ import { User } from '../../common/user';
   styleUrls: ['../../../assets/form.css']
 })
 export class CreateReportComponent implements OnInit {
-  projectId: number;
+  app_uid: number;
   project: any;
+  workflow: any;
 
   constructor(
     private workflowService: WorkflowService,
@@ -24,19 +25,26 @@ export class CreateReportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projectId = this.activatedRoute.snapshot.params['id'];
-    console.log(this.projectId);
-    this.workflowService.getDetail(this.projectId).then( workflow => {
-      this.project = workflow.data;
-      console.log(workflow.data);
-    });
+    this.app_uid = this.activatedRoute.snapshot.params['id'];
+    if (sessionStorage.getItem('Form')) {
+      this.workflow = JSON.parse(sessionStorage.getItem('Form'));
+      this.project = this.workflow.data;
+    } else {
+      this.workflowService.getDetail(this.app_uid).then( workflow => {
+        this.project = workflow.data;
+        this.workflow = workflow;
+      });
+    }
   }
 
   options(option: boolean): void {
     this.router.navigate(['/home/approval'], {
       queryParams: {
-        id: this.projectId,
-        option: option
+        id: this.app_uid,
+        option: option,
+        index: this.workflow.index,
+        type: this.workflow.type,
+        url: '/home/create-report/' + this.app_uid
       }
     });
   }

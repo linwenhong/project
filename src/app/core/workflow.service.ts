@@ -17,4 +17,8 @@ export class WorkflowService extends ServiceBaseService<any> {
   getDetail(wf_id: any): Promise<any> {
     return super.get('case/info', { caseId: wf_id });
   }
+
+  examine(request: Object = {}): void {
+    super.post('case/check', request);
+  }
 }

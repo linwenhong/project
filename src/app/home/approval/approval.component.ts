@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { WorkflowService } from '../../core/workflow.service';
+import { ArrayUtil } from '../../core/util/array.util';
 import { Project } from '../../common/project';
 
 @Component({
@@ -16,17 +18,26 @@ export class ApprovalComponent implements OnInit {
   project: Project;
   projects: Project[];
   url: string;
+  request: any = {};
 
   constructor(
+    private workflowService: WorkflowService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.url = '/home';
+    const workflow = JSON.parse(sessionStorage.getItem('Form'));
+    console.log(workflow);
     this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.id = queryParams.id;
-      this.option = queryParams.option === 'true' ? true : false;
+      this.request = {
+        type: queryParams['type'],
+        index: queryParams['index'],
+        caseId: queryParams['id']
+      };
+      this.id = queryParams['id'];
+      this.url = queryParams['url'];
+      this.option = queryParams['option'] === 'true' ? true : false;
       console.log(this.id, this.option);
       this.optionTest = this.option ? '同意' : '拒绝';
 
@@ -42,12 +53,13 @@ export class ApprovalComponent implements OnInit {
 
   options(option: boolean): void {
     if (option) {
-      const progress_index = this.project.progress_index;
-      this.editProject(option, progress_index);
-      this.router.navigate(['/home/projects']);
+      this.request['agree'] = true;
+      this.request['leader'] = ArrayUtil.getWfId(JSON.parse(sessionStorage.getItem('Form')).leader);
+      this.workflowService.examine(this.request);
+      this.router.navigate(['/home/project-list']);
       return;
     }
-    this.router.navigate(['/home/project/' + this.id]);
+    this.router.navigate([this.url]);
   }
 
   editProject(option: boolean, progress_index: number): void {

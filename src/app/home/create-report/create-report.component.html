@@ -41,6 +41,15 @@
         <input disabled class="form-control" [value]="project.maker" type="text" />
       </div>
 
+      <app-user-select
+        [canMultiselect]="false"
+        [editForm]="workflow"
+        [editFormName]="'Form'"
+        [text]="'审核人'"
+        [key]="'leader'"
+        [url]="'/home/create-report/' + app_uid"
+      ></app-user-select>
+
     </div>
   </div>
 </div>
