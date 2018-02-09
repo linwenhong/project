@@ -19,6 +19,8 @@ export class ProjectListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    sessionStorage.removeItem('queryParams');
+    sessionStorage.removeItem('leader');
     this.listType = 1;
     this.getWorkflows(this.listType, this.type);
   }

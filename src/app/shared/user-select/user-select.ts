@@ -44,7 +44,6 @@ export class UserSelectComponent implements OnInit {
     for (const key in this.queryParams) {
       params[key] = this.queryParams[key];
     }
-    console.log(this.queryParams);
     this.router.navigate(['/home/department'], {
       queryParams: params
     });

@@ -100,10 +100,14 @@ export class UserListComponent implements OnInit {
       this.editForm[this.editUserKey] = users;
       sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     }
+    let params = {};
+    if (sessionStorage.getItem('queryParams')) {
+      params = JSON.parse(sessionStorage.getItem('queryParams'));
+    } else {
+      params['type'] = this.queryParams.type;
+    }
     this.router.navigate([this.url], {
-      queryParams: {
-        type: this.queryParams.type
-      }
+      queryParams: params
     });
   }
 }

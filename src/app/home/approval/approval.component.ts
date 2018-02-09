@@ -30,10 +30,8 @@ export class ApprovalComponent implements OnInit {
 
   ngOnInit() {
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
-    console.log(this.leader);
     this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.queryParams = queryParams;
-      console.log(this.queryParams);
+      sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
       this.id = queryParams['id'];
       this.url = queryParams['url'];
       this.option = queryParams['option'] === 'true' ? true : false;
@@ -49,15 +47,13 @@ export class ApprovalComponent implements OnInit {
 
   options(option: boolean): void {
     if (option) {
-      console.log(this.leader);
       if (!this.leader['leader'] || this.leader['leader'].length == 0) {
         muiToast('请选择下一步审核人');
         return;
       }
-      this.request['leader'] = ArrayUtil.getWfId(JSON.parse(sessionStorage.getItem('Form')).leader);
-      this.workflowService.examine(this.request).then(() => {
-        this.router.navigate(['/home/project-list']);
-      });
+      this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
+      this.workflowService.examine(this.request);
+      this.router.navigate(['/home/project-list']);
     } else {
       this.router.navigate([this.url]);
     }
