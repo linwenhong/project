@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -22,14 +22,16 @@ const types = [
   templateUrl: './create-workflow.component.html',
   styleUrls: ['../../../assets/form.css']
 })
-export class CreateWorkflowComponent implements OnInit {
+export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
   Form: FormGroup;
   isSubmit: boolean;
   FormKeys: string[] = [
     'type',
     'file_id',
     'makers',
-    'leader'
+    'leader',
+    'time',
+    'page'
   ];
   projects: Project[];
   reports: Report[];
@@ -38,6 +40,7 @@ export class CreateWorkflowComponent implements OnInit {
   type: number;
   condition: string;
   queryParams: Object;
+  canSetDateTimeGroup: boolean = true;
 
   constructor(
     private router: Router,
@@ -50,6 +53,9 @@ export class CreateWorkflowComponent implements OnInit {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
       this.type = Number(queryParams['type']);
+      if (this.type == 1) {
+        setDateTimeGroup('.dateTime');
+      }
       if (!this.type) {
         this.router.navigate(['/home']);
       }
@@ -69,6 +75,13 @@ export class CreateWorkflowComponent implements OnInit {
     }
   }
 
+  ngAfterViewChecked() {
+    if (this.canSetDateTimeGroup && this.Form) {
+      this.canSetDateTimeGroup = false;
+      setDateTimeGroup('.dateTime');
+    }
+  }
+
   getFiles(type: number): void {
     switch (Number(type)) {
       case 1:
@@ -80,17 +93,6 @@ export class CreateWorkflowComponent implements OnInit {
       case 3:
         this.fileService.getProjects().then(projects => this.files = projects );
         break;
-    }
-  }
-
-  filesChange(id: number): void {
-    for (const type of types) {
-      if (type.id === Number(id)) {
-        this.files = this[type.key];
-        this.Form.patchValue({
-          file_id: null
-        });
-      }
     }
   }
 
@@ -107,14 +109,20 @@ export class CreateWorkflowComponent implements OnInit {
       type: this.type,
       file_id: [null, Validators.required],
       makers: null,
-      leader: null
+      leader: null,
+      time: null,
+      page: [null, Validators.required]
     });
   }
 
   getFormValue(form: FormGroup): Workflow {
     const formValue = new Workflow();
     this.FormKeys.forEach(key => {
-      formValue[key] = form.get(key).value;
+      if (key == 'time') {
+        formValue[key] = getDateTime('#' + key);
+      } else {
+        formValue[key] = form.get(key).value;
+      }
     });
     return formValue;
   }
@@ -129,9 +137,17 @@ export class CreateWorkflowComponent implements OnInit {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
       return;
     }
+    if (this.type == 1 && !form.get('page').value) {
+      muiToast(`请选择输入报告页数`);
+      return;
+    }
+    if (!getDateTime('#time')) {
+      muiToast('请选择相关时间');
+      return;
+    }
     const request = this.getFormValue(form);
-    if (this.getTypeName(request.type) !== this.condition &&
-      (request.makers.length === 0 || request.leader.length === 0)) {
+    console.log(request);
+    if (!request.makers || !request.leader || request.makers.length === 0 || request.leader.length === 0) {
       muiToast('请选择相关人员');
       return;
     }
@@ -143,8 +159,13 @@ export class CreateWorkflowComponent implements OnInit {
       }
     }
     request['author'] = JSON.parse(localStorage.getItem('user')).wf_usr_id;   // 发起人
-    if (this.type === 1) {
-      request['pj_id'] = 4; //TODO
+    if (this.type == 1) {
+      for (const file of this.files) {
+        if (request['file_id'] == file.id) {
+          request['pj_id'] = file['pj_id'];
+          break;
+        }
+      }
     }
     /**
      *TODO:提交项目申请表数据 => 跳转页面
@@ -155,8 +176,12 @@ export class CreateWorkflowComponent implements OnInit {
 
   simulation(workflow: Workflow): void {
     sessionStorage.removeItem('workflowForm');
-    this.workflowService.createWorkflow(workflow);
-    this.router.navigate(['/home']);
+    this.workflowService.createWorkflow(workflow).then( msg => {
+      if (msg) {
+        muiToast('新建成功');
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
   revert() {

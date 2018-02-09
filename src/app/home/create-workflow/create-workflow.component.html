@@ -14,6 +14,19 @@
         </select>
       </div>
 
+      <ng-container *ngIf="type == 1">
+        <div class="form-group">
+          <label>报告页数：</label>
+          <input formControlName="page" type="text" class="form-control input" placeholder="请输入报告页数" />
+        </div>
+
+        <div class="form-group">
+          <label>提交报告时间：</label>
+          <input id="time" data-options='{}' placeholder="请选择时间" readonly
+                 formControlName="time" type="text" class="form-control dateTime" />
+        </div>
+      </ng-container>
+
       <div>
         <app-user-select
           [canMultiselect]="true"

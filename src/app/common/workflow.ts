@@ -8,6 +8,7 @@ export class Workflow {
   makers: User[];            /*检测人*/
   leader: User[];             /*下一步审核人*/
 
-  create_time: number;
-  pj_id: number;              /*仅报告使用*/
+  pj_id: number;    /*仅报告使用*/
+  time: string;     /*仅报告使用*/
+  page: number;     /*仅报告使用*/
 }

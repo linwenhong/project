@@ -28,7 +28,7 @@
 .project .form-control {
   width: 15rem;
   float: right;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 0;
   background-color: #fff;
   outline: none;

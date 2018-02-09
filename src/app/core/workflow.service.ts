@@ -16,8 +16,13 @@ export class WorkflowService extends ServiceBaseService<any> {
     return this.getAll('cases', request);
   }
 
-  createWorkflow(Workflow: Object = {}): void {
-    super.post('case', Workflow);
+  createWorkflow(Workflow: Object = {}): Promise<boolean> {
+    return super.post('case', Workflow).then( reponse => {
+      if (reponse.app_uid) {
+        return true;
+      }
+      return false;
+    });
   }
 
   getDetail(wf_id: any): Promise<any> {
