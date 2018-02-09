@@ -111,13 +111,14 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
       makers: null,
       leader: null,
       time: null,
-      page: [null, Validators.required]
+      page: null
     });
   }
 
   getFormValue(form: FormGroup): Workflow {
     const formValue = new Workflow();
     this.FormKeys.forEach(key => {
+      if (this.type != 1 && key == 'page') return;
       if (key == 'time') {
         formValue[key] = getDateTime('#' + key);
       } else {
@@ -141,7 +142,7 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
       muiToast(`请选择输入报告页数`);
       return;
     }
-    if (!getDateTime('#time')) {
+    if (this.type == 1 && !getDateTime('#time')) {
       muiToast('请选择相关时间');
       return;
     }
