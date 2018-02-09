@@ -7,7 +7,7 @@ import { ServiceBaseService } from './service-base.service';
 export class WorkflowService extends ServiceBaseService<any> {
 
   getWorkflows(listType: number, type: number): Promise<any[]> {
-    return this.getAll('cases', { type: listType, a: type });
+    return this.getAll('cases', { type: listType, case_type: type });
   }
 
   createWorkflow(Workflow: Object = {}): void {
