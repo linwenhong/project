@@ -26,15 +26,10 @@ export class CreateReportComponent implements OnInit {
 
   ngOnInit() {
     this.app_uid = this.activatedRoute.snapshot.params['id'];
-    if (sessionStorage.getItem('Form')) {
-      this.workflow = JSON.parse(sessionStorage.getItem('Form'));
-      this.project = this.workflow.data;
-    } else {
-      this.workflowService.getDetail(this.app_uid).then( workflow => {
-        this.project = workflow.data;
-        this.workflow = workflow;
-      });
-    }
+    this.workflowService.getDetail(this.app_uid).then( workflow => {
+      this.project = workflow.data;
+      this.workflow = workflow;
+    });
   }
 
   options(option: boolean): void {

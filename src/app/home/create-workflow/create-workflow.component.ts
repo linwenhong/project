@@ -37,7 +37,7 @@ export class CreateWorkflowComponent implements OnInit {
   files: File[];
   type: number;
   condition: string;
-  queryParams: object;
+  queryParams: Object;
 
   constructor(
     private router: Router,
@@ -45,11 +45,11 @@ export class CreateWorkflowComponent implements OnInit {
     private http: Http,
     private  fb: FormBuilder,
     private  fileService: FileService,
-    private  workflowService: WorkflowService,
+    private  workflowService: WorkflowService
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
-      this.type = Number(queryParams.type);
+      this.type = Number(queryParams['type']);
       if (!this.type) {
         this.router.navigate(['/home']);
       }
@@ -144,7 +144,7 @@ export class CreateWorkflowComponent implements OnInit {
     }
     request['author'] = JSON.parse(localStorage.getItem('user')).wf_usr_id;   // 发起人
     if (this.type === 1) {
-      request['pj_id'] = 1; //TODO
+      request['pj_id'] = 4; //TODO
     }
     /**
      *TODO:提交项目申请表数据 => 跳转页面

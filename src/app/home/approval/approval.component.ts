@@ -19,6 +19,8 @@ export class ApprovalComponent implements OnInit {
   projects: Project[];
   url: string;
   request: any = {};
+  leader: Object;
+  queryParams: Object;
 
   constructor(
     private workflowService: WorkflowService,
@@ -27,9 +29,11 @@ export class ApprovalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const workflow = JSON.parse(sessionStorage.getItem('Form'));
-    console.log(workflow);
+    this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
+    console.log(this.leader);
     this.activatedRoute.queryParams.subscribe(queryParams => {
+      this.queryParams = queryParams;
+      console.log(this.queryParams);
       this.id = queryParams['id'];
       this.url = queryParams['url'];
       this.option = queryParams['option'] === 'true' ? true : false;
@@ -45,35 +49,17 @@ export class ApprovalComponent implements OnInit {
 
   options(option: boolean): void {
     if (option) {
-      this.request['leader'] = ArrayUtil.getWfId(JSON.parse(sessionStorage.getItem('Form')).leader);
-      this.workflowService.examine(this.request);
-      this.router.navigate(['/home/project-list']);
-      return;
-    }
-    this.router.navigate([this.url]);
-  }
-
-  editProject(option: boolean, progress_index: number): void {
-    switch (progress_index) {
-      case 1:
-        this.project.is_person_in_charge_pass = this.option;
-        this.project.person_in_charge_pass_remake = this.remake;
-        break;
-      case 2:
-        this.project.is_manager_pass = this.option;
-        this.project.manager_pass_remake = this.remake;
-        break;
-      default:
-        console.log('default');
-    }
-    for (let project of this.projects) {
-      if (project.id === Number(this.id)) {
-        project = this.project;
-        project.progress_index = this.option ? ++ progress_index : 1;
-        break;
+      console.log(this.leader);
+      if (!this.leader['leader'] || this.leader['leader'].length == 0) {
+        muiToast('请选择下一步审核人');
+        return;
       }
+      this.request['leader'] = ArrayUtil.getWfId(JSON.parse(sessionStorage.getItem('Form')).leader);
+      this.workflowService.examine(this.request).then(() => {
+        this.router.navigate(['/home/project-list']);
+      });
+    } else {
+      this.router.navigate([this.url]);
     }
-    console.log(this.projects);
-    localStorage.setItem('projects', JSON.stringify(this.projects));
   }
 }

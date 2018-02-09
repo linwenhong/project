@@ -11,6 +11,17 @@
     <textarea class="textarea" [(ngModel)]="remake">
 
     </textarea>
+
+    <div class="leader">
+      <app-user-select
+        [canMultiselect]="false"
+        [editForm]="leader"
+        [editFormName]="'leader'"
+        [text]="'下一步审核人'"
+        [key]="'leader'"
+        [url]="'/home/approval/'"
+      ></app-user-select>
+    </div>
     </div>
   </div>
   <div class="options_top_null"></div>

@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://121.8.210.226:9100/api/'
+  api_url: 'http://121.8.210.226:9100/api/',
+  //api_url: 'http://172.168.1.12:50008/api/'
 };
