@@ -11,7 +11,7 @@
 <div class="search">
   <div class="type_list">
     <select [(ngModel)]="type" (change)="select_type(type)">
-      <option value="null">全部</option>
+      <option value="0">全部</option>
       <option value="1">报告</option>
       <option value="2">合同</option>
       <option value="3">项目</option>
@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<div class="content page">
+<div class="content page" *ngIf="workflows">
   <ul>
     <ng-container *ngFor="let workflow of workflows;let index = index;">
       <li (click)="detail(workflow.app_uid)">
@@ -41,4 +41,5 @@
       </li>
     </ng-container>
   </ul>
+  <div *ngIf="workflows.length > 9" class="load" (click)="more()">加载更多</div>
 </div>

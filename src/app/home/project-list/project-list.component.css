@@ -113,3 +113,14 @@
   color: #999;
   font-size: 0.5rem;
 }
+
+.load {
+  width: 20rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin: 2rem auto;
+  background-color: #298eff;
+  color: #eee;
+  font-size: 1rem;
+  text-align: center;
+}

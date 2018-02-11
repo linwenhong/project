@@ -6,13 +6,12 @@ import { ServiceBaseService } from './service-base.service';
 @Injectable()
 export class WorkflowService extends ServiceBaseService<any> {
 
-  getWorkflows(listType: number, type: number): Promise<any[]> {
+  getWorkflows(listType: number, type: number, page: number): Promise<any[]> {
     const request = {
-      type: listType
+      type: listType,
+      case_type: type,
+      page: page
     };
-    if (type != null) {
-      request['case_type'] = type;
-    }
     return this.getAll('cases', request);
   }
 

@@ -10,8 +10,9 @@ import { WorkflowService } from '../../core/workflow.service';
 })
 export class ProjectListComponent implements OnInit {
   listType: number;
-  type: number = null;
+  type: number = 0;
   workflows: any[];
+  page: number = 1;
 
   constructor(
     private workflowService: WorkflowService,
@@ -29,7 +30,7 @@ export class ProjectListComponent implements OnInit {
     if (type === this.listType) {
       return;
     }
-    this.type = null;
+    this.type = 0;
     this.listType = type;
     this.getWorkflows(this.listType, this.type);
   }
@@ -39,7 +40,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   getWorkflows(listType: number, type: number): void {
-    this.workflowService.getWorkflows(listType, type).then( workflows => {
+    this.workflowService.getWorkflows(listType, type, this.page).then( workflows => {
         this.workflows = workflows;
       }
     );
@@ -47,5 +48,10 @@ export class ProjectListComponent implements OnInit {
 
   detail(app_uid: string): void {
     this.router.navigate(['/home/create-report/' + app_uid]);
+  }
+
+  more(): void {
+    this.page++;
+    this.getWorkflows(this.listType, this.type);
   }
 }
