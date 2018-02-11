@@ -13,7 +13,7 @@ export class DepartmentComponent implements OnInit {
   url: string;
   departments: Department[];
   queryParams: any = {};
-  return_url: string;
+  returnParams: string;
 
   constructor(
     private router: Router,
@@ -22,7 +22,7 @@ export class DepartmentComponent implements OnInit {
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
-      this.return_url = queryParams['return_url'];
+      this.returnParams = queryParams['returnParams'];
       this.url = queryParams.url;
       console.log(queryParams);
     });
