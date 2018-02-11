@@ -20,7 +20,7 @@ export class ApprovalComponent implements OnInit {
   url: string;
   request: any = {};
   leader: Object;
-  queryParams: Object;
+  queryParams: any;
 
   constructor(
     private workflowService: WorkflowService,
@@ -32,6 +32,7 @@ export class ApprovalComponent implements OnInit {
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
       sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
+      this.queryParams = JSON.stringify(queryParams);
       this.id = queryParams['id'];
       this.url = queryParams['url'];
       this.option = queryParams['option'] === 'true' ? true : false;
