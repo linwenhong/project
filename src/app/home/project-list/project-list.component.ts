@@ -43,15 +43,19 @@ export class ProjectListComponent implements OnInit {
     if (type === this.listType) {
       return;
     }
-    this.type = 0;
     this.listType = type;
     this.workflows = [];
+    this.type = 0;
     this.page = 1;
     this.canMore = true;
     this.getWorkflows(this.listType, this.type);
   }
 
   select_type(type: number): void {
+    this.workflows = [];
+    this.type = 0;
+    this.page = 1;
+    this.canMore = true;
     this.getWorkflows(this.listType, type);
   }
 
@@ -78,10 +82,10 @@ export class ProjectListComponent implements OnInit {
         url = 'report-case/';
         break;
       case CONTRACT:
-        url = 'report-case/';
+        url = 'contract-case/';
         break;
       case PROJECT:
-        url = 'report-case/';
+        url = 'project-case/';
         break;
     }
     this.router.navigate(['/home/' + url + workflow.app_uid]);

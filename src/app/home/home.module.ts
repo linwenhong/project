@@ -15,6 +15,8 @@ import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ReportCaseComponent } from './report-case/report-case.component';
+import { ContractCaseComponent } from './contract-case/contract-case.component';
+import { ProjectCaseComponent } from './project-case/project-case.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -41,6 +43,8 @@ import { EditPasswrodComponent } from './edit-passwrod/edit-passwrod.component';
     ApprovalComponent,
     ProjectDetailComponent,
     ReportCaseComponent,
+    ContractCaseComponent,
+    ProjectCaseComponent,
     CreateWorkflowComponent,
     MyComponent,
     ProjectListComponent,
