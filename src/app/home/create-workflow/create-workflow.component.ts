@@ -11,7 +11,7 @@ import { Project } from '../../common/project';
 import { Report } from '../../common/report';
 import { Workflow } from '../../common/workflow';
 
-const types = [
+const TYPES = [
   { id: 1, name: '报告', key: 'reports' },
   { id: 2, name: '合同', key: 'contracts' },
   { id: 3, name: '项目', key: 'projects' }
@@ -61,7 +61,7 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
       }
       this.getFiles(this.type);
     });
-    this.types = types;
+    this.types = TYPES;
     this.createForm();
   }
 
@@ -97,7 +97,7 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
   }
 
   getTypeName(id: number): string {
-    for (const type of types) {
+    for (const type of TYPES) {
       if (type.id === Number(id)) {
         return type.name;
       }
