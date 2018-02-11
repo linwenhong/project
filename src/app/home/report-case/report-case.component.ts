@@ -39,7 +39,7 @@ export class ReportCaseComponent implements OnInit {
         option: option,
         index: this.workflow.index,
         type: this.workflow.type,
-        url: '/home/create-report/' + this.app_uid
+        url: '/home/report-case/' + this.app_uid
       }
     });
   }
