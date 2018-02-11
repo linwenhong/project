@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { User } from '../../common/user';
 import { Project } from '../../common/project';
@@ -20,17 +19,11 @@ export class UserSelectComponent implements OnInit {
   @Input() url: string;
   @Input() queryParams: any;
 
-  users: User[];
   constructor(
-    private http: Http,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.http.get('assets/json/users.json').toPromise().then(response => {
-      this.users = response.json();
-    });
-  }
+  ngOnInit(): void { }
 
   toSelectUser(): void {
     sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
@@ -47,15 +40,6 @@ export class UserSelectComponent implements OnInit {
     this.router.navigate(['/home/department'], {
       queryParams: params
     });
-  }
-
-  getUser(id: number, key: string): User {
-    for (const user of this.users) {
-      if (user.id === Number(id)) {
-        return user[key];
-      }
-    }
-    return null;
   }
 
   removeUser(index: number): void {
