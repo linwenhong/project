@@ -124,3 +124,9 @@
   font-size: 1rem;
   text-align: center;
 }
+
+.down {
+  margin: 1rem 0;
+  color: #999;
+  text-align: center;
+}

@@ -13,6 +13,10 @@ export class ProjectListComponent implements OnInit {
   type: number = 0;
   workflows: any[];
   page: number = 1;
+  searchText: string = '';
+  canMore: boolean = true;
+  alert: string = '加载中...';
+  isLoad: boolean = false;
 
   constructor(
     private workflowService: WorkflowService,
@@ -32,6 +36,9 @@ export class ProjectListComponent implements OnInit {
     }
     this.type = 0;
     this.listType = type;
+    this.workflows = [];
+    this.page = 1;
+    this.canMore = true;
     this.getWorkflows(this.listType, this.type);
   }
 
@@ -41,7 +48,16 @@ export class ProjectListComponent implements OnInit {
 
   getWorkflows(listType: number, type: number): void {
     this.workflowService.getWorkflows(listType, type, this.page).then( workflows => {
-        this.workflows = workflows;
+      this.isLoad = false;
+      if (workflows.length < 10) this.canMore = false;
+        if (!this.workflows) {
+          this.workflows = workflows;
+        } else {
+          for (const workflow of workflows) {
+            this.workflows.push(workflow);
+          }
+        }
+        this.alert = this.workflows.length == 0 ? '暂无数据' : '加载中...';
       }
     );
   }
@@ -51,7 +67,12 @@ export class ProjectListComponent implements OnInit {
   }
 
   more(): void {
+    this.isLoad = true;
     this.page++;
     this.getWorkflows(this.listType, this.type);
+  }
+
+  search(text: string) {
+    console.log(text);
   }
 }

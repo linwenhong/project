@@ -22,8 +22,8 @@
   </div>
 
   <div class="text_search">
-    <input type="text" placeholder="请输入搜索文件名" />
-    <div class="i">
+    <input [(ngModel)]="searchText" type="text" placeholder="请输入搜索文件名" />
+    <div class="i" (click)="search(searchText)">
       <i></i>
     </div>
   </div>
@@ -41,5 +41,10 @@
       </li>
     </ng-container>
   </ul>
-  <div *ngIf="workflows.length > 9" class="load" (click)="more()">加载更多</div>
+  <div *ngIf="canMore && workflows.length > 9">
+    <div *ngIf="!isLoad" class="load" (click)="more()">加载更多</div>
+    <div *ngIf="isLoad" class="load">加载中...</div>
+  </div>
+  <div *ngIf="!canMore && workflows.length > 9" class="down">没有更多了</div>
+  <div *ngIf="workflows.length == 0" class="down">{{ alert }}</div>
 </div>
