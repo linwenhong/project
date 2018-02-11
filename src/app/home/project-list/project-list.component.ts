@@ -75,13 +75,13 @@ export class ProjectListComponent implements OnInit {
     let url;
     switch (WORKFLOW_TYPES[workflow.pro_uid]) {
       case REPORT:
-        url = 'create-report/';
+        url = 'report-case/';
         break;
       case CONTRACT:
-        url = 'create-report/';
+        url = 'report-case/';
         break;
       case PROJECT:
-        url = 'create-report/';
+        url = 'report-case/';
         break;
     }
     this.router.navigate(['/home/' + url + workflow.app_uid]);

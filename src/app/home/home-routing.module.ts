@@ -9,7 +9,7 @@ import { ProjectComponent } from './project/project.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
-import { CreateReportComponent } from './create-report/create-report.component';
+import { ReportCaseComponent } from './report-case/report-case.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'user-list', component: UserListComponent },
   { path: 'approval', component: ApprovalComponent },
   { path: 'project-detail/:id', component: ProjectDetailComponent },
-  { path: 'create-report/:id', component: CreateReportComponent },
+  { path: 'report-case/:id', component: ReportCaseComponent },
   { path: 'create-workflow', component: CreateWorkflowComponent },
   { path: 'my', component: MyComponent },
   { path: 'project-list', component: ProjectListComponent },

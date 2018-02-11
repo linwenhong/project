@@ -8,11 +8,11 @@ import { Project } from '../../common/project';
 import { User } from '../../common/user';
 
 @Component({
-  selector: 'app-create-report',
-  templateUrl: './create-report.component.html',
+  selector: 'app-report-case',
+  templateUrl: './report-case.component.html',
   styleUrls: ['../../../assets/form.css']
 })
-export class CreateReportComponent implements OnInit {
+export class ReportCaseComponent implements OnInit {
   app_uid: number;
   project: any;
   workflow: any;
