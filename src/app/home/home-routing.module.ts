@@ -4,11 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { Test2Component } from './test2/test2.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { ProjectComponent } from './project/project.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
-import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ReportCaseComponent } from './report-case/report-case.component';
 import { ContractCaseComponent } from './contract-case/contract-case.component';
 import { ProjectCaseComponent } from './project-case/project-case.component';
@@ -24,11 +21,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'sign', component: Test2Component },
   { path: 'create-project', component: CreateProjectComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'project/:id', component: ProjectComponent },
   { path: 'user-list', component: UserListComponent },
   { path: 'approval', component: ApprovalComponent },
-  { path: 'project-detail/:id', component: ProjectDetailComponent },
   { path: 'report-case/:id', component: ReportCaseComponent },
   { path: 'contract-case/:id', component: ContractCaseComponent },
   { path: 'project-case/:id', component: ProjectCaseComponent },
