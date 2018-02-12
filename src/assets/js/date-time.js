@@ -58,6 +58,12 @@ function muiToast(string) {
   }, 1500);
 }
 
+function getFileName() {
+  setTimeout(function() {
+    setDateTimeGroup('.dateTime');
+  }, 1000);
+  return $("#upfile").get(0).files[0] ? $("#upfile").get(0).files[0].name : null;
+}
 function fileUpload() {
   var fd = new FormData();
   fd.append('file', $("#upfile").get(0).files[0], $("#upfile").get(0).files[0].name);

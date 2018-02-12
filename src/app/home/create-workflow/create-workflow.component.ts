@@ -22,7 +22,7 @@ const TYPES = [
   templateUrl: './create-workflow.component.html',
   styleUrls: ['../../../assets/form.css']
 })
-export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
+export class CreateWorkflowComponent implements OnInit {
   Form: FormGroup;
   isSubmit: boolean;
   FormKeys: string[] = [
@@ -41,6 +41,7 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
   condition: string;
   queryParams: Object;
   canSetDateTimeGroup: boolean = true;
+  fileName: string;
 
   constructor(
     private router: Router,
@@ -75,12 +76,12 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  ngAfterViewChecked() {
-    if (this.canSetDateTimeGroup && this.Form) {
-      this.canSetDateTimeGroup = false;
-      setDateTimeGroup('.dateTime');
-    }
-  }
+  //ngAfterViewChecked() {
+  //  if (this.canSetDateTimeGroup && this.Form) {
+  //    this.canSetDateTimeGroup = false;
+  //    setDateTimeGroup('.dateTime');
+  //  }
+  //}
 
   getFiles(type: number): void {
     switch (Number(type)) {
@@ -133,17 +134,16 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
   }
 
   submit(form: FormGroup): void {
-    fileUpload();
     this.isSubmit = true;
     if (!form.get('file_id').value) {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
       return;
     }
-    if (this.type == 1 && !form.get('page').value) {
+    if (this.type == 1 && this.fileName && !form.get('page').value) {
       muiToast(`请选择输入报告页数`);
       return;
     }
-    if (this.type == 1 && !getDateTime('#time')) {
+    if (this.type == 1 && this.fileName && !getDateTime('#time')) {
       muiToast('请选择相关时间');
       return;
     }
@@ -153,6 +153,7 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
       muiToast('请选择相关人员');
       return;
     }
+    if (this.type == 1 && this.fileName) fileUpload();   // 文件上传
     this.setPatchValue(form, request);
     for (const key in request) {
       const isUsers = ArrayUtil.keyInArray(key, ['makers', 'leader']);
@@ -191,6 +192,10 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
     this.Form.reset({
       type: this.Form.get('type').value
     });
+  }
+
+  fileChange(): void {
+    this.fileName = getFileName();
   }
 }
 
