@@ -133,6 +133,7 @@ export class CreateWorkflowComponent implements OnInit, AfterViewChecked {
   }
 
   submit(form: FormGroup): void {
+    fileUpload();
     this.isSubmit = true;
     if (!form.get('file_id').value) {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
