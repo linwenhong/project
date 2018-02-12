@@ -21,7 +21,7 @@
             <div class="file">
               <input type="file" id="upfile" (change)="fileChange()"/>
             </div>
-            <span>{{ fileName }}</span>
+            <span><small>{{ fileName || '(请先选择报告与相关人员)' }}</small></span>
           </div>
         </div>
 
