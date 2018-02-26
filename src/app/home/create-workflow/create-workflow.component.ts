@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { ArrayUtil } from '../../core/util/array.util';
+import { FileService } from '../../core/file.service';
+import { WorkflowService } from '../../core/workflow.service';
+import { File } from '../../common/file';
 import { Project } from '../../common/project';
 import { Report } from '../../common/report';
 import { Workflow } from '../../common/workflow';
 
-const types = [
-  { id: 0, name: '报告', key: 'reports' },
-  { id: 1, name: '合同', key: 'projects' },
-  { id: 2, name: '项目', key: 'projects' }
+const TYPES = [
+  { id: 1, name: '报告', key: 'reports' },
+  { id: 2, name: '合同', key: 'contracts' },
+  { id: 3, name: '项目', key: 'projects' }
 ];
 
 @Component({
@@ -23,40 +27,46 @@ export class CreateWorkflowComponent implements OnInit {
   isSubmit: boolean;
   FormKeys: string[] = [
     'type',
-    'fileId',
-    'testing_person',
-    'verifying_person',
-    'person_in_charge',
-    'manager',
+    'file_id',
+    'makers',
+    'leader',
+    'time',
+    'page'
   ];
   projects: Project[];
   reports: Report[];
   types: any[];
-  files: Project[] | Report[];
+  files: File[];
   type: number;
   condition: string;
-  queryParams: object;
+  queryParams: Object;
+  canSetDateTimeGroup: boolean = true;
+  fileName: string;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private http: Http,
-    private  fb: FormBuilder
+    private  fb: FormBuilder,
+    private  fileService: FileService,
+    private  workflowService: WorkflowService
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
-      this.type = queryParams.type;
+      this.type = Number(queryParams['type']);
+      if (this.type == 1) {
+        setDateTimeGroup('.dateTime');
+      }
       if (!this.type) {
         this.router.navigate(['/home']);
       }
       this.getFiles(this.type);
     });
-    this.types = types;
+    this.types = TYPES;
     this.createForm();
   }
 
   ngOnInit() {
-    this.condition = '项目';
     this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
@@ -66,33 +76,29 @@ export class CreateWorkflowComponent implements OnInit {
     }
   }
 
+  //ngAfterViewChecked() {
+  //  if (this.canSetDateTimeGroup && this.Form) {
+  //    this.canSetDateTimeGroup = false;
+  //    setDateTimeGroup('.dateTime');
+  //  }
+  //}
+
   getFiles(type: number): void {
     switch (Number(type)) {
-      case 0:
-        this.files = JSON.parse(localStorage.getItem('projects'));
-        break;
       case 1:
-        this.files = JSON.parse(localStorage.getItem('contracts'));
+        this.fileService.getReports().then(reports => this.files = reports );
         break;
       case 2:
-        this.files = JSON.parse(localStorage.getItem('reports'));
+        this.fileService.getContracts().then(contracts => this.files = contracts );
         break;
-    }
-  }
-
-  filesChange(id: number): void {
-    for (const type of types) {
-      if (type.id === Number(id)) {
-        this.files = this[type.key];
-        this.Form.patchValue({
-          fileId: null
-        });
-      }
+      case 3:
+        this.fileService.getProjects().then(projects => this.files = projects );
+        break;
     }
   }
 
   getTypeName(id: number): string {
-    for (const type of types) {
+    for (const type of TYPES) {
       if (type.id === Number(id)) {
         return type.name;
       }
@@ -102,30 +108,22 @@ export class CreateWorkflowComponent implements OnInit {
   createForm(): void {
     this.Form = this.fb.group({
       type: this.type,
-      fileId: [null, Validators.required],
-      // 报告/合同
-      testing_person: null,
-      verifying_person: null,
-      // 项目
-      person_in_charge: null,
-      manager: null,
+      file_id: [null, Validators.required],
+      makers: null,
+      leader: null,
+      time: null,
+      page: null
     });
   }
 
   getFormValue(form: FormGroup): Workflow {
     const formValue = new Workflow();
     this.FormKeys.forEach(key => {
-      if (this.getTypeName(form.get('type').value) === this.condition &&
-        (key === 'testing_person' || key === 'verifying_person')) {
-        return;
-      }
-      if (this.getTypeName(form.get('type').value) !== this.condition &&
-        (key === 'person_in_charge' || key === 'manager')) {
-        return;
-      }
-      formValue[key] = form.get(key).value;
-      if (key === 'fileId' || key === 'type') {
-        formValue[key] = Number(formValue[key]);
+      if (this.type != 1 && key == 'page') return;
+      if (key == 'time') {
+        formValue[key] = getDateTime('#' + key);
+      } else {
+        formValue[key] = form.get(key).value;
       }
     });
     return formValue;
@@ -137,33 +135,41 @@ export class CreateWorkflowComponent implements OnInit {
 
   submit(form: FormGroup): void {
     this.isSubmit = true;
-    if (!form.get('fileId').value) {
+    if (!form.get('file_id').value) {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
       return;
     }
-    if (this.getTypeName(form.get('type').value) !== this.condition &&
-      (!form.get('testing_person').value || !form.get('verifying_person').value)) {
-      muiToast('请选择相关人员');
+    if (this.type == 1 && this.fileName && !form.get('page').value) {
+      muiToast(`请选择输入报告页数`);
       return;
     }
-    if (this.getTypeName(form.get('type').value) === this.condition &&
-      (!form.get('person_in_charge').value || !form.get('manager').value)) {
-      muiToast('请选择相关人员');
+    if (this.type == 1 && this.fileName && !getDateTime('#time')) {
+      muiToast('请选择相关时间');
       return;
     }
     const request = this.getFormValue(form);
-    if (this.getTypeName(request.type) !== this.condition &&
-      (request.testing_person.length === 0 || request.verifying_person.length === 0)) {
-      muiToast('请选择相关人员');
-      return;
-    }
-    if (this.getTypeName(request.type) === this.condition &&
-      (request.person_in_charge.length === 0 || request.manager.length === 0)) {
-      muiToast('请选择相关人员');
-      return;
-    }
-    this.setPatchValue(form, request);
     console.log(request);
+    if (!request.makers || !request.leader || request.makers.length === 0 || request.leader.length === 0) {
+      muiToast('请选择相关人员');
+      return;
+    }
+    if (this.type == 1 && this.fileName) fileUpload();   // 文件上传
+    this.setPatchValue(form, request);
+    for (const key in request) {
+      const isUsers = ArrayUtil.keyInArray(key, ['makers', 'leader']);
+      if (isUsers) {
+        request[key] = ArrayUtil.getWfId(request[key], key == 'makers' ? true : false);
+      }
+    }
+    request['author'] = JSON.parse(localStorage.getItem('user')).wf_usr_id;   // 发起人
+    if (this.type == 1) {
+      for (const file of this.files) {
+        if (request['file_id'] == file.id) {
+          request['pj_id'] = file['pj_id'];
+          break;
+        }
+      }
+    }
     /**
      *TODO:提交项目申请表数据 => 跳转页面
      *simulation：模拟方法(保存提交数据)
@@ -172,21 +178,13 @@ export class CreateWorkflowComponent implements OnInit {
   }
 
   simulation(workflow: Workflow): void {
-    const time = new Date().getTime();
-    workflow.id = time;
-    workflow.create_time = time;
     sessionStorage.removeItem('workflowForm');
-    const workflowJson = localStorage.getItem('workflows');
-    let workflows: Workflow[];
-    if (!workflowJson) {
-      workflows = [workflow];
-    } else {
-      workflows = JSON.parse(workflowJson);
-      workflows.push(workflow);
-    }
-    localStorage.setItem('workflows', JSON.stringify(workflows));
-    console.log(workflows);
-    this.router.navigate(['/home']);
+    this.workflowService.createWorkflow(workflow).then( msg => {
+      if (msg) {
+        muiToast('新建成功');
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
   revert() {
@@ -194,6 +192,10 @@ export class CreateWorkflowComponent implements OnInit {
     this.Form.reset({
       type: this.Form.get('type').value
     });
+  }
+
+  fileChange(): void {
+    this.fileName = getFileName();
   }
 }
 

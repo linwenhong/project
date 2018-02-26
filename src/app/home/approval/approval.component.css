@@ -19,3 +19,8 @@
   resize: none;
   outline: none;
 }
+
+.leader {
+  display: inline-block;
+  margin-top: 1rem;
+}

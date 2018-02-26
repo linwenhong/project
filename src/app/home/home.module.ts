@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
@@ -9,12 +10,11 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { Test2Component } from './test2/test2.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { ProjectComponent } from './project/project.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
-import { ProjectDetailComponent } from './project-detail/project-detail.component';
-import { CreateReportComponent } from './create-report/create-report.component';
+import { ReportCaseComponent } from './report-case/report-case.component';
+import { ContractCaseComponent } from './contract-case/contract-case.component';
+import { ProjectCaseComponent } from './project-case/project-case.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -29,18 +29,18 @@ import { EditPasswrodComponent } from './edit-passwrod/edit-passwrod.component';
     HomeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FileUploadModule,
     SharedModule
   ],
   declarations: [
     HomeComponent,
     Test2Component,
     CreateProjectComponent,
-    ProjectsComponent,
-    ProjectComponent,
     UserListComponent,
     ApprovalComponent,
-    ProjectDetailComponent,
-    CreateReportComponent,
+    ReportCaseComponent,
+    ContractCaseComponent,
+    ProjectCaseComponent,
     CreateWorkflowComponent,
     MyComponent,
     ProjectListComponent,

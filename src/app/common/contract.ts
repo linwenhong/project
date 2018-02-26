@@ -1,4 +1,5 @@
 export class Contract {
+  id: number;
   project_name: string;   /*工程名称*/
   contract_num: string;   /*合同编号*/
   party_a: string;   /*甲方名称*/

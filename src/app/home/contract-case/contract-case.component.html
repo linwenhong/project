@@ -1,0 +1,97 @@
+<app-page-header
+  [title]="'合同详情'"
+  [url]="'/home/project-list'"
+></app-page-header>
+
+<div class="form-page fixed">
+  <div class="page">
+    <div *ngIf="project" class="project">
+      <div class="form-group">
+        <label>工程名称：</label>
+        <input disabled class="form-control" [value]="project.project_name" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>合同编号：</label>
+        <input disabled class="form-control" [value]="project.contract_num" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>甲方名称：</label>
+        <input disabled class="form-control" [value]="project.party_a" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>签订日期：</label>
+        <input disabled class="form-control" [value]="project.sign_date" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>工期：</label>
+        <input disabled class="form-control" [value]="project.limit_time" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>预计完成时间：</label>
+        <input disabled class="form-control" [value]="project.finish_time" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>要求进场时间：</label>
+        <input disabled class="form-control" [value]="project.entry_time" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>合同金额：</label>
+        <input disabled class="form-control" [value]="project.contract_amount" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>合同文件：</label>
+        <input disabled class="form-control" [value]="project.contract_files" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>合同状态：</label>
+        <input disabled class="form-control" [value]="project.status" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>负责部门：</label>
+        <input disabled class="form-control" [value]="project.dp_id" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>负责人：</label>
+        <input disabled class="form-control" [value]="project.people" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>合同类型：</label>
+        <input disabled class="form-control" [value]="project.contract_type" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>检测项目名称：</label>
+        <input disabled class="form-control" [value]="project.contract_item" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>检测项目参数：</label>
+        <input disabled class="form-control" [value]="project.contract_params" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>备注：</label>
+        <input disabled class="form-control" [value]="project.audit" type="text" />
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="options_top_null"></div>
+<div class="options">
+  <div class="confirm" (click)="options(true)">同意</div>
+  <div class="refuse"  (click)="options(false)">拒绝</div>
+</div>

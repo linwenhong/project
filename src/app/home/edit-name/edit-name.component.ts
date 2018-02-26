@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from '../../core/user.service';
+import { User } from '../../common/user';
 
 @Component({
   selector: 'app-edit-name',
@@ -34,15 +35,15 @@ export class EditNameComponent implements OnInit {
     });
   }
 
-  getFormValue(form: FormGroup): object {
-    const formValue = {};
+  getFormValue(form: FormGroup): User {
+    const formValue = new User();
     this.FormKeys.forEach(key => {
       formValue[key] = form.get(key).value;
     });
     return formValue;
   }
 
-  setPatchValue(form: FormGroup, patchValue: object): void {
+  setPatchValue(form: FormGroup, patchValue: User): void {
     form.patchValue(patchValue);
   }
 
@@ -55,10 +56,10 @@ export class EditNameComponent implements OnInit {
     const request = this.getFormValue(form);
     this.setPatchValue(form, request);
     this.userService.editName(request).then( user => {
-      localStorage.setItem('user', JSON.stringify(user));
-      this.router.navigate(['/home/my']);
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/home/my']);
+      }
     });
-
   }
 }
-

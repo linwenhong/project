@@ -9,50 +9,53 @@
     <form [formGroup]="Form" novalidate (ngSubmit)="submit(Form)">
       <div class="form-group">
         <label>选择{{ getTypeName(type) }}：</label>
-        <select class="fileId form-control" formControlName="fileId">
-          <option *ngFor="let file of files" [value]="file.id">{{ file.name }}</option>
+        <select class="fileId form-control" formControlName="file_id">
+          <option *ngFor="let file of files" [value]="file.id">{{ file.project_name }}</option>
         </select>
       </div>
 
-      <div *ngIf="getTypeName(type) == '项目'">
-        <app-user-select
-          [canMultiselect]="true"
-          [editForm]="getFormValue(Form)"
-          [editFormName]="'workflowForm'"
-          [text]="'部门负责人'"
-          [key]="'person_in_charge'"
-          [url]="'/home/create-workflow'"
-          [queryParams]="queryParams"
-        ></app-user-select>
+      <ng-container *ngIf="type == 1">
+        <div class="form-group">
+          <label>文件上传：</label>
+          <div class="form-control file_box">
+            <div class="file">
+              <input type="file" id="upfile" (change)="fileChange()"/>
+            </div>
+            <span><small>{{ fileName || '(请先选择报告与相关人员)' }}</small></span>
+          </div>
+        </div>
 
-        <app-user-select
-          [canMultiselect]="true"
-          [editForm]="getFormValue(Form)"
-          [editFormName]="'workflowForm'"
-          [text]="'总(副总)经理'"
-          [key]="'manager'"
-          [url]="'/home/create-workflow'"
-          [queryParams]="queryParams"
-        ></app-user-select>
-      </div>
+        <ng-container *ngIf="fileName">
+          <div class="form-group">
+            <label>报告页数：</label>
+            <input formControlName="page" type="text" class="form-control input" placeholder="请输入报告页数" />
+          </div>
 
-      <div *ngIf="getTypeName(type) != '项目'">
+          <div class="form-group">
+            <label>提交报告时间：</label>
+            <input id="time" data-options='{"type": "date"}' placeholder="请选择时间" readonly
+                   formControlName="time" type="text" class="form-control dateTime" />
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div>
         <app-user-select
           [canMultiselect]="true"
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'检测人员'"
-          [key]="'testing_person'"
+          [key]="'makers'"
           [url]="'/home/create-workflow'"
           [queryParams]="queryParams"
         ></app-user-select>
 
         <app-user-select
-          [canMultiselect]="true"
+          [canMultiselect]="false"
           [editForm]="getFormValue(Form)"
           [editFormName]="'workflowForm'"
           [text]="'校核人员'"
-          [key]="'verifying_person'"
+          [key]="'leader'"
           [url]="'/home/create-workflow'"
           [queryParams]="queryParams"
         ></app-user-select>

@@ -1,4 +1,5 @@
 .form-page {
+  padding-top: 1rem;
   background-color: #f0f0f0;
 }
 
@@ -27,7 +28,7 @@
 .project .form-control {
   width: 15rem;
   float: right;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 0;
   background-color: #fff;
   outline: none;
@@ -78,4 +79,20 @@ input.form-control {
 
 select.fileId {
   border: 1px solid #ccc !important;
+}
+
+.file_box {
+  border: none !important;
+}
+.file {
+  display: inline-block;
+  width: 2rem;
+  background-image: url("../assets/images/upload.png");
+  background-size: 100%;
+}
+#upfile {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0;
 }

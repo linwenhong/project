@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { UserService } from './user.service';
+import { DepartmentService } from './department.service';
+import { FileService } from './file.service';
+import { WorkflowService } from './workflow.service';
 
 @NgModule({
   imports: [
@@ -13,6 +16,9 @@ import { UserService } from './user.service';
   declarations: [],
   providers: [
     UserService,
+    DepartmentService,
+    FileService,
+    WorkflowService,
   ]
 })
 export class CoreModule {

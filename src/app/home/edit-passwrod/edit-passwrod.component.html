@@ -9,14 +9,14 @@
       <div class="form_content">
         <div class="item">
           <span>原密码：</span>
-          <input [class.invalid]="isSubmit && Form.get('original').invalid"
-                 formControlName="original" type="password" placeholder="请输入原密码" />
+          <input [class.invalid]="isSubmit && Form.get('old_password').invalid"
+                 formControlName="old_password" type="password" placeholder="请输入原密码" />
         </div>
 
         <div class="item">
           <span>新密码：</span>
-          <input [class.invalid]="isSubmit && Form.get('new').invalid"
-                 formControlName="new" type="password" placeholder="请输入新密码" />
+          <input [class.invalid]="isSubmit && Form.get('password').invalid"
+                 formControlName="password" type="password" placeholder="请输入新密码" />
         </div>
 
         <div class="item">

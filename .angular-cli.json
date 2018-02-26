@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "my-app"
+    "name": "shengxiang"
   },
   "apps": [
     {
@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "libs/bootstrap/bootstrap.min.css",
         "libs/jquery-notifyjs/styles/metro/notify-metro.css",
         "libs/mui/css/mui.picker.min.css",
         "styles.css"
@@ -32,7 +32,6 @@
         "libs/jquery-notifyjs/notify.min.js",
         "libs/jquery-notifyjs/styles/metro/notify-metro.js",
         "libs/notifications.js",
-        "libs/LodopFuncs3.js",
         "libs/mui/js/mui.min.js",
         "libs/mui/js/mui.picker.min.js",
         "assets/js/sign.js",

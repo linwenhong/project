@@ -57,3 +57,25 @@ function muiToast(string) {
     $('#warning .text').hide();
   }, 1500);
 }
+
+function getFileName() {
+  setTimeout(function() {
+    setDateTimeGroup('.dateTime');
+  }, 1000);
+  return $("#upfile").get(0).files[0] ? $("#upfile").get(0).files[0].name : null;
+}
+function fileUpload() {
+  var fd = new FormData();
+  fd.append('file', $("#upfile").get(0).files[0], $("#upfile").get(0).files[0].name);
+  $.ajax({
+    url: "http://121.8.210.226:9100/api/upload_file",
+    type: "POST",
+    processData: false,
+    contentType: false,
+    headers: { "Authorization": localStorage.getItem('token') },
+    data: fd,
+    success: function(data) {
+      muiToast("文件上传成功!");
+    }
+  });
+}

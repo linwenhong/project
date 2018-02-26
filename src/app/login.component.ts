@@ -28,12 +28,12 @@ export class LoginComponent {
       .toPromise().then(
       response => {
         const regions = response.json();
-        if (regions.code === '200') {
-          localStorage.setItem('token', regions.token);
-          localStorage.setItem('user', JSON.stringify(regions.user));
-          this.router.navigate(['/home']);
-        } else {
+        if (regions.status === '500') {
           muiToast('用户名或密码错误');
+        } else {
+          localStorage.setItem('token', regions.token);
+          localStorage.setItem('user', JSON.stringify(regions));
+          this.router.navigate(['/home']);
         }
       })
       .catch(() => muiToast('error'));

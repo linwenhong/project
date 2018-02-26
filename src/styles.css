@@ -14,6 +14,9 @@ p{word-wrap:break-word}
   margin: 0;
 }
 h1,h2,h3,h4,h5,h6{padding: 0.8rem}
+h5 {
+  font-size: 1.2rem;
+}
 
 /*去除ios默认样式*/
 input[type="button"],
@@ -63,6 +66,7 @@ select {
   line-height: 3rem;
   float: left;
   color: #fff;
+  font-size: 1rem;
   text-align: center;
 }
 .options .confirm {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { WorkflowService } from '../../core/workflow.service';
+import { ArrayUtil } from '../../core/util/array.util';
 import { Project } from '../../common/project';
 
 @Component({
@@ -16,61 +18,45 @@ export class ApprovalComponent implements OnInit {
   project: Project;
   projects: Project[];
   url: string;
+  request: any = {};
+  leader: Object;
+  queryParams: any;
 
   constructor(
+    private workflowService: WorkflowService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.url = '/home';
+    this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.id = queryParams.id;
-      this.option = queryParams.option === 'true' ? true : false;
-      console.log(this.id, this.option);
+      sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
+      this.queryParams = JSON.stringify(queryParams);
+      this.id = queryParams['id'];
+      this.url = queryParams['url'];
+      this.option = queryParams['option'] === 'true' ? true : false;
       this.optionTest = this.option ? '同意' : '拒绝';
-
-      this.projects = JSON.parse(localStorage.getItem('projects'));
-      for (const project of this.projects) {
-        if (project.id === Number(this.id)) {
-          this.project = project;
-          break;
-        }
-      }
+      this.request = {
+        type: queryParams['type'],
+        index: queryParams['index'],
+        caseId: queryParams['id'],
+        agree: this.option
+      };
     });
   }
 
   options(option: boolean): void {
     if (option) {
-      const progress_index = this.project.progress_index;
-      this.editProject(option, progress_index);
-      this.router.navigate(['/home/projects']);
-      return;
-    }
-    this.router.navigate(['/home/project/' + this.id]);
-  }
-
-  editProject(option: boolean, progress_index: number): void {
-    switch (progress_index) {
-      case 1:
-        this.project.is_person_in_charge_pass = this.option;
-        this.project.person_in_charge_pass_remake = this.remake;
-        break;
-      case 2:
-        this.project.is_manager_pass = this.option;
-        this.project.manager_pass_remake = this.remake;
-        break;
-      default:
-        console.log('default');
-    }
-    for (let project of this.projects) {
-      if (project.id === Number(this.id)) {
-        project = this.project;
-        project.progress_index = this.option ? ++ progress_index : 1;
-        break;
+      if (!this.leader['leader'] || this.leader['leader'].length == 0) {
+        muiToast('请选择下一步审核人');
+        return;
       }
+      this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
+      this.workflowService.examine(this.request);
+      this.router.navigate(['/home/project-list']);
+    } else {
+      this.router.navigate([this.url]);
     }
-    console.log(this.projects);
-    localStorage.setItem('projects', JSON.stringify(this.projects));
   }
 }

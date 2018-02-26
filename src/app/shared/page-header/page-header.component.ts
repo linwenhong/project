@@ -10,12 +10,16 @@ export class PageHeaderComponent implements OnInit {
   @Input() title: string;
   @Input() url: string;
   @Input() queryParams: any;
+  @Input() returnParams: string = null;
 
   constructor(
     private router: Router
   ) { }
 
   ngOnInit() {
+    if (this.returnParams) {
+      this.queryParams = JSON.parse(this.returnParams);
+    }
     this.url = (this.url) ? this.url : '/home';
   }
 
