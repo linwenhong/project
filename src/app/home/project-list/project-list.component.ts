@@ -5,7 +5,7 @@ import { WorkflowService } from '../../core/workflow.service';
 
 const REPORT = 1;     // 报告
 const CONTRACT = 2;   // 合同
-const PROJECT = 3;    //  项目
+const PROJECT = 3;    // 项目
 const WORKFLOW_TYPES = {
   '5651692255a57123952f3a8069340993': REPORT,
   '7665033775a6fd495c3cd53059547661': CONTRACT,
@@ -77,15 +77,16 @@ export class ProjectListComponent implements OnInit {
 
   detail(workflow: any): void {
     let url;
+    const url_ = (this.listType == 1) ? 'case/' : 'detail/';
     switch (WORKFLOW_TYPES[workflow.pro_uid]) {
       case REPORT:
-        url = 'report-case/';
+        url = 'report-' + url_;
         break;
       case CONTRACT:
-        url = 'contract-case/';
+        url = 'contract-' + url_;
         break;
       case PROJECT:
-        url = 'project-case/';
+        url = 'project-' + url_;
         break;
     }
     this.router.navigate(['/home/' + url + workflow.app_uid]);

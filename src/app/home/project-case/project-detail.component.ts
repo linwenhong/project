@@ -14,12 +14,12 @@ const PROCEDURE = {
 };
 
 @Component({
-  selector: 'app-project-case',
+  selector: 'app-project-detail',
   templateUrl: './project-case.component.html',
   styleUrls: ['../../../assets/form.css']
 })
-export class ProjectCaseComponent implements OnInit {
-  isDetails: boolean = false;
+export class ProjectDetailComponent implements OnInit {
+  isDetails: boolean = true;
   procedureIndex: number;
   app_uid: number;
   project: any;
@@ -38,18 +38,6 @@ export class ProjectCaseComponent implements OnInit {
       this.procedureIndex = PROCEDURE[workflow.cases.current_task[0].tas_uid];
       this.project = workflow.data;
       this.workflow = workflow;
-    });
-  }
-
-  options(option: boolean): void {
-    this.router.navigate(['/home/approval'], {
-      queryParams: {
-        id: this.app_uid,
-        option: option,
-        index: this.workflow.index,
-        type: this.workflow.type,
-        url: '/home/project-case/' + this.app_uid
-      }
     });
   }
 }

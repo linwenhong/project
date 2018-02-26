@@ -48,11 +48,13 @@ export class ApprovalComponent implements OnInit {
 
   options(option: boolean): void {
     if (option) {
-      if (!this.leader['leader'] || this.leader['leader'].length == 0) {
-        muiToast('请选择下一步审核人');
-        return;
+      if (this.option) {
+        if (!this.leader['leader'] || this.leader['leader'].length == 0) {
+          muiToast('请选择下一步审核人');
+          return;
+        }
+        this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
-      this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       this.workflowService.examine(this.request);
       this.router.navigate(['/home/project-list']);
     } else {

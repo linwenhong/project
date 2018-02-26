@@ -8,18 +8,19 @@ import { Project } from '../../common/project';
 import { User } from '../../common/user';
 
 const PROCEDURE = {
-  '7982302615a72852c915309038918837': 1,  // 生产经营部新建
-  '6846831325a7285cc7818a5005400886': 2,  // 检验部门审核项目
-  '2803881535a7285f4734977045032333': 3   // 领导批准
+  '9018569255a5712da9fd527013808617': 1,  // 报告编制
+  '3762426815a571302aa5736016931631': 2,  // 报告校验
+  '1546753245a571352a35d67021131808': 3,  // 报告审核
+  '3404235605a5713caa59782069577955': 4   // 报告批准
 };
 
 @Component({
-  selector: 'app-project-case',
-  templateUrl: './project-case.component.html',
+  selector: 'app-report-detail',
+  templateUrl: './report-case.component.html',
   styleUrls: ['../../../assets/form.css']
 })
-export class ProjectCaseComponent implements OnInit {
-  isDetails: boolean = false;
+export class ReportDetailComponent implements OnInit {
+  isDetails: boolean = true;
   procedureIndex: number;
   app_uid: number;
   project: any;
@@ -40,16 +41,5 @@ export class ProjectCaseComponent implements OnInit {
       this.workflow = workflow;
     });
   }
-
-  options(option: boolean): void {
-    this.router.navigate(['/home/approval'], {
-      queryParams: {
-        id: this.app_uid,
-        option: option,
-        index: this.workflow.index,
-        type: this.workflow.type,
-        url: '/home/project-case/' + this.app_uid
-      }
-    });
-  }
 }
+

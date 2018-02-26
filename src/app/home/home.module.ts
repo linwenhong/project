@@ -9,12 +9,14 @@ import { HomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home/home.component';
 import { Test2Component } from './test2/test2.component';
-import { CreateProjectComponent } from './create-project/create-project.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ApprovalComponent } from './approval/approval.component';
 import { ReportCaseComponent } from './report-case/report-case.component';
+import { ReportDetailComponent } from './report-case/report-detail.component';
 import { ContractCaseComponent } from './contract-case/contract-case.component';
+import { ContractDetailComponent } from './contract-case/contract-detail.component';
 import { ProjectCaseComponent } from './project-case/project-case.component';
+import { ProjectDetailComponent } from './project-case/project-detail.component';
 import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
 import { MyComponent } from './my/my.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -35,12 +37,14 @@ import { EditPasswrodComponent } from './edit-passwrod/edit-passwrod.component';
   declarations: [
     HomeComponent,
     Test2Component,
-    CreateProjectComponent,
     UserListComponent,
     ApprovalComponent,
     ReportCaseComponent,
+    ReportDetailComponent,
     ContractCaseComponent,
+    ContractDetailComponent,
     ProjectCaseComponent,
+    ProjectDetailComponent,
     CreateWorkflowComponent,
     MyComponent,
     ProjectListComponent,

@@ -20,6 +20,7 @@ const PROCEDURE = {
   styleUrls: ['../../../assets/form.css']
 })
 export class ReportCaseComponent implements OnInit {
+  isDetails: boolean = false;
   procedureIndex: number;
   app_uid: number;
   project: any;
