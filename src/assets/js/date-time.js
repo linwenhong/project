@@ -65,6 +65,7 @@ function getFileName() {
   return $("#upfile").get(0).files[0] ? $("#upfile").get(0).files[0].name : null;
 }
 function fileUpload() {
+  var result;
   var fd = new FormData();
   fd.append('file', $("#upfile").get(0).files[0], $("#upfile").get(0).files[0].name);
   $.ajax({
@@ -74,8 +75,11 @@ function fileUpload() {
     contentType: false,
     headers: { "Authorization": localStorage.getItem('token') },
     data: fd,
+    async:false,
     success: function(data) {
       muiToast("文件上传成功!");
+      result = data;
     }
   });
+  return result;
 }

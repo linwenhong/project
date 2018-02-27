@@ -8,21 +8,48 @@
   <div class="page">
     <div class="option">{{ '意见:' + optionTest }}</div>
     <div class="form-group">
-    <textarea class="textarea" [(ngModel)]="remake">
+      <textarea class="textarea" [(ngModel)]="remake">
 
-    </textarea>
+      </textarea>
 
-    <div class="leader" *ngIf="canNext && option">
-      <app-user-select
-        [canMultiselect]="false"
-        [editForm]="leader"
-        [editFormName]="'leader'"
-        [text]="task"
-        [key]="'leader'"
-        [url]="'/home/approval/'"
-        [queryParams]="{ returnParams: queryParams }"
-      ></app-user-select>
-    </div>
+      <div class="leader" *ngIf="canNext && option">
+        <app-user-select
+          [canMultiselect]="false"
+          [editForm]="leader"
+          [editFormName]="'leader'"
+          [text]="task"
+          [key]="'leader'"
+          [url]="'/home/approval/'"
+          [queryParams]="{ returnParams: queryParams }"
+        ></app-user-select>
+      </div>
+
+      <div>
+        <ng-container *ngIf="type == 1 && canNext && option">
+          <div class="form-group">
+            <label>文件上传：</label>
+            <div class="form-control file_box">
+              <div class="file">
+                <input type="file" id="upfile" (change)="fileChange()"/>
+              </div>
+              <span><small>{{ fileName || '(请先选择审核人)' }}</small></span>
+            </div>
+          </div>
+
+          <ng-container *ngIf="fileName">
+            <div class="form-group">
+              <label>报告页数：</label>
+              <input [(ngModel)]="page" type="number" class="form-control input" placeholder="请输入报告页数" />
+            </div>
+
+            <div class="form-group">
+              <label>提交报告时间：</label>
+              <input id="time" data-options='{"type": "date"}' placeholder="请选择时间" readonly
+                     type="text" class="form-control dateTime" />
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
     </div>
   </div>
   <div class="options_top_null"></div>

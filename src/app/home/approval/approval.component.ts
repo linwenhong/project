@@ -8,10 +8,11 @@ import { Project } from '../../common/project';
 @Component({
   selector: 'app-approval',
   templateUrl: './approval.component.html',
-  styleUrls: ['./approval.component.css']
+  styleUrls: ['./approval.component.css', '../../../assets/form.css']
 })
 export class ApprovalComponent implements OnInit {
   id: number;
+  type: number;
   option: boolean;
   optionTest: string;
   remake: string;
@@ -23,6 +24,8 @@ export class ApprovalComponent implements OnInit {
   queryParams: any;
   canNext: boolean = false;
   task: string;
+  fileName: string;
+  page: number;
 
   constructor(
     private workflowService: WorkflowService,
@@ -36,6 +39,7 @@ export class ApprovalComponent implements OnInit {
       sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
       this.queryParams = JSON.stringify(queryParams);
       this.id = queryParams['id'];
+      this.type = queryParams['type'];
       this.url = queryParams['url'];
       this.option = queryParams['option'] === 'true' ? true : false;
       this.optionTest = this.option ? '同意' : '拒绝';
@@ -59,16 +63,33 @@ export class ApprovalComponent implements OnInit {
     if (option) {
       if (this.option && this.canNext) {
         if (!this.leader['leader'] || this.leader['leader'].length == 0) {
-          muiToast('请选择下一步审核人');
+          muiToast('请选择审核人');
           return;
         }
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
       this.request['description'] = this.remake;
+      if (this.type == 1 && this.fileName && !this.page) {
+        muiToast(`请选择输入报告页数`);
+        return;
+      }
+      if (this.type == 1 && this.fileName && !getDateTime('#time')) {
+        muiToast('请选择相关时间');
+        return;
+      }
+      if (this.type == 1 && this.fileName) {
+        this.request['page'] = this.page;
+        this.request['time'] = getDateTime('#time');
+        this.request['report_name'] = fileUpload();  // 文件上传
+      }
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));
 
     } else {
       this.router.navigate([this.url]);
     }
+  }
+
+  fileChange(): void {
+    this.fileName = getFileName();
   }
 }
