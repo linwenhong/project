@@ -78,6 +78,9 @@ select {
 .options .refuse {
   background-color: #d9534f;
 }
+.options .allWidth {
+  width: 100%;
+}
 
 .mui-backdrop {
   position: fixed;

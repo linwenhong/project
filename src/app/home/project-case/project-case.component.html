@@ -76,10 +76,13 @@
   </div>
 </div>
 
-<ng-container *ngIf="!isDetails">
+<ng-container *ngIf="!isDetails && procedureIndex">
   <div class="options_top_null"></div>
-  <div class="options">
+  <div class="options" *ngIf="procedureIndex != 1">
     <div class="confirm" (click)="options(true)">同意</div>
     <div class="refuse"  (click)="options(false)">拒绝</div>
+  </div>
+  <div class="options" *ngIf="procedureIndex == 1">
+    <div class="confirm allWidth" (click)="options(true)">提交</div>
   </div>
 </ng-container>
