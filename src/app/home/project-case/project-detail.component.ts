@@ -35,7 +35,7 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     this.app_uid = this.activatedRoute.snapshot.params['id'];
     this.workflowService.getDetail(this.app_uid).then( workflow => {
-      if (workflow.cases.current_task.length == 0) {
+      if (workflow.cases.app_status == 'COMPLETED') {
         this.procedureIndex = 10;
       } else {
         this.procedureIndex = PROCEDURE[workflow.cases.current_task[0].tas_uid];
