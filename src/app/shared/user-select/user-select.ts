@@ -12,7 +12,7 @@ import { Report } from '../../common/report';
 export class UserSelectComponent implements OnInit {
   @Input() canMultiselect: boolean;
   @Input() text: string;
-  @Input() editForm: Project | Report;
+  @Input() editForm: any;
   @Input() editFormName: string = 'projectForm';
   @Input() key: string;
   @Input() canEditUser: boolean = true;
@@ -43,6 +43,9 @@ export class UserSelectComponent implements OnInit {
   }
 
   removeUser(index: number): void {
+    if (!this.canEditUser) {
+      return;
+    }
     this.editForm[this.key].splice(index, 1);
   }
 }

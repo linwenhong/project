@@ -53,7 +53,6 @@ export class ProjectListComponent implements OnInit {
 
   select_type(type: number): void {
     this.workflows = [];
-    this.type = 0;
     this.page = 1;
     this.canMore = true;
     this.getWorkflows(this.listType, type);
@@ -62,7 +61,8 @@ export class ProjectListComponent implements OnInit {
   getWorkflows(listType: number, type: number): void {
     this.workflowService.getWorkflows(listType, type, this.page).then( workflows => {
       this.isLoad = false;
-      if (workflows.length < 10) this.canMore = false;
+      if (workflows) {
+        if (workflows.length < 10) this.canMore = false;
         if (!this.workflows) {
           this.workflows = workflows;
         } else {
@@ -71,8 +71,10 @@ export class ProjectListComponent implements OnInit {
           }
         }
         this.alert = this.workflows.length == 0 ? '暂无数据' : '加载中...';
+      } else {
+        this.alert = '暂无数据';
       }
-    );
+    });
   }
 
   detail(workflow: any): void {

@@ -41,7 +41,7 @@ export class ApprovalComponent implements OnInit {
         type: queryParams['type'],
         index: queryParams['index'],
         caseId: queryParams['id'],
-        agree: this.option
+        agree: this.option ? 1 : 0
       };
     });
   }
@@ -55,8 +55,8 @@ export class ApprovalComponent implements OnInit {
         }
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
-      this.workflowService.examine(this.request);
-      this.router.navigate(['/home/project-list']);
+      this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));
+
     } else {
       this.router.navigate([this.url]);
     }
