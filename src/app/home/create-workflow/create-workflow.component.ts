@@ -29,9 +29,7 @@ export class CreateWorkflowComponent implements OnInit {
     'type',
     'file_id',
     'makers',
-    'leader',
-    'time',
-    'page'
+    'leader'
   ];
   projects: Project[];
   reports: Report[];
@@ -40,8 +38,6 @@ export class CreateWorkflowComponent implements OnInit {
   type: number;
   condition: string;
   queryParams: Object;
-  canSetDateTimeGroup: boolean = true;
-  fileName: string;
 
   constructor(
     private router: Router,
@@ -76,13 +72,6 @@ export class CreateWorkflowComponent implements OnInit {
     }
   }
 
-  //ngAfterViewChecked() {
-  //  if (this.canSetDateTimeGroup && this.Form) {
-  //    this.canSetDateTimeGroup = false;
-  //    setDateTimeGroup('.dateTime');
-  //  }
-  //}
-
   getFiles(type: number): void {
     switch (Number(type)) {
       case 1:
@@ -110,21 +99,14 @@ export class CreateWorkflowComponent implements OnInit {
       type: this.type,
       file_id: [null, Validators.required],
       makers: null,
-      leader: null,
-      time: null,
-      page: null
+      leader: null
     });
   }
 
   getFormValue(form: FormGroup): Workflow {
     const formValue = new Workflow();
     this.FormKeys.forEach(key => {
-      if (this.type != 1 && key == 'page') return;
-      if (key == 'time') {
-        formValue[key] = getDateTime('#' + key);
-      } else {
-        formValue[key] = form.get(key).value;
-      }
+      formValue[key] = form.get(key).value;
     });
     return formValue;
   }
@@ -139,21 +121,12 @@ export class CreateWorkflowComponent implements OnInit {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
       return;
     }
-    if (this.type == 1 && this.fileName && !form.get('page').value) {
-      muiToast(`请选择输入报告页数`);
-      return;
-    }
-    if (this.type == 1 && this.fileName && !getDateTime('#time')) {
-      muiToast('请选择相关时间');
-      return;
-    }
     const request = this.getFormValue(form);
     console.log(request);
     if (!request.makers || !request.leader || request.makers.length === 0 || request.leader.length === 0) {
       muiToast('请选择相关人员');
       return;
     }
-    if (this.type == 1 && this.fileName) fileUpload();   // 文件上传
     this.setPatchValue(form, request);
     for (const key in request) {
       const isUsers = ArrayUtil.keyInArray(key, ['makers', 'leader']);
@@ -192,10 +165,6 @@ export class CreateWorkflowComponent implements OnInit {
     this.Form.reset({
       type: this.Form.get('type').value
     });
-  }
-
-  fileChange(): void {
-    this.fileName = getFileName();
   }
 }
 

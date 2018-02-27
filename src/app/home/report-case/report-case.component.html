@@ -42,6 +42,42 @@
         <input disabled class="form-control" [value]="project.maker" type="text" />
       </div>
 
+      <div *ngIf="procedureIndex > 1">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'author'"
+          [text]="'报告编制'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 2">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'checker'"
+          [text]="'报告校验'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 3">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'examine'"
+          [text]="'报告审核'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 4">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'leader'"
+          [text]="'报告批准'"
+        ></app-user-select>
+      </div>
+
     </div>
   </div>
 </div>
