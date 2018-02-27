@@ -72,6 +72,33 @@
         <input disabled class="form-control" [value]="project.information_of_the_client" type="text" />
       </div>
 
+      <div *ngIf="procedureIndex > 1">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'author'"
+          [text]="'生产经营部新建'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 2">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'checker'"
+          [text]="'检验部门审核项目'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 3">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'checker'"
+          [text]="'领导批准'"
+        ></app-user-select>
+      </div>
+
     </div>
   </div>
 </div>
