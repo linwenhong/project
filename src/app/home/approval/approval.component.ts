@@ -21,6 +21,7 @@ export class ApprovalComponent implements OnInit {
   request: any = {};
   leader: Object;
   queryParams: any;
+  canNext: boolean = false;
 
   constructor(
     private workflowService: WorkflowService,
@@ -43,18 +44,25 @@ export class ApprovalComponent implements OnInit {
         caseId: queryParams['id'],
         agree: this.option ? 1 : 0
       };
+      if (queryParams['index'] != '6965696805a7131ea0dfde4035064095'
+        && queryParams['index'] != '2803881535a7285f4734977045032333'
+        && queryParams['index'] != '3404235605a5713caa59782069577955'
+      ) {
+        this.canNext = true;
+      }
     });
   }
 
   options(option: boolean): void {
     if (option) {
-      if (this.option) {
+      if (this.option && this.canNext) {
         if (!this.leader['leader'] || this.leader['leader'].length == 0) {
           muiToast('请选择下一步审核人');
           return;
         }
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
+      this.request['description'] = this.remake;
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));
 
     } else {

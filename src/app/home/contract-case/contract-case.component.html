@@ -90,8 +90,53 @@
         <app-user-select
           [canEditUser]="false"
           [editForm]="project"
-          [text]="'发起人'"
           [key]="'author'"
+          [text]="'生产经营部新建'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 2">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'checker'"
+          [text]="'生产经营部合同核查'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 3">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'for_instance'"
+          [text]="'检测部门经理详审'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 4">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'manage_instance'"
+          [text]="'副总经理详审核'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 5">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'examine'"
+          [text]="'总经理审核'"
+        ></app-user-select>
+      </div>
+
+      <div *ngIf="procedureIndex > 6">
+        <app-user-select
+          [canEditUser]="false"
+          [editForm]="project"
+          [key]="'leader'"
+          [text]="'董事长批准'"
         ></app-user-select>
       </div>
 

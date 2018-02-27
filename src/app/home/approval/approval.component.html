@@ -12,7 +12,7 @@
 
     </textarea>
 
-    <div class="leader" *ngIf="option">
+    <div class="leader" *ngIf="canNext && option">
       <app-user-select
         [canMultiselect]="false"
         [editForm]="leader"
@@ -27,7 +27,7 @@
   </div>
   <div class="options_top_null"></div>
   <div class="options">
-    <div class="confirm" (click)="options(true)">确定</div>
+    <div class="confirm" (click)="options(true)">提交</div>
     <div class="cancel"  (click)="options(false)">取消</div>
   </div>
 </div>
