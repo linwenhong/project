@@ -24,6 +24,7 @@ export class ProjectCaseComponent implements OnInit {
   app_uid: number;
   project: any;
   workflow: any;
+  task: string;
 
   constructor(
     private workflowService: WorkflowService,
@@ -38,6 +39,7 @@ export class ProjectCaseComponent implements OnInit {
       this.procedureIndex = PROCEDURE[workflow.cases.current_task[0].tas_uid];
       this.project = workflow.data;
       this.workflow = workflow;
+      this.task = workflow.task;
     });
   }
 
@@ -48,7 +50,8 @@ export class ProjectCaseComponent implements OnInit {
         option: option,
         index: this.workflow.index,
         type: this.workflow.type,
-        url: '/home/project-case/' + this.app_uid
+        url: '/home/project-case/' + this.app_uid,
+        task: this.task
       }
     });
   }

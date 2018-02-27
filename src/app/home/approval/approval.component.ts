@@ -22,6 +22,7 @@ export class ApprovalComponent implements OnInit {
   leader: Object;
   queryParams: any;
   canNext: boolean = false;
+  task: string;
 
   constructor(
     private workflowService: WorkflowService,
@@ -49,6 +50,7 @@ export class ApprovalComponent implements OnInit {
         && queryParams['index'] != '3404235605a5713caa59782069577955'
       ) {
         this.canNext = true;
+        this.task = queryParams['task'];
       }
     });
   }
