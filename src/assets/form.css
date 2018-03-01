@@ -96,3 +96,13 @@ select.fileId {
   height: 2rem;
   opacity: 0;
 }
+
+.project .form-control-none {
+  width: 15rem;
+  float: right;
+}
+.project .form-control-none .fa-download {
+  margin: 0.5rem;
+  color: #298eff;
+  font-size: 1.5rem;
+}
