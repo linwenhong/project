@@ -101,8 +101,12 @@ select.fileId {
   width: 15rem;
   float: right;
 }
+.project .form-control-none a {
+  color: #298eff;
+  font-size: 0.8rem;
+}
 .project .form-control-none .fa-download {
-  margin: 0.5rem;
+  margin: 0.1rem;
   color: #298eff;
   font-size: 1.5rem;
 }
