@@ -32,8 +32,6 @@
         "libs/jquery-notifyjs/notify.min.js",
         "libs/jquery-notifyjs/styles/metro/notify-metro.js",
         "libs/notifications.js",
-        "libs/mui/js/mui.min.js",
-        "libs/mui/js/mui.picker.min.js",
         "assets/js/sign.js",
         "assets/js/date-time.js"
 			],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { WorkflowService } from '../../core/workflow.service';
@@ -10,7 +10,7 @@ import { Project } from '../../common/project';
   templateUrl: './approval.component.html',
   styleUrls: ['./approval.component.css', '../../../assets/form.css']
 })
-export class ApprovalComponent implements OnInit {
+export class ApprovalComponent implements OnInit, AfterViewChecked {
   id: number;
   type: number;
   option: boolean;
@@ -26,12 +26,20 @@ export class ApprovalComponent implements OnInit {
   task: string;
   fileName: string;
   page: number;
+  canSelectTime: boolean = true;
 
   constructor(
     private workflowService: WorkflowService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
+
+  ngAfterViewChecked() {
+    if (this.type == 1 && this.fileName && this.canSelectTime) {
+      this.canSelectTime = false;
+      setDateTimeGroup('.dateTime');
+    }
+  }
 
   ngOnInit() {
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
@@ -90,6 +98,7 @@ export class ApprovalComponent implements OnInit {
   }
 
   fileChange(): void {
+    if (!getFileName()) this.canSelectTime = true;
     this.fileName = getFileName();
   }
 }
