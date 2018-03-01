@@ -1,4 +1,5 @@
 .user_list ul {
+  margin-top: 1rem;
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
 }
@@ -6,7 +7,8 @@
   display: inline-block;
   width: 100%;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
 }
 .user_list li:last-child {
   border-bottom: none;

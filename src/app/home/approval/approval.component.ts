@@ -27,6 +27,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   fileName: string;
   page: number;
   canSelectTime: boolean = true;
+  isSubmit: boolean = false;
 
   constructor(
     private workflowService: WorkflowService,
@@ -68,6 +69,8 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   }
 
   options(option: boolean): void {
+    if (this.isSubmit) return;
+    this.isSubmit = true;
     if (option) {
       if (this.option && this.canNext) {
         if (!this.leader['leader'] || this.leader['leader'].length == 0) {

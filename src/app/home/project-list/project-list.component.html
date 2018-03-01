@@ -8,6 +8,7 @@
 </div>
 
 <div class="search">
+  <span>请选择筛选类型:</span>
   <div class="type_list">
     <select [(ngModel)]="type" (change)="select_type(type)">
       <option value="0">全部</option>
@@ -20,12 +21,12 @@
     </div>
   </div>
 
-  <div class="text_search">
-    <input [(ngModel)]="searchText" type="text" placeholder="请输入搜索文件名" />
-    <div class="i" (click)="search(searchText)">
-      <i></i>
-    </div>
-  </div>
+  <!--<div class="text_search">-->
+    <!--<input [(ngModel)]="searchText" type="text" placeholder="请输入搜索文件名" />-->
+    <!--<div class="i" (click)="search(searchText)">-->
+      <!--<i></i>-->
+    <!--</div>-->
+  <!--</div>-->
 </div>
 
 <div class="content page" *ngIf="workflows">
@@ -44,6 +45,7 @@
     <div *ngIf="!isLoad" class="load" (click)="more()">加载更多</div>
     <div *ngIf="isLoad" class="load">加载中...</div>
   </div>
-  <div *ngIf="!canMore && workflows.length > 9" class="down">没有更多了</div>
+  <div *ngIf="!canMore" class="down">没有更多了</div>
   <div *ngIf="workflows.length == 0" class="down">{{ alert }}</div>
 </div>
+<div *ngIf="!workflows" class="down">{{ alert }}</div>

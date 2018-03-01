@@ -40,7 +40,9 @@ export class ProjectListComponent implements OnInit {
   }
 
   selectListType(type: number): void {
-    if (type === this.listType) {
+    if (type === this.listType) return;
+    if (this.isLoad) {
+      muiToast('数据加载中,请勿频繁操作!');
       return;
     }
     this.listType = type;
@@ -59,6 +61,9 @@ export class ProjectListComponent implements OnInit {
   }
 
   getWorkflows(listType: number, type: number): void {
+    if (this.isLoad) return;
+    this.isLoad = true;
+    this.alert = '加载中...';
     this.workflowService.getWorkflows(listType, type, this.page).then( workflows => {
       this.isLoad = false;
       if (workflows) {
@@ -70,7 +75,7 @@ export class ProjectListComponent implements OnInit {
             this.workflows.push(workflow);
           }
         }
-        this.alert = this.workflows.length == 0 ? '暂无数据' : '加载中...';
+        if (this.workflows.length == 0) this.alert = '暂无数据';
       } else {
         this.alert = '暂无数据';
       }
@@ -95,7 +100,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   more(): void {
-    this.isLoad = true;
+    if (this.isLoad) return;
     this.page++;
     this.getWorkflows(this.listType, this.type);
   }

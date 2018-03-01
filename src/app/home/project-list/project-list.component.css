@@ -1,5 +1,3 @@
-
-
 .header {
   height: 2.5rem;
   border-bottom: 1px solid #eee;
@@ -129,4 +127,10 @@
   margin: 1rem 0;
   color: #999;
   text-align: center;
+}
+.search span {
+  line-height: 2rem;
+  float: left;
+  margin-left: 1rem;
+  font-size: 1rem;
 }

@@ -1,5 +1,5 @@
 .form-page {
-  padding-top: 1rem;
+  margin-top: 1rem;
   background-color: #f0f0f0;
 }
 
@@ -11,9 +11,6 @@
 .project form input.invalid {
    border: 1px solid #ec7373;
  }
-/*.project form .input.ng-valid {*/
-  /*border: 1px solid #549c3a;*/
-/*}*/
 .project .form-group {
   float: right;
 }
@@ -106,7 +103,7 @@ select.fileId {
   font-size: 0.8rem;
 }
 .project .form-control-none .fa-download {
-  margin: 0.1rem;
+  margin: 0.18rem;
   color: #298eff;
   font-size: 1.5rem;
 }
