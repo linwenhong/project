@@ -37,13 +37,13 @@
   background-image: url("../../../assets/images/index/user.png");
 }
 .content li:nth-child(2) i {
-  background-image: url("../../../assets/images/index/project.png");
+  background-image: url("../../../assets/images/index/list-page.png");
 }
 .content li:nth-child(3) i {
   background-image: url("../../../assets/images/index/workflow.png");
 }
 .content li:nth-child(4) i {
-  background-image: url("../../../assets/images/index/list-page.png");
+  /*background-image: url("../../../assets/images/index/project.png");*/
 }
 
 .content li span {

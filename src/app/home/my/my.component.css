@@ -1,3 +1,6 @@
+.fixed-page {
+  padding-top: 0rem;
+}
 .top {
   width: 100%;
   height: 10.476rem;
@@ -20,10 +23,6 @@
   color: #eee;
   font-size: 1.1rem;
   text-align: center;
-}
-
-.fixed-page {
-  background-color: #f0f0f0;
 }
 .content li {
   height: 2.5rem;

@@ -14,17 +14,16 @@ const PROCEDURE = {
 };
 
 @Component({
-  selector: 'app-project-case',
+  selector: 'app-project-detail',
   templateUrl: './project-case.component.html',
   styleUrls: ['../../../assets/form.css']
 })
-export class ProjectCaseComponent implements OnInit {
-  isDetails: boolean = false;
+export class ProjectDetailComponent implements OnInit {
+  isDetails: boolean = true;
   procedureIndex: number;
   app_uid: number;
   project: any;
   workflow: any;
-  task: string;
 
   constructor(
     private workflowService: WorkflowService,
@@ -36,23 +35,13 @@ export class ProjectCaseComponent implements OnInit {
   ngOnInit() {
     this.app_uid = this.activatedRoute.snapshot.params['id'];
     this.workflowService.getDetail(this.app_uid).then( workflow => {
-      this.procedureIndex = PROCEDURE[workflow.cases.current_task[0].tas_uid];
+      if (workflow.cases.app_status == 'COMPLETED') {
+        this.procedureIndex = 10;
+      } else {
+        this.procedureIndex = PROCEDURE[workflow.cases.current_task[0].tas_uid];
+      }
       this.project = workflow.data;
       this.workflow = workflow;
-      this.task = workflow.task;
-    });
-  }
-
-  options(option: boolean): void {
-    this.router.navigate(['/home/approval'], {
-      queryParams: {
-        id: this.app_uid,
-        option: option,
-        index: this.workflow.index,
-        type: this.workflow.type,
-        url: '/home/project-case/' + this.app_uid,
-        task: this.task
-      }
     });
   }
 }

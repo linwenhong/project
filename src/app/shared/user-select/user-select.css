@@ -27,7 +27,6 @@
 .user img.user_picture {
   border-radius: 100%;
 }
-.user p {
-  margin-bottom: 0.5rem;
+span {
   color: #aaa;
 }

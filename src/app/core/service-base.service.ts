@@ -26,7 +26,7 @@ export abstract class ServiceBaseService<T> {
 
   // protected abstract getApiUrl(): string;
 
-  get(url: string, request: object = {}): Promise<T> {
+  get(url: string, request: Object = {}): Promise<T> {
     return this.http.get(this.api_url + url, { headers: this.getHeader(), params: request })
       .toPromise()
       .then(response => {
@@ -35,7 +35,7 @@ export abstract class ServiceBaseService<T> {
       .catch(error => this.responseError(error.json()));
   }
 
-  getAll(url: string, request: object = {}): Promise<T[]> {
+  getAll(url: string, request: Object = {}): Promise<T[]> {
     return this.http.get(this.api_url + url, { headers: this.getHeader(), params: request })
       .toPromise()
       .then(response => {
@@ -44,7 +44,7 @@ export abstract class ServiceBaseService<T> {
       .catch(error => this.responseError(error.json()));
   }
 
-  put(url: string, request: object = {}): Promise<T> {
+  put(url: string, request: Object = {}): Promise<T> {
     return this.http.put(this.api_url + url, request, { headers: this.getHeader() })
       .toPromise()
       .then(response => {
@@ -53,7 +53,7 @@ export abstract class ServiceBaseService<T> {
       .catch(error => this.responseError(error.json()));
   }
 
-  post(url: string, request: object = {}): Promise<T> {
+  post(url: string, request: Object = {}): Promise<T> {
     return this.http.post(this.api_url + url, request, { headers: this.getHeader() })
       .toPromise()
       .then(response => {
@@ -67,7 +67,8 @@ export abstract class ServiceBaseService<T> {
   }
 
   responseError(error): void {
-    muiToast(error.error);
+    if (error.error) muiToast(error.error);
+
     if (error.status === 401) {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);

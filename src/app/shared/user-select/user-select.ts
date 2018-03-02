@@ -12,20 +12,24 @@ import { Report } from '../../common/report';
 export class UserSelectComponent implements OnInit {
   @Input() canMultiselect: boolean;
   @Input() text: string;
-  @Input() editForm: Project | Report;
+  @Input() editForm: any;
   @Input() editFormName: string = 'projectForm';
   @Input() key: string;
   @Input() canEditUser: boolean = true;
   @Input() url: string;
   @Input() queryParams: any;
+  @Input() cacheData: Object;
 
   constructor(
     private router: Router
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   toSelectUser(): void {
+    if (this.cacheData) {
+      sessionStorage.setItem('cacheData', JSON.stringify(this.cacheData));
+    }
     sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     const params = {
       canMultiselect: this.canMultiselect,
@@ -43,6 +47,9 @@ export class UserSelectComponent implements OnInit {
   }
 
   removeUser(index: number): void {
+    if (!this.canEditUser) {
+      return;
+    }
     this.editForm[this.key].splice(index, 1);
   }
 }

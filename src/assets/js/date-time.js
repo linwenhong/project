@@ -1,7 +1,6 @@
 function setDateTimeGroup(select) {
-  (function($) {
-    $.init();
-    var items = $(select);
+    //mui.init();
+    var items = mui(select);
 
     items.each( function (i, value) {
       value.addEventListener('tap', function() {
@@ -13,7 +12,7 @@ function setDateTimeGroup(select) {
          * 示例为了简洁，将 options 放在了按钮的 dom 上
          * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
          */
-        var picker = new $.DtPicker(options);
+        var picker = new mui.DtPicker(options);
 
         picker.show(function(rs) {
           /*
@@ -44,7 +43,6 @@ function setDateTimeGroup(select) {
         });
       }, false)
     });
-  })(mui);
 }
 
 function getDateTime(select) {
@@ -59,12 +57,10 @@ function muiToast(string) {
 }
 
 function getFileName() {
-  setTimeout(function() {
-    setDateTimeGroup('.dateTime');
-  }, 1000);
   return $("#upfile").get(0).files[0] ? $("#upfile").get(0).files[0].name : null;
 }
 function fileUpload() {
+  var result;
   var fd = new FormData();
   fd.append('file', $("#upfile").get(0).files[0], $("#upfile").get(0).files[0].name);
   $.ajax({
@@ -74,8 +70,11 @@ function fileUpload() {
     contentType: false,
     headers: { "Authorization": localStorage.getItem('token') },
     data: fd,
+    async:false,
     success: function(data) {
       muiToast("文件上传成功!");
+      result = data;
     }
   });
+  return result;
 }

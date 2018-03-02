@@ -8,23 +8,25 @@ import { Project } from '../../common/project';
 import { User } from '../../common/user';
 
 const PROCEDURE = {
-  '7982302615a72852c915309038918837': 1,  // 生产经营部新建
-  '6846831325a7285cc7818a5005400886': 2,  // 检验部门审核项目
-  '2803881535a7285f4734977045032333': 3   // 领导批准
+  '4373963965a6fd9e6de3409040853830': 1,  // 生产经营部新建
+  '7096257625a6fd9e6e327b7056575944': 2,  // 生产经营部合同核查
+  '7591958415a6fda5eb32403071634539': 3,  // 检测部门经理详审
+  '6555548895a7040fb4fa738001673444': 4,  // 副总经理详审核
+  '2960155625a7131c20ab279093375177': 5,  // 总经理审核
+  '6965696805a7131ea0dfde4035064095': 6   // 董事长批准
 };
 
 @Component({
-  selector: 'app-project-case',
-  templateUrl: './project-case.component.html',
+  selector: 'app-contract-detail',
+  templateUrl: './contract-case.component.html',
   styleUrls: ['../../../assets/form.css']
 })
-export class ProjectCaseComponent implements OnInit {
-  isDetails: boolean = false;
+export class ContractDetailComponent implements OnInit {
+  isDetails: boolean = true;
   procedureIndex: number;
   app_uid: number;
   project: any;
   workflow: any;
-  task: string;
 
   constructor(
     private workflowService: WorkflowService,
@@ -36,23 +38,14 @@ export class ProjectCaseComponent implements OnInit {
   ngOnInit() {
     this.app_uid = this.activatedRoute.snapshot.params['id'];
     this.workflowService.getDetail(this.app_uid).then( workflow => {
-      this.procedureIndex = PROCEDURE[workflow.cases.current_task[0].tas_uid];
+      if (workflow.cases.app_status == 'COMPLETED') {
+        this.procedureIndex = 10;
+      } else {
+        this.procedureIndex = PROCEDURE[workflow.cases.current_task[0].tas_uid];
+      }
       this.project = workflow.data;
       this.workflow = workflow;
-      this.task = workflow.task;
-    });
-  }
-
-  options(option: boolean): void {
-    this.router.navigate(['/home/approval'], {
-      queryParams: {
-        id: this.app_uid,
-        option: option,
-        index: this.workflow.index,
-        type: this.workflow.type,
-        url: '/home/project-case/' + this.app_uid,
-        task: this.task
-      }
     });
   }
 }
+
