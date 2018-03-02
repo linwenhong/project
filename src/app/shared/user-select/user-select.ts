@@ -18,14 +18,18 @@ export class UserSelectComponent implements OnInit {
   @Input() canEditUser: boolean = true;
   @Input() url: string;
   @Input() queryParams: any;
+  @Input() cacheData: Object;
 
   constructor(
     private router: Router
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   toSelectUser(): void {
+    if (this.cacheData) {
+      sessionStorage.setItem('cacheData', JSON.stringify(this.cacheData));
+    }
     sessionStorage.setItem(this.editFormName, JSON.stringify(this.editForm));
     const params = {
       canMultiselect: this.canMultiselect,

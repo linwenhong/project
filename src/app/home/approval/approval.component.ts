@@ -15,7 +15,6 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   type: number;
   option: boolean;
   optionTest: string;
-  remake: string;
   project: Project;
   projects: Project[];
   url: string;
@@ -28,12 +27,17 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   page: number;
   canSelectTime: boolean = true;
   isSubmit: boolean = false;
+  cacheData: Object = {};
 
   constructor(
     private workflowService: WorkflowService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
+
+  get canSelectFile(): boolean {
+    return this.canNext && this.option && this.type != 3;
+  }
 
   ngAfterViewChecked() {
     if (this.type == 1 && this.fileName && this.canSelectTime) {
@@ -43,6 +47,9 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    const data = JSON.parse(sessionStorage.getItem('cacheData'));
+    this.cacheData['remake'] = data ? data['remake'] : '';
+    sessionStorage.removeItem('cacheData');
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
       sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
@@ -79,7 +86,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         }
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
-      this.request['description'] = this.remake;
+      this.request['description'] = this.cacheData.remake;
       if (this.type == 1 && this.fileName && !this.page) {
         muiToast(`请选择输入报告页数`);
         return;
@@ -88,9 +95,11 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         muiToast('请选择相关时间');
         return;
       }
-      if (this.type == 1 && this.fileName) {
-        this.request['page'] = this.page;
-        this.request['time'] = getDateTime('#time');
+      if (this.fileName) {
+        if (this.type == 1) {
+          this.request['page'] = this.page;
+          this.request['time'] = getDateTime('#time');
+        }
         this.request['report_name'] = fileUpload();  // 文件上传
       }
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));

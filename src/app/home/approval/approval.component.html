@@ -8,7 +8,7 @@
   <div class="page">
     <div class="option">{{ '意见:' + optionTest }}</div>
     <div class="form-group">
-      <textarea class="textarea" [(ngModel)]="remake">
+      <textarea class="textarea" [(ngModel)]="cacheData.remake">
 
       </textarea>
 
@@ -20,12 +20,13 @@
           [text]="task"
           [key]="'leader'"
           [url]="'/home/approval/'"
+          [(cacheData)] = "cacheData"
           [queryParams]="{ returnParams: queryParams }"
         ></app-user-select>
       </div>
 
       <div>
-        <ng-container *ngIf="type == 1 && canNext && option">
+        <ng-container *ngIf="canSelectFile">
           <div class="form-group">
             <label>文件上传：</label>
             <div class="form-control file_box">
@@ -36,7 +37,7 @@
             </div>
           </div>
 
-          <ng-container *ngIf="fileName">
+          <ng-container *ngIf="fileName && type==1">
             <div class="form-group">
               <label>报告页数：</label>
               <input [(ngModel)]="page" type="number" class="form-control input" placeholder="请输入报告页数" />
