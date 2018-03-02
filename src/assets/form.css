@@ -107,3 +107,6 @@ select.fileId {
   color: #298eff;
   font-size: 1.5rem;
 }
+.user-select-box {
+  padding-left: 3.2rem;
+}
