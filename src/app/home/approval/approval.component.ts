@@ -86,7 +86,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         }
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
-      this.request['description'] = this.cacheData.remake;
+      this.request['description'] = this.cacheData['remake'];
       if (this.type == 1 && this.fileName && !this.page) {
         muiToast(`请选择输入报告页数`);
         return;
