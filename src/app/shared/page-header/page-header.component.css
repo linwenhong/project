@@ -11,7 +11,7 @@
   color: #eee;
   text-align: center;
 }
-.page-title i {
+.page-title i.return_url {
   position: absolute;
   left: 0.5rem;
   top: 0.7rem;
@@ -19,6 +19,12 @@
   height: 1.5rem;
   background-size: 100%;
   background-image: url("../../../assets/images/return.png");
+}
+.page-title i.fa-home {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.7rem;
+  font-size: 1.6rem;
 }
 .page-null {
   height: 3rem;
