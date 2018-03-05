@@ -28,6 +28,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   canSelectTime: boolean = true;
   isSubmit: boolean = false;
   cacheData: Object = {};
+  tas_uid: string;
 
   constructor(
     private workflowService: WorkflowService,
@@ -49,7 +50,6 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     const data = JSON.parse(sessionStorage.getItem('cacheData'));
     this.cacheData['remake'] = data ? data['remake'] : '';
-    sessionStorage.removeItem('cacheData');
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
       sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
@@ -72,6 +72,22 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         this.canNext = true;
         this.task = queryParams['task'];
       }
+
+      this.tas_uid = queryParams['index'];
+      if (this.tas_uid == '7096257625a6fd9e6e327b7056575944' || this.tas_uid == '7591958415a6fda5eb32403071634539') {
+        this.cacheData['optional'] = data ? data['optional'] : [
+          { option: 1, text: ''},
+          { option: 1, text: ''},
+          { option: 1, text: ''},
+          { option: 1, text: ''},
+          { option: 1, text: ''}
+        ];
+        if (this.tas_uid == '7591958415a6fda5eb32403071634539') {
+          this.cacheData['optional'][5] = { option: 1, text: ''};
+        }
+      }
+      sessionStorage.removeItem('cacheData');
+      console.log(this.cacheData);
     });
   }
 
@@ -102,6 +118,12 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         }
         this.request['report_name'] = fileUpload();  // 文件上传
       }
+      if (this.tas_uid == '7096257625a6fd9e6e327b7056575944') {
+        this.request['for_optional'] = this.cacheData['optional'];
+      }
+      if (this.tas_uid == '7591958415a6fda5eb32403071634539') {
+        this.request['check_optional'] = this.cacheData['optional'];
+      }
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));
 
     } else {
@@ -112,5 +134,9 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   fileChange(): void {
     if (!getFileName()) this.canSelectTime = true;
     this.fileName = getFileName();
+  }
+
+  select(index: number): void {
+    this.cacheData['optional'][index].option = this.cacheData['optional'][index].option == 1 ? 0 : 1;
   }
 }
