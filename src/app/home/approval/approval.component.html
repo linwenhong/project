@@ -13,7 +13,7 @@
         <textarea class="textarea" [(ngModel)]="cacheData['remake']"></textarea>
       </ng-container>
 
-      <ng-container *ngIf="cacheData.optional">
+      <ng-container *ngIf="cacheData['optional']">
         <div *ngIf="tas_uid == '7096257625a6fd9e6e327b7056575944'">
           <ul class="optional">
             <span>可选项：(默认选中,点击蓝色圈选择/取消)</span>
