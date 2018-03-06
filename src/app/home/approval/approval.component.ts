@@ -83,7 +83,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       this.tas_uid = queryParams['index'];
       console.log(TASK[this.type - 1][this.tas_uid]);
       if (TASK[this.type - 1][this.tas_uid] == 1) this.isAuthorTask = true;
-      if (this.option && this.tas_uid == '7096257625a6fd9e6e327b7056575944' || this.tas_uid == '7591958415a6fda5eb32403071634539') {
+      if (this.option && (this.tas_uid == '7096257625a6fd9e6e327b7056575944' || this.tas_uid == '7591958415a6fda5eb32403071634539')) {
         this.cacheData['optional'] = data ? data['optional'] : [
           { option: 1, text: ''},
           { option: 1, text: ''},
@@ -131,7 +131,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         this.request['for_optional'] = this.cacheData['optional'];
       }
       if (this.tas_uid == '7591958415a6fda5eb32403071634539') {
-        this.request['check_optional'] = this.cacheData['optional'];
+        this.request['checker_optional'] = this.cacheData['optional'];
       }
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));
 
