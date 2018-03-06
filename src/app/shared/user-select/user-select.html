@@ -1,11 +1,17 @@
 <div class="form-group">
   <label>{{ text }}:&nbsp;<span *ngIf="canEditUser">(点击头像删除)</span></label>
   <div class="user">
-    <!--<p *ngIf="!canEditUser">(待审核)</p>-->
-    <div class="img" *ngFor="let user of editForm[key];let index = index">
-      <img class="user_picture" src="{{ user.avatar }}" (click)="removeUser(index)">
-      <div class="text-center">{{ user.name }}</div>
-    </div>
+    <ng-container *ngFor="let user of editForm[key];let index = index">
+      <!--<p *ngIf="!canEditUser">(待审核)</p>-->
+      <div class="img">
+        <img class="user_picture" src="{{ user.avatar }}" (click)="removeUser(index)">
+        <div class="text-center">{{ user.name }}</div>
+      </div>
+      <div *ngIf="!canEditUser && user.option" class="option">
+        <span>意见:</span>
+        <p>{{ user.option }}</p>
+      </div>
+    </ng-container>
     <i *ngIf="canEditUser" class="select" (click)="toSelectUser()"></i>
   </div>
 </div>

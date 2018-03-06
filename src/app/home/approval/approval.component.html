@@ -1,15 +1,14 @@
 <div class="fixed-page">
   <app-page-header
-    [title]="'审批意见'"
+    [title]="isAuthorTask ? '重新发起' : '审批'"
     [url]="url"
   ></app-page-header>
 
 
   <div class="page">
-    <div class="option">{{ '意见:' + optionTest }}</div>
+    <div class="option" *ngIf="!isAuthorTask">{{ '意见:' + optionTest }}</div>
     <div class="form-group">
-      <ng-container *ngIf="tas_uid != '7096257625a6fd9e6e327b7056575944' &&
-         tas_uid != '7591958415a6fda5eb32403071634539'">
+      <ng-container *ngIf="canEditOption">
         <textarea class="textarea" [(ngModel)]="cacheData['remake']"></textarea>
       </ng-container>
 

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { WorkflowService } from '../../core/workflow.service';
 import { ArrayUtil } from '../../core/util/array.util';
 import { Project } from '../../common/project';
+import { TASK } from  '../../common/task';
 
 @Component({
   selector: 'app-approval',
@@ -29,6 +30,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   isSubmit: boolean = false;
   cacheData: Object = {};
   tas_uid: string;
+  isAuthorTask: boolean = false;
 
   constructor(
     private workflowService: WorkflowService,
@@ -38,6 +40,11 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
 
   get canSelectFile(): boolean {
     return this.canNext && this.option && this.type != 3;
+  }
+
+  get canEditOption(): boolean {
+    return !this.isAuthorTask && this.option && this.tas_uid != '7096257625a6fd9e6e327b7056575944' && this.tas_uid != '7591958415a6fda5eb32403071634539'
+      || !this.option;
   }
 
   ngAfterViewChecked() {
@@ -74,7 +81,9 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       }
 
       this.tas_uid = queryParams['index'];
-      if (this.tas_uid == '7096257625a6fd9e6e327b7056575944' || this.tas_uid == '7591958415a6fda5eb32403071634539') {
+      console.log(TASK[this.type - 1][this.tas_uid]);
+      if (TASK[this.type - 1][this.tas_uid] == 1) this.isAuthorTask = true;
+      if (this.option && this.tas_uid == '7096257625a6fd9e6e327b7056575944' || this.tas_uid == '7591958415a6fda5eb32403071634539') {
         this.cacheData['optional'] = data ? data['optional'] : [
           { option: 1, text: ''},
           { option: 1, text: ''},
@@ -102,7 +111,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         }
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
-      this.request['description'] = this.cacheData['remake'];
+      this.request['description'] = this.cacheData['remake'] || this.optionTest;
       if (this.type == 1 && this.fileName && !this.page) {
         muiToast(`请选择输入报告页数`);
         return;
