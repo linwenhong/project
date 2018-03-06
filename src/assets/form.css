@@ -110,3 +110,40 @@ select.fileId {
 .user-select-box {
   padding-left: 3.2rem;
 }
+.reject * {
+  color: #d9534f;
+}
+
+.optional_box {
+  width: 100%;
+  float: left;
+  padding: 0 1rem 0 2rem;
+  margin-bottom: 2rem;
+}
+.optional_box span {
+  color: #999;
+}
+.optional li {
+  display: inline-block;
+  width: 100%;
+  padding: 0.2rem 0;
+}
+.optional li i {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  float: left;
+  margin: 0.15rem 0.4rem 0 0;
+  background-size: 100%;
+  background-image: url("../assets/images/noselect.png");
+}
+.optional li i.active {
+  background-image: url("../assets/images/select.png");
+}
+.optional input {
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  background-color: #fff;
+}

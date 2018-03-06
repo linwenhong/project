@@ -7,9 +7,9 @@
         <img class="user_picture" src="{{ user.avatar }}" (click)="removeUser(index)">
         <div class="text-center">{{ user.name }}</div>
       </div>
-      <div *ngIf="!canEditUser && user.option" class="option">
+      <div *ngIf="!canEditUser && user.opinion" class="option">
         <span>意见:</span>
-        <p>{{ user.option }}</p>
+        <p>{{ user.opinion }}</p>
       </div>
     </ng-container>
     <i *ngIf="canEditUser" class="select" (click)="toSelectUser()"></i>
