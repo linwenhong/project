@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { WorkflowService } from '../../core/workflow.service';
 import { ArrayUtil } from '../../core/util/array.util';
-import { Project } from '../../common/project';
 import { TASK } from  '../../common/task';
 
 @Component({
@@ -16,8 +15,8 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   type: number;
   option: boolean;
   optionTest: string;
-  project: Project;
-  projects: Project[];
+  project: Object;
+  projects: Object[];
   url: string;
   request: any = {};
   leader: Object;
@@ -56,6 +55,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     const data = JSON.parse(sessionStorage.getItem('cacheData'));
+    console.log(data);
     this.cacheData['remake'] = data ? data['remake'] : '';
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
@@ -81,18 +81,17 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       }
 
       this.tas_uid = queryParams['index'];
-      console.log(TASK[this.type - 1][this.tas_uid]);
       if (TASK[this.type - 1][this.tas_uid] == 1) this.isAuthorTask = true;
       if (this.option && (this.tas_uid == '7096257625a6fd9e6e327b7056575944' || this.tas_uid == '7591958415a6fda5eb32403071634539')) {
-        this.cacheData['optional'] = data ? data['optional'] : [
-          { option: 1, text: ''},
-          { option: 1, text: ''},
-          { option: 1, text: ''},
-          { option: 1, text: ''},
-          { option: 1, text: ''}
-        ];
-        if (this.tas_uid == '7591958415a6fda5eb32403071634539') {
-          this.cacheData['optional'][5] = { option: 1, text: ''};
+        let array = [];
+        array[1] = { op1: 1, text1: ''};
+        array[2] = { op2: 1, text2: ''};
+        array[3] = { op3: 1, text3: ''};
+        array[4] = { op4: 1, text4: ''};
+        array[5] = { op5: 1, text5: ''};
+        this.cacheData['optional'] = data ? data['optional'] : array;
+        if (this.tas_uid == '7591958415a6fda5eb32403071634539' && !data) {
+          this.cacheData['optional'][6] = { op6: 1, text6: ''};
         }
       }
       sessionStorage.removeItem('cacheData');
@@ -128,10 +127,10 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         this.request['report_name'] = fileUpload();  // 文件上传
       }
       if (this.tas_uid == '7096257625a6fd9e6e327b7056575944') {
-        this.request['for_optional'] = this.cacheData['optional'];
+        this.request['checker_optional'] = this.cacheData['optional'];
       }
       if (this.tas_uid == '7591958415a6fda5eb32403071634539') {
-        this.request['checker_optional'] = this.cacheData['optional'];
+        this.request['for_optional'] = this.cacheData['optional'];
       }
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));
 
@@ -146,6 +145,6 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   }
 
   select(index: number): void {
-    this.cacheData['optional'][index].option = this.cacheData['optional'][index].option == 1 ? 0 : 1;
+    this.cacheData['optional'][index]['op' + index] = this.cacheData['optional'][index]['op' + index] == 1 ? 0 : 1;
   }
 }

@@ -1,8 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../common/user';
-import { Project } from '../../common/project';
-import { Report } from '../../common/report';
 
 @Component({
   selector: 'app-user-select',

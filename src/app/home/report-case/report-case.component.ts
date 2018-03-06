@@ -3,16 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 
 import { WorkflowService } from '../../core/workflow.service';
+import { REPORT_TASK } from  '../../common/task';
 
-import { Project } from '../../common/project';
-import { User } from '../../common/user';
-
-const PROCEDURE = {
-  '9018569255a5712da9fd527013808617': 1,  // 报告编制
-  '3762426815a571302aa5736016931631': 2,  // 报告校验
-  '1546753245a571352a35d67021131808': 3,  // 报告审核
-  '3404235605a5713caa59782069577955': 4   // 报告批准
-};
+const PROCEDURE = REPORT_TASK;
 
 @Component({
   selector: 'app-report-case',

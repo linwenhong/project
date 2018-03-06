@@ -17,25 +17,25 @@
           <ul class="optional">
             <span>可选项：(默认选中,点击蓝色圈选择/取消)</span>
             <li>
-              <i [class.active]="cacheData.optional[0].option" (click)="select(0)"></i>
+              <i [class.active]="cacheData.optional[1].op1" (click)="select(1)"></i>
               1．我方与委托方的权利与义务是否明确？<br/>
               需明确的内容请填写：<br/>
-              <input [(ngModel)]="cacheData.optional[0].text" />
+              <input [(ngModel)]="cacheData.optional[1].text1" />
             </li>
             <li>
-              <i [class.active]="cacheData.optional[1].option" (click)="select(1)"></i>
+              <i [class.active]="cacheData.optional[2].op2" (click)="select(2)"></i>
               2．合同条款、格式是否符合要求？
             </li>
             <li>
-              <i [class.active]="cacheData.optional[2].option" (click)="select(2)"></i>
+              <i [class.active]="cacheData.optional[3].op3" (click)="select(3)"></i>
               3．检验检测单价是否符合有关规定？
             </li>
             <li>
-              <i [class.active]="cacheData.optional[3].option" (click)="select(3)"></i>
+              <i [class.active]="cacheData.optional[4].op4" (click)="select(4)"></i>
               4．付款方式是否合理？
             </li>
             <li>
-              5．其他:<textarea class="textarea" [(ngModel)]="cacheData.optional[4].text"></textarea>
+              5．其他:<textarea class="textarea" [(ngModel)]="cacheData.optional[5].text5"></textarea>
             </li>
           </ul>
         </div>
@@ -44,37 +44,37 @@
           <ul class="optional">
             <span>可选项：(默认选中,点击蓝色圈选择/取消)</span>
             <li>
-              <i [class.active]="cacheData.optional[0].option" (click)="select(0)"></i>
+              <i [class.active]="cacheData.optional[1].op1" (click)="select(1)"></i>
               1．委托方的技术要求是否明确？<br/>
               需进一步明确的请填写：<br/>
-              <input [(ngModel)]="cacheData.optional[0].text" />
+              <input [(ngModel)]="cacheData.optional[1].text1" />
             </li>
             <li>
-              <i [class.active]="cacheData.optional[1].option" (click)="select(1)"></i>
+              <i [class.active]="cacheData.optional[2].op2" (click)="select(2)"></i>
               2．委托方的技术要求是否符合有关规范、规定？<br/>
               需补充的请填写：<br/>
-              <input [(ngModel)]="cacheData.optional[1].text" />
+              <input [(ngModel)]="cacheData.optional[2].text2" />
             </li>
             <li>
-              <i [class.active]="cacheData.optional[2].option" (click)="select(2)"></i>
+              <i [class.active]="cacheData.optional[3].op3" (click)="select(3)"></i>
               3．现有检验检测能力是否满足该项目的要求？及需采取的措施。<br/>
               需说明的请填写：<br/>
-              <input [(ngModel)]="cacheData.optional[2].text" />
+              <input [(ngModel)]="cacheData.optional[3].text3" />
             </li>
             <li>
-              <i [class.active]="cacheData.optional[3].option" (click)="select(3)"></i>
+              <i [class.active]="cacheData.optional[4].op4" (click)="select(4)"></i>
               4．能否按合同要求及时进场、按时完成？<br/>
               有其他时间要求的请填写：<br/>
-              <input [(ngModel)]="cacheData.optional[3].text" />
+              <input [(ngModel)]="cacheData.optional[4].text4" />
             </li>
             <li>
-              <i [class.active]="cacheData.optional[4].option" (click)="select(4)"></i>
+              <i [class.active]="cacheData.optional[5].op5" (click)="select(5)"></i>
               5．是否需要分包？<br/>
               分包合同编号：<br/>
-              <input [(ngModel)]="cacheData.optional[4].text" />
+              <input [(ngModel)]="cacheData.optional[5].text5" />
             </li>
             <li>
-              6．其他:<textarea class="textarea" [(ngModel)]="cacheData.optional[5].text"></textarea>
+              6．其他:<textarea class="textarea" [(ngModel)]="cacheData.optional[6].text6"></textarea>
             </li>
           </ul>
         </div>
