@@ -8,10 +8,10 @@
     <div class="page">
       <div *ngIf="project" class="project">
 
-        <div class="form-group reject">
-          <h5 class="text-center">第三次驳回</h5>
+        <div *ngIf="project.times && !isDetails" class="form-group reject">
+          <!--<h5 class="text-center">第{{project.times}}次驳回</h5>-->
           <label>驳回原因：</label>
-          <input disabled class="form-control" [value]="'合同金额不对'" type="text" />
+          <input disabled class="form-control" [value]="project.description" type="text" />
         </div>
 
         <div class="form-group">
@@ -101,7 +101,7 @@
           <app-user-select
             [canEditUser]="false"
             [editForm]="project"
-            [key]="'checker'"
+            [key]="'leader'"
             [text]="'领导批准'"
           ></app-user-select>
         </div>

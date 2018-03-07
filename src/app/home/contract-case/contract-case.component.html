@@ -7,6 +7,13 @@
   <div class="form-page">
     <div class="page">
       <div *ngIf="project" class="project">
+
+        <div *ngIf="project.times && !isDetails" class="form-group reject">
+          <!--<h5 class="text-center">第{{project.times}}次驳回</h5>-->
+          <label>驳回原因：</label>
+          <input disabled class="form-control" [value]="project.description" type="text" />
+        </div>
+
         <div class="form-group">
           <label>工程名称：</label>
           <input disabled class="form-control" [value]="project.project_name" type="text" />

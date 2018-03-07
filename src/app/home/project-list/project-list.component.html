@@ -38,7 +38,7 @@
           <p class="text">{{ workflow.app_pro_title }}</p>
         </div>
         <div class="time">{{ workflow.app_create_date }}</div>
-        <div class="msg">第三次驳回</div>
+        <div *ngIf="workflow.times" class="msg">第{{workflow.times}}次驳回</div>
       </li>
     </ng-container>
   </ul>
