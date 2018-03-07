@@ -55,7 +55,6 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     const data = JSON.parse(sessionStorage.getItem('cacheData'));
-    console.log(data);
     this.cacheData['remake'] = data ? data['remake'] : '';
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
@@ -95,7 +94,6 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         }
       }
       sessionStorage.removeItem('cacheData');
-      console.log(this.cacheData);
     });
   }
 

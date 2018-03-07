@@ -77,6 +77,7 @@ export class ProjectListComponent implements OnInit {
         }
         if (this.workflows.length == 0) this.alert = '暂无数据';
       } else {
+        this.canMore = false
         this.alert = '暂无数据';
       }
     });
