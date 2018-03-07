@@ -24,7 +24,7 @@ const TYPES = [
 })
 export class CreateWorkflowComponent implements OnInit {
   Form: FormGroup;
-  isSubmit: boolean;
+  isSubmit: boolean = false;
   FormKeys: string[] = [
     'type',
     'file_id',
@@ -63,11 +63,8 @@ export class CreateWorkflowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isSubmit = false;
     const FormCache = JSON.parse(sessionStorage.getItem('workflowForm'));
     if (FormCache) {
-      console.log(FormCache);
-      this.getFiles(this.type);
       this.setPatchValue(this.Form, FormCache);
     }
   }
@@ -116,15 +113,17 @@ export class CreateWorkflowComponent implements OnInit {
   }
 
   submit(form: FormGroup): void {
+    if (this.isSubmit) return;
     this.isSubmit = true;
     if (!form.get('file_id').value) {
       muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
+      this.isSubmit = false;
       return;
     }
     const request = this.getFormValue(form);
-    console.log(request);
     if (!request.makers || !request.leader || request.makers.length === 0 || request.leader.length === 0) {
       muiToast('请选择相关人员');
+      this.isSubmit = false;
       return;
     }
     this.setPatchValue(form, request);
@@ -157,13 +156,6 @@ export class CreateWorkflowComponent implements OnInit {
         muiToast('新建成功');
         this.router.navigate(['/home']);
       }
-    });
-  }
-
-  revert() {
-    this.isSubmit = false;
-    this.Form.reset({
-      type: this.Form.get('type').value
     });
   }
 }

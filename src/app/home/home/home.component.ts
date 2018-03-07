@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    sessionStorage.clear();
     if (localStorage.getItem('isLogin') !== 'true') {
       localStorage.clear();
       this.router.navigate(['/login']);
