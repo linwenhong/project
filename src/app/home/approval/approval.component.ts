@@ -104,6 +104,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       if (this.option && this.canNext) {
         if (!this.leader['leader'] || this.leader['leader'].length == 0) {
           muiToast('请选择审核人');
+          this.isSubmit = false;
           return;
         }
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
@@ -111,10 +112,12 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       this.request['description'] = this.cacheData['remake'] || this.optionTest;
       if (this.type == 1 && this.fileName && !this.page) {
         muiToast(`请选择输入报告页数`);
+        this.isSubmit = false;
         return;
       }
       if (this.type == 1 && this.fileName && !getDateTime('#time')) {
         muiToast('请选择相关时间');
+        this.isSubmit = false;
         return;
       }
       if (this.fileName) {
