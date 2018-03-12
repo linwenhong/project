@@ -90,6 +90,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         array[5] = { op5: 1, text5: ''};
         this.cacheData['optional'] = data ? data['optional'] : array;
         if (this.tas_uid == '7591958415a6fda5eb32403071634539' && !data) {
+          this.cacheData['optional'][5].op5 = 0;
           this.cacheData['optional'][6] = { op6: 1, text6: ''};
         }
       }
