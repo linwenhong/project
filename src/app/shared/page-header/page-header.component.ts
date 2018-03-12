@@ -28,4 +28,8 @@ export class PageHeaderComponent implements OnInit {
       queryParams: this.queryParams
     });
   }
+
+  goHome(): void {
+    this.router.navigate(['/home']);
+  }
 }

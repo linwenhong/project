@@ -24,3 +24,29 @@
   display: inline-block;
   margin-top: 1rem;
 }
+
+.optional span {
+  color: #999;
+}
+.optional li {
+  display: inline-block;
+  width: 100%;
+  padding: 0.2rem 0;
+}
+.optional li i {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  float: left;
+  margin: 0.15rem 0.4rem 0 0;
+  background-size: 100%;
+  background-image: url("../../../assets/images/noselect.png");
+}
+.optional li i.active {
+  background-image: url("../../../assets/images/select.png");
+}
+.optional input {
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+}

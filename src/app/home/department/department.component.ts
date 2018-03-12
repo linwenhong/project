@@ -24,7 +24,6 @@ export class DepartmentComponent implements OnInit {
       this.queryParams = queryParams;
       this.returnParams = queryParams['returnParams'];
       this.url = queryParams.url;
-      console.log(queryParams);
     });
   }
 

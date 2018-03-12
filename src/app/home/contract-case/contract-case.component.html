@@ -7,6 +7,13 @@
   <div class="form-page">
     <div class="page">
       <div *ngIf="project" class="project">
+
+        <div *ngIf="project.times && !isDetails" class="form-group reject">
+          <!--<h5 class="text-center">第{{project.times}}次驳回</h5>-->
+          <label>驳回原因：</label>
+          <input disabled class="form-control" [value]="project.description" type="text" />
+        </div>
+
         <div class="form-group">
           <label>工程名称：</label>
           <input disabled class="form-control" [value]="project.project_name" type="text" />
@@ -48,11 +55,6 @@
         </div>
 
         <div class="form-group">
-          <label>合同状态：</label>
-          <input disabled class="form-control" [value]="project.status" type="text" />
-        </div>
-
-        <div class="form-group">
           <label>负责部门：</label>
           <input disabled class="form-control" [value]="project.dp_id" type="text" />
         </div>
@@ -68,24 +70,9 @@
         </div>
 
         <div class="form-group">
-          <label>检测项目名称：</label>
-          <input disabled class="form-control" [value]="project.contract_item" type="text" />
-        </div>
-
-        <div class="form-group">
-          <label>检测项目参数：</label>
-          <input disabled class="form-control" [value]="project.contract_params" type="text" />
-        </div>
-
-        <div class="form-group">
-          <label>备注：</label>
-          <input disabled class="form-control" [value]="project.audit" type="text" />
-        </div>
-
-        <div class="form-group">
           <label>合同文件：</label>
           <div class="form-control-none">
-            <a href="{{ project.contract_files }}">
+            <a target="_blank" href="{{ project.contract_files }}">
               点击下载
               <i class="fa fa-download" aria-hidden="true"></i>
             </a>
@@ -108,6 +95,32 @@
             [key]="'checker'"
             [text]="'生产经营部合同核查'"
           ></app-user-select>
+
+          <div class="optional_box" *ngIf="project.checker_optional">
+            <span>可选项：(实心圆点为是,空蓝色圈为否)</span>
+            <ul class="optional">
+              <li>
+                <i [class.active]="project.checker_optional[1].op1"></i>
+                1．我方与委托方的权利与义务是否明确？<br/>
+                <input disabled [value]="project.checker_optional[1].text1" />
+              </li>
+              <li>
+                <i [class.active]="project.checker_optional[2].op2"></i>
+                2．合同条款、格式是否符合要求？
+              </li>
+              <li>
+                <i [class.active]="project.checker_optional[3].op3"></i>
+                3．检验检测单价是否符合有关规定？
+              </li>
+              <li>
+                <i [class.active]="project.checker_optional[4].op4"></i>
+                4．付款方式是否合理？
+              </li>
+              <li>
+                5．其他:<input disabled [value]="project.checker_optional[5].text5" />
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div *ngIf="procedureIndex > 3">
@@ -117,6 +130,41 @@
             [key]="'for_instance'"
             [text]="'检测部门经理详审'"
           ></app-user-select>
+
+          <div class="optional_box" *ngIf="project.for_optional">
+            <span>可选项：(实心圆点为是,空蓝色圈为否)</span>
+            <ul class="optional">
+              <li>
+                <i [class.active]="project.for_optional[1].op1"></i>
+                1．委托方的技术要求是否明确？<br/>
+                <input disabled [value]="project.for_optional[1].text1" />
+              </li>
+              <li>
+                <i [class.active]="project.for_optional[2].op2"></i>
+                2．委托方的技术要求是否符合有关规范、规定？<br/>
+                <input disabled [value]="project.for_optional[2].text2" />
+              </li>
+              <li>
+                <i [class.active]="project.for_optional[3].op3"></i>
+                3．现有检验检测能力是否满足该项目的要求？及需采取的措施。<br/>
+                <input disabled [value]="project.for_optional[3].text3" />
+              </li>
+              <li>
+                <i [class.active]="project.for_optional[4].op4"></i>
+                4．能否按合同要求及时进场、按时完成？<br/>
+                <input disabled [value]="project.for_optional[4].text4" />
+              </li>
+              <li>
+                <i [class.active]="project.for_optional[5].op5"></i>
+                5．是否需要分包？<br/>
+                分包合同编号：<br/>
+                <input disabled [value]="project.for_optional[5].text5" />
+              </li>
+              <li>
+                6．其他:<input disabled [value]="project.for_optional[6].text6" />
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div *ngIf="procedureIndex > 4">

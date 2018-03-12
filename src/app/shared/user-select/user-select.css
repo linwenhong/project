@@ -30,3 +30,12 @@
 span {
   color: #aaa;
 }
+
+.option {
+  width: 10rem;
+  float: right;
+  margin-top: 0.4rem;
+}
+.option span {
+  color: #58c821;
+}

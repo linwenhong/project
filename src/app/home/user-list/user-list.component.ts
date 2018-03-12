@@ -36,9 +36,8 @@ export class UserListComponent implements OnInit {
       this.editFormName = queryParams.editFormName;
       this.editUserKey = queryParams.editUserKey;
       this.url = queryParams.url;
-
       this.editForm = JSON.parse(sessionStorage.getItem(this.editFormName));
-      console.log(this.editForm[this.editUserKey]);
+
       this.userService.getUsers(queryParams.department_id).then(users => {
         this.users = users;
         if (this.canMultiselect && this.editForm[this.editUserKey]) {

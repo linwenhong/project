@@ -3,15 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 
 import { WorkflowService } from '../../core/workflow.service';
+import { PROJECT_TASK } from  '../../common/task';
 
-import { Project } from '../../common/project';
-import { User } from '../../common/user';
-
-const PROCEDURE = {
-  '7982302615a72852c915309038918837': 1,  // 生产经营部新建
-  '6846831325a7285cc7818a5005400886': 2,  // 检验部门审核项目
-  '2803881535a7285f4734977045032333': 3   // 领导批准
-};
+const PROCEDURE = PROJECT_TASK;
 
 @Component({
   selector: 'app-project-case',
