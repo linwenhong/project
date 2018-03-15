@@ -2,15 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WorkflowService } from '../../core/workflow.service';
-
-const REPORT = 1;     // 报告
-const CONTRACT = 2;   // 合同
-const PROJECT = 3;    // 项目
-const WORKFLOW_TYPES = {
-  '5651692255a57123952f3a8069340993': REPORT,
-  '7665033775a6fd495c3cd53059547661': CONTRACT,
-  '1577389215a72847d7f6a21005167802': PROJECT
-};
+import { WORKFLOW_TYPES, REPORT, CONTRACT, PROJECT, AFFAIR, TEST_PROJECT, PURCHASE } from '../../common/workflow-types';
 
 @Component({
   selector: 'app-project-list',
@@ -84,19 +76,8 @@ export class ProjectListComponent implements OnInit {
   }
 
   detail(workflow: any): void {
-    let url;
-    const url_ = (this.listType == 1) ? 'case/' : 'detail/';
-    switch (WORKFLOW_TYPES[workflow.pro_uid]) {
-      case REPORT:
-        url = 'report-' + url_;
-        break;
-      case CONTRACT:
-        url = 'contract-' + url_;
-        break;
-      case PROJECT:
-        url = 'project-' + url_;
-        break;
-    }
+    const url_ = (this.listType == 1) ? '-case/' : '-detail/';
+    const url = WORKFLOW_TYPES[workflow.pro_uid].router + url_;
     this.router.navigate(['/home/' + url + workflow.app_uid]);
   }
 

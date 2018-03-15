@@ -142,10 +142,7 @@ export class CreateWorkflowComponent implements OnInit {
         }
       }
     }
-    /**
-     *TODO:提交项目申请表数据 => 跳转页面
-     *simulation：模拟方法(保存提交数据)
-     **/
+
     this.simulation(request);
   }
 

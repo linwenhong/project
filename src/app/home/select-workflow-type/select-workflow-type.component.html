@@ -4,14 +4,8 @@
   ></app-page-header>
 
   <div class="content">
-    <div>
-      <span (click)="select(1)">报告</span>
-    </div>
-    <div>
-      <span (click)="select(2)">合同</span>
-    </div>
-    <div>
-      <span (click)="select(3)">项目</span>
+    <div *ngFor="let type of types">
+      <span (click)="select(type.value)">{{ type.name }}</span>
     </div>
   </div>
 </div>
