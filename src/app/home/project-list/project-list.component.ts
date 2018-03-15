@@ -18,6 +18,7 @@ export class ProjectListComponent implements OnInit {
   canMore: boolean = true;
   alert: string = '加载中...';
   isLoad: boolean = false;
+  types: Object[] = [];
 
   constructor(
     private workflowService: WorkflowService,
@@ -25,6 +26,9 @@ export class ProjectListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    for (const key in WORKFLOW_TYPES) {
+      this.types.push(WORKFLOW_TYPES[key]);
+    }
     sessionStorage.removeItem('queryParams');
     sessionStorage.removeItem('leader');
     this.listType = 1;

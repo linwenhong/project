@@ -6,21 +6,9 @@ import { File } from '../common/file';
 @Injectable()
 export class FileService extends ServiceBaseService<File>  {
 
-  getReports(): Promise<File[]> {
-    return super.getAll('get_report_list').then(reports => {
-      return reports;
-    });
-  }
-
-  getContracts(): Promise<File[]> {
-    return super.getAll('get_contract_list').then(contracts => {
-      return contracts;
-    });
-  }
-
-  getProjects(): Promise<File[]> {
-    return super.getAll('get_projects_list').then(projects => {
-      return projects;
+  getList(type: number): Promise<File[]> {
+    return super.getAll('get_list', { type: type }).then(fileList => {
+      return fileList;
     });
   }
 }

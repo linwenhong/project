@@ -8,22 +8,24 @@
   <div class="project" *ngIf="Form">
     <form [formGroup]="Form" novalidate (ngSubmit)="submit(Form)">
       <div class="form-group">
-        <label>选择{{ getTypeName(type) }}：</label>
+        <label>选择{{ typeName }}：</label>
         <select class="fileId form-control" formControlName="file_id">
           <option *ngFor="let file of files" [value]="file.id">{{ file.project_name }}</option>
         </select>
       </div>
 
       <div class="user-select-box">
-        <app-user-select
-          [canMultiselect]="true"
-          [editForm]="getFormValue(Form)"
-          [editFormName]="'workflowForm'"
-          [text]="'检测人员'"
-          [key]="'makers'"
-          [url]="'/home/create-workflow'"
-          [queryParams]="queryParams"
-        ></app-user-select>
+        <ng-container *ngIf="isNeedToCheck">
+          <app-user-select
+            [canMultiselect]="true"
+            [editForm]="getFormValue(Form)"
+            [editFormName]="'workflowForm'"
+            [text]="'检测人员'"
+            [key]="'makers'"
+            [url]="'/home/create-workflow'"
+            [queryParams]="queryParams"
+          ></app-user-select>
+        </ng-container>
 
         <app-user-select
           [canMultiselect]="false"

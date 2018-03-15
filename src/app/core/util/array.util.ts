@@ -1,6 +1,7 @@
 export class ArrayUtil {
 
   static getKeys(datas: any[], key: string = 'id'): any[] {
+    if (!datas) return null;
     const keys: any[] = [];
     datas.forEach(data => keys.push(data[key]));
     return keys;
@@ -10,6 +11,7 @@ export class ArrayUtil {
   *  获取用户wf_usr_id(传入值类型为User[])
   * */
   static getWfId(datas: any[], isMultiselect: boolean = false): any {
+    if (!datas) return null;
     const ids: any[] = [];
     datas.forEach(data => ids.push(data['wf_usr_id']));
     if (isMultiselect) {
@@ -19,6 +21,7 @@ export class ArrayUtil {
   }
 
   static keyInArray(key: string, datas: string[]): boolean {
+    if (!datas) return null;
     for (const data of datas) {
       if (data === key) {
         return true;
