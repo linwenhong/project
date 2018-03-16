@@ -29,7 +29,7 @@ export const AFFAIR_TASK = {
   '5791135725aa790bb709a11034157136': 5   // 总经理意见
 };
 // 试验报告,type = 5
-export const TEST_PROJECT_TASK = {
+export const TEST_REPORT_TASK = {
   '4598854635aa62afe702fa9033817866': 1,  // 报告编制
   '1053901475aa62951e2d2a2068064775': 2,  // 报告审核
   '8385939455aa62951e73528049582531': 3   // 报告批准
@@ -47,6 +47,6 @@ export const TASK = [
   CONTRACT_TASK,
   PROJECT_TASK,
   AFFAIR_TASK,
-  TEST_PROJECT_TASK,
+  TEST_REPORT_TASK,
   PURCHASE_TASK
 ];
