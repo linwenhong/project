@@ -19,7 +19,8 @@ import { ContractCaseComponent } from './contract-case/contract-case.component';
 import { ContractDetailComponent } from './contract-case/contract-detail.component';
 import { ProjectCaseComponent } from './project-case/project-case.component';
 import { ProjectDetailComponent } from './project-case/project-detail.component';
-import { TestReportCaseComponent } from './test-report-case/test-report-case.component';
+import { WorkflowCaseComponent } from './workflow-case/workflow-case.component';
+import { WorkflowCaseDetailComponent } from './workflow-case/workflow-case-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,8 +41,8 @@ const routes: Routes = [
   { path: 'contract-detail/:id', component: ContractDetailComponent },
   { path: 'project-case/:id', component: ProjectCaseComponent },
   { path: 'project-detail/:id', component: ProjectDetailComponent },
-  { path: 'test-report-case/:id', component: TestReportCaseComponent },
-  { path: 'test-report-detail/:id', component: TestReportCaseComponent },
+  { path: 'workflow-case/:id', component: WorkflowCaseComponent },
+  { path: 'workflow-detail/:id', component: WorkflowCaseDetailComponent },
 ];
 
 @NgModule({

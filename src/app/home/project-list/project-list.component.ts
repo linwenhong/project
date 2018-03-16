@@ -82,7 +82,7 @@ export class ProjectListComponent implements OnInit {
   detail(workflow: any): void {
     const url_ = (this.listType == 1) ? '-case/' : '-detail/';
     const url = WORKFLOW_TYPES[workflow.pro_uid].router + url_;
-    this.router.navigate(['/home/' + url + workflow.app_uid]);
+    this.router.navigate(['/home/workflow' + url_ + workflow.app_uid]);
   }
 
   more(): void {

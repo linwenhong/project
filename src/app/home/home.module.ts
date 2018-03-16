@@ -25,7 +25,8 @@ import { ContractCaseComponent } from './contract-case/contract-case.component';
 import { ContractDetailComponent } from './contract-case/contract-detail.component';
 import { ProjectCaseComponent } from './project-case/project-case.component';
 import { ProjectDetailComponent } from './project-case/project-detail.component';
-import { TestReportCaseComponent } from './test-report-case/test-report-case.component';
+import { WorkflowCaseComponent } from './workflow-case/workflow-case.component';
+import { WorkflowCaseDetailComponent } from './workflow-case/workflow-case-detail.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { TestReportCaseComponent } from './test-report-case/test-report-case.com
     ContractDetailComponent,
     ProjectCaseComponent,
     ProjectDetailComponent,
-    TestReportCaseComponent,
+    WorkflowCaseComponent,
+    WorkflowCaseDetailComponent
   ]
 })
 export class HomeModule { }

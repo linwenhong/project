@@ -14,6 +14,7 @@
         </div>
 
         <ng-container *ngIf="formKeys">
+
           <div class="form-group" *ngFor="let group of formKeys.groups;">
             <label>{{ group.name }}：</label>
             <input disabled class="form-control" [value]="project[group.key]" type="text" />
@@ -28,36 +29,20 @@
               </a>
             </div>
           </div>
+
+          <ng-container *ngFor="let inspector of formKeys.inspectors">
+            <div *ngIf="procedureIndex > inspector.procedureIndex">
+              <app-user-select
+                [canEditUser]="false"
+                [editForm]="project"
+                [key]="inspector.key"
+                [text]="inspector.text"
+              ></app-user-select>
+            </div>
+          </ng-container>
+
         </ng-container>
 
-
-
-        <div *ngIf="procedureIndex > 1">
-          <app-user-select
-            [canEditUser]="false"
-            [editForm]="project"
-            [key]="'author'"
-            [text]="'报告编制'"
-          ></app-user-select>
-        </div>
-
-        <div *ngIf="procedureIndex > 2">
-          <app-user-select
-            [canEditUser]="false"
-            [editForm]="project"
-            [key]="'checker'"
-            [text]="'报告审核'"
-          ></app-user-select>
-        </div>
-
-        <div *ngIf="procedureIndex > 3">
-          <app-user-select
-            [canEditUser]="false"
-            [editForm]="project"
-            [key]="'leader'"
-            [text]="'报告批准'"
-          ></app-user-select>
-        </div>
 
       </div>
     </div>

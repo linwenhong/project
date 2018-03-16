@@ -74,6 +74,9 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       if (queryParams['index'] != '6965696805a7131ea0dfde4035064095'
         && queryParams['index'] != '2803881535a7285f4734977045032333'
         && queryParams['index'] != '3404235605a5713caa59782069577955'
+        && queryParams['index'] != '5791135725aa790bb709a11034157136'
+        && queryParams['index'] != '8385939455aa62951e73528049582531'
+        && queryParams['index'] != '8291429775aa78c088bb812015401490'
       ) {
         this.canNext = true;
         this.task = queryParams['task'];
