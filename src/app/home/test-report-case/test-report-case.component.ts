@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 
 import { WorkflowService } from '../../core/workflow.service';
 import { TEST_REPORT_TASK } from  '../../common/task';
+import { CASE_FORM_DATA } from '../../common/case-form-data';
 
 const PROCEDURE = TEST_REPORT_TASK;
 
@@ -19,6 +20,9 @@ export class TestReportCaseComponent implements OnInit {
   project: any;
   workflow: any;
   task: string;
+  formKeys: Object;
+  title: string;
+  queryParams: Object;
 
   constructor(
     private workflowService: WorkflowService,
@@ -34,18 +38,18 @@ export class TestReportCaseComponent implements OnInit {
       this.project = workflow.data;
       this.workflow = workflow;
       this.task = workflow.task;
-    });
-  }
-
-  options(option: boolean): void {
-    this.router.navigate(['/home/approval'], {
-      queryParams: {
+      this.formKeys = CASE_FORM_DATA[workflow.type];
+      this.queryParams = {
         id: this.app_uid,
-        option: option,
         index: this.workflow.index,
         type: this.workflow.type,
-        url: '/home/test-report-case/' + this.app_uid,
         task: this.task
+      };
+      switch (workflow.type) {
+        case 5:
+          this.title = '试验报告详情';
+          this.queryParams['url'] =  '/home/test-report-case/' + this.app_uid;
+          break;
       }
     });
   }

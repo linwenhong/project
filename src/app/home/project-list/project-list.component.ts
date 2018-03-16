@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WorkflowService } from '../../core/workflow.service';
-import { WORKFLOW_TYPES, REPORT, CONTRACT, PROJECT, AFFAIR, TEST_PROJECT, PURCHASE } from '../../common/workflow-types';
+import { WORKFLOW_TYPES } from '../../common/workflow-types';
 
 @Component({
   selector: 'app-project-list',

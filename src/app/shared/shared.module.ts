@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserSelectComponent } from './user-select/user-select';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { ApprovalOptionsComponent } from './approval-options/approval-options.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,12 @@ import { PageHeaderComponent } from './page-header/page-header.component';
   declarations: [
     UserSelectComponent,
     PageHeaderComponent,
+    ApprovalOptionsComponent
   ],
   exports: [
     UserSelectComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    ApprovalOptionsComponent
   ]
 })
 export class SharedModule { }

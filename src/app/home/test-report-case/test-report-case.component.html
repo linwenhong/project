@@ -1,6 +1,6 @@
 <div class="fixed-page">
   <app-page-header
-    [title]="'试验报告详情'"
+    [title]="title"
     [url]="'/home/project-list'"
   ></app-page-header>
 
@@ -9,35 +9,28 @@
       <div *ngIf="project" class="project">
 
         <div *ngIf="project.times && !isDetails" class="form-group reject">
-          <!--<h5 class="text-center">第{{project.times}}次驳回</h5>-->
           <label>驳回原因：</label>
           <input disabled class="form-control" [value]="project.description" type="text" />
         </div>
 
-        <div class="form-group">
-          <label>报告名称：</label>
-          <input disabled class="form-control" [value]="project.name" type="text" />
-        </div>
-
-        <div class="form-group">
-          <label>报告编号：</label>
-          <input disabled class="form-control" [value]="project.rp_number" type="text" />
-        </div>
-
-        <div class="form-group">
-          <label>日期：</label>
-          <input disabled class="form-control" [value]="project.time" type="text" />
-        </div>
-
-        <div class="form-group">
-          <label>报告文件：</label>
-          <div class="form-control-none">
-            <a target="_blank" href="{{ project.report_name }}">
-              点击下载
-              <i class="fa fa-download" aria-hidden="true"></i>
-            </a>
+        <ng-container *ngIf="formKeys">
+          <div class="form-group" *ngFor="let group of formKeys.groups;">
+            <label>{{ group.name }}：</label>
+            <input disabled class="form-control" [value]="project[group.key]" type="text" />
           </div>
-        </div>
+
+          <div class="form-group" *ngFor="let file of formKeys.files;">
+            <label>{{ file.name }}：</label>
+            <div class="form-control-none">
+              <a target="_blank" href="{{ project[file.key] }}">
+                点击下载
+                <i class="fa fa-download" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </ng-container>
+
+
 
         <div *ngIf="procedureIndex > 1">
           <app-user-select
@@ -71,13 +64,9 @@
   </div>
 
   <ng-container *ngIf="!isDetails && procedureIndex">
-    <div class="options_top_null"></div>
-    <div class="options" *ngIf="procedureIndex != 1">
-      <div class="confirm" (click)="options(true)">同意</div>
-      <div class="refuse"  (click)="options(false)">拒绝</div>
-    </div>
-    <div class="options" *ngIf="procedureIndex == 1">
-      <div class="confirm allWidth" (click)="options(true)">提交</div>
-    </div>
+    <app-approval-options
+      [procedureIndex]="procedureIndex"
+      [queryParams]="queryParams"
+    ></app-approval-options>
   </ng-container>
 </div>
