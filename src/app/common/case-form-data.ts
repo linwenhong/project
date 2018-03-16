@@ -1,5 +1,5 @@
 /*
-  CASE_FORM_DATA[1] 中的1为 workflow type 值, 如：1为报告, 2为合同, 见 /src/app/common/workflow-types.ts 文件
+  CASE_FORM_DATA[1] 中的1为 workflow type 值, 如：1为报告, 2为合同
   CASE_FORM_DATA 中的 key 属性均指 workflow 详情的 data 对象的 key
   CASE_FORM_DATA.groups 为html页面input框, 如在页面以input框显示 data.name,则在 groups 中添加 { name: 'input标题', key: 'name' }
   CASE_FORM_DATA.textarea 为html页面textarea框
@@ -33,7 +33,7 @@ export const CASE_FORM_DATA = {
       },
       {
         procedureIndex: 3,
-        key: 'examine',
+        key: 'checker',
         text: '报告审核'
       },
       {
@@ -79,7 +79,24 @@ export const CASE_FORM_DATA = {
       { name: '检验检测要求和依据', key: 'testing_requirements' },
       { name: '委托方提供的资料', key: 'information_of_the_client' },
     ],
-    files: []
+    files: [],
+    inspectors: [
+      {
+        procedureIndex: 1,
+        key: 'author',
+        text: '生产经营部新建'
+      },
+      {
+        procedureIndex: 2,
+        key: 'checker',
+        text: '检验部门审核项目'
+      },
+      {
+        procedureIndex: 3,
+        key: 'leader',
+        text: '领导批准'
+      }
+    ]
   },
 
   '4': {
@@ -124,7 +141,6 @@ export const CASE_FORM_DATA = {
       }
     ]
   },
-
   '6': {
     groups: [
       { name: '采购申请标题', key: 'project_name' },
