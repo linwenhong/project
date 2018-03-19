@@ -2,9 +2,9 @@
   CASE_FORM_DATA[1] 中的1为 workflow type 值, 如：1为报告, 2为合同
   CASE_FORM_DATA 中的 key 属性均指 workflow 详情的 data 对象的 key
   CASE_FORM_DATA.groups 为html页面input框, 如在页面以input框显示 data.name,则在 groups 中添加 { name: 'input标题', key: 'name' }
-  CASE_FORM_DATA.textarea 为html页面textarea框
-  CASE_FORM_DATA.files 为html页面相关文件下载地址
-  CASE_FORM_DATA.inspectors 为对应工作流发起人与审核人
+  CASE_FORM_DATA.paragraph 为html页面textarea
+  CASE_FORM_DATA.files 为html页面相关文件url
+  CASE_FORM_DATA.inspectors 工作流发起人与审核人
 */
 export const CASE_FORM_DATA = {
   '1': {
@@ -33,7 +33,7 @@ export const CASE_FORM_DATA = {
       },
       {
         procedureIndex: 3,
-        key: 'checker',
+        key: 'examine',
         text: '报告审核'
       },
       {
@@ -60,6 +60,38 @@ export const CASE_FORM_DATA = {
     ],
     files: [
       { name: '合同文件', key: 'contract_files' }
+    ],
+    inspectors: [
+      {
+        procedureIndex: 1,
+        key: 'author',
+        text: '生产经营部新建'
+      },
+      {
+        procedureIndex: 2,
+        key: 'checker',
+        text: '生产经营部核查'
+      },
+      {
+        procedureIndex: 3,
+        key: 'for_instance',
+        text: '检测部门经理详审'
+      },
+      {
+        procedureIndex: 4,
+        key: 'manage_instance',
+        text: '副总经理详审核'
+      },
+      {
+        procedureIndex: 5,
+        key: 'examine',
+        text: '总经理审核'
+      },
+      {
+        procedureIndex: 6,
+        key: 'leader',
+        text: '董事长批准'
+      }
     ]
   },
 
@@ -108,9 +140,36 @@ export const CASE_FORM_DATA = {
       { name: '培训老师', key: 'teacher' },
     ],
     files: [],
-    textarea: [
+    paragraph: [
       { name: '参加培训人', key: 'trainees' },
       { name: '培训内容', key: 'training_content' },
+    ],
+    inspectors: [
+      {
+        procedureIndex: 1,
+        key: 'author',
+        text: '发起人'
+      },
+      {
+        procedureIndex: 2,
+        key: 'for_instance',
+        text: '部门意见'
+      },
+      {
+        procedureIndex: 3,
+        key: 'checker',
+        text: '办公室意见'
+      },
+      {
+        procedureIndex: 4,
+        key: 'examine',
+        text: '分管领导意见'
+      },
+      {
+        procedureIndex: 5,
+        key: 'leader',
+        text: '总经理意见'
+      }
     ]
   },
 
@@ -141,6 +200,7 @@ export const CASE_FORM_DATA = {
       }
     ]
   },
+
   '6': {
     groups: [
       { name: '采购申请标题', key: 'project_name' },
@@ -148,6 +208,28 @@ export const CASE_FORM_DATA = {
       { name: '申请时间', key: 'pur_time' },
       { name: '购置原因', key: 'reason' },
     ],
-    files: []
+    files: [],
+    inspectors: [
+      {
+        procedureIndex: 1,
+        key: 'author',
+        text: '发起人'
+      },
+      {
+        procedureIndex: 2,
+        key: 'checker',
+        text: '部门负责人'
+      },
+      {
+        procedureIndex: 3,
+        key: 'examine',
+        text: '技术负责人'
+      },
+      {
+        procedureIndex: 4,
+        key: 'leader',
+        text: '总经理'
+      }
+    ]
   }
 };

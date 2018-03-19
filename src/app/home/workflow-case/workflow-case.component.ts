@@ -18,9 +18,11 @@ export class WorkflowCaseComponent implements OnInit {
   project: any;
   workflow: any;
   task: string;
+  type: number;
   formKeys: Object;
   title: string;
   queryParams: Object;
+  tableData: Object[];
 
   constructor(
     private workflowService: WorkflowService,
@@ -37,6 +39,7 @@ export class WorkflowCaseComponent implements OnInit {
       this.project = workflow.data;
       this.workflow = workflow;
       this.task = workflow.task;
+      this.type = workflow.type;
       this.formKeys = CASE_FORM_DATA[workflow.type];
       this.queryParams = {
         id: this.app_uid,
