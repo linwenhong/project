@@ -1,10 +1,10 @@
 /*
   CASE_FORM_DATA[1] 中的1为 workflow type 值, 如：1为报告, 2为合同
   CASE_FORM_DATA 中的 key 属性均指 workflow 详情的 data 对象的 key
-  CASE_FORM_DATA.groups 为html页面input框, 如在页面以input框显示 data.name,则在 groups 中添加 { name: 'input标题', key: 'name' }
-  CASE_FORM_DATA.paragraph 为html页面textarea
-  CASE_FORM_DATA.files 为html页面相关文件url
-  CASE_FORM_DATA.inspectors 工作流发起人与审核人
+  .groups 为html页面input框, 如在页面以input框显示 data.name,则在 groups 中添加 { name: 'input标题', key: 'name' }
+  .paragraph 为html页面textarea
+  .files 为html页面相关文件url
+  .inspectors 工作流发起人与审核人
 */
 export const CASE_FORM_DATA = {
   '1': {
@@ -190,7 +190,7 @@ export const CASE_FORM_DATA = {
       },
       {
         procedureIndex: 2,
-        key: 'checker',
+        key: 'examine',
         text: '报告审核'
       },
       {
