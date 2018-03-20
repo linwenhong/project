@@ -17,6 +17,7 @@ export class WorkflowCaseDetailComponent implements OnInit {
   app_uid: number;
   project: any;
   workflow: any;
+  type: number;
   formKeys: Object;
   title: string;
   queryParams: Object;
@@ -38,6 +39,7 @@ export class WorkflowCaseDetailComponent implements OnInit {
       }
       this.project = workflow.data;
       this.workflow = workflow;
+      this.type = workflow.type;
 
       this.formKeys = CASE_FORM_DATA[workflow.type];
       switch (workflow.type) {

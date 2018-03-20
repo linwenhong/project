@@ -167,3 +167,8 @@ textarea {
   padding: 0.25rem;
   background-color: #fff;
 }
+.userItem {
+  display: inline-block;
+  width: 100%;
+  border-top: 1px dashed #999;
+}

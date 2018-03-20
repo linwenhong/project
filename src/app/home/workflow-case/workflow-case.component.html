@@ -56,7 +56,7 @@
           <!-- 采购end -->
 
           <ng-container *ngFor="let inspector of formKeys.inspectors">
-            <div *ngIf="procedureIndex > inspector.procedureIndex">
+            <div *ngIf="procedureIndex > inspector.procedureIndex" class="userItem">
               <app-user-select
                 [canEditUser]="false"
                 [editForm]="project"
