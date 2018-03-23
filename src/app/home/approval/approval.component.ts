@@ -24,6 +24,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   queryParams: any;
   canNext: boolean = false;
   task: string;
+  curTask: string;
   fileName: string;
   page: number;
   canSelectTime: boolean = true;
@@ -84,6 +85,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       ) {
         this.canNext = true;
         this.task = queryParams['task'];
+        this.curTask = queryParams['cur_task'];
       }
 
       this.tas_uid = queryParams['index'];
@@ -118,6 +120,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
       this.request['description'] = this.cacheData['remake'] || this.optionTest;
+      if (!this.option) this.request['description'] = this.curTask + ': ' + this.request['description'];
       if (this.type == 1 && this.fileName && !this.page) {
         muiToast(`请选择输入报告页数`);
         this.isSubmit = false;

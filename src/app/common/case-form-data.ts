@@ -133,16 +133,20 @@ export const CASE_FORM_DATA = {
 
   '4': {
     groups: [
-      { name: '申请标题', key: 'project_name' },
-      { name: '时间', key: 'training_time' },
-      { name: '培训方式', key: 'way_for_training' },
-      { name: '地点', key: 'place' },
-      { name: '培训老师', key: 'teacher' },
+      { name: '项目名称', key: 'project_name' },
+      { name: '培训时间', key: 'training_time' },
+      { name: '申请人', key: 'applicant' },
+      { name: '申请部门', key: 'department' },
+      { name: '培训地点', key: 'place' },
+      { name: '交通方式', key: 'transport' },
+      { name: '培训目标', key: 'target_for_training' },
+      { name: '培训人数', key: 'num_of_people' },
+      { name: '总花费', key: 'total_cost' },
     ],
     files: [],
     paragraph: [
-      { name: '参加培训人', key: 'trainees' },
-      { name: '培训内容', key: 'training_content' },
+      { name: '培训学员', key: 'trainees' },
+      { name: '培训内容', key: 'content' },
     ],
     inspectors: [
       {

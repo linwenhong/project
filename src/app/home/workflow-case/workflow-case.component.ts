@@ -46,7 +46,8 @@ export class WorkflowCaseComponent implements OnInit {
         index: this.workflow.index,
         type: this.workflow.type,
         url: '/home/workflow-case/' + this.app_uid,
-        task: this.task
+        task: this.task,
+        cur_task: workflow.cur_task
       };
       switch (workflow.type) {
         case 1:
