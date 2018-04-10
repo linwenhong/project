@@ -14,6 +14,7 @@ export class LoginComponent {
 
   constructor(public router: Router, private http: Http) {
     this.username = localStorage.getItem('username') || null;
+    if (localStorage.getItem('isLogin')) localStorage.setItem('isLogin', 'false');
   }
 
   login(user, pwd) {
@@ -31,7 +32,7 @@ export class LoginComponent {
         if (regions.status === '500') {
           muiToast('用户名或密码错误');
         } else {
-          localStorage.setItem('isLogin', 'true')
+          localStorage.setItem('isLogin', 'true');
           localStorage.setItem('token', regions.token);
           localStorage.setItem('user', JSON.stringify(regions));
           this.router.navigate(['/home']);

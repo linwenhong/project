@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { WorkflowService } from '../../core/workflow.service';
 import { ArrayUtil } from '../../core/util/array.util';
 import { TASK } from  '../../common/task';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-approval',
@@ -23,6 +24,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   queryParams: any;
   canNext: boolean = false;
   task: string;
+  curTask: string;
   fileName: string;
   page: number;
   canSelectTime: boolean = true;
@@ -38,7 +40,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
   ) { }
 
   get canSelectFile(): boolean {
-    return this.canNext && this.option && this.type != 3;
+    return this.option && this.type != 3 && this.type != 4;
   }
 
   get canEditOption(): boolean {
@@ -71,12 +73,19 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         caseId: queryParams['id'],
         agree: this.option ? 1 : 0
       };
-      if (queryParams['index'] != '6965696805a7131ea0dfde4035064095'
-        && queryParams['index'] != '2803881535a7285f4734977045032333'
-        && queryParams['index'] != '3404235605a5713caa59782069577955'
+      if (
+        !ArrayUtil.keyInArray(queryParams['index'], [
+          '6965696805a7131ea0dfde4035064095',
+          '2803881535a7285f4734977045032333',
+          '3404235605a5713caa59782069577955',
+          '5791135725aa790bb709a11034157136',
+          '8385939455aa62951e73528049582531',
+          '8291429775aa78c088bb812015401490'
+        ])
       ) {
         this.canNext = true;
         this.task = queryParams['task'];
+        this.curTask = queryParams['cur_task'];
       }
 
       this.tas_uid = queryParams['index'];
@@ -111,6 +120,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
         this.request['leader'] = ArrayUtil.getWfId(this.leader['leader']);
       }
       this.request['description'] = this.cacheData['remake'] || this.optionTest;
+      if (!this.option) this.request['description'] = this.curTask + ': ' + this.request['description'];
       if (this.type == 1 && this.fileName && !this.page) {
         muiToast(`请选择输入报告页数`);
         this.isSubmit = false;
@@ -126,7 +136,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
           this.request['page'] = this.page;
           this.request['time'] = getDateTime('#time');
         }
-        this.request['report_name'] = fileUpload();  // 文件上传
+        this.request['report_name'] = fileUpload(environment.api_url);  // 文件上传
       }
       if (this.tas_uid == '7096257625a6fd9e6e327b7056575944') {
         this.request['checker_optional'] = this.cacheData['optional'];

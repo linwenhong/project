@@ -147,3 +147,29 @@ select.fileId {
   font-size: 1rem;
   background-color: #fff;
 }
+
+.purchaseTable {
+  width: 90%;
+  margin: 1rem auto 1.5rem;
+}
+.purchaseTable tr {
+  width: 100%;
+}
+.purchaseTable th, .purchaseTable td {
+  padding: 0.3rem;
+  text-align: center;
+}
+textarea {
+  width: 15rem;
+  float: right;
+  height: 5rem;
+  line-height: 1.5rem;
+  padding: 0.25rem;
+  background-color: #fff;
+}
+.userItem {
+  display: inline-block;
+  width: 100%;
+  padding-top: 1rem;
+  border-top: 1px dashed #999;
+}

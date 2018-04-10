@@ -59,18 +59,18 @@ function muiToast(string) {
 function getFileName() {
   return $("#upfile").get(0).files[0] ? $("#upfile").get(0).files[0].name : null;
 }
-function fileUpload() {
+function fileUpload(url) {
   var result;
   var fd = new FormData();
   fd.append('file', $("#upfile").get(0).files[0], $("#upfile").get(0).files[0].name);
   $.ajax({
-    url: "http://121.8.210.226:9100/api/upload_file",
+    url: url + "upload_file",
     type: "POST",
     processData: false,
     contentType: false,
     headers: { "Authorization": localStorage.getItem('token') },
     data: fd,
-    async:false,
+    async: false,
     success: function(data) {
       muiToast("文件上传成功!");
       result = data;

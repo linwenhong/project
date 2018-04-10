@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
   { path: '**', pathMatch: 'full', redirectTo: '/login' }

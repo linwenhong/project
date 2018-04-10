@@ -1,21 +1,13 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ArrayUtil } from '../../core/util/array.util';
 import { FileService } from '../../core/file.service';
 import { WorkflowService } from '../../core/workflow.service';
 import { File } from '../../common/file';
-import { Project } from '../../common/project';
-import { Report } from '../../common/report';
 import { Workflow } from '../../common/workflow';
-
-const TYPES = [
-  { id: 1, name: '报告', key: 'reports' },
-  { id: 2, name: '合同', key: 'contracts' },
-  { id: 3, name: '项目', key: 'projects' }
-];
+import { WORKFLOW_TYPES } from '../../common/workflow-types';
 
 @Component({
   selector: 'app-create-workflow',
@@ -31,25 +23,26 @@ export class CreateWorkflowComponent implements OnInit {
     'makers',
     'leader'
   ];
-  projects: Project[];
-  reports: Report[];
-  types: any[];
   files: File[];
   type: number;
-  condition: string;
+  typeName: string;
   queryParams: Object;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private http: Http,
-    private  fb: FormBuilder,
-    private  fileService: FileService,
-    private  workflowService: WorkflowService
+    private fb: FormBuilder,
+    private fileService: FileService,
+    private workflowService: WorkflowService
   ) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
       this.type = Number(queryParams['type']);
+      for (const key in WORKFLOW_TYPES) {
+        if (this.type == WORKFLOW_TYPES[key].value) {
+          this.typeName = WORKFLOW_TYPES[key].name;
+        }
+      }
       if (this.type == 1) {
         setDateTimeGroup('.dateTime');
       }
@@ -58,8 +51,11 @@ export class CreateWorkflowComponent implements OnInit {
       }
       this.getFiles(this.type);
     });
-    this.types = TYPES;
     this.createForm();
+  }
+
+  get isNeedToCheck(): boolean {
+    return this.type != 4 && this.type != 6;
   }
 
   ngOnInit() {
@@ -70,25 +66,7 @@ export class CreateWorkflowComponent implements OnInit {
   }
 
   getFiles(type: number): void {
-    switch (Number(type)) {
-      case 1:
-        this.fileService.getReports().then(reports => this.files = reports );
-        break;
-      case 2:
-        this.fileService.getContracts().then(contracts => this.files = contracts );
-        break;
-      case 3:
-        this.fileService.getProjects().then(projects => this.files = projects );
-        break;
-    }
-  }
-
-  getTypeName(id: number): string {
-    for (const type of TYPES) {
-      if (type.id === Number(id)) {
-        return type.name;
-      }
-    }
+    this.fileService.getList(type).then(fileList => this.files = fileList);
   }
 
   createForm(): void {
@@ -116,13 +94,18 @@ export class CreateWorkflowComponent implements OnInit {
     if (this.isSubmit) return;
     this.isSubmit = true;
     if (!form.get('file_id').value) {
-      muiToast(`请选择${ this.getTypeName(form.get('type').value) }`);
+      muiToast(`请选择${ this.typeName }`);
       this.isSubmit = false;
       return;
     }
     const request = this.getFormValue(form);
-    if (!request.makers || !request.leader || request.makers.length === 0 || request.leader.length === 0) {
-      muiToast('请选择相关人员');
+    if (this.isNeedToCheck && (!request.makers || request.makers.length === 0)) {
+      muiToast('请选择检测人员');
+      this.isSubmit = false;
+      return;
+    }
+    if (!request.leader || request.leader.length === 0) {
+      muiToast('请选择校核人员');
       this.isSubmit = false;
       return;
     }
@@ -142,10 +125,6 @@ export class CreateWorkflowComponent implements OnInit {
         }
       }
     }
-    /**
-     *TODO:提交项目申请表数据 => 跳转页面
-     *simulation：模拟方法(保存提交数据)
-     **/
     this.simulation(request);
   }
 

@@ -12,9 +12,7 @@
   <div class="type_list">
     <select [(ngModel)]="type" (change)="select_type(type)">
       <option value="0">全部</option>
-      <option value="1">报告</option>
-      <option value="2">合同</option>
-      <option value="3">项目</option>
+      <option *ngFor="let type of types" value="{{ type.value }}">{{ type.name }}</option>
     </select>
     <div class="i">
       <i></i>
