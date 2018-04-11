@@ -48,16 +48,25 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       || !this.option;
   }
 
+  get signTime(): string {
+    if (getDateTime('#time0')) {
+      this.cacheData['time'] = getDateTime('#time0')
+    }
+    return this.cacheData['time'];
+  }
+
   ngAfterViewChecked() {
     if (this.type == 1 && this.fileName && this.canSelectTime) {
       this.canSelectTime = false;
-      setDateTimeGroup('.dateTime');
+      setDateTimeGroup('#time');
     }
   }
 
   ngOnInit() {
+    setDateTimeGroup('#time0');
     const data = JSON.parse(sessionStorage.getItem('cacheData'));
     this.cacheData['remake'] = data ? data['remake'] : '';
+    this.cacheData['time'] = data ? data['time'] : this.getNowDate();
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
       sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
@@ -144,6 +153,7 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       if (this.tas_uid == '7591958415a6fda5eb32403071634539') {
         this.request['for_optional'] = this.cacheData['optional'];
       }
+      this.request['sign_time'] = getDateTime('#time0');
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));
 
     } else {
@@ -158,5 +168,13 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
 
   select(index: number): void {
     this.cacheData['optional'][index]['op' + index] = this.cacheData['optional'][index]['op' + index] == 1 ? 0 : 1;
+  }
+
+  getNowDate(): string {
+    const Dates = new Date();
+    const year: number = Dates.getFullYear();
+    const month: any = ( Dates.getMonth() + 1 ) < 10 ? '0' + ( Dates.getMonth() + 1 ) : ( Dates.getMonth() + 1 );
+    const day: any = Dates.getDate() < 10 ? '0' + Dates.getDate() : Dates.getDate();
+    return year + '-' + month + '-' + day;
   }
 }
