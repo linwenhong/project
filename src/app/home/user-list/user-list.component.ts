@@ -89,6 +89,7 @@ export class UserListComponent implements OnInit {
             name: this.users[i].name,
             avatar: this.users[i].avatar,
             wf_usr_id: this.users[i].wf_usr_id,
+            dp_id: this.queryParams.department_id
           });
         }
       }

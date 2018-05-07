@@ -55,10 +55,30 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
     return this.cacheData['time'];
   }
 
+  get finishTime(): string {
+    if (getDateTime('#finish_time')) {
+      this.cacheData['finish_time'] = getDateTime('#finish_time')
+    }
+    return this.cacheData['finish_time'];
+  }
+
+  get entryTime(): string {
+    if (getDateTime('#entry_time')) {
+      this.cacheData['entry_time'] = getDateTime('#entry_time')
+    }
+    return this.cacheData['entry_time'];
+  }
+
   ngAfterViewChecked() {
     if (this.type == 1 && this.fileName && this.canSelectTime) {
       this.canSelectTime = false;
       setDateTimeGroup('#time');
+    }
+
+    if (this.type == 3 && this.canSelectTime) {
+      this.canSelectTime = false;
+      setDateTimeGroup('#finish_time');
+      setDateTimeGroup('#entry_time');
     }
   }
 
@@ -67,6 +87,8 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
     const data = JSON.parse(sessionStorage.getItem('cacheData'));
     this.cacheData['remake'] = data ? data['remake'] : '';
     this.cacheData['time'] = data ? data['time'] : this.getNowDate();
+    this.cacheData['finish_time'] = data ? data['finish_time'] : this.getNowDate();
+    this.cacheData['entry_time'] = data ? data['entry_time'] : this.getNowDate();
     this.leader = JSON.parse(sessionStorage.getItem('leader')) || {};
     this.activatedRoute.queryParams.subscribe(queryParams => {
       sessionStorage.setItem('queryParams', JSON.stringify(queryParams));
@@ -120,6 +142,13 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
     if (this.isSubmit) return;
     this.isSubmit = true;
     if (option) {
+      if (this.tas_uid == '6846831325a7285cc7818a5005400886') {
+        if (!this.leader['people'] || this.leader['people'].length == 0) {
+          muiToast('请选择负责人');
+          this.isSubmit = false;
+          return;
+        }
+      }
       if (this.option && this.canNext) {
         if (!this.leader['leader'] || this.leader['leader'].length == 0) {
           muiToast('请选择审核人');
@@ -152,6 +181,12 @@ export class ApprovalComponent implements OnInit, AfterViewChecked {
       }
       if (this.tas_uid == '7591958415a6fda5eb32403071634539') {
         this.request['for_optional'] = this.cacheData['optional'];
+      }
+      if (this.tas_uid == '6846831325a7285cc7818a5005400886') {
+        this.request['finish_time'] = this.cacheData['finish_time'];
+        this.request['entry_time'] = this.cacheData['entry_time'];
+        this.request['dp_id'] = JSON.parse(sessionStorage.getItem('leader'))['people'][0].dp_id
+        this.request['people'] = ArrayUtil.getWfId(this.leader['people']);
       }
       this.request['sign_time'] = getDateTime('#time0');
       this.workflowService.examine(this.request).then(() => this.router.navigate(['/home/project-list']));

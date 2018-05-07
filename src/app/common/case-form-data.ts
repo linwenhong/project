@@ -51,11 +51,8 @@ export const CASE_FORM_DATA = {
       { name: '甲方名称', key: 'party_a' },
       { name: '签订日期', key: 'sign_date' },
       { name: '工期', key: 'limit_time' },
-      { name: '预计完成时间', key: 'finish_time' },
-      { name: '要求进场时间', key: 'entry_time' },
       { name: '合同金额', key: 'contract_amount' },
       { name: '负责部门', key: 'dp_id' },
-      { name: '负责人', key: 'people' },
       { name: '合同类型', key: 'contract_type' },
     ],
     files: [
